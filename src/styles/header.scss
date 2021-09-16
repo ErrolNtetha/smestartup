@@ -1,0 +1,379 @@
+$title-size: .6rem;
+$paragraph-size: .8rem;
+$text-color: rgb(128, 128, 128);
+
+@media screen and (max-width: 480px) {
+
+  * {
+    font-family: serif;
+  }
+
+  body {
+    position: relative;
+  }
+
+  .signupBtn {
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      background-color: #000;
+      border-radius: .3em;
+      padding: 10px 10px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+ 
+    .bodyIntro {
+      margin: 0 auto;
+    }
+
+  .headerContainer {
+    position: sticky;
+    top: 0;
+    background-color: rgb(230, 223, 223);
+    color: #fff;
+    height: 3vh;
+    padding: 10px 10px;
+  }
+
+  .navContainer {
+    position: absolute;
+    background-color: black;
+    height: 100%;
+    width: 70%;
+    z-index: 999;
+    max-height: 100%;
+    color: #fff;
+    top: 0;
+    left: 0;
+    
+  }
+
+  .profilePicture {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 5em;
+    border-color: rgb(0, 0, 0);
+    border-width: .5px;
+    border-style: solid;
+    padding-right: px;
+  }
+
+  h4 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: bold;
+    box-sizing: content-box;
+    font-size: 1.2rem;
+  }
+
+  .header {
+    padding: 0px 5px;
+    bottom: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .header .login {
+    color:rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-size: .8rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .verge {
+    text-transform: uppercase;
+    color: #000000;
+    font-family: 'Nanum Myeongjo', serif;
+  }
+
+  .faBars {
+    width: 20px;
+    height: 20px;
+    color:rgb(0, 0, 0)
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    color:rgb(0, 0, 0);
+
+    
+      .notifications {
+        height: 30px;
+        width: 20px;
+        padding: 10px;
+      }
+      .inbox {
+        height: 30px;
+        width: 20px;
+      }
+   }
+
+  .faSearch {
+      width: 20px;
+      height: 20px;
+      color: #000;
+    }
+
+    .filteredSearch {
+      display: flex;
+      align-items: center;
+    }
+
+    .navMenu {
+      height: 100vh;
+      width: 60%;
+      background-color: rgb(17, 15, 15);
+      color: rgb(255, 255, 255);
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+
+      .times {
+        padding-top: 10px;        
+        display: block;
+
+        .close {
+          height: 30px;
+          width: 30px;
+          float: right;
+          padding-right: 10px;
+        }
+      }
+
+      .dashboard {
+        display: flex;
+        color: #fff;
+        padding: 10px 20px;
+        margin-top: 0;                                                                                                                                                                                                                                                                                                                                                      
+
+        .subProfile {
+          display: flex;
+          align-items: center;
+
+          h4 {
+            font-size: 1em;
+            margin: 0 0 .4em 0;
+            padding: 0;
+          }
+
+          .profileImage {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+
+          a {
+            background-color: rgb(54, 54, 54);
+            color: #fff;
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: .7em;
+            display: inline-flex;
+          }
+        }
+      }
+
+      .navItems, .navItems1 {
+        padding-left:  20px;
+        color: #fff;
+        list-style-type: none; 
+        font-size: .8rem;  
+        
+        li {
+         margin-bottom: 15px;
+         margin-left: .43em;
+        }
+
+        .menuL {
+          display: flex;
+          align-items: center;
+         margin-left: .43em;
+
+        }
+      }
+    }
+
+    .bodyIntro {
+      padding:8px;
+
+      .searchBox {
+        position: relative;
+        border-width: 1px;
+        border-radius: 30px;
+        border-style: solid;
+        padding: 8px 10px;
+        font-size: .8rem;
+        width: 75%;
+        outline: none;
+      }
+
+      .searchIcon {
+        position: absolute;
+      }
+
+      .searchBtn {
+        position: absolute;
+        font-weight: 800;
+        border-style: none;
+        outline: none;
+        background: none;
+        padding: 20px;
+        float: right;
+      }
+
+      .filterOptions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .dropDownFilter {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .dropDownFilter p {
+          font-size: .8rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .selectors {
+          width: 80px;
+          height: 20px;
+          overflow: unset;
+        }
+      }
+
+        .newsFeed {
+          background-color: rgb(241, 241, 241);
+          padding: 10px;
+          font-size: .6rem;
+          border-radius: 5px;
+          margin: 10px;
+          border: 1px solid rgba(151, 151, 151, 0.473);
+
+          .userDetails h3 {
+            font-size: .7rem;
+            font-weight: 800;
+            margin: 0px;
+          }
+        }
+
+        .companyName {
+          font-weight: 800;
+          
+        }
+
+        .companyName p {
+          font-size: .4rem;
+          
+        }
+
+        .userDetails {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          max-width: 100%;
+
+          .group {
+            display: inherit;
+            align-items: center;
+            margin: 0;
+          }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+
+        .faEllipsis {
+          top: 0;
+          right: 0;
+          width: 12px;
+          height: 12px;
+        }
+        
+        .userName {
+          padding-left: 10px;
+        }
+
+        .userName p { 
+          margin: 0px;
+         }
+
+         .userName p  { 
+          font-size: $title-size;
+         }
+
+         .post .para { 
+          padding: 0px 10px;
+          font-size: $paragraph-size;
+          margin: 0;
+         }
+    }
+
+    .stats-container {
+      .stats {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        color: $text-color;
+        align-items: center;
+
+        .stats span { align-items: center; }
+      }
+
+      .rate { 
+        font-size: 1.2em;
+        font-weight: bold; 
+      }
+
+      .companyProfile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: .8em;
+
+        .sendProposal {
+          text-decoration: none;
+          background-color: rgb(40, 41, 37);
+          color: rgb(255, 255, 255);
+          padding: 6px 10px;
+          font-weight: bold;
+          font-size: .8em;
+          border-radius: .5em;
+          border: none;
+          text-transform: uppercase;
+          right: 0;
+      }
+
+      .viewPost {
+          text-decoration: none;
+          background-color: rgb(219, 219, 219);
+          color: rgb(255, 255, 255);
+          padding: 5px 10px;
+          font-weight: bold;
+          font-size: .8em;
+          color: #000;
+          border-radius: .5em;
+          border: 1px solid black;
+          text-transform: uppercase;
+          right: 0;
+          margin-right: .6em;
+
+          .bookmark {
+            margin-right: .2em;
+          }
+        }
+      }
+
+    }
+  }
+
+  
