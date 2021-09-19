@@ -7,6 +7,7 @@ export default function Header() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const onClickHandler = () => {
+    // Behaviour on click
     setIsLoggedIn(!isLoggedIn)
     console.log(isLoggedIn)
   }

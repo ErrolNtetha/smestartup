@@ -4,12 +4,17 @@ $text-color: rgb(128, 128, 128);
 
 @media screen and (max-width: 480px) {
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,900&display=swap');
+
+
   * {
-    font-family: serif;
+    box-sizing: border-box;
   }
+
 
   body {
     position: relative;
+    font-family: Lato, sans-sefif;
   }
 
   .signupBtn {
@@ -125,6 +130,7 @@ $text-color: rgb(128, 128, 128);
     }
 
     .navMenu {
+      display: none;
       height: 100vh;
       width: 60%;
       background-color: rgb(17, 15, 15);
