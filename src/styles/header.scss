@@ -2,10 +2,8 @@ $title-size: .6rem;
 $paragraph-size: .8rem;
 $text-color: rgb(128, 128, 128);
 
-@media screen and (max-width: 480px) {
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,800;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,900&display=swap');
-
 
   * {
     box-sizing: border-box;
@@ -14,7 +12,7 @@ $text-color: rgb(128, 128, 128);
 
   body {
     position: relative;
-    font-family: Lato, sans-sefif;
+    font-family: "Open Sans", sans-sefif;
   }
 
   .signupBtn {
@@ -38,7 +36,7 @@ $text-color: rgb(128, 128, 128);
     top: 0;
     background-color: rgb(230, 223, 223);
     color: #fff;
-    height: 3vh;
+    height: 5vh;
     padding: 10px 10px;
   }
 
@@ -130,9 +128,8 @@ $text-color: rgb(128, 128, 128);
     }
 
     .navMenu {
-      display: none;
       height: 100vh;
-      width: 60%;
+      width: 70%;
       background-color: rgb(17, 15, 15);
       color: rgb(255, 255, 255);
       position: fixed;
@@ -173,6 +170,7 @@ $text-color: rgb(128, 128, 128);
             height: 50px;
             border-radius: 50%;
           }
+
 
           a {
             background-color: rgb(54, 54, 54);
@@ -307,6 +305,10 @@ $text-color: rgb(128, 128, 128);
         
         .userName {
           padding-left: 10px;
+
+          h3 {
+            font-size: 2rem;
+          }
         }
 
         .userName p { 
@@ -329,10 +331,14 @@ $text-color: rgb(128, 128, 128);
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
-        color: $text-color;
         align-items: center;
 
         .stats span { align-items: center; }
+      }
+
+      .docAttachments {
+        color: $text-color;
+        text-decoration: none;
       }
 
       .rate { 
@@ -346,17 +352,23 @@ $text-color: rgb(128, 128, 128);
         align-items: center;
         margin-top: .8em;
 
+        .actionBtn {
+          display: flex;
+        }
+
         .sendProposal {
           text-decoration: none;
           background-color: rgb(40, 41, 37);
           color: rgb(255, 255, 255);
-          padding: 6px 10px;
-          font-weight: bold;
-          font-size: .8em;
+          padding: 8px 12px;
+          font-weight: 700;
+          font-size: 1em;
           border-radius: .5em;
           border: none;
           text-transform: uppercase;
           right: 0;
+          text-align: center;
+
       }
 
       .viewPost {
@@ -365,7 +377,7 @@ $text-color: rgb(128, 128, 128);
           color: rgb(255, 255, 255);
           padding: 5px 10px;
           font-weight: bold;
-          font-size: .8em;
+          font-size: .2em;
           color: #000;
           border-radius: .5em;
           border: 1px solid black;
@@ -380,6 +392,3 @@ $text-color: rgb(128, 128, 128);
       }
 
     }
-  }
-
-  
