@@ -10,6 +10,7 @@ import {
   FaCog,
   FaQuestion, 
 } from "react-icons/fa";
+import Header from './Header'
 import { name, image} from "faker";
 
 import '../styles/header.scss'
@@ -78,7 +79,7 @@ export default function Menu(props) {
   return (
     <nav className="navMenu">
       <section className="times">
-        <FaTimes className="close" />
+        <FaTimes className="close" onClick={props.onMenuClose} />
       </section>
       <section className="dashboard">
         <span className="subProfile">
