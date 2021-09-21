@@ -12,15 +12,17 @@ export default function Header() {
     console.log(isLoggedIn)
   }
 
+  const [showMenu, setShowMenu] = useState(false)
+
+
   return (
-    <header className="headerContainer">
-      
+    <header className="headerContainer">      
       <section className="header">
-        <FaBars className="faBars" />
+        <FaBars className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3>
-          <span className="verge"> mphumeleli</span>
+          <span className="verge"> mphumeleli ntetha </span>
         </h3>
-        <Menu />
+        { showMenu && <Menu /> }
         {isLoggedIn ? (
           <FaSearch className="faSearch" />
         ) : (
