@@ -3,7 +3,7 @@ import { FaBars, FaBell, FaRegEdit, FaSearch } from "react-icons/fa";
 import "../styles/header.scss";
 import Menu from "./Menu";
 
-export default function Header() {
+export default function Header(props) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const onClickHandler = () => {
@@ -22,7 +22,7 @@ export default function Header() {
         <h3>
           <span className="verge"> mphumeleli ntetha </span>
         </h3>
-        { showMenu && <Menu /> }
+        { showMenu && <Menu onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
         {isLoggedIn ? (
           <FaSearch className="faSearch" />
         ) : (
