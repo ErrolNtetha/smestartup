@@ -5,7 +5,7 @@ export default function Profile() {
     return (
         <section>
             <section>
-                <img src={faker.image.avatar()} alt="pp" className="profilePicture" />
+                <h5> This is a Profile Page! </h5>
             </section>
         </section>
     )

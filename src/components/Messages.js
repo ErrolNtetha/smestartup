@@ -3,7 +3,7 @@ import React from 'react'
 export default function Messages() {
     return (
         <div>
-            Hello, these are your messages!
+            <h2> This is a Messages Page </h2>
         </div>
     )
 }

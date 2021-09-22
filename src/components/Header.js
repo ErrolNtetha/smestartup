@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { FaBars, FaBell, FaRegEdit, FaSearch } from "react-icons/fa";
+import { FaBars, FaSearch } from "react-icons/fa";
 import "../styles/header.scss";
 import Menu from "./Menu";
 

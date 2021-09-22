@@ -183,6 +183,11 @@ $text-color: rgb(128, 128, 128);
         }
       }
 
+      .menuLinksContainer {
+        color: #fff;
+        text-decoration: none;
+      }
+
       .navItems, .navItems1 {
         padding-left:  20px;
         color: #fff;
@@ -192,6 +197,7 @@ $text-color: rgb(128, 128, 128);
         li {
          margin-bottom: 15px;
          margin-left: .43em;
+        text-decoration: none;
         }
 
         .menuL {
@@ -371,7 +377,6 @@ $text-color: rgb(128, 128, 128);
           text-transform: uppercase;
           right: 0;
           text-align: center;
-
       }
 
       .viewPost {
