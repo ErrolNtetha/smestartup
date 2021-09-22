@@ -11,14 +11,15 @@ import {
   FaQuestion, 
 } from "react-icons/fa";
 import uuid from 'uuid';
-import { name, image} from "faker";
-
 import '../styles/header.scss'
 import { Link } from "react-router-dom";
 
 export default function Menu(props) {
-  const { firstName, lastName } = name;
-  const { avatar } = image;
+  const myProfile = {
+    name: "Mphumeleli",
+    surname: "Ntetha",
+    profilePicture: "../assets/cat.jpg",
+  }
 
   const menuItems = [
     {
@@ -84,19 +85,25 @@ export default function Menu(props) {
       </section>
       <section className="dashboard">
         <span className="subProfile">
-          <img src={avatar()} className="profileImage" alt="thumbnail" />
+          <img src={myProfile.profilePicture    } className="profileImage" alt="thumbnail" />
           <span  style={{marginLeft: ".6em"}}>
             <h4>
-              {firstName()} {lastName()}
+              {myProfile.name} {myProfile.surname}
             </h4>
-            <a href="##"> View Profile </a>
+              <a href="##"> View Profile </a>
           </span>
         </span>
       </section>
-      <hr style={{ width: "90%", opacity: "40%" }} />
+      <hr style={{ width: "80%", opacity: "30%" }} />
       <ul className="navItems">
         {
-          menuItems.map(item => <li key={item.id} className="menuL"> {item.icon} <a href="##">  {item.nav}</a> </li>
+          menuItems.map(item => {
+            return (
+              <Link to={item.pathname} className="menuLinksContainer">
+                <li key={item.id} className="menuL"> {item.icon} <a href="##" >  {item.nav}</a> </li>
+              </Link>
+            )
+          } 
             )
         }
         
