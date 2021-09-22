@@ -29,7 +29,6 @@ export default function Post() {
             cityName={cityName()}
             icon={FaEllipsisH}
           />
-          <hr />
           <p className="para"> {paragraph()} </p>
         </section>
         <Stats location={cityName()} country={country()} />
@@ -59,7 +58,7 @@ const UserDetails = (props) => {
           </p>{" "}
         </span>
       </span>
-      <FaEllipsisH />
+      <FaEllipsisH className="ellipsis" />
     </span>
   );
 };
@@ -79,13 +78,15 @@ const Stats = (props) => {
       </section>
       <section className="companyProfile">
         <span style={{padding: "10px"}}>
-          <FaFilePdf /> Documents (867 KB)
+          <a href="/documents" className="docAttachments">
+            <FaFilePdf className="docAttachements" /> Documents (1.3 MB)
+          </a>
         </span>
-        <span>
-          <a href="##" className="viewPost">
+        <span className="actionBtn">
+          {/* <a href="##" className="viewPost">
             {" "}
             <FaBookmark className="bookmark" /> Save for later{" "}
-          </a>
+          </a> */}
           <a href="##" className="sendProposal">
             {" "}
             send proposal{" "}

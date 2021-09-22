@@ -47,10 +47,7 @@ $text-color: rgb(128, 128, 128);
     width: 70%;
     z-index: 999;
     max-height: 100%;
-    color: #fff;
-    top: 0;
-    left: 0;
-    
+    color: #fff;   
   }
 
   .profilePicture {
@@ -91,6 +88,7 @@ $text-color: rgb(128, 128, 128);
     text-transform: uppercase;
     color: #000000;
     font-family: 'Nanum Myeongjo', serif;
+    font-size: 1rem;
   }
 
   .faBars {
@@ -199,8 +197,13 @@ $text-color: rgb(128, 128, 128);
         .menuL {
           display: flex;
           align-items: center;
-         margin-left: .43em;
-
+          margin-left: .43em;
+          
+          a {
+            text-decoration: none;
+          color: white;
+          margin-left: 6px;
+          }
         }
       }
     }

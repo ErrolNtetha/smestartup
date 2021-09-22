@@ -10,10 +10,11 @@ import {
   FaCog,
   FaQuestion, 
 } from "react-icons/fa";
-import Header from './Header'
+import uuid from 'uuid';
 import { name, image} from "faker";
 
 import '../styles/header.scss'
+import { Link } from "react-router-dom";
 
 export default function Menu(props) {
   const { firstName, lastName } = name;
@@ -24,55 +25,55 @@ export default function Menu(props) {
       nav: "Home",
       icon: <FaHome />,
       pathname: "/",
-      id: 1,
+      id: uuid(),
     },
     {
       nav: "Messages",
       icon: <FaBookmark />,
-      pathname: "/",
-      id: 2,
+      pathname: "/messages",
+      id: uuid(),
     },
     {
-      nav: "Connections",
+      nav: "Groups",
       icon: <FaUsers />,
-      pathname: "/",
-      id: 3,
+      pathname: "/groups",
+      id: uuid(),
     },
     {
       nav: "Saved for Later",
       icon: <FaBookmark />,
-      pathname: "/",
-      id: 3,
+      pathname: "/bookmarks",
+      id: uuid(),
     },
     {
       nav: "Notifications",
       icon: <FaWrench />,
-      pathname: "/",
-      id: 3,
+      pathname: "/notification",
+      id: uuid(),
     },
     {
       nav: "Notifications",
       icon: <FaBell />,
-      pathname: "/",
-      id: 3,
+      pathname: "/jobs",
+      id: uuid(),
     },
     {
       nav: "Help Center",
       icon: <FaQuestion />,
-      pathname: "/",
-      id: 3,
+      pathname: "/help",
+      id: uuid(),
     },
     {
       nav: "Settings",
       icon: <FaCog />,
-      pathname: "/",
-      id: 3,
+      pathname: "/settings",
+      id: uuid(),
     },
     {
       nav: "Signout",
       icon: <FaPowerOff />,
-      pathname: "/",
-      id: 3,
+      pathname: "/logout",
+      id: uuid(),
     },
   ];
 
@@ -95,7 +96,8 @@ export default function Menu(props) {
       <hr style={{ width: "90%", opacity: "40%" }} />
       <ul className="navItems">
         {
-          menuItems.map(item => <li key={item.id} className="menuL"> {item.icon} {item.nav} </li>)
+          menuItems.map(item => <li key={item.id} className="menuL"> {item.icon} <a href="##">  {item.nav}</a> </li>
+            )
         }
         
       </ul>
