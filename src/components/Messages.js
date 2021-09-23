@@ -1,15 +1,86 @@
 import React from 'react'
+import { name, image, lorem } from "faker";
 import { FaSearch } from 'react-icons/fa'
+import "../styles/header.scss"
+import uuid from 'uuid'
 
 export default function Messages() {
     return (
-            <section className="searchContainer">
+         <section className="chatParentConatainer">
+            <Chatlist  />
+            <Search />
+         </section>   
+    )
+}
+
+const Search = () => {
+    return (
+        <section className="searchContainer">
                 <div className="searchBar">
                     <section className="search">
                         <FaSearch  />
                     </section>
                     <input type="text" placeholder='Search chats...' />
                 </div>
-            </section>
+        </section>
+    )
+}
+
+const Chatlist = () => {
+    const { firstName, lastName} = name;
+    const { avatar } = image;
+
+    const chats = [
+        {
+            name: firstName(),
+            lastName: lastName(),
+            message: "Hey please check your emails!",
+            profilePicture: avatar(),
+            id: uuid(),
+        },
+        {
+            name: firstName(),
+            lastName: lastName(),
+            message: "Hey please check your emails!",
+            profilePicture: avatar(),
+            id: uuid(),
+        },
+        {
+            name: firstName(),
+            lastName: lastName(),
+            message: "Hey please check your emails!",
+            profilePicture: avatar(),
+            id: uuid(),
+        },
+        {
+            name: firstName(),
+            lastName: lastName(),
+            message: "Hey please check your emails!",
+            profilePicture: avatar(),
+            id: uuid(),
+        },
+        {
+            name: firstName(),
+            lastName: lastName(),
+            message: "Hey please check your emails!",
+            profilePicture: avatar(),
+            id: uuid(),
+        },
+    ]
+
+    return (
+        <section className="chatContainer">
+               {chats.map(item => {
+                   return (
+                       <section key={item.id} className="chat">
+                           <img src={item.profilePicture} alt="" className="profileImage" />
+                           <section className="personDetails">
+                                <p className="profileNames"> {item.name} {item.lastName} </p>
+                                <p className="message"> {item.message} </p>
+                           </section>
+                       </section>
+                   )
+               })}
+        </section>
     )
 }
