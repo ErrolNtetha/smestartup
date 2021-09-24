@@ -80,7 +80,7 @@ const Stats = (props) => {
       <section className="companyProfile">
         <span style={{padding: "10px"}}>
           <a href="/documents" className="docAttachments">
-            <FaRegEye className="docAttachements" /> Documents (1.3 MB)
+            <FaRegEye className="docAttachements" /> 2.4K views
           </a>
         </span>
         <span className="actionBtn">

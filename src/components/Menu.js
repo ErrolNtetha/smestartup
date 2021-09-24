@@ -8,7 +8,8 @@ import {
   FaTimes,
   FaPowerOff,
   FaCog,
-  FaQuestion, 
+  FaQuestion,
+  FaRegUserCircle 
 } from "react-icons/fa";
 import uuid from 'uuid';
 import '../styles/header.scss'
@@ -18,7 +19,7 @@ export default function Menu(props) {
   const myProfile = {
     name: "Mphumeleli",
     surname: "Ntetha",
-    profilePicture: "../assets/cat.jpg",
+    profilePicture: <FaRegUserCircle />,
   }
 
   const menuItems = [
@@ -85,7 +86,7 @@ export default function Menu(props) {
       </section>
       <section className="dashboard">
         <span className="subProfile">
-          <img src={myProfile.profilePicture    } className="profileImage" alt="thumbnail" />
+          <img src={ <FaRegUserCircle /> } className="profileImage" alt="" />
           <span  style={{marginLeft: ".6em"}}>
             <h4>
               {myProfile.name} {myProfile.surname}
@@ -99,7 +100,7 @@ export default function Menu(props) {
         {
           menuItems.map(item => {
             return (
-              <Link to={item.pathname} className="menuLinksContainer">
+              <Link to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
                 <li key={item.id} className="menuL"> {item.icon} <a href="##" >  {item.nav}</a> </li>
               </Link>
             )
