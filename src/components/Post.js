@@ -5,6 +5,7 @@ import {
   FaMapMarkerAlt,
   FaBookmark,
   FaFilePdf,
+  FaRegEye
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 
@@ -79,7 +80,7 @@ const Stats = (props) => {
       <section className="companyProfile">
         <span style={{padding: "10px"}}>
           <a href="/documents" className="docAttachments">
-            <FaFilePdf className="docAttachements" /> Documents (1.3 MB)
+            <FaRegEye className="docAttachements" /> Documents (1.3 MB)
           </a>
         </span>
         <span className="actionBtn">

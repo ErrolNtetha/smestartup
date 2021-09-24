@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import { FaBars, FaSearch } from "react-icons/fa";
+import { FaBars, FaSistrix } from "react-icons/fa";
 import "../styles/header.scss";
 import Menu from "./Menu";
 
 export default function Header(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const onClickHandler = () => {
     // Behaviour on click
     setIsLoggedIn(!isLoggedIn)
@@ -23,7 +23,7 @@ export default function Header(props) {
         </h3>
         { showMenu && <Menu onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
         {isLoggedIn ? (
-          <FaSearch className="faSearch" />
+          <FaSistrix className="faSearch" />
         ) : (
           <span className="icons">
             <a onClick={onClickHandler} href="/login" className="login"> Log In </a>
