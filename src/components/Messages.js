@@ -1,5 +1,5 @@
 import React from 'react'
-import { name, image, lorem } from "faker";
+import { name, image } from "faker";
 import { FaSearch } from 'react-icons/fa'
 import "../styles/header.scss"
 import uuid from 'uuid'

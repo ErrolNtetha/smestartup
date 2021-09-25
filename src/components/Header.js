@@ -19,7 +19,7 @@ export default function Header(props) {
       <section className="header">
         <FaBars className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3>
-          <span className="verge"> mphumeleli ntetha </span>
+          <span className="verge"> mphumeleli </span>
         </h3>
         { showMenu && <Menu onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
         {isLoggedIn ? (

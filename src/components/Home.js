@@ -1,7 +1,5 @@
 import React from "react";
-import { FaSearch } from 'react-icons/fa'
 import Post from "./Post";
-import faker from "faker";
 
 export default function Home() {
   return (

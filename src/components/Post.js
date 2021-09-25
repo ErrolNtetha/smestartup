@@ -3,8 +3,6 @@ import {
   FaEllipsisH,
   FaStar,
   FaMapMarkerAlt,
-  FaBookmark,
-  FaFilePdf,
   FaRegEye
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
