@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/smestartup/static/css/main.49f9d0b7.chunk.css",
-    "main.js": "/smestartup/static/js/main.47fd2860.chunk.js",
-    "main.js.map": "/smestartup/static/js/main.47fd2860.chunk.js.map",
+    "main.css": "/smestartup/static/css/main.8a11fe2a.chunk.css",
+    "main.js": "/smestartup/static/js/main.bd121a1d.chunk.js",
+    "main.js.map": "/smestartup/static/js/main.bd121a1d.chunk.js.map",
     "runtime-main.js": "/smestartup/static/js/runtime-main.51869f0a.js",
     "runtime-main.js.map": "/smestartup/static/js/runtime-main.51869f0a.js.map",
     "static/js/2.f74e1c56.chunk.js": "/smestartup/static/js/2.f74e1c56.chunk.js",
@@ -10,13 +10,14 @@
     "static/js/3.06cf2a83.chunk.js": "/smestartup/static/js/3.06cf2a83.chunk.js",
     "static/js/3.06cf2a83.chunk.js.map": "/smestartup/static/js/3.06cf2a83.chunk.js.map",
     "index.html": "/smestartup/index.html",
-    "static/css/main.49f9d0b7.chunk.css.map": "/smestartup/static/css/main.49f9d0b7.chunk.css.map",
-    "static/js/2.f74e1c56.chunk.js.LICENSE.txt": "/smestartup/static/js/2.f74e1c56.chunk.js.LICENSE.txt"
+    "static/css/main.8a11fe2a.chunk.css.map": "/smestartup/static/css/main.8a11fe2a.chunk.css.map",
+    "static/js/2.f74e1c56.chunk.js.LICENSE.txt": "/smestartup/static/js/2.f74e1c56.chunk.js.LICENSE.txt",
+    "static/media/cat.a8350a09.jpg": "/smestartup/static/media/cat.a8350a09.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.51869f0a.js",
     "static/js/2.f74e1c56.chunk.js",
-    "static/css/main.49f9d0b7.chunk.css",
-    "static/js/main.47fd2860.chunk.js"
+    "static/css/main.8a11fe2a.chunk.css",
+    "static/js/main.bd121a1d.chunk.js"
   ]
 }
