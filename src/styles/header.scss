@@ -445,6 +445,25 @@ $text-color: rgb(128, 128, 128);
       border: 1px solid;
     }
 
+    .tabs {
+      
+      .tabsItem {
+        display: flex;
+        list-style-type: none;
+        justify-content: space-around;
+        margin: .4rem 0;
+        font-weight: bold;
+        align-items: center;
+
+        li:first-child {
+          background-color: $text-color;
+          padding: .4rem 1.2rem;
+          border-radius: 4rem;
+          color: #fff;
+        }
+      }
+    }
+
     .chatContainer {
        background-color: rgb(209, 209, 209);
       padding: 8px;
@@ -455,8 +474,7 @@ $text-color: rgb(128, 128, 128);
         align-items: center;
         padding: .3rem 0;
         margin: 4px 0;
-        border-radius: .2rem;
-        border-bottom: rgb(128, 128, 128) solid;
+        border-bottom: .2px rgb(128, 128, 128) solid;
         
         img, .personDetails, .profileNames, p {
           margin: 0;
@@ -474,5 +492,15 @@ $text-color: rgb(128, 128, 128);
         .personDetails {
           padding-left: .8rem;
         }
+    }
+
+    .tabs {
+      display: flex;
+          
+      .tabsItem {
+        display: flex;
+        list-style-type: none;
+        color: red;
+      }
     }
   }

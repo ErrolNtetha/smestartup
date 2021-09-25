@@ -7,6 +7,13 @@ import uuid from 'uuid'
 export default function Messages() {
     return (
          <section className="chatParentConatainer">
+            <section className="tabs">
+                <ul className="tabsItem">
+                    <li> Inbox </li>
+                    <li> Sent </li>
+                    <li> Received </li>
+                </ul>
+            </section>
             <Chatlist  />
             <Search />
          </section>   
@@ -20,7 +27,7 @@ const Search = () => {
                     <section className="search">
                         <FaSearch  />
                     </section>
-                    <input type="text" placeholder='Search chats...' />
+                    <input type="text" placeholder='Search chats or messages...' />
                 </div>
         </section>
     )

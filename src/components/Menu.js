@@ -13,19 +13,20 @@ import {
 } from "react-icons/fa";
 import uuid from 'uuid';
 import '../styles/header.scss'
+import cat from '../assets/cat.jpg'
 import { Link } from "react-router-dom";
 
 export default function Menu(props) {
   const myProfile = {
     name: "Mphumeleli",
-    surname: "Ntetha",
+    surname: cat,
     profilePicture: <FaRegUserCircle />,
   }
 
   const menuItems = [
     {
       nav: "Home",
-      icon: <FaHome />,
+      icon: <FaHome  />,
       pathname: "/",
       id: uuid(),
     },
@@ -36,7 +37,7 @@ export default function Menu(props) {
       id: uuid(),
     },
     {
-      nav: "Groups",
+      nav: "Browse People",
       icon: <FaUsers />,
       pathname: "/groups",
       id: uuid(),
@@ -86,7 +87,7 @@ export default function Menu(props) {
       </section>
       <section className="dashboard">
         <span className="subProfile">
-          <img src={ <FaRegUserCircle /> } className="profileImage" alt="" />
+          <img src={ cat } className="profileImage" alt="" />
           <span  style={{marginLeft: ".6em"}}>
             <h4>
               {myProfile.name} {myProfile.surname}
