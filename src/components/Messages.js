@@ -81,7 +81,7 @@ const Chatlist = () => {
     useEffect(() => {
        axios.get('http://localhost:5000/users')
        .then(res => res.json())
-       .then(() => setUsers(users))
+       .then((data) => console.log(data))
        .catch(err => console.log("There is an error: ", err))
     })
 

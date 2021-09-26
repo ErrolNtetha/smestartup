@@ -29,11 +29,6 @@ app.post('/users', (req, res) => {
     res.send("User is being added: ", addUser)
 })
 
-// List all the users in the database
-app.get('/users', (req, res) => {
-    res.send(users)
-})
-
 
 app.listen(port, (err) => {
     if(err) {
