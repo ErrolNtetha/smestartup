@@ -88,8 +88,8 @@ export default function Menu(props) {
       <section className="dashboard">
         <span className="subProfile">
           <img src={ !myProfile.profilePicture ? <FaRegUserCircle /> : cat } className="profileImage" alt="" />
-          <span  style={{marginLeft: ".6em"}}>
-            <h4>
+          <span  style={{marginLeft: "1.1rem"}}>
+            <h4 style={{fontSize: "1.1rem"}}>
               {myProfile.name} {myProfile.surname}
             </h4>
               <a href="##"> View Profile </a>

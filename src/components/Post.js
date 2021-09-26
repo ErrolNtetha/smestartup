@@ -3,7 +3,8 @@ import {
   FaEllipsisH,
   FaStar,
   FaMapMarkerAlt,
-  FaRegEye
+  FaRegEye,
+  FaChevronDown
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 
@@ -92,6 +93,24 @@ const Stats = (props) => {
           </a>
         </span>
       </section>
+      <DropdownArrow />
     </section>
   );
 };
+
+const DropdownArrow = () => {
+  const style = {
+    display: "none",
+  }
+
+  return (
+    <section className="dropDownArrowContainer">
+      <section className="aarrowDown">
+        <FaChevronDown />
+      </section>
+      <section id="companyData" className={style}>                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        <p>this is the text area </p>
+      </section>
+    </section>
+  )
+}
