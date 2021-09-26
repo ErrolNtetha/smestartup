@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { name, image } from "faker";
 import { FaSearch } from 'react-icons/fa'
 import "../styles/header.scss"
-import uuid from 'uuid'
+import uuid from 'uuid';
+import axios from 'axios';
 
 export default function Messages() {
     return (
@@ -75,6 +76,15 @@ const Chatlist = () => {
         },
     ]
 
+    const [ users, setUsers ] = useState([])
+
+    useEffect(() => {
+       axios.get('http://localhost:5000/users')
+       .then(res => res.json())
+       .then(() => setUsers(users))
+       .catch(err => console.log("There is an error: ", err))
+    })
+
     return (
         <section className="chatContainer">
                {chats.map(item => {
@@ -88,6 +98,9 @@ const Chatlist = () => {
                        </section>
                    )
                })}
+               <section>
+                  
+               </section>
         </section>
     )
 }

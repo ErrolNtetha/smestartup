@@ -1,0 +1,33 @@
+{
+  "name": "blendot",
+  "version": "1.0.0",
+  "description": "this is the backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErrolNtetha/smestartup.git"
+  },
+  "keywords": [
+    "business",
+    "investment",
+    "sme"
+  ],
+  "author": "Mphumeleli Errol Ntetha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErrolNtetha/smestartup/issues"
+  },
+  "homepage": "https://github.com/ErrolNtetha/smestartup#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  },
+  "proxy": "http://localhost:5000"
+}

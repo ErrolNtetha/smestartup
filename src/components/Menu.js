@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
 export default function Menu(props) {
   const myProfile = {
     name: "Mphumeleli",
-    surname: cat,
-    profilePicture: <FaRegUserCircle />,
+    surname: "Ntetha",
+    profilePicture: cat,
   }
 
   const menuItems = [
@@ -87,7 +87,7 @@ export default function Menu(props) {
       </section>
       <section className="dashboard">
         <span className="subProfile">
-          <img src={ cat } className="profileImage" alt="" />
+          <img src={ !myProfile.profilePicture ? <FaRegUserCircle /> : cat } className="profileImage" alt="" />
           <span  style={{marginLeft: ".6em"}}>
             <h4>
               {myProfile.name} {myProfile.surname}
