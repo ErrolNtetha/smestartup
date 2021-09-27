@@ -92,6 +92,7 @@ export default function Menu(props) {
             <h4 style={{fontSize: "1.1rem"}}>
               {myProfile.name} {myProfile.surname}
             </h4>
+            <p> Manager at Company X </p>
               <a href="##"> View Profile </a>
           </span>
         </span>
