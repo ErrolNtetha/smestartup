@@ -1,5 +1,5 @@
 $text-size: 1.1rem;
-$paragraph-size: .8rem;
+$paragraph-size: 1rem;
 $text-color: rgb(128, 128, 128);
 
 
@@ -182,10 +182,10 @@ $colorScheme: (
             background-color: rgb(54, 54, 54);
             color: #fff;
             text-decoration: none;
-            padding: 4px 8px;
-            border-radius: 2px;
+            padding: 4px 12px;
+            border-radius:4px;
             font-weight: bold;
-            font-size: .7em;
+            font-size: 1em;
             display: inline-flex;
           }
         }
@@ -326,7 +326,7 @@ $colorScheme: (
           padding-left: 10px;
 
           h3 {
-            font-size: 2rem;
+            font-size: $text-size;
           }
         }
 
@@ -335,7 +335,7 @@ $colorScheme: (
          }
 
          .userName p  { 
-          font-size: .6rem;
+          font-size: .8rem;
          }
 
          .post .para { 
@@ -513,13 +513,26 @@ $colorScheme: (
        background-color: rgba(158, 158, 158, 0.253);
        margin: 2px auto;
        text-align: center;
-       opacity: 50%;
      } 
 
-     #companyData {
-       background-color: #fff;
-       border-radius: 5px;
-       margin-top: 0;
-       padding: 3px 5px;
+     #companyData { 
+      position: relative;
+      
+      input {
+        
+        border-radius: 1rem;
+        width: 100%;
+        border: none;
+        padding: 10px 15px;
+        outline: olivedrab;
+      }
+
+      .replyIcon {
+        position: absolute;
+        z-index: 999;
+        font-size: 1rem;
+        right: 10px;
+        top: 20%;
+      }
      }
   }

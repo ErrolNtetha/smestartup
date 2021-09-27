@@ -4,7 +4,8 @@ import {
   FaStar,
   FaMapMarkerAlt,
   FaRegEye,
-  FaChevronDown
+  FaChevronDown,
+  FaReply
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 
@@ -70,7 +71,7 @@ const Stats = (props) => {
       <section className="stats">
         <span>
           <FaMapMarkerAlt style={{ marginTop: ".2em" }} /> {props.location},{" "}
-          {props.country}{" "}
+          {props.country}
         </span>
         <span>
           <FaStar className="rating" /> <span className="rate">4.7</span>/5{" "}
@@ -108,8 +109,11 @@ const DropdownArrow = () => {
       <section className="aarrowDown">
         <FaChevronDown />
       </section>
-      <section id="companyData" className={style}>                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-        <p>this is the text area </p>
+      <section id="companyData" className={style}>  
+        <section className="replyIcon">
+          <FaReply  />
+        </section>
+        <input type="text" name="comment" placeholder="Send a reply..." id="" />
       </section>
     </section>
   )
