@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { name, image } from "faker";
 import { FaSearch } from 'react-icons/fa'
 import "../styles/header.scss"
 import uuid from 'uuid';
+import axios from 'axios'
+import { response } from 'express';
 
 export default function Messages() {
     return (
@@ -75,6 +77,14 @@ const Chatlist = () => {
         },
     ]
 
+    const [newUser, setNewUser ] = useState(null)
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/user')
+            .then(res => console.log(res.data))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+            .catch(err => console.log("There was an error ", err))
+    }, [newUser])
+
     return (
         <section className="chatContainer">
                {chats.map(item => {
@@ -89,7 +99,7 @@ const Chatlist = () => {
                    )
                })}
                <section>
-                  
+                  {newUser}
                </section>
         </section>
     )

@@ -51,12 +51,11 @@ const UserDetails = (props) => {
           <h3>
             {props.firstName} {props.lastName}
           </h3>
-          <p>
-            {" "}
+          <section>
             Works at
             <span className="companyName"> {props.companyName} </span>
             <p> As {props.jobTitle} </p>
-          </p>{" "}
+          </section>
         </span>
       </span>
       <FaEllipsisH className="ellipsis" />
