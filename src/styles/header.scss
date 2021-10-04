@@ -507,10 +507,11 @@ $colorScheme: (
   .dropDownArrowContainer {
     border-radius: 5px;
     margin-top: 5px;
+    background-color: rgba(158, 158, 158, 0.253);
+
 
      .aarrowDown {
        font-size: 1rem;
-       background-color: rgba(158, 158, 158, 0.253);
        margin: 2px auto;
        text-align: center;
      } 
@@ -519,9 +520,8 @@ $colorScheme: (
       position: relative;
       
       input {
-        
         border-radius: 1rem;
-        width: 100%;
+        width: 90%;
         border: none;
         padding: 10px 15px;
         outline: olivedrab;
