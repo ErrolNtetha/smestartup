@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FaEllipsisH,
   FaStar,
@@ -55,7 +55,7 @@ const UserDetails = (props) => {
             {" "}
             Works at
             <span className="companyName"> {props.companyName} </span>
-            <p> As {props.jobTitle} </p>
+            {/* <p> As {props.jobTitle} </p> */}
           </p>{" "}
         </span>
       </span>
@@ -104,15 +104,18 @@ const DropdownArrow = () => {
     display: "none",
   }
 
+  const [show, setShow] = useState(false)
+
   return (
     <section className="dropDownArrowContainer">
       <section className="aarrowDown">
-        <FaChevronDown />
+        <FaChevronDown onClick={() => setShow(!show)} />
+        <section className={show ? 'compData' : 'data'}>
+          <p > This is data </p>
+        </section>
       </section>
       <section id="companyData" className={style}>  
-        <section className="replyIcon">
-          <FaReply  />
-        </section>
+          <FaReply className="icon" />
         <input type="text" name="comment" placeholder="Send a reply..." id="" />
       </section>
     </section>
