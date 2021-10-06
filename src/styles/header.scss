@@ -539,6 +539,27 @@ $colorScheme: (
 
     //  .compData {
     //  }
+
+    .dataContainer {
+        .actualData {
+          .dataList {
+            list-style-type: none;
+            margin: 0;
+            padding: .4rem;
+
+            li {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0 .4rem;
+            }
+
+            li:nth-child(odd) {
+              background: rgb(189, 189, 189);
+            }
+          }
+        }
+    }
       
       input {
         border-radius: 1rem;
