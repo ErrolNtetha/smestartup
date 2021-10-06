@@ -86,10 +86,10 @@ const Stats = (props) => {
           </a>
         </span>
         <span className="actionBtn">
-          <a href="##" className="viewPost">
+          {/* <a href="##" className="viewPost">
             {" "}
             <FaBookmark className="bookmark" /> Save for later{" "}
-          </a>
+          </a> */}
           <a href="##" className="sendProposal">
             {" "}
             send proposal{" "}
@@ -123,7 +123,7 @@ const DropdownArrow = () => {
               return (
                 <section className="actualData">
                   <ul className="dataList" key={item.id}>
-                    <li> <span> Inv. Amount </span> {item.investmentAmount} </li>
+                    <li> <span> Inv. Amount </span> R{item.investmentAmount} </li>
                     <li> <span> Type of Company </span> {item.typeOfCompany} </li>
                     <li> <span> Number of Employees </span> {item.numOfEmployees} </li>
                   </ul>
