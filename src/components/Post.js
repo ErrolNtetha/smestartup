@@ -8,6 +8,7 @@ import {
   FaReply
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
+import { companyBrief as data } from '../data'
 
 export default function Post() {
   const { firstName, lastName, jobTitle } = name;
@@ -111,7 +112,23 @@ const DropdownArrow = () => {
       <section className="aarrowDown">
         <FaChevronDown onClick={() => setShow(!show)} />
         <section className={show ? 'compData' : 'data'}>
-          <p > This is data </p>
+          <section>
+            <h3 style={{margin: "0", padding: "0"}}> Business Overview </h3>
+            <p > This is data </p>
+          </section>
+          <section className="dataContainer">
+            { data.map((item, key) => {
+              return (
+                <section className="actualData">
+                  <ul className="dataList" key={item.id}>
+                    <li> <span> Inv. Amount </span> {item.investmentAmount} </li>
+                    <li> <span> Type of Company </span> {item.typeOfCompany} </li>
+                    <li> <span> Number of Employees </span> {item.numOfEmployees} </li>
+                  </ul>
+                </section>
+              )
+            })}
+          </section>
         </section>
       </section>
       <section id="companyData" className={style}>  
