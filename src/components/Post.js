@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FaEllipsisH,
   FaStar,
@@ -8,6 +8,7 @@ import {
   FaReply
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
+import { companyBrief as data } from '../data'
 
 export default function Post() {
   const { firstName, lastName, jobTitle } = name;
@@ -55,7 +56,7 @@ const UserDetails = (props) => {
             {" "}
             Works at
             <span className="companyName"> {props.companyName} </span>
-            <p> As {props.jobTitle} </p>
+            {/* <p> As {props.jobTitle} </p> */}
           </p>{" "}
         </span>
       </span>
@@ -104,15 +105,34 @@ const DropdownArrow = () => {
     display: "none",
   }
 
+  const [show, setShow] = useState(false)
+
   return (
     <section className="dropDownArrowContainer">
       <section className="aarrowDown">
-        <FaChevronDown />
+        <FaChevronDown onClick={() => setShow(!show)} />
+        <section className={show ? 'compData' : 'data'}>
+          <section>
+            <h3 style={{margin: "0", padding: "0"}}> Business Overview </h3>
+            <p > This is data </p>
+          </section>
+          <section className="dataContainer">
+            { data.map((item, key) => {
+              return (
+                <section className="actualData">
+                  <ul className="dataList" key={item.id}>
+                    <li> <span> Inv. Amount </span> {item.investmentAmount} </li>
+                    <li> <span> Type of Company </span> {item.typeOfCompany} </li>
+                    <li> <span> Number of Employees </span> {item.numOfEmployees} </li>
+                  </ul>
+                </section>
+              )
+            })}
+          </section>
+        </section>
       </section>
       <section id="companyData" className={style}>  
-        <section className="replyIcon">
-          <FaReply  />
-        </section>
+          <FaReply className="icon" />
         <input type="text" name="comment" placeholder="Send a reply..." id="" />
       </section>
     </section>
