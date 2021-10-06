@@ -15,6 +15,10 @@ $colorScheme: (
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
 
   body {
     position: relative;
@@ -57,8 +61,8 @@ $colorScheme: (
   }
 
   .profilePicture {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.8rem;
+    width: 2.8rem;
     border-radius: 5em;
     border-color: rgb(0, 0, 0);
     border-width: .5px;
@@ -507,17 +511,35 @@ $colorScheme: (
   .dropDownArrowContainer {
     border-radius: 5px;
     margin-top: 5px;
+    padding: .2rem .4rem;
     background-color: rgba(158, 158, 158, 0.253);
+    
 
 
      .aarrowDown {
-       font-size: 1rem;
        margin: 2px auto;
        text-align: center;
+       font-size: 1rem;
+
      } 
 
-     #companyData { 
-      position: relative;
+     .icon {
+       position: absolute;
+       z-index: 999;
+       font-size: 1rem;
+       right: 4rem;
+      //  background: rgb(36, 35, 35);
+      //  color: #fff;
+       padding: 1rem;
+     }
+
+     .data {
+       display: none;
+     }
+
+     .compData {
+       display: block;
+     }
       
       input {
         border-radius: 1rem;
@@ -525,6 +547,7 @@ $colorScheme: (
         border: none;
         padding: 10px 15px;
         outline: olivedrab;
+        position: relative;
       }
 
       .replyIcon {
@@ -534,5 +557,4 @@ $colorScheme: (
         right: 10px;
         top: 20%;
       }
-     }
   }
