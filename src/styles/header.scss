@@ -508,7 +508,6 @@ $colorScheme: (
     border-radius: 5px;
     margin-top: 5px;
     padding: .2rem .4rem;
-    background-color: rgba(158, 158, 158, 0.253);
     
 
 
@@ -516,8 +515,16 @@ $colorScheme: (
        margin: 2px auto;
        text-align: center;
        font-size: 1rem;
+       border-radius: 10px;
+       border: 1px solid rgba(85, 85, 85, 0.486);
 
      } 
+
+     .arrowToggleWrapper {
+       background: rgba(158, 158, 158, 0.253);
+       border-top-left-radius: 10px;
+       border-top-right-radius: 10px;
+     }
 
      .icon {
        position: absolute;
@@ -552,6 +559,7 @@ $colorScheme: (
               font-size: .8rem;
               border-radius: 5px;
               margin: 2px 0;
+              color: rgb(66, 65, 65);
 
             }
 
