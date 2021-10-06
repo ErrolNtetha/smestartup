@@ -546,16 +546,25 @@ $colorScheme: (
             list-style-type: none;
             margin: 0;
             padding: .4rem;
+            border-radius: 5px;
 
             li {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              padding: 0 .4rem;
+              padding: 4px .4rem;
+              font-size: .8rem;
+              border-radius: 5px;
+              margin: 2px 0;
+
             }
 
             li:nth-child(odd) {
               background: rgb(189, 189, 189);
+            }
+
+            li:nth-child(even) {
+              background: #fff;
             }
           }
         }
