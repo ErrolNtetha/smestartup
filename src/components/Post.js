@@ -106,6 +106,7 @@ const DropdownArrow = () => {
   }
 
   const [show, setShow] = useState(false)
+  const summary = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt veritatis quod, dolor alias nhskjd dhfksu archi fdrfdr rged grdgs gers gstrget gt getstz vero dolores a porro!"
 
   return (
     <section className="dropDownArrowContainer">
@@ -113,8 +114,8 @@ const DropdownArrow = () => {
         <FaChevronDown onClick={() => setShow(!show)} />
         <section className={show ? 'compData' : 'data'}>
           <section>
-            <h3 style={{margin: "0", padding: "0"}}> Business Overview </h3>
-            <p > This is data </p>
+            <h5 style={{margin: "0", padding: "0"}}> Business Overview </h5>
+            <p style={{fontSize: ".8rem", textAlign: "left", padding: "6px"}}> {summary} </p>
           </section>
           <section className="dataContainer">
             { data.map((item, key) => {
