@@ -1,9 +1,11 @@
 export const companyBrief = [
     {
-        investmentAmount: "20 000",
+        investmentAmount: "287 000",
         typeOfCompany: '(Pty) Ltd.',
         numOfEmployees: '200 - 350',
-        summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem veritatis optio eveniet, suscipit tenetur eum a error itaque dolore architecto?",
+        area: "246",
+        establishedIn: "19 May 2016",
+        sector: "Food & Beverage",
         id: 0,
     }
 ]
