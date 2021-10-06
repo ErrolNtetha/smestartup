@@ -399,17 +399,13 @@ $colorScheme: (
           color: rgb(255, 255, 255);
           padding: 5px 10px;
           font-weight: bold;
-          font-size: .2em;
+          font-size: 1em;
           color: #000;
           border-radius: .5em;
           border: 1px solid black;
           text-transform: uppercase;
           right: 0;
           margin-right: .6em;
-
-          .bookmark {
-            margin-right: .2em;
-          }
         }
       }
     }

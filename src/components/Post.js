@@ -5,6 +5,7 @@ import {
   FaMapMarkerAlt,
   FaRegEye,
   FaChevronDown,
+  FaChevronUp,
   FaReply,
   FaBookmark
 } from "react-icons/fa";
@@ -107,25 +108,34 @@ const DropdownArrow = () => {
   }
 
   const [show, setShow] = useState(false)
-  const summary = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt veritatis quod, dolor alias nhskjd dhfksu archi fdrfdr rged grdgs gers gstrget gt getstz vero dolores a porro!"
+  const { paragraph } = lorem;
+
 
   return (
     <section className="dropDownArrowContainer">
       <section className="aarrowDown">
-        <FaChevronDown onClick={() => setShow(!show)} />
+        <section className="arrowToggleWrapper">
+          { show ?
+            <FaChevronUp onClick={() => setShow(!show)} /> :  <FaChevronDown onClick={() => setShow(!show)} />
+            }
+        </section>
         <section className={show ? 'compData' : 'data'}>
           <section>
             <h5 style={{margin: "0", padding: "0"}}> Business Overview </h5>
-            <p style={{fontSize: ".8rem", textAlign: "left", padding: "6px"}}> {summary} </p>
+            <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
           </section>
           <section className="dataContainer">
             { data.map((item, key) => {
               return (
                 <section className="actualData">
                   <ul className="dataList" key={item.id}>
-                    <li> <span> Inv. Amount </span> R{item.investmentAmount} </li>
+                    <li> <span> Annual Sales </span> R{item.investmentAmount} </li>
                     <li> <span> Type of Company </span> {item.typeOfCompany} </li>
-                    <li> <span> Number of Employees </span> {item.numOfEmployees} </li>
+                    <li> <span> Area </span> {item.area} sqm. </li>
+                    <li> <span> Established  </span> {item.establishedIn} </li>
+                    <li> <span> Sector </span> {item.sector} </li>
+                    <li> <span> Annual Sales </span> {item.investmentAmount} </li>
+                    <li> <span> Size </span> {item.numOfEmployees} </li>
                   </ul>
                 </section>
               )
