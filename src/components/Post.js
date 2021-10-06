@@ -5,7 +5,8 @@ import {
   FaMapMarkerAlt,
   FaRegEye,
   FaChevronDown,
-  FaReply
+  FaReply,
+  FaBookmark
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 import { companyBrief as data } from '../data'
@@ -85,10 +86,10 @@ const Stats = (props) => {
           </a>
         </span>
         <span className="actionBtn">
-          {/* <a href="##" className="viewPost">
+          <a href="##" className="viewPost">
             {" "}
             <FaBookmark className="bookmark" /> Save for later{" "}
-          </a> */}
+          </a>
           <a href="##" className="sendProposal">
             {" "}
             send proposal{" "}
