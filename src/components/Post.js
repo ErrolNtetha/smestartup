@@ -7,7 +7,6 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaReply,
-  FaBookmark
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 import { companyBrief as data } from '../data'
@@ -114,9 +113,9 @@ const DropdownArrow = () => {
   return (
     <section className="dropDownArrowContainer">
       <section className="aarrowDown">
-        <section className="arrowToggleWrapper">
+        <section className="arrowToggleWrapper" onClick={() => setShow(!show)} >
           { show ?
-            <FaChevronUp onClick={() => setShow(!show)} /> :  <FaChevronDown onClick={() => setShow(!show)} />
+            <FaChevronUp  /> :  <FaChevronDown  />
             }
         </section>
         <section className={show ? 'compData' : 'data'}>
