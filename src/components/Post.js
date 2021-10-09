@@ -120,7 +120,7 @@ const DropdownArrow = () => {
         </section>
         <section className={show ? 'compData' : 'data'}>
           <section>
-            <h5 style={{margin: "0", padding: "0"}}> Business Overview </h5>
+            <h5 style={{marginTop: "10px", padding: "0"}}> Business Overview </h5>
             <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
           </section>
           <section className="dataContainer">
