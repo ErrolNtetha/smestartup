@@ -15,6 +15,10 @@ $colorScheme: (
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
 
   body {
     position: relative;
@@ -57,8 +61,8 @@ $colorScheme: (
   }
 
   .profilePicture {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.8rem;
+    width: 2.8rem;
     border-radius: 5em;
     border-color: rgb(0, 0, 0);
     border-width: .5px;
@@ -395,17 +399,13 @@ $colorScheme: (
           color: rgb(255, 255, 255);
           padding: 5px 10px;
           font-weight: bold;
-          font-size: .2em;
+          font-size: 1em;
           color: #000;
           border-radius: .5em;
           border: 1px solid black;
           text-transform: uppercase;
           right: 0;
           margin-right: .6em;
-
-          .bookmark {
-            margin-right: .2em;
-          }
         }
       }
     }
@@ -507,24 +507,80 @@ $colorScheme: (
   .dropDownArrowContainer {
     border-radius: 5px;
     margin-top: 5px;
+    padding: .2rem .4rem;
+    
+
 
      .aarrowDown {
-       font-size: 1rem;
-       background-color: rgba(158, 158, 158, 0.253);
        margin: 2px auto;
        text-align: center;
+       font-size: 1rem;
+       border-radius: 10px;
+       border: 1px solid rgba(85, 85, 85, 0.486);
+
      } 
 
-     #companyData { 
-      position: relative;
+     .arrowToggleWrapper {
+       background: rgba(158, 158, 158, 0.253);
+       border-top-left-radius: 10px;
+       border-top-right-radius: 10px;
+     }
+
+     .icon {
+       position: absolute;
+       z-index: 999;
+       font-size: 1rem;
+       right: 4rem;
+      //  background: rgb(36, 35, 35);
+      //  color: #fff;
+       padding: 1rem;
+     }
+
+     .data {
+       display: none;
+     }
+
+    //  .compData {
+    //  }
+
+    .dataContainer {
+        .actualData {
+          .dataList {
+            list-style-type: none;
+            margin: 0;
+            padding: .4rem;
+            border-radius: 5px;
+
+            li {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 4px .4rem;
+              font-size: .8rem;
+              border-radius: 5px;
+              margin: 2px 0;
+              color: rgb(66, 65, 65);
+
+            }
+
+            li:nth-child(odd) {
+              background: rgb(189, 189, 189);
+            }
+
+            li:nth-child(even) {
+              background: #fff;
+            }
+          }
+        }
+    }
       
       input {
-        
         border-radius: 1rem;
         width: 100%;
         border: none;
         padding: 10px 15px;
         outline: olivedrab;
+        position: relative;
       }
 
       .replyIcon {
@@ -534,5 +590,4 @@ $colorScheme: (
         right: 10px;
         top: 20%;
       }
-     }
   }
