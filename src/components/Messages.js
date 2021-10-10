@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { name, image } from "faker";
 import { FaSearch } from 'react-icons/fa'
 import "../styles/header.scss"
 import uuid from 'uuid';
-import axios from 'axios';
+import axios from 'axios'
 
 export default function Messages() {
     return (
@@ -76,14 +76,18 @@ const Chatlist = () => {
         },
     ]
 
-    const [ users, setUsers ] = useState([])
+    const [newUser, setNewUser ] = useState([])
 
     useEffect(() => {
-       axios.get('http://localhost:5000/users')
-       .then(res => res.json())
-       .then((data) => console.log(data))
-       .catch(err => console.log("There is an error: ", err))
-    })
+        axios.get('http://localhost:5000/user')
+            .then(res => {
+                console.log(res.data)
+                setNewUser(res.data)
+            })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+            .catch(err => console.log("There was an error ", err.data))
+    }, [])
+
+    console.log(newUser)
 
     return (
         <section className="chatContainer">
@@ -99,7 +103,6 @@ const Chatlist = () => {
                    )
                })}
                <section>
-                  
                </section>
         </section>
     )

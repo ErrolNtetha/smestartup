@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FaEllipsisH,
   FaStar,
   FaMapMarkerAlt,
-  FaRegEye
+  FaRegEye,
+  FaChevronDown,
+  FaChevronUp,
+  FaReply,
+  FaBookmark
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
+import { companyBrief as data } from '../data'
 
 export default function Post() {
   const { firstName, lastName, jobTitle } = name;
@@ -49,12 +54,11 @@ const UserDetails = (props) => {
           <h3>
             {props.firstName} {props.lastName}
           </h3>
-          <p>
-            {" "}
+          <section>
             Works at
             <span className="companyName"> {props.companyName} </span>
             <p> As {props.jobTitle} </p>
-          </p>{" "}
+          </section>
         </span>
       </span>
       <FaEllipsisH className="ellipsis" />
@@ -69,7 +73,7 @@ const Stats = (props) => {
       <section className="stats">
         <span>
           <FaMapMarkerAlt style={{ marginTop: ".2em" }} /> {props.location},{" "}
-          {props.country}{" "}
+          {props.country}
         </span>
         <span>
           <FaStar className="rating" /> <span className="rate">4.7</span>/5{" "}
@@ -92,6 +96,56 @@ const Stats = (props) => {
           </a>
         </span>
       </section>
+      <DropdownArrow />
     </section>
   );
 };
+
+const DropdownArrow = () => {
+  const style = {
+    display: "none",
+  }
+
+  const [show, setShow] = useState(false)
+  const { paragraph } = lorem;
+
+
+  return (
+    <section className="dropDownArrowContainer">
+      <section className="aarrowDown">
+        <section className="arrowToggleWrapper">
+          { show ?
+            <FaChevronUp onClick={() => setShow(!show)} /> :  <FaChevronDown onClick={() => setShow(!show)} />
+            }
+        </section>
+        <section className={show ? 'compData' : 'data'}>
+          <section>
+            <h5 style={{margin: "0", padding: "0"}}> Business Overview </h5>
+            <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
+          </section>
+          <section className="dataContainer">
+            { data.map((item, key) => {
+              return (
+                <section className="actualData">
+                  <ul className="dataList" key={item.id}>
+                    <li> <span> Annual Sales </span> R{item.investmentAmount} </li>
+                    <li> <span> Type of Company </span> {item.typeOfCompany} </li>
+                    <li> <span> Area </span> {item.area} sqm. </li>
+                    <li> <span> Established  </span> {item.establishedIn} </li>
+                    <li> <span> Sector </span> {item.sector} </li>
+                    <li> <span> Annual Sales </span> {item.investmentAmount} </li>
+                    <li> <span> Size </span> {item.numOfEmployees} </li>
+                  </ul>
+                </section>
+              )
+            })}
+          </section>
+        </section>
+      </section>
+      <section id="companyData" className={style}>  
+          <FaReply className="icon" />
+        <input type="text" name="comment" placeholder="Send a reply..." id="" />
+      </section>
+    </section>
+  )
+}

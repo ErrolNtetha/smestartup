@@ -88,10 +88,11 @@ export default function Menu(props) {
       <section className="dashboard">
         <span className="subProfile">
           <img src={ !myProfile.profilePicture ? <FaRegUserCircle /> : cat } className="profileImage" alt="" />
-          <span  style={{marginLeft: ".6em"}}>
-            <h4>
+          <span  style={{marginLeft: "1.1rem"}}>
+            <h4 style={{fontSize: "1.1rem"}}>
               {myProfile.name} {myProfile.surname}
             </h4>
+            <p> Manager at Company X </p>
               <a href="##"> View Profile </a>
           </span>
         </span>
@@ -101,8 +102,8 @@ export default function Menu(props) {
         {
           menuItems.map(item => {
             return (
-              <Link to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
-                <li key={item.id} className="menuL"> {item.icon} <a href="##" >  {item.nav}</a> </li>
+              <Link key={item.id} to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
+                <li className="menuL"> {item.icon}  {item.nav} </li>
               </Link>
             )
           } 
