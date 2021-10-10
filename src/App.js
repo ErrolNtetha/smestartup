@@ -9,7 +9,7 @@ function App() {
           <div className="App">
           <Header />
           <Switch>
-            <Route path='/' exact component={Home} />
+            <Route path='/' exact component={() => <Home authorized={true} />} />
             <Route path='/messages' component={Messages} />
           </Switch>
         </div>

@@ -57,13 +57,8 @@ const UserDetails = (props) => {
           <section>
             Works at
             <span className="companyName"> {props.companyName} </span>
-<<<<<<< HEAD
             <p> As {props.jobTitle} </p>
           </section>
-=======
-            {/* <p> As {props.jobTitle} </p> */}
-          </p>{" "}
->>>>>>> main
         </span>
       </span>
       <FaEllipsisH className="ellipsis" />
