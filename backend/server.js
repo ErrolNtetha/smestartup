@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
-const { Socket } = require('socket.io');
+const { Server } = require('socket.io');
 const app = express();
 
 app.use(express.json());
@@ -10,16 +10,19 @@ app.use(cors());
 const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
-const io = new Socket(server, {
-    origin: "http://localhost:3000",
-    methods: ["GET, POST"],
-})
+// set up the cors
+const io = new Server(server, {  
+    cors: {    
+        origin: "http://localhost:8080",    
+        methods: ["GET", "POST"],  
+    }
+});
 
-io.on('connection', data => {
-    console.log("User conencted: ", data.id)
+io.on('connection', socket => {
+    console.log("User conencted: ", socket.id)
 
     // disconnect from server
-    data.on('disconneect', () => console.log("User disconnected from server: ", data.id))
+    socket.on('disconneect', () => console.log("User disconnected from server: ", data.id))
 })
 
 const users = [
