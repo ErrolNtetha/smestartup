@@ -526,15 +526,7 @@ $colorScheme: (
        border-top-right-radius: 10px;
      }
 
-     .icon {
-       position: absolute;
-       z-index: 999;
-       font-size: 1rem;
-       right: 4rem;
-      //  background: rgb(36, 35, 35);
-      //  color: #fff;
-       padding: 1rem;
-     }
+    
 
      .data {
        display: none;
@@ -574,20 +566,24 @@ $colorScheme: (
         }
     }
       
-      input {
+      .inputField {
+        position: relative;
+
         border-radius: 1rem;
         width: 100%;
-        border: none;
+        border: 1px solid #000;
         padding: 10px 15px;
         outline: olivedrab;
-        position: relative;
       }
 
-      .replyIcon {
+      .inputWrapper {
+      }
+
+      .icon {
         position: absolute;
         z-index: 999;
         font-size: 1rem;
-        right: 10px;
-        top: 20%;
+        right: 0;
+       
       }
   }

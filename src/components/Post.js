@@ -133,7 +133,6 @@ const DropdownArrow = () => {
                     <li> <span> Area </span> {item.area} sqm. </li>
                     <li> <span> Established  </span> {item.establishedIn} </li>
                     <li> <span> Sector </span> {item.sector} </li>
-                    <li> <span> Annual Sales </span> {item.investmentAmount} </li>
                     <li> <span> Size </span> {item.numOfEmployees} </li>
                   </ul>
                 </section>
@@ -143,8 +142,10 @@ const DropdownArrow = () => {
         </section>
       </section>
       <section id="companyData" className={style}>  
-          <FaReply className="icon" />
-        <input type="text" name="comment" placeholder="Send a reply..." id="" />
+          <input type="text" className="inputField" name="comment" placeholder="Comment on this post..." />
+          <span className="icon">
+             <FaReply />
+          </span>
       </section>
     </section>
   )
