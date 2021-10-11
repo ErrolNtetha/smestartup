@@ -4,9 +4,9 @@ import { Redirect } from 'react-router-dom'
 
 export default function Home({authorized}) {
   if(!authorized) {
-    <Redirect to="/messages" />
+    <Redirect to="/home" />
   }
-
+  
   return (
     <section className="bodyIntro">
       <section>

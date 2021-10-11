@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { name, image } from "faker";
 import { FaSearch } from 'react-icons/fa'
-import "../styles/header.scss"
+import "../styles/header.scss";
 import uuid from 'uuid';
-import axios from 'axios'
+import axios from 'axios';
+
 
 export default function Messages() {
     return (
@@ -79,7 +80,7 @@ const Chatlist = () => {
     const [newUser, setNewUser ] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user')
+        axios.get('http://localhost:5000/messages')
             .then(res => {
                 console.log(res.data)
                 setNewUser(res.data)

@@ -39,7 +39,7 @@ export default function Menu(props) {
     {
       nav: "Browse People",
       icon: <FaUsers />,
-      pathname: "/groups",
+      pathname: "/mynetwork",
       id: uuid(),
     },
     {
