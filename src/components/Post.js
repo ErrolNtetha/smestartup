@@ -53,12 +53,11 @@ const UserDetails = (props) => {
           <h3>
             {props.firstName} {props.lastName}
           </h3>
-          <p>
-            {" "}
+          <section>
             Works at
             <span className="companyName"> {props.companyName} </span>
-            {/* <p> As {props.jobTitle} </p> */}
-          </p>{" "}
+            <p> As {props.jobTitle} </p>
+          </section>
         </span>
       </span>
       <FaEllipsisH className="ellipsis" />
@@ -123,7 +122,8 @@ const DropdownArrow = () => {
             <h5 style={{marginTop: "10px", padding: "0"}}> Business Overview </h5>
             <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
           </section>
-          <section className="dataContainer">
+          {/* <section className="dataContainer">
+            Put this code outside here and import and map using one "li" and key
             { data.map((item, key) => {
               return (
                 <section className="actualData">
@@ -138,7 +138,7 @@ const DropdownArrow = () => {
                 </section>
               )
             })}
-          </section>
+          </section> */}
         </section>
       </section>
       <section id="companyData" className={style}>  

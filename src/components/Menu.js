@@ -39,7 +39,7 @@ export default function Menu(props) {
     {
       nav: "Browse People",
       icon: <FaUsers />,
-      pathname: "/groups",
+      pathname: "/mynetwork",
       id: uuid(),
     },
     {
@@ -102,8 +102,8 @@ export default function Menu(props) {
         {
           menuItems.map(item => {
             return (
-              <Link to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
-                <li key={item.id} className="menuL"> {item.icon} <a href="##" >  {item.nav}</a> </li>
+              <Link key={item.id} to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
+                <li className="menuL"> {item.icon}  {item.nav} </li>
               </Link>
             )
           } 
