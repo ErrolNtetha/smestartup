@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa'
 import "../styles/header.scss";
 import uuid from 'uuid';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 
 export default function Messages() {
@@ -89,18 +90,19 @@ const Chatlist = () => {
     }, [])
 
     console.log(newUser)
+    
 
     return (
         <section className="chatContainer">
                {chats.map(item => {
                    return (
-                       <section key={item.id} className="chat">
+                       <Link to='/inbox/message' key={item.id} className="chat">
                            <img src={item.profilePicture} alt="" className="profileImage" />
                            <section className="personDetails">
                                 <p className="profileNames"> {item.name} {item.lastName} </p>
                                 <p className="message"> {item.message} </p>
                            </section>
-                       </section>
+                       </Link>
                    )
                })}
                <section>
