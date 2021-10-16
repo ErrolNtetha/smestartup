@@ -1,25 +1,15 @@
 import React from "react";
 import Post from "./Post";
+import { Redirect } from 'react-router-dom'
 
-export default function Home() {
+export default function Home({authorized}) {
+  if(!authorized) {
+    <Redirect to="/home" />
+  }
+  
   return (
     <section className="bodyIntro">
       <section>
-        <span className="filteredSearch"></span>
-        {/* <section className="filterOptions">
-          <span className="dropDownFilter">
-            <p> Search By </p>
-            <select className="selectors">
-              <option> Investor </option>
-              <option> Company </option>
-              <option> Business Type </option>
-              <option> None </option>
-            </select>
-          </span>
-
-          <a href="##"> Layout </a>
-        </section>
-        <hr /> */}
         <Post />
         <Post />
         <Post />

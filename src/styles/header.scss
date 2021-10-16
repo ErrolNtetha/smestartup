@@ -97,9 +97,10 @@ $colorScheme: (
   .verge {
     text-transform: uppercase;
     color: #000000;
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Lato', serif;
     font-size: 1rem;
   }
+  
 
   .faBars {
     width: 20px;
@@ -170,8 +171,13 @@ $colorScheme: (
 
           h4 {
             font-size: 1em;
-            margin: 0 0 .4em 0;
+            margin: 0 0 .1em;
             padding: 0;
+          }
+
+          p {
+            margin: 0;
+            padding: .2rem;
           }
 
           
@@ -218,6 +224,10 @@ $colorScheme: (
           margin-left: .43em;
           font-size: 1.1rem;
           padding: .5rem;
+
+          .menu:first-child {
+            margin-right: 60px;
+          }
           
           a {
             text-decoration: none;
@@ -526,15 +536,7 @@ $colorScheme: (
        border-top-right-radius: 10px;
      }
 
-     .icon {
-       position: absolute;
-       z-index: 999;
-       font-size: 1rem;
-       right: 4rem;
-      //  background: rgb(36, 35, 35);
-      //  color: #fff;
-       padding: 1rem;
-     }
+    
 
      .data {
        display: none;
@@ -573,21 +575,33 @@ $colorScheme: (
           }
         }
     }
+
+    .companyData {
+      justify-content: center;
+      align-items: center; 
+      display: flex;
+      flex-wrap: nowrap;    
+    } 
       
-      input {
-        border-radius: 1rem;
-        width: 100%;
-        border: none;
-        padding: 10px 15px;
-        outline: olivedrab;
+      .inputField {
         position: relative;
+        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 1rem;
+        width: 80%;
+        border: 1px solid #000;
+        padding: 10px 15px;
+        padding-right: .4rem;
+        outline: none;
       }
 
-      .replyIcon {
+      .icon {
         position: absolute;
-        z-index: 999;
         font-size: 1rem;
-        right: 10px;
-        top: 20%;
+        background: $text-color;
+        color: #fff;
+        padding: 8px 15px;
+        border-bottom-right-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border: 1px solid black;
       }
   }
