@@ -518,8 +518,6 @@ $colorScheme: (
     border-radius: 5px;
     margin-top: 5px;
     padding: .2rem .4rem;
-    
-
 
      .aarrowDown {
        margin: 2px auto;
@@ -580,14 +578,15 @@ $colorScheme: (
       justify-content: center;
       align-items: center; 
       display: flex;
-      flex-wrap: nowrap;    
+      flex-wrap: nowrap; 
+      width: max-content;   
     } 
       
       .inputField {
         position: relative;
         border-bottom-left-radius: 1rem;
         border-top-left-radius: 1rem;
-        width: 80%;
+        width: 84%;
         border: 1px solid #000;
         padding: 10px 15px;
         padding-right: .4rem;
