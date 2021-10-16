@@ -7,7 +7,7 @@ export const companyBrief = [
         establishedIn: "19 May 2016",
         sector: "Food & Beverage",
         id: 0,
-    }
+    },
 ]
 
 module.export = companyBrief;

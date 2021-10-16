@@ -56,7 +56,6 @@ const UserDetails = (props) => {
           <section>
             Works at
             <span className="companyName"> {props.companyName} </span>
-            <p> As {props.jobTitle} </p>
           </section>
         </span>
       </span>
@@ -119,11 +118,10 @@ const DropdownArrow = () => {
         </section>
         <section className={show ? 'compData' : 'data'}>
           <section>
-            <h5 style={{marginTop: "10px", padding: "0"}}> Business Overview </h5>
+            <h5 style={{marginTop: "10px", marginBottom: "10px" , padding: "0"}}> Business Overview </h5>
             <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
           </section>
-          {/* <section className="dataContainer">
-            Put this code outside here and import and map using one "li" and key
+          <section className="dataContainer">
             { data.map((item, key) => {
               return (
                 <section className="actualData">
@@ -138,11 +136,11 @@ const DropdownArrow = () => {
                 </section>
               )
             })}
-          </section> */}
+          </section>
         </section>
       </section>
       <section id="companyData" className={style}>  
-          <input type="text" className="inputField" name="comment" placeholder="Comment on this post..." />
+          <input type="text" className="inputField" name="comment" placeholder="Send reply..." />
           <span className="icon">
              <FaReply />
           </span>
