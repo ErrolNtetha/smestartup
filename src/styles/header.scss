@@ -604,3 +604,14 @@ $colorScheme: (
         border: 1px solid black;
       }
   }
+
+  .repliesContainer {
+    background: #fff;
+    margin: 5px;
+    border-radius: 5px;
+
+    div {
+    font-size: .8rem;
+
+    }
+  }
