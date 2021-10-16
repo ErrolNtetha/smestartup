@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Messages from './components/Messages'
 import {BrowserRouter as HashRouter, Switch, Route } from 'react-router-dom';
 import Network from './components/Pages/Network';
+import ChatWindow from './components/ChatWindow';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Route path='/' exact component={() => <Home authorized={false} />} />
             <Route path='/messages' component={Messages} />
             <Route path='/mynetwork' component={Network} />
+            <Route path='/inbox/message' component={ChatWindow} />
           </Switch>
         </div>
         </HashRouter>
