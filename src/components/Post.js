@@ -104,8 +104,20 @@ const DropdownArrow = () => {
     display: "none",
   }
 
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const [reply, setReply] = useState('');
+  let [message, setMessage] = useState([]);
+
   const { paragraph } = lorem;
+
+  const replyPost = (e) => {
+
+    // On submit of this text input, append it in the dom
+    setMessage(reply);
+    setReply('')
+  
+    console.log('Button clicked... ', reply)
+  }
 
 
   return (
@@ -138,10 +150,15 @@ const DropdownArrow = () => {
             })}
           </section>
         </section>
+        <section className="repliesContainer">
+          <div>
+          { message }
+          </div>
+        </section>
       </section>
       <section id="companyData" className={style}>  
-          <input type="text" className="inputField" name="comment" placeholder="Send reply..." />
-          <span className="icon">
+          <input type="text" value={reply} className="inputField" onChange={(e) => setReply(e.target.value)} name="comment" placeholder="Send reply..." />
+          <span className="icon" onClick={replyPost}>
              <FaReply />
           </span>
       </section>
