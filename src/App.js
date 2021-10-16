@@ -1,12 +1,12 @@
 import Header from './components/Header';
 import Home from './components/Home';
 import Messages from './components/Messages'
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as HashRouter, Switch, Route } from 'react-router-dom';
 import Network from './components/Pages/Network';
 
 function App() {
   return (
-        <Router>
+        <HashRouter>
           <div className="App">
           <Header />
           <Switch>
@@ -15,7 +15,7 @@ function App() {
             <Route path='/mynetwork' component={Network} />
           </Switch>
         </div>
-        </Router>
+        </HashRouter>
   );
 }
 
