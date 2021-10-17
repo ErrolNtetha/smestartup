@@ -479,7 +479,14 @@ $colorScheme: (
           padding: .4rem 1.2rem;
           border-radius: 4rem;
           color: #fff;
+
         }
+      }
+
+      .tabsItem:hover {
+        cursor: pointer;
+        background-color: $text-color;
+
       }
     }
 
@@ -611,3 +618,4 @@ $colorScheme: (
         border: 1px solid black;
       }
   }
+
