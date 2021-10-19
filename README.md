@@ -1,4 +1,4 @@
-Live Preview available here: https://errolntetha.github.io/smestartup/
+Live Preview: https://jolly-goldstine-1fcbd3.netlify.app/
 Trello Sprint Board: https://trello.com/b/cYGiqZAb
 
 # What is this?
