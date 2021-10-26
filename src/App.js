@@ -1,9 +1,9 @@
 import Header from './components/Header';
 import Home from './components/Home';
-import Messages from './components/Messages'
+import Messages from './components/Messages/MessagesUI'
 import {BrowserRouter as HashRouter, Switch, Route } from 'react-router-dom';
 import Network from './components/Pages/Network';
-import ChatWindow from './components/ChatWindow';
+import ChatWindow from './components/Messages/ChatWindow';
 
 function App() {
   return (
