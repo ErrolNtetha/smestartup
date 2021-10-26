@@ -150,18 +150,18 @@ const DropdownArrow = () => {
             })}
           </section>
         </section>
-        <section className="repliesContainer">
+        {/* <section className="repliesContainer">
           <div>
           { message }
           </div>
-        </section>
+        </section> */}
       </section>
-      <section id="companyData" className={style}>  
+      {/* <section id="companyData" className={style}>  
           <input type="text" value={reply} className="inputField" onChange={(e) => setReply(e.target.value)} name="comment" placeholder="Send reply..." />
           <span className="icon" onClick={replyPost}>
              <FaReply />
           </span>
-      </section>
+      </section> */}
     </section>
   )
 }
