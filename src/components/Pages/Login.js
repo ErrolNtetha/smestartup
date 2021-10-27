@@ -8,6 +8,7 @@ export default function Login() {
                 <input type="text" name="usename" placeholder="Username" />
                 <input type="password" name="usename" placeholder="Password" />
                 <Link to='/login'> login </Link>
+                <p> Don't have an account? Click here to sign up </p>
             </section>
         </section>
     )
