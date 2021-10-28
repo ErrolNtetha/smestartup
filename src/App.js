@@ -1,23 +1,34 @@
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Messages from './components/Messages/MessagesUI'
-import {BrowserRouter as HashRouter, Switch, Route } from 'react-router-dom';
 import Network from './components/Pages/Network';
 import ChatWindow from './components/Messages/ChatWindow';
+import Sent from './components/Messages/Sent';
+import Received from './components/Messages/Received';
+import Login from './components/Pages/Login';
+import Signup from './components/Pages/Signup';
+import ChatUI from './components/Messages/ChatUI';
+
 
 function App() {
   return (
-        <HashRouter>
+        <Router>
           <div className="App">
-          <Header />
-          <Switch>
-            <Route path='/' exact component={() => <Home authorized={false} />} />
-            <Route path='/messages' component={Messages} />
-            <Route path='/mynetwork' component={Network} />
-            <Route path='/inbox/message' component={ChatWindow} />
-          </Switch>
+            <Header />
+              <Switch>
+                <Route path='/' exact component={() => <Home authorized={false} />} />
+                <Route path='/messages/inbox' component={Messages} />
+                <Route path='/mynetwork' component={Network} />
+                <Route path='/messages/msg' component={ChatUI} />
+                <Route path='/messages/sent' component={Sent} />
+                <Route path='/messages/received' component={Received} />
+                <Route path='/login' component={Login} />
+                <Route path='/signup' component={Signup} />
+
+              </Switch>
         </div>
-        </HashRouter>
+        </Router>
   );
 }
 

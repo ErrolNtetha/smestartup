@@ -1,6 +1,7 @@
 import React from 'react';
-import Chatlist from './Chats'
-import { FaSearch } from 'react-icons/fa'
+import Chatlist from './Chats'; 
+import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import "../../styles/header.scss";
 
 
@@ -9,9 +10,15 @@ export default function Messages() {
          <section className="chatParentConatainer">
             <section className="tabs">
                 <ul className="tabsItem">
-                    <li> Inbox </li>
-                    <li> Sent </li>
-                    <li> Received </li>
+                    <li>
+                        <Link to='/messages/inbox'> Inbox </Link>
+                    </li>
+                    <li>
+                        <Link to='/messages/sent'> Sent </Link>
+                    </li>
+                    <li>
+                        <Link to='/messages/received'> Received </Link>
+                    </li>
                 </ul>
             </section>
             <Chatlist  />

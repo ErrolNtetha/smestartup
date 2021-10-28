@@ -5,7 +5,6 @@ export default function ChatWindow() {
         <section className="searchContainer">
             <div className="searchBar">
                 <section className="search">
-                    
                 </section>
                 <input type="text" placeholder='Type a message' />
             </div>

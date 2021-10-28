@@ -23,7 +23,7 @@ export default function Chatlist() {
         <section className="chatContainer">
                {chats.map(item => {
                    return (
-                       <Link to='/inbox/message' key={item.id} className="chat">
+                       <Link to='/messages/msg' key={item.id} className="chat">
                            <img src={item.profilePicture} alt="" className="profileImage" />
                            <section className="personDetails">
                                 <p className="profileNames"> {item.name} {item.lastName} </p>

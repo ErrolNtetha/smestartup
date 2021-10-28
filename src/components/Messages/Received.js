@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Tabs from './Tabs';
 
 export default function Sent() {
     return (
         <section>
+            <Tabs />
             <section>
-                These are Sent Proposals
+                You have no proposals received currently.
             </section>
         </section>
     )

@@ -33,7 +33,7 @@ export default function Menu(props) {
     {
       nav: "Messages",
       icon: <FaBookmark />,
-      pathname: "/messages",
+      pathname: "/messages/inbox/",
       id: uuid(),
     },
     {
@@ -103,7 +103,7 @@ export default function Menu(props) {
           menuItems.map(item => {
             return (
               <Link key={item.id} to={item.pathname} className="menuLinksContainer" onClick={props.onMenuClose}>
-                <li className="menuL"> {item.icon}  {item.nav} </li>
+                <li className="menuL"> {item.icon}  <span> {item.nav} </span> </li>
               </Link>
             )
           } 
