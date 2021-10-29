@@ -2,14 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Tabs() {
-    const activeTab = null;
-
-    const tab = window.location.pathname == '/messages/sent' ? activeTab : null;
 
     return (
         <section className="chatParentConatainer">
             <section className="tabs">
-                <ul className="tabsItem" id='activeTab'>
+                <ul className="tabsItem">
                     <li>
                         <Link to='/messages/inbox'> Inbox </Link>
                     </li>

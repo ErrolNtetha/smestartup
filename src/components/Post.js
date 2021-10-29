@@ -6,10 +6,10 @@ import {
   FaRegEye,
   FaChevronDown,
   FaChevronUp,
-  FaReply,
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 import { companyBrief as data } from '../data'
+import Modal from "./Modal";
 
 export default function Post() {
   const { firstName, lastName, jobTitle } = name;
@@ -65,6 +65,9 @@ const UserDetails = (props) => {
 };
 
 const Stats = (props) => {
+  const [ showModal, setShowModal ] = useState(false);
+
+
   return (
     <section className="stats-container">
       <hr />
@@ -88,36 +91,37 @@ const Stats = (props) => {
             {" "}
             <FaBookmark className="bookmark" /> Save for later{" "}
           </a> */}
-          <a href="##" className="sendProposal">
+          <a href="##" className="sendProposal" onClick={() => setShowModal(!showModal)}>
             {" "}
             send proposal{" "}
           </a>
         </span>
       </section>
+      { showModal && <Modal /> }
       <DropdownArrow />
     </section>
   );
 };
 
 const DropdownArrow = () => {
-  const style = {
-    display: "none",
-  }
+  // const style = {
+  //   display: "none",
+  // }
 
   const [show, setShow] = useState(false);
-  const [reply, setReply] = useState('');
-  let [message, setMessage] = useState([]);
+  // const [reply, setReply] = useState('');
+  // let [message, setMessage] = useState([]);
 
   const { paragraph } = lorem;
 
-  const replyPost = (e) => {
+  // const replyPost = (e) => {
 
-    // On submit of this text input, append it in the dom
-    setMessage(reply);
-    setReply('')
+  //   // On submit of this text input, append it in the dom
+  //   setMessage(reply);
+  //   setReply('')
   
-    console.log('Button clicked... ', reply)
-  }
+  //   console.log('Button clicked... ', reply)
+  // }
 
 
   return (

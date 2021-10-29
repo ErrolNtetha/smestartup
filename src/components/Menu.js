@@ -1,20 +1,9 @@
 import React from "react";
-import {
-  FaBookmark,
-  FaHome,
-  FaBell,
-  FaUsers,
-  FaWrench,                                                                                                                                                                                                                                                                                               
-  FaTimes,
-  FaPowerOff,
-  FaCog,
-  FaQuestion,
-  FaRegUserCircle 
-} from "react-icons/fa";
-import uuid from 'uuid';
-import '../styles/header.scss'
-import cat from '../assets/cat.jpg'
+import { FaTimes, FaRegUserCircle } from "react-icons/fa";
+import '../styles/header.scss';
+import cat from '../assets/cat.jpg';
 import { Link } from "react-router-dom";
+import menuItems from './navList';
 
 export default function Menu(props) {
   const myProfile = {
@@ -22,63 +11,6 @@ export default function Menu(props) {
     surname: "Ntetha",
     profilePicture: cat,
   }
-
-  const menuItems = [
-    {
-      nav: "Home",
-      icon: <FaHome  />,
-      pathname: "/",
-      id: uuid(),
-    },
-    {
-      nav: "Messages",
-      icon: <FaBookmark />,
-      pathname: "/messages/inbox/",
-      id: uuid(),
-    },
-    {
-      nav: "Browse People",
-      icon: <FaUsers />,
-      pathname: "/mynetwork",
-      id: uuid(),
-    },
-    {
-      nav: "Saved for Later",
-      icon: <FaBookmark />,
-      pathname: "/bookmarks",
-      id: uuid(),
-    },
-    {
-      nav: "Notifications",
-      icon: <FaWrench />,
-      pathname: "/notification",
-      id: uuid(),
-    },
-    {
-      nav: "Notifications",
-      icon: <FaBell />,
-      pathname: "/jobs",
-      id: uuid(),
-    },
-    {
-      nav: "Help Center",
-      icon: <FaQuestion />,
-      pathname: "/help",
-      id: uuid(),
-    },
-    {
-      nav: "Settings",
-      icon: <FaCog />,
-      pathname: "/settings",
-      id: uuid(),
-    },
-    {
-      nav: "Signout",
-      icon: <FaPowerOff />,
-      pathname: "/logout",
-      id: uuid(),
-    },
-  ];
 
   return (
     <nav className="navMenu">
@@ -111,12 +43,12 @@ export default function Menu(props) {
         }
         
       </ul>
-      <hr style={{ width: "90%", opacity: "40%" }} />
-      <ul className="navItems1">
-        <li> Business Funding </li>
-        <li> Become an Investor </li>
-        <li> Businesses for Sale </li>
-      </ul>
+        {/* <hr style={{ width: "90%", opacity: "40%" }} />
+        <ul className="navItems1">
+          <li> Business Funding </li>
+          <li> Become an Investor </li>
+          <li> Businesses for Sale </li>
+        </ul> */}
     </nav>
   );
 }

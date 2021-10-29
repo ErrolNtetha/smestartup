@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Messages from './components/Messages/MessagesUI'
 import Network from './components/Pages/Network';
-import ChatWindow from './components/Messages/ChatWindow';
 import Sent from './components/Messages/Sent';
 import Received from './components/Messages/Received';
 import Login from './components/Pages/Login';
