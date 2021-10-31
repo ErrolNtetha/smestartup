@@ -1,6 +1,8 @@
 Live Preview: https://jolly-goldstine-1fcbd3.netlify.app/ 
 Trello Sprint Board: https://trello.com/b/cYGiqZAb
 
+Have changed from github pages to Netlify.
+
 # What is this?
 This is my startup idea which i hope to finish next year, 2022. It is still a long way to go and i hope to make the best effort to get a lot done and learn as i go. The website is build on ReactJS, and Vanilla CSS. This startup that I am currently crafting will be called Blendot.
 
