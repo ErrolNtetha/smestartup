@@ -8,6 +8,7 @@ import Received from './components/Messages/Received';
 import Login from './components/Pages/Login';
 import Signup from './components/Pages/Signup';
 import ChatUI from './components/Messages/ChatUI';
+import Profile from './components/Pages/Profile';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                 <Route path='/messages/received' component={Received} />
                 <Route path='/login' component={Login} />
                 <Route path='/signup' component={Signup} />
+                <Route path='/profile' component={Profile} />
 
               </Switch>
         </div>
