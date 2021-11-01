@@ -1,4 +1,3 @@
-const express = require('express');
 const mongoose = require('mongoose');
 
 
@@ -9,6 +8,8 @@ const userData = new mongoose.Schema({
     },
     email: String,
     password: String,
+    type: String,
+    isVerified: Boolean,
 })
 
 const data = mongoose.model('User', userData);
