@@ -91,10 +91,9 @@ const Stats = (props) => {
             {" "}
             <FaBookmark className="bookmark" /> Save for later{" "}
           </a> */}
-          <a href="##" className="sendProposal" onClick={() => setShowModal(!showModal)}>
-            {" "}
-            send proposal{" "}
-          </a>
+          <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
+            send proposal
+          </button>
         </span>
       </section>
       { showModal && <Modal /> }
