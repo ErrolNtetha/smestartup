@@ -55,7 +55,7 @@ $colorScheme: (
     background-color: black;
     height: 100%;
     width: 70%;
-    z-index: 999;
+    z-index: 1099;
     max-height: 100%;
     color: #fff;   
   }
@@ -208,6 +208,7 @@ $colorScheme: (
         li span {
           margin-left: 8px;
         }
+
       }
 
       .navItems, .navItems1 {
@@ -229,6 +230,11 @@ $colorScheme: (
           font-size: 1.1rem;
           padding: .5rem;
 
+          .menuL:hover {
+            color:rgb(0, 0, 0);
+            background: #fff;
+          }
+
           .menu:first-child {
             margin-right: 60px;
           }
@@ -243,7 +249,6 @@ $colorScheme: (
     }
 
     .bodyIntro {
-      padding:8px;
 
       .searchBox {
         position: relative;
@@ -630,10 +635,9 @@ $colorScheme: (
     background: #fff;
     border: 2px solid #000;
     border-radius: 10px;
-    height: 50vh;
+    height: max-content;
     width: 100%;
     z-index: 999;
-    overflow-y: scroll;
 
     section {
       margin: 10px;
@@ -648,7 +652,7 @@ $colorScheme: (
         flex-direction: column;
         gap: .4rem;
 
-        a {
+        button {
           background-color: #000;
           border-radius: 10px;
           color: #fff;
@@ -658,6 +662,7 @@ $colorScheme: (
           text-align: center;
           text-decoration: none;
           text-transform: uppercase;
+          border: none;
         }
       }
 
@@ -671,3 +676,163 @@ $colorScheme: (
       }
     }
   }
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+
+  .profile {
+    width: 95vw;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 1rem;
+    height: 70vh;
+
+    header {
+      border-bottom: 1px solid #000;
+      height: 20%;
+      background: rgb(59, 59, 59);
+    }
+
+    section {
+      padding: 5px;
+
+
+      p {
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+      }
+
+      .profileOverview {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+  
+        img {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          border: 2px solid #fff;
+        }
+        
+        span {
+          h4, p {
+            font-size: .8rem;
+            margin: 0 5px;
+    
+          }
+        }
+  
+      }
+    }
+
+  }
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 8vh;
+  background: black;
+  z-index: 999;
+  transition: height 400ms ease-in-out 100ms;
+
+
+  button {
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 45%;
+    border-radius: 5px;
+    padding: 10px;
+
+    &:hover {
+      color:rgb(0, 0, 0);
+      background: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+.createPost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 5vh;
+  background: black;
+  z-index: 999;
+  transition: height 400ms ease-in-out 300ms;
+
+  button {
+    position: absolute;
+    background: none;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+
+    &:hover {
+      color:rgb(0, 0, 0);
+      background: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+.postField {
+  position: fixed;
+  background: $text-color;
+  height: 95vh;
+  width: 100vw;
+  bottom: 0;
+  z-index: 999;
+  transition: height 300ms ease-out 300ms;
+}
+
+.postFieldContainer { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin: 10px;
+
+    textarea, input {
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      padding: 12px;
+      outline: none;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 10px;
+        height: 60%;
+
+    }
+
+    input[type=file] {
+      background: #000;
+      color: #fff;
+    }
+
+    P {
+      font-size: .7rem;
+      color: #fff;
+      text-align: center;
+    }
+  }
+}

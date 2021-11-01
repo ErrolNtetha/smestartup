@@ -25,7 +25,7 @@ export default function Menu(props) {
               {myProfile.name} {myProfile.surname}
             </h4>
             <p> Manager at Company X </p>
-              <a href="##"> View Profile </a>
+              <Link to='/profile' onClick={props.onMenuClose}> View Profile </Link>
           </span>
         </span>
       </section>
