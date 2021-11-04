@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { post } from 'axios';
+import { post } from 'axios';
 
 export default function Modal() {
     const [ companyName, setCompanyName ] = useState('');
@@ -8,12 +8,22 @@ export default function Modal() {
     // const [ description, setDescription ] = useState('');
 
     const companyNameHandler = (e) => {
-
         setCompanyName(e.target.value);
-    }
+    };
 
     const onSubmit = () => {
-        console.log(companyName);
+        const url = 'http://localhost:5000/';
+
+        const companyDetails = {
+            companyName,
+            // interest,
+            // amount,
+            // description,
+        };
+
+        post(url, companyDetails)
+            .then(res => res.json)
+            .catch(err => console.log(err))
     }
 
     return (
@@ -25,7 +35,7 @@ export default function Modal() {
                     <input type="text" placeholder='What are you interested in?' />
                     <input type="text" placeholder='How much do you need?' />
                     <textarea name="description" id="" cols="30" rows="10" placeholder='Describe your business'/>
-                    <button onClick={onSubmit}> Submit Proposal </button>
+                    <button type='submit' onClick={onSubmit}> Submit Proposal </button>
                 </form>
             </section>
         </section>

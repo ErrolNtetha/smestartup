@@ -12,6 +12,6 @@ const userData = new mongoose.Schema({
     isVerified: Boolean,
 })
 
-const data = mongoose.model('User', userData);
+const user = mongoose.model('User', userData);
 
-module.exports = data;
+module.exports = user;

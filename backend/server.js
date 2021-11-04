@@ -3,10 +3,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
+const bodyParser = require('body-parser');
 const app = express();
+const loginRoute = require('./routes/user.routes');
 
+// Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser());
+app.use(loginRoute);
 
 require('dotenv').config();
 
