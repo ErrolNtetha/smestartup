@@ -8,6 +8,7 @@ const userData = new mongoose.Schema({
     },
     email: String,
     password: String,
+    confirmPassword: String,
     type: String,
     isVerified: Boolean,
 })

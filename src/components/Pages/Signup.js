@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import SignupInputs from './SignupInputs';
 
 export default function Signup() {
     return (
-        <section>
-            This is a signup page!
+        <section className='signupContainer'>
+           <SignupInputs />
         </section>
     )
 }

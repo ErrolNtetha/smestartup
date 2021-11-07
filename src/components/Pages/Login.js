@@ -27,7 +27,7 @@ export default function Login() {
                 <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                 <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 <Link to='/login' onClick={onSubmitHandler}> login </Link>
-                <p> Don't have an account? Click here to sign up </p>
+                <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
             </section>
         </section>
     )
