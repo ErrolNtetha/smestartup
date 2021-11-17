@@ -7,11 +7,6 @@ const register_user = async (req, res) => {
 
     // Check if email has already been taken or not
     // then hash the password and save it
-    const takenEmail = await UserInfo.findOne({ 
-        email: email, 
-    });
-
-    console.log(takenEmail);
     
     const userData = new UserInfo({
         name: {
@@ -24,10 +19,13 @@ const register_user = async (req, res) => {
     });
     
     userData.save(err => {
-        if(err) console.log('There was an error saving to the database: ', err)
+        if(email.includes(email)) {
+            console.log('The email already exists. Use another one');
+            return false;
+        }
 
         // Response on success
         return console.log("Success! Email and password saved.")
     });
 }
-module.exports = register_user;
+module.exports = register_user; 

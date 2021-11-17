@@ -58,7 +58,7 @@ const UserDetails = (props) => {
             <span className="companyName"> {props.companyName} </span>
           </section>
           <section>
-              53 minutes ago
+              29 minutes ago
           </section>
         </span>
       </span>
@@ -95,7 +95,7 @@ const Stats = (props) => {
             <FaBookmark className="bookmark" /> Save for later{" "}
           </a> */}
           <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
-            send proposal
+            contact business
           </button>
         </span>
       </section>
@@ -125,6 +125,9 @@ const DropdownArrow = () => {
   //   console.log('Button clicked... ', reply)
   // }
 
+  const { investmentAmount, typeOfCompany, area, establishedIn, sector, numOfEmployees, id } = data[0];
+  console.log(data);
+
 
   return (
     <section className="dropDownArrowContainer">
@@ -140,20 +143,16 @@ const DropdownArrow = () => {
             <p style={{fontSize: ".8rem", margin: "0", textAlign: "left", padding: "6px"}}> {paragraph()} </p>
           </section>
           <section className="dataContainer">
-            { data.map((item, key) => {
-              return (
                 <section className="actualData">
-                  <ul className="dataList" key={item.id}>
-                    <li> <span> Annual Sales </span> R{item.investmentAmount} </li>
-                    <li> <span> Type of Company </span> {item.typeOfCompany} </li>
-                    <li> <span> Area </span> {item.area} sqm. </li>
-                    <li> <span> Established  </span> {item.establishedIn} </li>
-                    <li> <span> Sector </span> {item.sector} </li>
-                    <li> <span> Size </span> {item.numOfEmployees} </li>
+                  <ul className="dataList" key={id}>
+                    <li> <span> Annual Sales </span> R{investmentAmount} </li>
+                    <li> <span> Type of Company </span> {typeOfCompany} </li>
+                    <li> <span> Area </span> {area} sqm. </li>
+                    <li> <span> Established  </span> {establishedIn} </li>
+                    <li> <span> Sector </span> {sector} </li>
+                    <li> <span> Size </span> {numOfEmployees} </li>
                   </ul>
                 </section>
-              )
-            })}
           </section>
         </section>
         {/* <section className="repliesContainer">

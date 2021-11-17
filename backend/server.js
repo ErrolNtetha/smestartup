@@ -10,7 +10,7 @@ const loginRoute = require('./routes/user.routes');
 // Middlewares
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 app.use(loginRoute);
 
 require('dotenv').config();

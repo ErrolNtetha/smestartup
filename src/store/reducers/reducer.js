@@ -6,8 +6,14 @@ const InitialState = {
     title: 'Learning Redux',
 }
 
-const reducer = (state = InitialState, action) => {
-    return state;
+const counterReducer = (state = InitialState, action) => {
+    switch(action.type) {
+        case 'INCREMENT':
+          return state.counter + 1
+        case 'DECREMENT':
+            return state.counter - 1
+        default:
+      } 
 }
 
-export default reducer;
+export default counterReducer;
