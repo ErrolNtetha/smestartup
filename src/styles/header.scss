@@ -796,6 +796,10 @@ $colorScheme: (
   }
 }
 
+#verg {
+  display: none;
+}
+
 .postField {
   position: fixed;
   background: $text-color;
@@ -841,5 +845,75 @@ $colorScheme: (
       color: #fff;
       text-align: center;
     }
+  }
+}
+
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .searchInputHeader {
+    border-radius: 15px;
+    border: 1px solid #000;
+    padding: 8px;
+    padding-left: 10px; 
+    outline: none;
+    width: 80%;
+    transition: width 300ms ease-in-out 300ms;
+  }
+}
+
+.loginContainer { 
+  height: 100vh;
+  background-image: url('../assets/bg/bgImage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+
+.loginContainer, 
+.innerSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  .innerSection {
+    background-color: rgba(211, 211, 211, 0.9);
+    width: 80vw;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: -2px 10px 50px -18px rgba(255, 255, 255, 0.65);
+    -webkit-box-shadow: -2px 10px 50px -18px rgba(255, 255, 255, 0.65);
+    -moz-box-shadow: -2px 10px 50px -18px rgba(255, 255, 255, 0.65);
+  }
+
+  .inputFields input {
+    width: 100%;
+    border-radius: 10px;
+    border: black 1px solid;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    outline: none;
+    font-weight:700;
+  }  
+
+  .loginLabel {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .inputFields .loginBTN {
+    background-color: blue;
+    display: inline-block;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px;
+    text-transform: uppercase;
   }
 }

@@ -5,32 +5,50 @@ import Menu from "./Menu";
 
 export default function Header(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
+  const [ onSearch, setOnSearch ] = useState(false);
+
   const onClickHandler = () => {
     // Behaviour on click
     setIsLoggedIn(!isLoggedIn)
     console.log(isLoggedIn)
   }
 
-  const [showMenu, setShowMenu] = useState(false)
+  const style = {
+    display: 'none',
+  }
+
 
   return (
     <header className="headerContainer">      
       <section className="header">
         <FaBars className="faBars" onClick={() => setShowMenu(!showMenu)} />
-        <h3>
+        <h3 id={onSearch && 'verg'}>
           <span className="verge"> Mphumeleli Ntetha </span>
         </h3>
         { showMenu && <Menu onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
+
+
         {isLoggedIn ? (
-          <FaSistrix className="faSearch" />
+          onSearch ? <Search /> : <FaSistrix onClick={() => setOnSearch(!onSearch)} className="faSearch" />
         ) : (
           <span className="icons">
             <a onClick={onClickHandler} href="/login" className="login"> Log In </a>
           </span>
           
         )}
+
+        
       </section>
     </header>
   );
+}
+
+export function Search() {
+  return (
+    <section className='searchBarContainer'>
+      <input className='searchInputHeader' type='text' placeholder='Search posts...' />
+    </section>
+  )
 }

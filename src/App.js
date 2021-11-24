@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -13,10 +13,23 @@ import Profile from './components/Pages/Profile';
 import PrivateRoutes from './Routes/PrivateRoutes';
 import RoleRoute from './Routes/RoleRoute';
 import SampleUI from './InvestorUI/SampleUI';
+import { get } from 'axios';
 
 function App() {
-  const [ isAuth, setIsAuth ] = useState(true);
+  const [ isAuth, setIsAuth ] = useState(false);
   const [ userType, setUserType ] = useState('investor');
+
+  useEffect(() => {
+    async function getUserType() {
+      const url = '';
+      await get(url) 
+        .then(res => {
+          console.log(res)
+          setUserType(res)
+        })
+        .catch(err => console.log(err));
+    }
+  }, [])
 
   return (
         <Router>
@@ -31,15 +44,12 @@ function App() {
                 <Route path='/messages/received' component={Received} />
                 <Route path='/login' component={Login} />
                 <Route path='/signup' component={Signup} />
-                {/* <Route path='/profile' component={Profile} /> */}
 
+                {/* <Route path='/profile' component={Profile} /> */}
                 <PrivateRoutes path='/profile' component={Profile} isAuth={isAuth} />
                 <PrivateRoutes path='/mynetwork' component={Network} isAuth={isAuth} />
                 <PrivateRoutes path='/messages/msg' component={ChatUI} isAuth={isAuth} />
                 <PrivateRoutes path='/messages/sent' component={Sent} isAuth={isAuth} />
-
-
-
 
                 {/* <RoleRoute pathname='/' exact isAuth={isAuth} component={SampleUI} role={userType} /> */}
                 <RoleRoute pathname='/feed' exact isAuth={isAuth} component={Home} role={userType} />

@@ -23,11 +23,32 @@ export default function Login() {
 
     return (
         <section className="loginContainer">
-            <section>
-                <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                <Link to='/login' onClick={onSubmitHandler}> login </Link>
-                <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
+            <section className='innerSection'>
+                <section className='inputFields'>
+                    <label className='loginLabel'> Username: </label>
+                    <input 
+                        type="text" 
+                        name="email" 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="Username or Email" 
+                    />
+                    <label className='loginLabel'> Password: </label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        placeholder="Password" 
+                    />
+                    <Link to='/feed' className="loginBTN" onClick={onSubmitHandler}> login </Link>
+                    <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
+                </section>
+
+                
+                {/* <section className="socialLogin">
+                    <section>
+                        <p> social links </p>
+                    </section>
+                </section> */}
             </section>
         </section>
     )
