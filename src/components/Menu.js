@@ -17,18 +17,19 @@ export default function Menu(props) {
       <section className="times">
         <FaTimes className="close" onClick={props.onMenuClose} />
       </section>
+      {props.isLoggedIn && 
       <section className="dashboard">
-        <span className="subProfile">
-          <img src={ !myProfile.profilePicture ? <FaRegUserCircle /> : cat } className="profileImage" alt="" />
-          <span  style={{marginLeft: "1.1rem"}}>
-            <h4 style={{fontSize: "1.1rem"}}>
-              {myProfile.name} {myProfile.surname}
-            </h4>
-            <p> Manager at Company X </p>
-              <Link to='/profile' onClick={props.onMenuClose}> View Profile </Link>
-          </span>
+      <span className="subProfile">
+        <img src={ !myProfile.profilePicture ? <FaRegUserCircle /> : cat } className="profileImage" alt="" />
+        <span  style={{marginLeft: "1.1rem"}}>
+          <h4 style={{fontSize: "1.1rem"}}>
+            {myProfile.name} {myProfile.surname}
+          </h4>
+          <p> Manager at Company X </p>
+            <Link to='/profile' onClick={props.onMenuClose}> View Profile </Link>
         </span>
-      </section>
+      </span>
+    </section>}
       <hr style={{ width: "80%", opacity: "30%" }} />
       <ul className="navItems">
         {

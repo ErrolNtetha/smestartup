@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { post } from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function SignupInputs() {
 
@@ -48,6 +49,7 @@ export default function SignupInputs() {
             <input type="password" placeholder='Create password (minimum 6 characters' onChange={e => setPassword(e.target.value)} />
             <input type="password" placeholder='Confirm password' onChange={e => setConfirmPassword(e.target.value)} />
             <button onClick={onSubmitHandler}> Signup </button>
+            <p> Already have an account? <Link to='/login'> Login </Link> </p>
     </section>
     )
 }

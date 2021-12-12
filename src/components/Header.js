@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import "../styles/header.scss";
 import Menu from "./Menu";
 
@@ -34,12 +35,9 @@ export default function Header(props) {
           onSearch ? <Search /> : <FaSistrix onClick={() => setOnSearch(!onSearch)} className="faSearch" />
         ) : (
           <span className="icons">
-            <a onClick={onClickHandler} href="/login" className="login"> Log In </a>
+            <Link onClick={onClickHandler} to="/login" className="login"> Log In </Link>
           </span>
-          
         )}
-
-        
       </section>
     </header>
   );

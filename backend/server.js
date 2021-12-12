@@ -5,13 +5,18 @@ const http = require('http');
 const { Server } = require('socket.io');
 const bodyParser = require('body-parser');
 const app = express();
+
+
 const loginRoute = require('./routes/user.routes');
+const postRoutes = require('./routes/posts.routes');
 
 // Middlewares
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json()); 
 app.use(loginRoute);
+app.use(postRoutes);
+// app.use(verifyJWT);
 
 require('dotenv').config();
 

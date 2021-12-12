@@ -2,17 +2,16 @@ const mongoose = require('mongoose');
 
 const userData = new mongoose.Schema({
     name: {
-        firstName: { type: String, required: true },
+        firstName: { type: String },
         lastName: String,
     },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
-    confirmPassword: { type: String, required: true },
+    email: { type: String },
+    password: { type: String },
     isVerified: { type: Boolean, default: false },
     isPremium: {  type: Boolean, default: false},
     type: {
         role: String, // Admin or regular user - Used for later
-        user: { type: String, required: true }, // Investor or Business or Advisor
+        user: { type: String }, // Investor or Business or Advisor
     },
 }, { timestamps: true });
 

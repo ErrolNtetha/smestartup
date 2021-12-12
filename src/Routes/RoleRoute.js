@@ -7,7 +7,7 @@ export default function RoleRoute({role, isAuth, component: Component, rest}) {
         <Route
             {...rest}
             render={() => {
-                return isAuth && role === 'investor' ? <Component /> : null;
+                return role === 'investor' ? <Component /> : <Component />;
             }}
         />
     )

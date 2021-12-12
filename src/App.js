@@ -16,12 +16,13 @@ import SampleUI from './InvestorUI/SampleUI';
 import { get } from 'axios';
 
 function App() {
-  const [ isAuth, setIsAuth ] = useState(false);
-  const [ userType, setUserType ] = useState('investor');
+  const type = 'investor'
+  const [ isAuth, setIsAuth ] = useState(true);
+  const [ userType, setUserType ] = useState(type); // get the type of the user from the database
 
   useEffect(() => {
     async function getUserType() {
-      const url = '';
+      const url = 'http://localhost:5000/';
       await get(url) 
         .then(res => {
           console.log(res)
@@ -46,6 +47,7 @@ function App() {
                 <Route path='/signup' component={Signup} />
 
                 {/* <Route path='/profile' component={Profile} /> */}
+                <PrivateRoutes path='/messages/' component={Messages} isAuth={isAuth} />
                 <PrivateRoutes path='/profile' component={Profile} isAuth={isAuth} />
                 <PrivateRoutes path='/mynetwork' component={Network} isAuth={isAuth} />
                 <PrivateRoutes path='/messages/msg' component={ChatUI} isAuth={isAuth} />
@@ -53,6 +55,7 @@ function App() {
 
                 {/* <RoleRoute pathname='/' exact isAuth={isAuth} component={SampleUI} role={userType} /> */}
                 <RoleRoute pathname='/feed' exact isAuth={isAuth} component={Home} role={userType} />
+
               </Switch>
           </div>
         </Router>

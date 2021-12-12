@@ -25,19 +25,19 @@ const menuItems = [
       id: uuid(),
     },
     {
-      nav: "Browse People",
+      nav: "Directory",
       icon: <FaUsers />,
-      pathname: "/mynetwork",
+      pathname: "/directory",
       id: uuid(),
     },
     {
-      nav: "Saved for Later",
+      nav: "Saved Lists",
       icon: <FaBookmark />,
       pathname: "/bookmarks",
       id: uuid(),
     },
     {
-      nav: "Notifications",
+      nav: "Browse Investors",
       icon: <FaWrench />,
       pathname: "/notification",
       id: uuid(),

@@ -1,6 +1,7 @@
 $text-size: 1.1rem;
 $paragraph-size: .8rem;
 $text-color: rgb(128, 128, 128);
+$form-padding: 10px;
 
 
 $colorScheme: (
@@ -811,29 +812,50 @@ $colorScheme: (
 }
 
 .postFieldContainer { 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 90%;
+  .innerPostField {
     margin: 10px;
+    margin-bottom: 5px;
 
-    textarea, input {
+    .innerPostField > * {
+      margin-bottom: 5px;
+    }
+
+    .inputField, .field {
       width: 100%;
-      border-radius: 10px;
+      margin-bottom: 5px;
+      padding: $form-padding;
+      outline: none;
+    }
+
+    .amountContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      gap: 5px;
+      margin-bottom: 5px;
+
+      .inputAmount {
+        width: 50%;
+        padding: $form-padding;
+        border: none;
+        outline: none;
+      }
+    }
+
+    textarea {
+      width: 100%;
       border: none;
       padding: 12px;
       outline: none;
       font-size: 1rem;
       font-family: 'Open Sans', sans-serif;
       margin-top: 10px;
-        height: 60%;
-
+      height: 60%;
     }
+    
+    
 
     input[type=file] {
       background: #000;

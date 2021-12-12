@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {PostButton, Cancel } from './PostButton';
 import PostField from './PostField'
 
-export default function CreatePost() {
+export default function CreatePost({onSubmitHandler, postDetials}) {
     const [ postField, setPostField ] = useState(false);
     const [ subject, setSubject ] = useState('');
 
@@ -15,11 +15,11 @@ export default function CreatePost() {
         <React.Fragment>
             { postField && 
             <section className='postField'>
-                <PostField onChangeHandler={onChangeHandler} />
+                <PostField onChangeHandler={onChangeHandler} onClick={postDetials} />
             </section>}  
             <section className={ postField ? 'btnGroup' : 'createPost' }>
                 { postField ? <Cancel onPost={() => console.log(subject)} postButton={() => setPostField(!postField)} /> 
-                : <PostButton postButton={() => setPostField(!postField)} /> }
+                : <PostButton onClick={onSubmitHandler} postButton={() => setPostField(!postField)} /> }
             </section>
         </React.Fragment>
     )
