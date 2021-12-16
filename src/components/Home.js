@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Home() {
-  const [post, setPost] = useState('');
+  const [post, setPost] = useState([]);
   const counter = useSelector(state => state.counter);
   const dispatch = useDispatch();
   // const [ loader, setLoader ] = useState(false);
@@ -21,13 +21,15 @@ export default function Home() {
   const url = 'http://localhost:5000/feed'
 
   useEffect(() => {
-    axios.get(url) 
-      .then(data => setPost(data))
-      .then(res => console.log(res.json()))
-      .catch(err => console.log(err))
+     async function fetchData() {
+       await axios.get(url)
+        .then(res => console.log(res.data))
+        .catch(e => console.log(e)) 
+     }
+     fetchData()
   }, [])
 
-  function getData() {
+  async function getData() {
     console.log(post)
   }
 
@@ -35,7 +37,6 @@ export default function Home() {
     <section className="bodyIntro">
       <section>
         <section>
-          {post}
           <button onClick={getData}> Get posts </button>
         </section>
         <ToLet />

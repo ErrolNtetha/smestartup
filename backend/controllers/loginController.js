@@ -2,7 +2,7 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const validateLogin = async (req, res) => {
+const validateLogin = async (req, res, next) => {
     // catch the user from the front end fields
     const user_email = req.body.email;
     const user_password = req.body.password;
@@ -12,34 +12,36 @@ const validateLogin = async (req, res) => {
     await User.findOne({ email: user_email })
         .then(user => {
             if(!user) {
-                console.log('Invalid email or password. ');
-                console.log(user);
+                console.log('Invalid email or password. ');  
             }
-
+ 
             else {
-                
-                console.log('User granted entry.');
-                console.log(req.headers);
 
                 bcrypt.compare(user_password, user.password)
                     .then(isMatching => {
+                    
                         // if password matches, sign the user with the token
                         const payload = {
                             id: user._id,
-                            email: user.email,
+                            email: user.email, 
                         }
 
-                        jwt.sign(
-                            payload,
-                            process.env.JWT_SECRET, // where to get the secret??
-                            {expiresIn: 86400},
-                            (err, token) => {
-                                if(err) console.log(err);
-                                return console.log('Bearer ', token);
-                            });
-                    });
+                        if (isMatching) {
+                            jwt.sign(
+                                payload,
+                                process.env.JWT_SECRET,
+                                {expiresIn: 86400},
+                                (err, token) => {
+                                    if(err) console.log(err);
+                                    return console.log('Bearer ', token);
+                                });
+                        }
+                        else console.log('The password does not match');
+                    })
+                    .catch(err => console.log(err))
             }
-        });
+        })
+        .catch(err => console.log(err))
 }
 
 module.exports = validateLogin;

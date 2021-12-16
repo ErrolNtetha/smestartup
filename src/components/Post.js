@@ -150,7 +150,7 @@ const DropdownArrow = () => {
                     <li> <span> Established  </span> {item.establishedIn} </li>
                     <li> <span> Sector </span> {item.sector} </li>
                     <li> <span> Size </span> {item.numOfEmployees} </li>
-                  </ul>
+                  </ul> 
                 </section>
               )
             })}

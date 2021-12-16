@@ -16,7 +16,6 @@ app.use(cors());
 app.use(bodyParser.json()); 
 app.use(loginRoute);
 app.use(postRoutes);
-// app.use(verifyJWT);
 
 require('dotenv').config();
 

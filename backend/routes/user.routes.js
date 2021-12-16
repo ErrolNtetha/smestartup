@@ -1,14 +1,13 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
-const verifyJWT = require('../middlewares/verifyJWT');
-
 
 // Controller imports
 const register_user = require('../controllers/registerController');
 const login_user = require('../controllers/loginController');
+const verifyToken = require('../middlewares/verifyJWT');
 
-// middleware import
-
+app.use(verifyToken);
 
 // Handle routes
 router.get('/login', login_user);

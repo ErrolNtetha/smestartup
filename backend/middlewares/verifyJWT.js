@@ -4,7 +4,7 @@ function verifyJWT(req, res, next) {
     const token = req.headers["x-access-token"]?.split(' ')[1]
 
     if(token) {
-        jwt.verify(token, process.env.PASSPORTSEC, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(err) {
                 res.json({
                     isLogged: false,
@@ -17,6 +17,7 @@ function verifyJWT(req, res, next) {
             req.user = {};
             req.user.id = decoded.id;
             req.user.email = decoded.email;
+            console.log('Token validated ', token);
 
             console.log(req.user.id);
             console.log(req.user.email);
