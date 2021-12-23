@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useHistory, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { post } from 'axios';
+import { post, get } from 'axios';
 
 export default function Login() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const history = []
 
     const onSubmitHandler = () => {
         const loginDetails = {
@@ -14,12 +15,29 @@ export default function Login() {
 
         const url = "http://localhost:5000/login";
 
-        post(url, loginDetails)
-            .then(res => console.log(res.data))
-            .catch(err => console.log('Something went wrong: ', err));
+        post(url, loginDetails, { 
+            headers: { "Content-type": "application/json" },
+         })
+        .then(res => res.json())
+        .then(data => {
+            localStorage.setItem('token', data.token)
+            console.log(data)
+        })
+        .catch(err => console.log('Something went wrong: ', err));
 
         console.log(loginDetails);
     }
+
+    useEffect(() => {
+        get('localhost:5000/feed', {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? history.push("/feed") : null)
+        .catch(err => console.log(err))
+    }, [])
 
     return (
         <section className="loginContainer">
@@ -30,7 +48,7 @@ export default function Login() {
                         type="text" 
                         name="email" 
                         onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="Username or Email" 
+                        placeholder="Email or Username" 
                     />
                     <label className='loginLabel'> Password: </label>
                     <input 

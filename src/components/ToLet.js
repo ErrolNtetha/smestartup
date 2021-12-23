@@ -126,7 +126,6 @@ const DropdownArrow = () => {
   // }
 
   const { investmentAmount, typeOfCompany, area, establishedIn, sector, numOfEmployees, id } = data[0];
-  console.log(data);
 
 
   return (

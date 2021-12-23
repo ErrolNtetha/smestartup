@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
   FaEllipsisH,
   FaStar,
@@ -69,7 +69,14 @@ const UserDetails = (props) => {
 
 const Stats = (props) => {
   const [ showModal, setShowModal ] = useState(false);
-
+  const [ loading, setLoading ] = useState(true);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('Loading');
+      setLoading(false);
+    }, 5000);
+  }, [])
 
   return (
     <section className="stats-container">
@@ -89,15 +96,17 @@ const Stats = (props) => {
             <FaRegEye className="docAttachements" /> 2.4K views
           </a>
         </span>
-        <span className="actionBtn">
-          {/* <a href="##" className="viewPost">
-            {" "}
-            <FaBookmark className="bookmark" /> Save for later{" "}
-          </a> */}
-          <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
-            send proposal
-          </button>
-        </span>
+       {
+         loading ? 'Loading' :
+         <span className="actionBtn">
+         <a href="##" className="viewPost" onClick={() => console.log('clicked')}>
+            Remove Item
+         </a>
+         <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
+           send proposal
+         </button>
+       </span>
+       }
       </section>
       { showModal && <Modal /> }
       <DropdownArrow />

@@ -6,7 +6,7 @@ import Menu from "./Menu";
 
 export default function Header(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [ onSearch, setOnSearch ] = useState(false);
 

@@ -939,3 +939,92 @@ $colorScheme: (
     text-transform: uppercase;
   }
 }
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  
+}
+
+.businessCardContainer {
+  padding: 10px;
+
+  .businessCard {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+
+    * {
+      padding: 0;
+      margin: 2px;
+    }
+
+    p {
+      font-size: $paragraph-size;
+    }
+
+    section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a {
+        text-decoration: none;
+        background-color: rgb(40, 41, 37);
+        color: rgb(255, 255, 255);
+        padding: 6px 10px;
+        font-weight: 600;
+        font-size: .7em;
+        border-radius: .5em;
+        border: none;
+        text-transform: uppercase;
+        right: 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .headerContainer {
+
+    .header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .faBars {
+        display: none;
+      }
+
+      .login {
+        border: 2px solid black;
+        padding: 4px 20px;
+        margin: 5px;
+        border-radius: 20px;
+        color: #000;
+
+        &hover {
+          background-color: black;
+          color: white;
+        }
+      }
+
+
+    }
+
+    .navMenu {
+      display: unset;
+      position: unset;
+      color: black;
+    }
+
+    .navMenu section .navItems {
+      display: flex;
+    }
+  }
+}

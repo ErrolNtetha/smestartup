@@ -14,29 +14,31 @@ import PrivateRoutes from './Routes/PrivateRoutes';
 import RoleRoute from './Routes/RoleRoute';
 import SampleUI from './InvestorUI/SampleUI';
 import { get } from 'axios';
+import Directory from './components/Pages/Directory';
+import BusinessDir from './components/Pages/BusinessDir';
 
 function App() {
   const type = 'investor'
   const [ isAuth, setIsAuth ] = useState(true);
-  const [ userType, setUserType ] = useState(type); // get the type of the user from the database
+  const [logged, setLoggedIn] = useState(true);
+  const [ userType, setUserType ] = useState("business"); // get the type of the user from the database
 
-  useEffect(() => {
-    async function getUserType() {
-      const url = 'http://localhost:5000/';
-      await get(url) 
-        .then(res => {
-          console.log(res)
-          setUserType(res)
-        })
-        .catch(err => console.log(err));
-    }
-  }, [])
+  // useEffect(() => {
+  //   async function getUserType() {
+  //     const url = 'http://localhost:5000/';
+  //     await get(url) 
+  //       .then(res => {
+  //         console.log(res)
+  //         setUserType(res)
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }, [])
 
   return (
         <Router>
           <div className="App">
-            { isAuth && <Header /> }
-
+            { logged && <Header /> }
               <Switch>
                 <Route path='/messages/inbox' component={Messages} />
                 <Route path='/mynetwork' component={Network} />
@@ -49,12 +51,13 @@ function App() {
                 {/* <Route path='/profile' component={Profile} /> */}
                 <PrivateRoutes path='/messages/' component={Messages} isAuth={isAuth} />
                 <PrivateRoutes path='/profile' component={Profile} isAuth={isAuth} />
-                <PrivateRoutes path='/mynetwork' component={Network} isAuth={isAuth} />
+                <PrivateRoutes path='/directory' component={BusinessDir} loggedIn={logged} isAuth={isAuth} />
                 <PrivateRoutes path='/messages/msg' component={ChatUI} isAuth={isAuth} />
                 <PrivateRoutes path='/messages/sent' component={Sent} isAuth={isAuth} />
 
                 {/* <RoleRoute pathname='/' exact isAuth={isAuth} component={SampleUI} role={userType} /> */}
                 <RoleRoute pathname='/feed' exact isAuth={isAuth} component={Home} role={userType} />
+                <RoleRoute pathname='/feed' exact isAuth={isAuth} component={SampleUI} role={userType} />
 
               </Switch>
           </div>

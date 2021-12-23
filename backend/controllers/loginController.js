@@ -16,7 +16,6 @@ const validateLogin = async (req, res, next) => {
             }
  
             else {
-
                 bcrypt.compare(user_password, user.password)
                     .then(isMatching => {
                     
