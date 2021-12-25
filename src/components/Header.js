@@ -28,7 +28,7 @@ export default function Header(props) {
         <h3 id={onSearch && 'verg'}>
           <span className="verge"> Mphumeleli Ntetha </span>
         </h3>
-        { showMenu && <Menu onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
+        { showMenu && <Menu isLoggedIn={isLoggedIn  } onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
 
 
         {isLoggedIn ? (

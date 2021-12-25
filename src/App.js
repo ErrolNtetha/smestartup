@@ -1,67 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Home from './components/Home';
-import Messages from './components/Messages/MessagesUI'
-import Network from './components/Pages/Network';
-import Sent from './components/Messages/Sent';
-import Received from './components/Messages/Received';
-import Login from './components/Pages/Login';
-import Signup from './components/Pages/Signup';
-import ChatUI from './components/Messages/ChatUI';
-import Profile from './components/Pages/Profile';
-import PrivateRoutes from './Routes/PrivateRoutes';
-import RoleRoute from './Routes/RoleRoute';
-import SampleUI from './InvestorUI/SampleUI';
-import { get } from 'axios';
-import Directory from './components/Pages/Directory';
-import BusinessDir from './components/Pages/BusinessDir';
+import React from 'react';
+import RoutesWrapper from './Routes/RoutesWrapper';
+import './styles/header.scss';
 
 function App() {
-  const type = 'investor'
-  const [ isAuth, setIsAuth ] = useState(true);
-  const [logged, setLoggedIn] = useState(true);
-  const [ userType, setUserType ] = useState("business"); // get the type of the user from the database
-
-  // useEffect(() => {
-  //   async function getUserType() {
-  //     const url = 'http://localhost:5000/';
-  //     await get(url) 
-  //       .then(res => {
-  //         console.log(res)
-  //         setUserType(res)
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // }, [])
-
   return (
-        <Router>
-          <div className="App">
-            { logged && <Header /> }
-              <Switch>
-                <Route path='/messages/inbox' component={Messages} />
-                <Route path='/mynetwork' component={Network} />
-                <Route path='/messages/msg' component={ChatUI} />
-                <Route path='/messages/sent' component={Sent} />
-                <Route path='/messages/received' component={Received} />
-                <Route path='/login' component={Login} />
-                <Route path='/signup' component={Signup} />
-
-                {/* <Route path='/profile' component={Profile} /> */}
-                <PrivateRoutes path='/messages/' component={Messages} isAuth={isAuth} />
-                <PrivateRoutes path='/profile' component={Profile} isAuth={isAuth} />
-                <PrivateRoutes path='/directory' component={BusinessDir} loggedIn={logged} isAuth={isAuth} />
-                <PrivateRoutes path='/messages/msg' component={ChatUI} isAuth={isAuth} />
-                <PrivateRoutes path='/messages/sent' component={Sent} isAuth={isAuth} />
-
-                {/* <RoleRoute pathname='/' exact isAuth={isAuth} component={SampleUI} role={userType} /> */}
-                <RoleRoute pathname='/feed' exact isAuth={isAuth} component={Home} role={userType} />
-                <RoleRoute pathname='/feed' exact isAuth={isAuth} component={SampleUI} role={userType} />
-
-              </Switch>
-          </div>
-        </Router>
+      <div className="App">
+        <RoutesWrapper />
+      </div>
   );
 }
 

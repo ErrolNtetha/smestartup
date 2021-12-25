@@ -12,7 +12,7 @@ export default function Groups() {
     const [username, setUsername ] = useState('');
     const [groupId, setGroupId] = useState('');
 
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         socket.emit("data")
@@ -25,10 +25,9 @@ export default function Groups() {
     }
 
     return (
-        <div>
-            <input type="text" placeholder="Name" onChange={e => setUsername(e.target.value)} />
-            <input type="text" placeholder="Group ID" onChange={e => setGroupId(e.target.value)} />
-            <button onClick={onSubmit}> Join Group </button>
-        </div>
+            <form action="POST" onSubmit={handleSubmit}>
+                <input type="text" placeholder='Please enter your name' />
+                <button type='submit'> Submit </button>
+            </form>
     )
 }

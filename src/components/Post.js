@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { ClipLoader } from 'react-spinners';
 import {
   FaEllipsisH,
   FaStar,
@@ -6,6 +7,7 @@ import {
   FaRegEye,
   FaChevronDown,
   FaChevronUp,
+  FaInfoCircle,
 } from "react-icons/fa";
 import { name, company, image, address, lorem } from "faker";
 import { companyBrief as data } from '../data'
@@ -17,10 +19,19 @@ export default function Post() {
   const { avatar } = image;
   const { cityName, country } = address;
   const { paragraph } = lorem;
+  const [ loader, setLoader ] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 3000)
+  }, [])
 
   return (
-    <>
+    <section className='bodyIntro'>
       <section className="newsFeed">
+      {loader ? <span> <ClipLoader size={18} className='spinner' /> </span> :
+        (
         <section className="post">
           <hr />
           <UserDetails
@@ -34,9 +45,10 @@ export default function Post() {
           />
           <p className="para"> {paragraph()} </p>
         </section>
+        )}
         <Stats location={cityName()} country={country()} />
       </section>
-    </>
+    </section>
   );
 }
 
@@ -99,9 +111,6 @@ const Stats = (props) => {
        {
          loading ? 'Loading' :
          <span className="actionBtn">
-         <a href="##" className="viewPost" onClick={() => console.log('clicked')}>
-            Remove Item
-         </a>
          <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
            send proposal
          </button>
@@ -153,7 +162,7 @@ const DropdownArrow = () => {
               return (
                 <section className="actualData">
                   <ul className="dataList" key={item.id}>
-                    <li> <span> Annual Sales </span> R{item.investmentAmount} </li>
+                    <li> <span> <p> Annual Sales </p> <FaInfoCircle /> </span> R{item.investmentAmount} </li>
                     <li> <span> Type of Company </span> {item.typeOfCompany} </li>
                     <li> <span> Area </span> {item.area} sqm. </li>
                     <li> <span> Established  </span> {item.establishedIn} </li>
