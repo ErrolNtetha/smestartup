@@ -44,12 +44,12 @@ export default function Menu(props) {
         }
         
       </ul>
-        {/* <hr style={{ width: "90%", opacity: "40%" }} />
+        <hr style={{ width: "90%", opacity: "40%" }} />
         <ul className="navItems1">
           <li> Business Funding </li>
           <li> Become an Investor </li>
           <li> Businesses for Sale </li>
-        </ul> */}
+        </ul>
     </nav>
   );
 }

@@ -111,8 +111,10 @@ const Stats = (props) => {
        {
          loading ? 'Loading' :
          <span className="actionBtn">
-         <button className="sendProposal" onClick={() => setShowModal(!showModal)}>
-           send proposal
+
+        {/* onClick={() => setShowModal(!showModal)} */}
+         <button className="sendProposal">
+           add to bookmarks
          </button>
        </span>
        }

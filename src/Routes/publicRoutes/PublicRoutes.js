@@ -13,5 +13,5 @@ export default function PublicRoutes() {
             <Route path='/signup' component={Signup} />
             <Route path='/about' component={About} />
         </>
-    )
+    )   
 }

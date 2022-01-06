@@ -1,16 +1,17 @@
 const Post = require('../models/post.model');
 
 exports.userPosts = (req, res) => {
+   
+    console.log(req.body);
  
-    const userPost = new Post({
-        author: 'Mphumeleli Errol Ntetha',
-        post: 'My first post!',
-    }); 
+    // const userPost = new Post({
+    //     post,
+    // }); 
     
-    // save post on the database
-    userPost.save()
-        .then(res => console.log('Post saved successfully'))
-        .catch(err => console.log('There was an error saving the post. ', err))
+    // // save post on the database
+    // userPost.save()
+    //     .then(res => console.log('Post saved successfully'))
+    //     .catch(err => console.log('There was an error saving the post. ', err))
 }
  
 exports.getUserPost = async (req, res) => {

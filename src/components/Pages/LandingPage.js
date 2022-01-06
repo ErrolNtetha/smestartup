@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaSearch } from 'react-icons/fa';
 
 export default function LandingPage() {
     return (
@@ -18,14 +18,23 @@ export default function LandingPage() {
            <article className='features'>
                 <section>
                     <h3> What you can do </h3>
-                    <ul>
+                    <div className="squre"></div>
+                    <p> Hey </p>
+                    <section className='searchDiv'>
+                        <input type="text" placeholder='Search' />
+                        <section className="se">
+                            <FaSearch className='s' />
+                        </section>
+                    </section>
+
+                    {/* <ul>
                         <li> <FaCheck /> Item one</li>
                         <li> <FaCheck /> Item two</li>
                         <li> <FaCheck /> Item three</li>
                         <li> <FaCheck /> Item three</li>
                         <li> <FaCheck /> Item three</li>
                         <li> <FaCheck /> Item three</li>
-                    </ul>
+                    </ul> */}
                 </section>
             </article>
             {/* end here */}

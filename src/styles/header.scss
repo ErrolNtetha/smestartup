@@ -147,6 +147,7 @@ $colorScheme: (
       left: 0;
       top: 0;
       font-size: .8rem;
+      transition: width 300ms ease-in 300ms;
 
       .times {
         padding-top: 10px;        
@@ -586,6 +587,19 @@ $colorScheme: (
             padding: .4rem;
             border-radius: 5px;
 
+            li span {
+              display: flex;
+              // justify-content: center;
+              align-items: center;
+              gap: .4rem;
+              margin: 0;
+
+              p {
+                padding-right: .4rem;
+                margin: 0;
+              }
+            }
+
             li {
               display: flex;
               justify-content: space-between;
@@ -781,7 +795,6 @@ $colorScheme: (
   height: 5vh;
   background: transparent;
   z-index: 999;
-  transition: height 400ms ease-in-out 300ms;
 
   button {
     position: absolute;
@@ -811,21 +824,28 @@ $colorScheme: (
 .postField {
   position: fixed;
   background: $text-color;
-  height: 95vh;
+  border-radius: 20px 20px 0 0;
+  height: 40vh;
   width: 100vw;
   bottom: 0;
   z-index: 999;
-  transition: height 300ms ease-out 300ms;
+  transition: height 500ms ease-in-out 100ms;
 }
 
 .postFieldContainer { 
 
   .innerPostField {
-    margin: 10px;
+    margin: 2px 10px;       
     margin-bottom: 5px;
+
+    textarea {
+      border-radius: 20px;
+    }
 
     .innerPostField > * {
       margin-bottom: 5px;
+
+     
     }
 
     .inputField, .field {
@@ -1075,6 +1095,45 @@ a {
 
       ul {
         list-style-type: none;
+      }
+
+      .squre {
+        position: relative;
+        display: block;
+
+        width: 200px;
+        height: 200px;
+        border: 2px solid red;
+      }
+
+      p {
+        position: absolute;
+      }
+
+      .searchDiv {
+        padding: 1.2em;
+
+        input {
+          padding: 1em;
+          width: 100%;
+          border-radius: 20px;
+          border: none;
+          border: 3px solid wheat;
+
+          .se {
+            color: blueviolet;
+          }
+
+          &:focus {
+            border: 3px solid red;
+            outline: none;
+          }
+
+          &:hover {
+            border-color: 2px solid violet;
+            cursor: progress;
+          }
+        }
       }
     }
   }

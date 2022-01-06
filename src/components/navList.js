@@ -15,7 +15,7 @@ const menuItems = [
     {
       nav: "Home",
       icon: <FaHome  />,
-      pathname: "/",
+      pathname: "/feed",
       id: uuid(),
     },
     {
