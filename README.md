@@ -1,5 +1,4 @@
-Live Preview: https://jolly-goldstine-1fcbd3.netlify.app/ 
-Trello Sprint Board: https://trello.com/b/cYGiqZAb
+Live Preview: https://serene-hoover-491cc8.netlify.app/  
 
 Have changed from github pages to Netlify.
 
@@ -10,7 +9,7 @@ This is my startup idea which i hope to finish next year, 2022. It is still a lo
 It is aimed at connecting businesses that are looking to expand to new higher highs, and potential investors who look to take on new opportunities to diversify their portfolios. We aim to be the platform that has everything within one's reach. Security is at the forefront of our concerns as we make sure every business registering on the platform is legit and documents are viewed by the qualified people, and at your approval.
 
 # A Note
-This website is only mobile responsive. It is still a under development.
+This website is only mobile responsive. Still a under development.
 
 # API
-One thing that I am sure you will notice in the application is that there are profiles around the application. However, there is a library that I am using that generates fake profile data which is available on NPM as `fakerJS`. I chose to use this package because it helps in the application development for better visuals and get the feelof what the app might look like on the end result with their dynamic profiles.
+One thing that I am sure you will notice in the application is that there are profiles around the application. However, there is a library that I am using that generates fake profile data which is available on NPM as `fakerJS`. I chose to use this package because it helps in the application development for better visuals and get the feel of what the app might look like on the end result with their dynamic profiles.
