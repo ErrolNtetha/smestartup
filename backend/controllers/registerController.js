@@ -1,5 +1,7 @@
 const UserInfo = require('../models/user.model');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+
 
 const register_user = async (req, res) => { 
    try {
@@ -26,6 +28,30 @@ const register_user = async (req, res) => {
                     email: email.toLowerCase(),
                     password: hashedPassword,
                 });
+
+                // Send am email to the user
+                // create a transporter for sending mails
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'mphumier@gmail.com',
+                        pass: 'hjjukvbttezjjbyp',
+                    }
+                }); 
+            
+                const data = {
+                    from: "test-email@gmail.com",
+                    to: email,
+                    subject: 'A Warm Welcome On-board.',
+                    text: `Welcome, ${firstName} ${lastName}! Your username is ${email}.`,
+                    replyTo: email,
+                } 
+
+                // send an email
+                transporter.sendMail(data, (err, info) => {
+                    if(err) console.log('There was error ', err);
+                    return console.log('Email sent, ', info);
+                })
                 
                 // save to the database
                 userData.save()
