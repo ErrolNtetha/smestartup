@@ -57,7 +57,7 @@ const UserDetails = (props) => {
     <span className="userDetails">
       <span className="group">
         <img
-          src={props.avatar}
+          
           alt="userImage                                                                                                                                                                                                                                                                                                          "
           className="profilePicture"
         />
@@ -113,7 +113,7 @@ const Stats = (props) => {
          <span className="actionBtn">
 
         {/* onClick={() => setShowModal(!showModal)} */}
-         <button className="sendProposal">
+         <button className="sendProposal" onClick={id => console.log(id)}>
            add to bookmarks
          </button>
        </span>

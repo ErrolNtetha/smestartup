@@ -1,32 +1,34 @@
 import React, { useState, useHistory, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { post, get } from 'axios';
-
+import toggleLoggin from '../../store/actions/logged';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const history = []
 
+    // On submit of login details...
     const onSubmitHandler = () => {
         const loginDetails = {
             email,
             password,
         }
 
-        const url = "http://localhost:5000/login";
+        const url = "http://localhost:5000/login"; 
 
-        post(url, loginDetails, { 
-            headers: { "Content-type": "application/json" },
-         })
-        .then(res => res.json())
-        .then(data => {
-            localStorage.setItem('token', data.token)
-            console.log(data)
+        post(url, loginDetails, {
+            headers: {
+                "Content-type": "application/json",
+                'x-access-token': localStorage.getItem('token')
+            },
+        })
+        .then(res => {
+            localStorage.setItem( 'token', res.data.token );
+            console.log(res.data);
         })
         .catch(err => console.log('Something went wrong: ', err));
-
-        console.log(loginDetails);
     }
 
     useEffect(() => {
@@ -35,8 +37,6 @@ export default function Login() {
                 'x-access-token': localStorage.getItem('token')
             }
         })
-        .then(res => res.json())
-        .then(data => data.isLoggedIn ? history.push("/feed") : null)
         .catch(err => console.log(err))
     }, [])
 

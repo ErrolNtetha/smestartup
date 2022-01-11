@@ -15,8 +15,8 @@ const register_user = async (req, res) => {
 
     await UserInfo.findOne({ email })
         .then(e => {
-            if(e) console.log('The email already exist.'); 
-
+            if(e) console.log('The email already exist.', e.createdAt); 
+  
             // if no email exist, add user 
             else {
                 // hash the password before saving
@@ -45,13 +45,13 @@ const register_user = async (req, res) => {
                     subject: 'A Warm Welcome On-board.',
                     text: `Welcome, ${firstName} ${lastName}! Your username is ${email}.`,
                     replyTo: email,
-                } 
+                }
 
                 // send an email
                 transporter.sendMail(data, (err, info) => {
                     if(err) console.log('There was error ', err);
                     return console.log('Email sent, ', info);
-                })
+                });
                 
                 // save to the database
                 userData.save()

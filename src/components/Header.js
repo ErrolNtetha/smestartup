@@ -1,25 +1,15 @@
 import React, {useState} from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "../styles/header.scss";
 import Menu from "./Menu";
 
 export default function Header(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [ onSearch, setOnSearch ] = useState(false);
-
-  const onClickHandler = () => {
-    // Behaviour on click
-    setIsLoggedIn(!isLoggedIn)
-    console.log(isLoggedIn)
-  }
-
-  const style = {
-    display: 'none',
-  }
-
+  const isLoggedIn = useSelector(state => state.isLogged);
 
   return (
     <header className="headerContainer">      
@@ -28,14 +18,14 @@ export default function Header(props) {
         <h3 id={onSearch && 'verg'}>
           <span className="verge"> Mphumeleli Ntetha </span>
         </h3>
-        { showMenu && <Menu isLoggedIn={isLoggedIn  } onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
+        { showMenu && <Menu isLoggedIn={isLoggedIn} onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
 
 
         {isLoggedIn ? (
           onSearch ? <Search /> : <FaSistrix onClick={() => setOnSearch(!onSearch)} className="faSearch" />
         ) : (
           <span className="icons">
-            <Link onClick={onClickHandler} to="/login" className="login"> Log In </Link>
+            <Link to="/login" className="login"> Log In </Link>
           </span>
         )}
       </section>

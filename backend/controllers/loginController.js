@@ -1,8 +1,9 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+// const nodemailer = require('nodemailer');
 
-const validateLogin = async (req, res, next) => {
+const validateLogin = async (req, res) => {
     // catch the user from the front end fields
     const user_email = req.body.email;
     const user_password = req.body.password;
@@ -12,18 +13,21 @@ const validateLogin = async (req, res, next) => {
     await User.findOne({ email: user_email })
         .then(user => {
             if(!user) {
+                res.json({ 
+                    message: "Email or password incorrect.",
+                    isLoggedIn: false, 
+                })
                 console.log('Invalid email or password. ');  
             }
  
             else {
                 bcrypt.compare(user_password, user.password)
                     .then(isMatching => {
-                    
-                        // if password matches, sign the user with the token
+                        // if password matches, sign the user with the token 
                         const payload = {
                             id: user._id,
                             email: user.email, 
-                        }
+                        } 
 
                         if (isMatching) {
                             jwt.sign(
@@ -32,10 +36,17 @@ const validateLogin = async (req, res, next) => {
                                 {expiresIn: 86400},
                                 (err, token) => {
                                     if(err) console.log(err);
-                                    return console.log('Bearer ', token);
+                                    return res.json({
+                                        message: "Success: Token generated.",
+                                        token,
+                                    });
                                 });
+                        } 
+                        else {
+                            // send to client 
+                            console.log('The password does not match. Enter correct password.');
+                            res.json({ message: 'Password not matching', isLoggedIn: false });
                         }
-                        else console.log('The password does not match');
                     })
                     .catch(err => console.log(err))
             }
