@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { FaBars, FaSistrix } from "react-icons/fa";
+import { FaAlignLeft, FaSistrix } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "../styles/header.scss";
@@ -14,11 +14,19 @@ export default function Header(props) {
   return (
     <header className="headerContainer">      
       <section className="header">
-        <FaBars className="faBars" onClick={() => setShowMenu(!showMenu)} />
+        <FaAlignLeft className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3 id={onSearch && 'verg'}>
           <span className="verge"> Mphumeleli Ntetha </span>
         </h3>
-        { showMenu && <Menu isLoggedIn={isLoggedIn} onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
+        <nav className="menuDesktop">
+          <ul>
+              <li> Home </li>
+              <li> Businesses </li>
+              <li> About </li>
+              <li> Contact </li>
+          </ul>
+        </nav>
+        { showMenu && <Menu className='headerMenu' isLoggedIn={isLoggedIn} onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
 
 
         {isLoggedIn ? (

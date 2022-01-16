@@ -37,7 +37,7 @@ const validateLogin = async (req, res) => {
                                 (err, token) => {
                                     if(err) console.log(err);
                                     return res.json({
-                                        message: "Success: Token generated.",
+                                        isLoggedIn: true,
                                         token,
                                     });
                                 });

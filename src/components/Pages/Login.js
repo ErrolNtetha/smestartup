@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { post, get } from 'axios';
 import toggleLoggin from '../../store/actions/logged';
 import { useDispatch } from 'react-redux';
+import toggle from '../../store/actions/logged';
 
 export default function Login() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ isLoggedIn, setIsLoggedIn ] = useState(null);
+    const dispatch = useDispatch();
     const history = []
 
     // On submit of login details...
@@ -26,7 +29,9 @@ export default function Login() {
         })
         .then(res => {
             localStorage.setItem( 'token', res.data.token );
-            console.log(res.data);
+            setIsLoggedIn(res.data.isLoggedIn);
+            isLoggedIn && dispatch(toggle) 
+            console.log(res.data.isLoggedIn);
         })
         .catch(err => console.log('Something went wrong: ', err));
     }
@@ -58,7 +63,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)} 
                         placeholder="Password" 
                     />
-                    <Link to='/feed' className="loginBTN" onClick={onSubmitHandler}> login </Link>
+                    <Link to={ () => isLoggedIn ? '/feed' : '/login' } className="loginBTN" onClick={onSubmitHandler}> login </Link>
                     <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
                 </section>
 
