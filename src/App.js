@@ -1,6 +1,6 @@
 import React from 'react';
 import RoutesWrapper from './Routes/RoutesWrapper';
-import './styles/header.scss';
+import './scss/main.scss';
 
 function App() {
   return (

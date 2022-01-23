@@ -13,7 +13,8 @@ import { name, company, image, address, lorem } from "faker";
 import { companyBrief as data } from '../data'
 import Modal from "./Modal";
 
-export default function Post() {
+export default function Post({ post }) {
+  // define the states
   const { firstName, lastName, jobTitle } = name;
   const { companyName } = company;
   const { avatar } = image;
@@ -21,11 +22,12 @@ export default function Post() {
   const { paragraph } = lorem;
   const [ loader, setLoader ] = useState(true);
 
+  // when the compnent mounts
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
     }, 3000)
-  }, [])
+  }, []);
 
   return (
     <section className='bodyIntro'>
@@ -43,7 +45,7 @@ export default function Post() {
             cityName={cityName()}
             icon={FaEllipsisH}
           />
-          <p className="para"> {paragraph()} </p>
+          <p className="para"> {post} </p>
         </section>
         )}
         <Stats location={cityName()} country={country()} />
@@ -52,7 +54,7 @@ export default function Post() {
   );
 }
 
-const UserDetails = (props) => {
+const UserDetails = ({firstName, lastName, companyName}) => {
   return (
     <span className="userDetails">
       <span className="group">
@@ -63,11 +65,11 @@ const UserDetails = (props) => {
         />
         <span className="userName">
           <h3>
-            {props.firstName} {props.lastName}
+            {firstName} {lastName}
           </h3>
           <section>
             Works at
-            <span className="companyName"> {props.companyName} </span>
+            <span className="companyName"> {companyName} </span>
           </section>
           <section>
               53 minutes ago

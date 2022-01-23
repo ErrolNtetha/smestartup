@@ -8,6 +8,7 @@ import toggle from '../../store/actions/logged';
 export default function Login() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ serverRes, setServerRes ] = useState();
     const [ isLoggedIn, setIsLoggedIn ] = useState(null);
     const dispatch = useDispatch();
     const history = []
@@ -63,6 +64,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)} 
                         placeholder="Password" 
                     />
+                    <p> {serverRes} </p>
                     <Link to={ () => isLoggedIn ? '/feed' : '/login' } className="loginBTN" onClick={onSubmitHandler}> login </Link>
                     <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
                 </section>

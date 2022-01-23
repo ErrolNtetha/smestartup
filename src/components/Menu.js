@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTimes, FaRegUserCircle } from "react-icons/fa";
-import '../styles/header.scss';
+import '../scss/main.scss';
 import cat from '../assets/cat.jpg';
 import { Link } from "react-router-dom";
 import menuItems from './navList';

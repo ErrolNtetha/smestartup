@@ -1,0 +1,17 @@
+@mixin hoverEffect($b-color, $padding, $margin: .6em) {
+    background-color: $b-color;
+    color: #fff;
+    margin: $margin;
+    padding: $padding;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 200ms ease-in;
+    width: 100%;
+
+    &:hover {
+        cursor: pointer;
+        background: rgb(225, 225, 225);
+        color: #000;
+    }
+}

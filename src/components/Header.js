@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { FaAlignLeft, FaSistrix } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import "../styles/header.scss";
+import "../scss/main.scss";
 import Menu from "./Menu";
 
 export default function Header(props) {
@@ -21,7 +21,7 @@ export default function Header(props) {
         <nav className="menuDesktop">
           <ul>
               <li> Home </li>
-              <li> Businesses </li>
+              <li> Features </li>
               <li> About </li>
               <li> Contact </li>
           </ul>
