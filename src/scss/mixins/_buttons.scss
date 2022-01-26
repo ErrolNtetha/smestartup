@@ -1,4 +1,4 @@
-@mixin hoverEffect($b-color, $padding, $margin: .6em) {
+@mixin buttonStyle($b-color, $padding, $margin: .6em) {
     background-color: $b-color;
     color: #fff;
     margin: $margin;
