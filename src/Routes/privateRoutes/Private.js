@@ -7,7 +7,6 @@ import Profile from '../../components/Pages/Profile';
 export default function Private() {
     return (
         <>
-            <Header />
             <Switch>
                 <Route path='/feed' component={Feed} />
                 <Route path='/profile' component={Profile} />
