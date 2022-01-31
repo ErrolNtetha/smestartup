@@ -20,8 +20,8 @@ $colorScheme: (
   }
 
   html {
-    scroll-behavior: smooth;
-      background: black;
+      scroll-behavior: smooth;
+      background: rgb(233, 233, 233);
       overflow-y: auto;
   }
 
@@ -29,6 +29,10 @@ $colorScheme: (
   body {
     font-family: "Open Sans", sans-serif;
     position: unset;                                                         ;
+  }
+
+  .divider {
+    opacity: 0.1;
   }
 
   .signupBtn {
@@ -63,13 +67,13 @@ $colorScheme: (
     }
 
     .header {
-    padding: 0px 5px;
-    bottom: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    color: #fff;   
+      padding: 0px 5px;
+      bottom: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      color: #fff;   
 
     nav {
       display: none;
@@ -330,11 +334,11 @@ $colorScheme: (
         }
 
         .newsFeed {
-          background-color: rgb(241, 241, 241);
+          background-color: #fff;
           padding: 10px;
           font-size: .6rem;
           border-radius: 5px;
-          margin: 10px;
+          margin-bottom: 10px;
           border: 1px solid rgba(151, 151, 151, 0.473);
 
           .post {
@@ -1076,7 +1080,7 @@ a {
 
   .heroSection {
     max-width: 20rem;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1130,7 +1134,7 @@ a {
       text-transform: uppercase;
       margin-top: 0;
       box-sizing: border-box;
-      width: 60%;
+      width: 50%;
       display: inline-block;
       text-align: center;
       border-radius: 30px;
@@ -1184,13 +1188,13 @@ a {
 
 @media only screen and (min-width: 680px) {
   .headerContainer {
-    position: absolute;
+    // position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 10vh;
-    background: transparent;
+    background: rgb(19, 17, 17);
     padding: 1rem;
     color: #fff;
     z-index: 19999;
@@ -1201,6 +1205,7 @@ a {
       justify-content: space-between;
       padding: 0 4em;
       width: 100%;
+      height: 10vh;
 
       h3 span {
         font-weight: 900;
@@ -1280,8 +1285,19 @@ a {
         align-items: center;
         margin-top: 4rem;
 
+        h2 {
+          margin: 0;
+        }
+
         p {
           max-width: 40rem;
+          margin: 1em 0;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .feedback {
@@ -1309,8 +1325,8 @@ a {
               font-weight: bold;
             }
 
-            &:required {
-              border: 2px solid red;
+            &:focus {
+              outline: rgb(255, 0, 242);
             }
           }
     
@@ -1460,8 +1476,9 @@ a {
         &::placeholder {
           font-weight: bold;
         }
+
         &:focus {
-          outline: red;
+          outline: black;
         }
       }
 
@@ -1500,20 +1517,57 @@ a {
     display: flex;
     justify-content: space-around;
     flex: 1 2 1;
-    padding: 6rem 0;
     position: initial;
-
-    aside, main {
-      border: 2px solid black;
-    }
 
     aside {
       width: 20rem;
+      height: max-content;
+      border: 1px solid rgb(202, 202, 202);
+      border-radius: 5px;
+      background: #fff;
+
+      section {
+        color: #000;
+        margin-bottom: 1em;
+
+        h3 { text-align: center; }
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 1em;
+        
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: .6em;
+
+          button {
+            background: #4776E6;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+            color: white;
+            padding: .6em;
+            border: none;
+            font-weight: bold;
+            border-radius: 4px;
+          }
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: transform 100ms ease-in-out 00ms;
+            background: rgba(232, 232, 232, 0.576);
+            border-radius: 4px;
+          }
+        }
+      }
     }
 
     main {
       width: 40em;
-      overflow-y: scroll;
     }
   }
 
@@ -1546,8 +1600,9 @@ a {
           align-content: center;
           
           li {
-            padding: .4rem;
+            padding: .2rem;
             font-size: 1.2rem;
+            margin: 0;
 
             &:hover {
               cursor: pointer;
