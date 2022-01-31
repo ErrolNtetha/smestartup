@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import "../scss/main.scss";
 import Menu from "./Menu";
 
-export default function Header(props) {
+export default function Header({ headerContainer }) {
 
   const [showMenu, setShowMenu] = useState(false);
   const [ onSearch, setOnSearch ] = useState(false);
   const isLoggedIn = useSelector(state => state.isLogged);
 
   return (
-    <header className="headerContainer">      
+    <header className={headerContainer}>      
       <section className="header">
         <FaAlignLeft className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3 id={onSearch && 'verg'}>
@@ -26,11 +26,21 @@ export default function Header(props) {
               <li> Contact </li>
           </ul>
         </nav>
-        { showMenu && <Menu className='headerMenu' isLoggedIn={isLoggedIn} onClose={showMenu} onMenuClose={() => setShowMenu(!showMenu)}  /> }
+        { showMenu && 
+          <Menu className='headerMenu' 
+          isLoggedIn={isLoggedIn} 
+          onClose={showMenu} 
+          onMenuClose={() => setShowMenu(!showMenu)}  
+          /> 
+        }
 
 
-        {isLoggedIn ? (
-          onSearch ? <Search /> : <FaSistrix onClick={() => setOnSearch(!onSearch)} className="faSearch" />
+        { 
+        isLoggedIn ? (
+          onSearch ? 
+          <Search /> : 
+              <FaSistrix onClick={() => setOnSearch(!onSearch)} 
+              className="faSearch" />
         ) : (
           <span className="icons">
             <Link to="/login" className="login"> Log In </Link>
