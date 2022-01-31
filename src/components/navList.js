@@ -18,12 +18,12 @@ const menuItems = [
       pathname: "/feed",
       id: uuid(),
     },
-    {
-      nav: "Messages",
-      icon: <FaBookmark />,
-      pathname: "/messages/inbox/",
-      id: uuid(),
-    },
+    // {
+    //   nav: "Messages",
+    //   icon: <FaBookmark />,
+    //   pathname: "/messages/inbox/",
+    //   id: uuid(),
+    // },
     {
       nav: "Directory",
       icon: <FaUsers />,
@@ -54,18 +54,12 @@ const menuItems = [
       pathname: "/help",
       id: uuid(),
     },
-    {
-      nav: "Settings",
-      icon: <FaCog />,
-      pathname: "/settings",
-      id: uuid(),
-    },
-    {
-      nav: "Signout",
-      icon: <FaPowerOff />,
-      pathname: "/logout",
-      id: uuid(),
-    },
+    // {
+    //   nav: "Settings",
+    //   icon: <FaCog />,
+    //   pathname: "/settings",
+    //   id: uuid(),
+    // },
   ];
 
   export default menuItems;
