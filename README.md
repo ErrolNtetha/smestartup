@@ -1,13 +1,14 @@
-Live Preview: https://serene-hoover-491cc8.netlify.app/  
+![Blendot Logo](https://github.com/ErrolNtetha/smestartup/blob/old-project-state/src/assets/images/logo.png?raw=true)
 
-# Introduction
-Startup project which for SMEs. It is still a long way to go and i hope to make the best effort to get a lot done and learn as i go. The website is build on ReactJS, and Vanilla CSS.
+<h2 align="center"> Connect with other entrepreneurs. </h2>
 
-# What is it about?
-It is aimed at connecting businesses that are looking to expand to new higher highs, and potential investors who look to take on new opportunities to diversify their portfolios. We aim to be the platform that has everything within one's reach. Security is at the forefront of our concerns as we make sure every business registering on the platform is legit and documents are viewed by the qualified people, and at your approval.
+This is an official repository of [Blendot](https://reverent-sinoussi-ec05dd.netlify.app/). Above is the logo which was designed and made by [Mphumeleli Errol Ntetha](https://linked.com).
 
-# A Note
-This website is only mobile responsive. Still a under development.
+# Overview
+**Blendot** is aim at making entrepreneurs and investors create connection within minutes effortlessly. Whether you are just getting started in business, already have an established business or perhaps you might be an investor who is interested at buying equity. Our platform caters for all business enthusiasts.
 
-# API
-Website uses FakerJS NPM package to generate fake profile data. This will soon be replaced with real data profile once auntentication and authorization is complete.
+### Mission
+Over a decade ago, the internet has evolved faster than like any other, allowing the individuals to make purchases and perfom so many thing at the comfort of their beds with just few clicks away. Our mission is to realize businesses' potentials by creating a platform for entrepreneurs to pitch their ideas and make them come to live. We give investors a wide range of choices to harvest their money on.
+
+### Values
+The company values its stakeholders, clients and its internal employees in all their respective fields.
