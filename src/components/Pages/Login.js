@@ -4,6 +4,8 @@ import { post, get } from 'axios';
 import toggleLoggin from '../../store/actions/logged';
 import { useDispatch } from 'react-redux';
 import toggle from '../../store/actions/logged';
+import { Formik, Form, Field } from 'formik';
+import { Yup } from 'yup';
 
 export default function Login() {
     const [ email, setEmail ] = useState('');
