@@ -45,36 +45,57 @@ export default function Login() {
         .catch(err => console.log(err))
     }, [])
 
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Email is invalid.').required('Field is empty.'),
+        password: Yup.string()
+            .min(8, 'Password too short. It must be a minimum of 8 charaters long.')
+            .required('You can\'t leave field empty')
+    })
+
     return (
         <section className="loginContainer">
-            <section className='innerSection'>
-                <section className='inputFields'>
-                    <label className='loginLabel'> Username: </label>
-                    <input 
-                        type="text" 
-                        name="email" 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="Email or Username" 
-                    />
-                    <label className='loginLabel'> Password: </label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        placeholder="Password" 
-                    />
-                    <p> {serverRes} </p>
-                    <Link to={ () => isLoggedIn ? '/feed' : '/login' } className="loginBTN" onClick={onSubmitHandler}> login </Link>
-                    <p> Don't have an account? <Link to='/signup'> Signup </Link> </p>
-                </section>
+             <Formik 
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
 
-                
-                {/* <section className="socialLogin">
-                    <section>
-                        <p> social links </p>
-                    </section>
-                </section> */}
-            </section>
+                validationSchema={validationSchema}
+
+                onSubmit={(values) => {
+                    const url = "http://localhost:5000/login"; 
+                    console.log(values);
+            
+                    post(url, values, {
+                        headers: {
+                            "Content-type": "application/json",
+                            'x-access-token': localStorage.getItem('token')
+                        },
+                        body: JSON.stringify(values),
+                    })
+                    .then(res => {
+                        localStorage.setItem( 'token', res.data.token );
+                        setIsLoggedIn(res.data.isLoggedIn);
+                        isLoggedIn && dispatch(toggleLoggin);
+                        console.log(res.data.isLoggedIn);
+                    })
+                    .catch(err => console.log('Something went wrong: ', err));
+                }}
+            >
+               {({ errors, touched,  }) => (
+                  <section className='loginForm'>
+                       <h2> Log in to your account </h2>
+                       {console.log(errors)}
+                        <Form>
+                            <Field type='email' name='email' placeholder='Enter email' />
+                            <Field name='password' placeholder='Password' />
+                            {errors.password && touched.password ? <p> {errors.password} </p> : null }
+                            <button type='submit'> Login </button>
+                        </Form>
+                  </section>
+               )}
+            </Formik>
         </section>
     )
 }
