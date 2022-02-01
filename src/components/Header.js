@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "../scss/main.scss";
 import Menu from "./Menu";
+import logo from '../assets/logo-banner1.png';
 
 export default function Header({ headerContainer }) {
 
@@ -16,7 +17,9 @@ export default function Header({ headerContainer }) {
       <section className="header">
         <FaAlignLeft className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3 id={onSearch && 'verg'}>
-          <span className="verge"> Mphumeleli Ntetha </span>
+          <span className="verge">
+            <img src={logo} alt="" />
+          </span>
         </h3>
         <nav className="menuDesktop">
           <ul>

@@ -11,7 +11,6 @@ export default function Login() {
     const [ serverRes, setServerRes ] = useState();
     const [ isLoggedIn, setIsLoggedIn ] = useState(null);
     const dispatch = useDispatch();
-    const history = []
 
     // On submit of login details...
     const onSubmitHandler = () => {
@@ -31,7 +30,7 @@ export default function Login() {
         .then(res => {
             localStorage.setItem( 'token', res.data.token );
             setIsLoggedIn(res.data.isLoggedIn);
-            isLoggedIn && dispatch(toggle) 
+            dispatch(toggleLoggin); 
             console.log(res.data.isLoggedIn);
         })
         .catch(err => console.log('Something went wrong: ', err));

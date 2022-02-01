@@ -1,7 +1,8 @@
 import React from 'react';
 import Post from './Post';
 import Header from './Header';
-
+import cat from '../assets/cat.jpg';
+import cover from '../assets/cover/cover.png';
 
 export default function Feed() {
 
@@ -11,13 +12,14 @@ export default function Feed() {
        <>
          <Header headerContainer='headerContainer' style={{ color: '#fff' }} />
          <section className='feedContainer'>
-            <aside>
+            <aside className='leftAside'>
+                    <img src={cover} alt="" />
+                    <img src={cat} alt="my cover" className='profileImageP' />
                 <section>
-                    <h3> Profile </h3>
+                    <h3> Mphumeleli Ntetha </h3>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, id. </p>
+                    <hr className='divider' />
                     
-                    <section>
-                        
-                    </section>
                 </section>
             </aside>   
             <main>

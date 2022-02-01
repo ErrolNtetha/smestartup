@@ -35,7 +35,6 @@ export default function Post({ post }) {
       {loader ? <span> <ClipLoader size={18} className='spinner' /> </span> :
         (
         <section className="post">
-          <hr />
           <UserDetails
             avatar={avatar()}
             firstName={firstName()}
@@ -94,7 +93,7 @@ const Stats = (props) => {
 
   return (
     <section className="stats-container">
-      <hr />
+      <hr className="divider" />
       <section className="stats">
         <span>
           <FaMapMarkerAlt style={{ marginTop: ".2em" }} /> {props.location},{" "}
