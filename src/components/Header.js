@@ -1,13 +1,15 @@
-import React, {useState} from "react";
-import { FaAlignLeft, FaSistrix } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import React, { useState, useReducer } from "react";
+import { FaAlignLeft, FaSistrix, FaSearch } from "react-icons/fa";
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "../scss/main.scss";
 import Menu from "./Menu";
-import logo from '../assets/logo-banner1.png';
+import logo from '../assets/logo-banner.png';
 
 export default function Header({ headerContainer }) {
 
+	const dispatch = useDispatch(); // code to manipulate the state
+	
   const [showMenu, setShowMenu] = useState(false);
   const [ onSearch, setOnSearch ] = useState(false);
   const isLoggedIn = useSelector(state => state.isLogged);
@@ -18,7 +20,9 @@ export default function Header({ headerContainer }) {
         <FaAlignLeft className="faBars" onClick={() => setShowMenu(!showMenu)} />
         <h3 id={onSearch && 'verg'}>
           <span className="verge">
-            <img src={logo} alt="" />
+            <Link to='/'>
+              <img src={logo} alt="" />
+            </Link>
           </span>
         </h3>
         <nav className="menuDesktop">

@@ -6,7 +6,7 @@ import cover from '../assets/cover/cover.png';
 
 export default function Feed() {
 
-    const posts = ['post 1', 'post 2', 'post 1', 'post 2', 'post 1', 'post 2'];
+    const posts = ['This is the message i got from the manager at work. I want to show the team.', 'post 2', 'post 1', 'post 2', 'post 1', 'post 2'];
 
     return (
        <>

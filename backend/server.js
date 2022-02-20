@@ -37,12 +37,6 @@ io.on('connection', socket => {
 })
 
 
-app.get('/', (req, res) => {
-    res.send("<h2> Hello world!</h2>")
-});
-
-
-
 
 
 

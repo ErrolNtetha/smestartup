@@ -4,9 +4,10 @@ const jwt = require('jsonwebtoken');
 // const nodemailer = require('nodemailer');
 
 const validateLogin = async (req, res) => {
-    // catch the user from the front end fields
-    const user_email = req.body.email;
-    const user_password = req.body.password;
+    // catch the user from the frontend fields
+    const { email, password } = req.body;
+    const user_email = email;
+    const user_password = password;
 
     // Check on the database if we have the details 
     // the user entered on login 
@@ -45,7 +46,7 @@ const validateLogin = async (req, res) => {
                         else {
                             // send to client 
                             console.log('The password does not match. Enter correct password.');
-                            res.json({ message: 'Password not matching', isLoggedIn: false });
+                            res.json({ message: 'Email or password incorrect. Please try again.', isLoggedIn: false });
                         }
                     })
                     .catch(err => console.log(err))

@@ -107,7 +107,7 @@ export default function LandingPage() {
                             <input type="email" placeholder='Enter your email' name="email" />
                             <textarea 
                                 style={{ fontFamily: "sans-serif" }} 
-                                placeholder='Please write to us where you would like us to improve your experience on our site...' 
+                                placeholder='Please write to us...' 
                                 name="suggestion" 
                                 id="" 
                                 cols="30" 
