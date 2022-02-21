@@ -1,7 +1,13 @@
-import { Home, About, Contact, Profile } from 'react-icons';
+import React from 'react';
+import {
+	Home,
+	About,
+	Contact,
+	Profile
+} from 'react-icons';
 
 export const nav = [
-	{
+    {
 		name: 'Home',
 		id: 'home-link',
 		url: 'home/',
@@ -29,4 +35,4 @@ export const nav = [
 		isPrivate: true,
 		icon: <Profile />,
 	},
-]
+];

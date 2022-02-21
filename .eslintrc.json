@@ -1,0 +1,48 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier/react"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "eol-last": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".js", ".jsx"] }],
+        "import/extensions": "off",
+        "no-use-before-define": ["off", { "functions": true, "classes": true, "variables": true }],
+        "no-underscore-dangle": "off",
+        "comma-dangle": "off",
+        "max-len": "off",
+        "no-console": "warn",
+        "default-param-last": "off",
+        "indent": "off",
+        "no-return-assign": "off",
+        "no-param-reassign":    "off",
+        "import/prefer-default-export": "off",
+        "no-tabs": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "arrow-body-style": ["warn", "never"],
+        "semi": "error",
+        "react/jsx-indent": ["error", "tab", {"checkAttributes": true, "indentLogicalExpressions": true}],
+        "react/function-component-definition": [
+            {
+                "namedComponents": "function-expression"
+            }
+        ]
+    }
+}
