@@ -1,0 +1,5 @@
+@import '../mixins/buttons';
+
+.button {
+    @include buttonHover()
+}
