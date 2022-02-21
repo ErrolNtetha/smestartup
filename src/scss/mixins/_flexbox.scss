@@ -1,0 +1,7 @@
+// Center elements on the center 
+@mixin flexbox($direction: 'row', $justify: 'center') {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+    flex-direction: $direction;
+}
