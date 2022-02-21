@@ -5,10 +5,12 @@ interface Props {
     age?: number;
 }
 
-export const Component: React.FC<Props> = (props) => {
+const Component: React.FC<Props> = (props) => {
     return (
         <div>
             <p> Hello world! </p>
         </div>
     );
 }
+
+export default Component;
