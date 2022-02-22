@@ -1,0 +1,11 @@
+{
+    "plugins": [
+      ["module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "@component": "./src/components",
+          "@icons": "./src/components/icons"
+        }
+      }]
+    ]
+  }
