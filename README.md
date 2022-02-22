@@ -1,14 +1,14 @@
-Live Preview available here: https://errolntetha.github.io/smestartup/
-Trello Sprint Board: https://trello.com/b/cYGiqZAb
+![Blendot Logo](https://github.com/ErrolNtetha/smestartup/blob/old-project-state/src/assets/images/logo.png?raw=true)
 
-# What is this?
-This is my startup idea which i hope to finish next year, 2022. It is still a long way to go and i hope to make the best effort to get a lot done and learn as i go. The website is build on ReactJS, and Vanilla CSS. This startup that I am currently crafting will be called Blendot.
+<h2 align="center"> Connect with other entrepreneurs. </h2>
 
-# What exactly is it about?
-It is aimed at connecting businesses that are looking to expand to new higher highs, and potential investors who look to take on new opportunities to diversify their portfolios. We aim to be the platform that has everything within one's reach. Security is at the forefront of our concerns as we make sure every business registering on the platform is legit and documents are viewed by the qualified people, and at your approval.
+This is an official repository of [Blendot](https://reverent-sinoussi-ec05dd.netlify.app/). Above is the logo which was designed and made by [Mphumeleli Errol Ntetha](https://linked.com).
 
-# A Note
-This website is only mobile responsive. It is still a under development.
+# Overview
+**Blendot** is aim at making entrepreneurs and investors create connection within minutes effortlessly. Whether you are just getting started in business, already have an established business or perhaps you might be an investor who is interested at buying equity. Our platform caters for all business enthusiasts.
 
-# API
-One thing that I am sure you will notice in the application is that there are profiles around the application. However, there is a library that I am using that generates fake profile data which is available on NPM as `fakerJS`. I chose to use this package because it helps in the application development for better visuals and get the feelof what the app might look like on the end result with their dynamic profiles.
+### Mission
+Over a decade ago, the internet has evolved faster than like any other, allowing the individuals to make purchases and perfom so many thing at the comfort of their beds with just few clicks away. Our mission is to realize businesses' potentials by creating a platform for entrepreneurs to pitch their ideas and make them come to live. We give investors a wide range of choices to harvest their money on.
+
+### Values
+The company values its stakeholders, clients and its internal employees in all their respective fields.
