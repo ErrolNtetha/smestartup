@@ -1,16 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-interface Props {
-    name?: string;
-    age?: number;
-}
-
-const Component: React.FC<Props> = (props) => {
+export const Header: React.FC = () => {
     return (
         <div>
-            <p> Hello world! </p>
+            <p> This is a header Component! Go here: <Link to='/'> Home </Link> </p>
         </div>
     );
-}
-
-export default Component;
+};
