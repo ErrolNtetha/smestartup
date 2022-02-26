@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "experimentalDecorators": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -18,9 +20,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
-    "src/*",
-  ]
+    "src/**/**/*.ts",
+    "src/*"
+, "src/views/header/utils.tsx", "src/hoc/wrapper.tsx"  ],  
+  "exclude": ["node_module", ".vscode"]
 }
