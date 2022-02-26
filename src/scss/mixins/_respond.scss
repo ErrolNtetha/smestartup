@@ -1,5 +1,5 @@
 // Mixins for map breakpoints defined in 'breakpoints/':
-@import '../breakpoints/';
+@use '../breakpoints/' as *; 
 
 @mixin respond-to($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint ) {
