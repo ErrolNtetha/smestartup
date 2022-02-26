@@ -1,12 +1,16 @@
 import React from 'react';
+import { Hero } from '../../views/hero';
 import { Header } from '../../views/header';
-import { Footer } from '../../views/footer';
+
+// interface Props extends RouteComponentProps {}
 
 export const Home: React.FC = () => {
     return (
-        <>
+        <section className='home'>
             <Header />
-            <Footer name='Hey' />
-        </>
+            <section className='home__asideLeft'>
+                <Hero />
+            </section>
+        </section>
     );
 };
