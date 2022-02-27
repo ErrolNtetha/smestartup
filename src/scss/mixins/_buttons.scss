@@ -1,13 +1,13 @@
-@mixin buttonHover($bgColor, $padding, $margin: .6em) {
+@mixin buttonHover($bgColor, $padding, $margin: .6em, $radius: 3em) {
     background-color: $bgColor;
     color: #fff;
     margin: $margin;
     padding: $padding;
     border: none;
+    border-radius: $radius;
     font-weight: bold;
     text-transform: uppercase;
     transition: background-color 200ms ease-in;
-    width: 100%;
 
     &:hover {
         cursor: pointer;

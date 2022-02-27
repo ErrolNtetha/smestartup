@@ -1,5 +1,11 @@
 import React from 'react';
+import { Header } from '../../views/header';
 
 export const Contact = () => {
-  return <div> This is Contact Page!  </div>;
+  return (
+    <section>
+      <Header />
+      <div> This is Contact Page!  </div>;
+    </section>
+  );
 };

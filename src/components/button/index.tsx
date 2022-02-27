@@ -1,12 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable func-names */
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactElement } from 'react';
 
-interface ButtonValue {
-    name: string;
-}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export const Button: React.FC<ButtonValue> = function ({ name }) {
+export const Button:React.FC<ButtonProps> = ({ ...props }): ReactElement => {
   return (
-    <button type='button'> {name} </button>
+    <button type='button' {...props} />
   );
 };

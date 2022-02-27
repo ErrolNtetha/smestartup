@@ -40,6 +40,7 @@
         "react/jsx-indent": ["off", "tab", {"checkAttributes": false, "indentLogicalExpressions": true}],
         "jsx-quotes": ["warn", "prefer-single"],
         "react/function-component-definition": [0, { "namedComponents": "arrow-expression" }],
-        "import/no-unresolved": 0
+        "import/no-unresolved": 0,
+        "no-unused-vars": 2
     }
 }

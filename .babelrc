@@ -1,9 +1,9 @@
 {
     "plugins": [
       ["module-resolver", {
-        "root": ["./"],
+        "root": ["./src"],
         "alias": {
-          "@": "./src",
+          "@components": "./components",
           "@icons": "/components/icons"
         }
       }]
