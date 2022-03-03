@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-@mixin buttonStyle($b-color, $padding, $margin: .6em) {
-    background-color: $b-color;
-=======
 @mixin buttonHover($bgColor, $padding, $margin: .6em, $radius: 3em) {
     background-color: $bgColor;
->>>>>>> production
     color: #fff;
     margin: $margin;
     padding: $padding;
