@@ -1,9 +1,10 @@
-@mixin inputField($padding, $margin: .6em) {
+@mixin inputField($padding, $border, $inputRadius, $margin: .6em) {
     width: 100%;
     margin: $margin;
     padding: $padding;
     outline: none;
-    border: none;
+    border: $border;
+    border-radius: $inputRadius;
 
     &::placeholder {
         font-weight: bold;

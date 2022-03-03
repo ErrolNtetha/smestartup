@@ -1,0 +1,167 @@
+@use '../mixins' as *;
+@use '../base' as *;
+@use '../mixins/buttons' as *;
+
+.header {
+    box-sizing: border-box;
+
+    @include respond-to('mobile') {
+        // Start styling here below ====
+        @include flexbox();
+
+        &__content {
+            @include flexbox($justify-content: space-between);
+            padding: 0.6em 1.2em;
+            width: 100%;
+            background-color: $primaryColor;
+            font-size: 1rem;
+            height: 10vh;
+            box-sizing: border-box;
+            // margin: 0 2em;
+        }
+
+        &__logo {
+            width: 7em;
+        }
+
+        &__nav {
+            position: fixed;
+            background-color: #fff;
+            height: 100vh;
+            width: 60%;
+            top: 0;
+            right: 0;
+            z-index: 4;
+            transform: translateX(100%);
+            transition: transform 5ms ease-in-out;
+        }
+
+        &__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__item {
+            color: #000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 20;
+        }
+
+        &__BtnGroup {
+            @include flexbox();
+        }
+
+        &__button--signin {
+            @include buttonHover(
+                $bgColor: $primaryColor,
+                $padding: 0.6em 1em,
+                $radius: 25px
+            );
+            border-radius: 25px;
+            width: 7em;
+            border: 1px solid #fff;
+        }
+
+        &__menu-icon {
+            font-size: 1.8rem;
+            z-index: 2;
+        }
+    }
+
+    @include respond-to('tablet') {
+        @include flexbox();
+
+        &__content {
+            @include flexbox($justify-content: space-between);
+            padding: 0.2 0.8em;
+            margin: 0 0;
+            // max-width: 20em;
+        }
+
+        &__list {
+            @include flexbox();
+            list-style: none;
+            text-decoration: none;
+            padding: 0;
+        }
+
+        &__item {
+            text-decoration: none;
+            padding: 0.6em;
+            color: #fff;
+            font-weight: 500;
+            width: 2em;
+        }
+
+        &__item:hover {
+            border-bottom: 1px solid #fff;
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__logo {
+            width: 8em;
+        }
+
+        &__content {
+            padding: 0.4em 4em;
+        }
+
+        &__nav {
+            position: unset;
+            background: none;
+            display: contents;
+            width: auto;
+            color: #fff;
+            height: auto;
+
+            ul {
+                margin: 0;
+                display: flex;
+            }
+            li {
+                padding: 0;
+                width: 6em;
+            }
+        }
+
+        &__item {
+            margin: 0 1em;
+            font-size: 1.2rem;
+        }
+
+        &__item[href='/contact'],
+        &__item[href='/faq'] {
+            display: none;
+        }
+
+        &__button--signin {
+            display: unset;
+            border-radius: 25px;
+            width: 8em;
+        }
+
+        &__menu-icon {
+            display: none;
+            font-size: 1.8rem;
+        }
+    }
+
+    @include respond-to('desktop') {
+        &__item[href='/contact'],
+        &__item[href='/faq'] {
+            display: unset;
+        }
+
+        // &__content {
+        //     width: 60%;
+        // }
+
+        &__hero {
+            padding: 40em;
+        }
+    }
+}

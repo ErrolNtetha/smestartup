@@ -1,0 +1,115 @@
+@use '../mixins/' as *;
+@use '../base/color' as *;
+@use '../base/typography' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+.login {
+    // background-color: $foregroundColor;
+    @include flexbox();
+    height: 90vh;
+    color: #000;
+
+    @include respond-to('mobile') {
+        &__container {
+            background-color: #fff;
+            height: min-content;
+            width: 80%;
+            border-radius: $radius;
+            padding: .6em 2em;
+        }
+
+        &__header {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 2em;
+            padding-bottom: .6em;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.166);
+        }
+
+        &__label {
+            font-weight: 500;
+        }
+
+        &__emailField {
+            @include inputField($padding: .8em 1.4em, $margin: .4em 0 1.2em, $border: 1px solid #000, $inputRadius: 2em);
+            font-size: 1rem;
+            box-sizing: border-box;
+
+            &:focus {
+                background-color: rgba(0, 0, 0, 0.227);
+                border: none;
+            }
+        }
+
+        &__button {
+            @include buttonHover($bgColor: $secondaryColor, $padding: 1em, $margin: 0);
+            width: 100%;
+            box-sizing: border-box;
+
+            &:hover {
+                background-color: #fff;
+                box-sizing: border-box;
+            }
+        }
+
+        &__Or {
+            font-weight: 900;
+            text-align: center;
+            opacity: 0.5;
+            margin: 1.5em;
+        }
+
+        &__socials {
+            @include flexbox();
+        }
+
+        &__socials > * {
+            margin: 0 1em;
+            // border: 1px solid #000;
+            // border-radius: 2em;
+            // padding: 1em;
+            font-size: 1.4rem;
+
+            &:hover {
+                cursor: pointer;
+                color: rgb(55, 55, 55);
+                // box-sizing: border-box;
+                // color: rgb(0, 0, 0);
+                transform: scale(1.6);
+                transition: transform 50ms ease-in-out 100ms;
+            }
+        }
+
+        &__button--register {
+            p {
+                font-weight: 500;
+            }
+        }
+    }
+
+    @include respond-to('tablet') {
+        @include flexbox();
+
+        &__container {
+            max-width: 350px;
+        }
+    }
+
+    @include respond-to('laptop') {
+        @include flexbox();
+        height: 90vh;
+    
+        &__container {
+            border-radius: 0.6em;
+            max-width: 400px;
+            height: 70%;
+        }
+
+        &__label {
+            font-weight: 500;
+        }
+    }
+}

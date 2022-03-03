@@ -1,0 +1,106 @@
+@use '../base/' as *;
+@use '../mixins/' as *;
+@use '../breakpoints/' as *;
+
+.footer {
+    padding: 1.4em;
+
+    @include respond-to('mobile') {
+        @include flexbox($direction: column);
+
+        &__left {
+            max-width: 400px;
+        }
+
+        &__intro {
+            color: $bgGradient1;
+        }
+
+        &__inputs {
+            @include inputField(
+                $padding: 1em,
+                $border: none,
+                $inputRadius: 0,
+                $margin: 0.4em 0
+            );
+            width: 100%;
+        }
+
+        &__button--submit {
+            @include buttonHover($bgColor: $secondaryColor, $padding: 1em);
+            border-radius: 0;
+            margin: 0.4em 0;
+            width: 100%;
+        }
+
+        &__right {
+            @include flexbox();
+            align-items: unset;
+            gap: 1em;
+            max-width: 400px;
+
+        }
+
+        &__right > * {
+            flex: 1 1 10em;
+        }
+
+        &__about {
+            color: blue;
+
+            &> * {
+                font-size: .8rem;
+                font-weight: 500;
+            }
+        }
+
+        &__links {
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    margin: .4em 0;
+                    color: $secondaryColor;
+
+
+                    a {
+                        text-decoration: none;
+                        color: blueviolet;
+
+                        &:hover {
+                            color: rgba(67, 253, 5, 0.604);
+                        }
+                    }
+                }
+            }
+        }
+
+        // &__copyrights {
+        //     font-size: 0.8rem;
+        // }
+
+        // &__divider {
+        //     width: 100%;
+        // }
+    }
+
+    @include flexbox();
+    @include respond-to('laptop') {
+        gap: 2em;
+    @include flexbox();
+
+
+        &__right {
+            @include flexbox($direction: column);
+            // flex: 1 1 50%;
+            gap: 0;
+        }
+
+        &__links {
+            width: 100%;
+        }
+    }
+}
