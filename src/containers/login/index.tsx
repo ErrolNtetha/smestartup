@@ -4,8 +4,8 @@
 import { Button } from 'components/button';
 import React from 'react';
 import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
-import { Header } from 'views/header';
 import { useFormik } from 'formik';
+import { Header } from 'views/header';
 import { Link } from 'react-router-dom';
 
 export const Login = () => {
@@ -15,6 +15,10 @@ export const Login = () => {
             password: ''
         },
         onSubmit(values) {
+            if (!values.email || !values.password) {
+                console.log('Fields empty...');
+                return;
+            }
             console.log(values);
         }
     });
@@ -34,7 +38,7 @@ export const Login = () => {
                               value={formik.values.email}
                               onChange={formik.handleChange}
                               className='login__emailField'
-                              autoCapitalize='true'
+                              autoCapitalize='false'
                             />
 
                             <label className='login__label' htmlFor='email'> Password: </label>
