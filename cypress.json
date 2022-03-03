@@ -1,1 +1,6 @@
-{}
+{
+    "component": {
+        "testFiles": "**/*.test.tsx",
+        "componentFolder": "src/views/hero"
+    }
+}

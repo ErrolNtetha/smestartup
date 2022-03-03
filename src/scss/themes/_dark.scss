@@ -1,0 +1,13 @@
+@use '../base/color' as *;
+@use '../base' as *;
+
+body {
+    font-size: $font-size;
+    font-family: $font-family;
+    height: 100%;
+}
+
+html {
+    background-color: $primaryColor;
+    color: white;
+}

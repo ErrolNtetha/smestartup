@@ -1,0 +1,71 @@
+@use '../mixins/' as *;
+@use '../base/color' as *;
+@use '../base/typography' as *;
+
+
+
+.register {
+    color: #fff;
+
+    @include respond-to('mobile') {
+        &__container {
+            height: 80%;
+            width: 100%;
+        }
+
+        &__left {
+            display: none
+        }
+
+        &__right {
+            border-top-left-radius: $radius;
+            border-bottom-left-radius: $radius;
+        }
+    }
+
+    @include respond-to('laptop') {
+        @include flexbox();
+        height: 94vh;
+    
+        &__container {
+            @include flexbox();
+            border-radius: 0.6em;
+            width: 60%;
+            height: 70%;
+        }
+    
+        &__left,
+        &__right {
+            background-color: $foregroundColor;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 2em;
+            flex: 1;
+            color: #000;
+        }
+    
+        &__left {
+            display: unset;
+            background-image: url('../../assets/bg/bgImage.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            border-top-left-radius: $radius;
+            border-bottom-left-radius: $radius;
+            width: 60%;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+    
+        &__right {
+            border-top-right-radius: $radius;
+            border-bottom-right-radius: $radius;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background-color: #fff;
+        }
+    }
+}

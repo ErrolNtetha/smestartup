@@ -3,6 +3,9 @@
         "browser": true,
         "es2021": true
     },
+    "globals": {
+        "cy": true
+    },
     "extends": [
         "plugin:react/recommended",
         "airbnb"

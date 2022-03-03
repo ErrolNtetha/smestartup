@@ -1,8 +1,6 @@
 @use '../mixins/' as *;
 @use '../base/color' as *;
-
-$textColor: #000;
-$radius: 0.4em;
+@use '../base/typography' as *;
 
 * {
     box-sizing: border-box;
@@ -11,16 +9,16 @@ $radius: 0.4em;
 .login {
     // background-color: $foregroundColor;
     @include flexbox();
-    color: $textColor;
     height: 90vh;
+    color: #000;
 
     @include respond-to('mobile') {
         &__container {
             background-color: #fff;
             height: min-content;
-            width: 70%;
+            width: 80%;
             border-radius: $radius;
-            padding: 1em 2em;
+            padding: .6em 2em;
         }
 
         &__header {
@@ -37,6 +35,13 @@ $radius: 0.4em;
 
         &__emailField {
             @include inputField($padding: .8em 1.4em, $margin: .4em 0 1.2em, $border: 1px solid #000, $inputRadius: 2em);
+            font-size: 1rem;
+            box-sizing: border-box;
+
+            &:focus {
+                background-color: rgba(0, 0, 0, 0.227);
+                border: none;
+            }
         }
 
         &__button {

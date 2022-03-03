@@ -1,0 +1,51 @@
+@use '../base/color' as *;
+@use '../mixins/' as *;
+@use '../breakpoints/' as *;
+
+.features {
+    background-color: $foregroundColor;
+
+    &__header {
+        text-align: center;
+        padding: 1em;
+    }
+
+    @include respond-to('mobile') {
+        &__inner {
+            @include flexbox($direction: column);
+            // padding: 2em 1em;
+
+        }
+
+        &__item {
+            @include flexbox($direction: column);
+            padding: 2em 0;
+        }
+
+        &__svg {
+            width: 150px;
+        }
+
+        &__header {
+            margin: .6em 0;
+        }
+
+        p {
+            max-width: 350px;
+            margin: 0;
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__inner {
+            @include flexbox();
+            gap: 2em;
+        }
+
+        &__header {
+            @include flexbox();
+            align-items: baseline;
+        }
+    }
+}
+
