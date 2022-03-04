@@ -1,6 +1,7 @@
 {
     "component": {
-        "testFiles": "**/*.test.tsx",
-        "componentFolder": "src/views/hero"
+        "componentFolder": "src",
+        "testFiles": "**/*spec.{js,jsx,ts,tsx}"
     }
+      
 }
