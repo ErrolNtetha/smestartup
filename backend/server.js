@@ -19,7 +19,12 @@ app.use(loginRoute);
 app.use(postRoutes);
 
 const port = process.env.PORT || 5000;
-const server = http.createServer(app);
+const server = http.createServer(app, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST'],
+    }
+});
 
 // set up the cors
 const io = new Server(server, {
