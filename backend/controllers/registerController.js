@@ -15,7 +15,10 @@ const register_user = async (req, res) => {
 
     await UserInfo.findOne({ email })
         .then(e => {
-            if(e) console.log('The email already exist.', e.createdAt); 
+            if(e) {
+            	res.json({ message: "Email already exist."});
+            	console.log('The email already exist.', e.createdAt);
+            } 
   
             // if no email exist, add user 
             else {
