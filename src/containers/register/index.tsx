@@ -1,11 +1,14 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { Header } from '../../views/header';
 import { Button } from '../../components/button';
 // import { BASE_URL } from '../../config/baseURL';
 
 export const Register = () => {
+    const history = useHistory();
+
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -13,12 +16,12 @@ export const Register = () => {
             password: ''
         },
         onSubmit(values) {
-            if (!values.firstName || !values.password) {
+            if (!values.firstName || !values.email || !values.password) {
                 console.log('Fields empty...');
                 return;
             }
             axios.post('http://localhost:5000/signup', values)
-            .then((res) => console.log(res))
+            .then(() => history.push('/login'))
             .catch((err) => console.log(err));
         }
     });

@@ -38,7 +38,7 @@ const validateLogin = async (req, res) => {
                                     if(err) console.log(err);
                                     return res.json({
                                         isLoggedIn: true,
-                                        token,
+                                        token: `Bearer ${token}`
                                     });
                                 });
                         } 

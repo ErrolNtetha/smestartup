@@ -5,21 +5,46 @@ import { Button } from 'components/button';
 import React from 'react';
 import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import logged from '../../store/actions/logged';
+// import { BASE_URL } from 'config/baseURL';
 
 export const Login = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+    // const [token, setToken] = useState<string>('');
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
+
         onSubmit(values) {
-            if (!values.email || !values.password) {
-                console.log('Fields empty...');
+            const { email, password } = values;
+            if (!email || !password) {
+                console.log('Fields are empty...');
                 return;
             }
-            console.log(values);
+
+            axios.post('/login', values, {
+                headers: {
+                    'Content-type': 'application/json',
+                    'x-access-token': localStorage.getItem('token'),
+                }
+            })
+                .then((res) => {
+                    localStorage.setItem('token', res.data.token); // save token
+
+                    if (res.data.isLoggedIn) {
+                        dispatch(logged());
+                        history.push('/feed');
+                    }
+                })
+                .catch((err) => console.error('Something went wrong: ', err));
         }
     });
 

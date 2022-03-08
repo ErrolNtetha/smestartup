@@ -11,12 +11,14 @@ const postRoutes = require('./routes/posts.routes');
 
 // Middlewares
 require('dotenv').config();
+const verifyToken = require('./middlewares/verifyJWT');
 
 app.use(express.json());
 app.use(cors());
 
 app.use(loginRoute);
 app.use(postRoutes);
+app.use(verifyToken);
 
 const port = process.env.PORT || 5000;
 const server = http.createServer(app, {

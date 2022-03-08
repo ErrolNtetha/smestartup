@@ -26,13 +26,14 @@
 
         &__nav {
             position: fixed;
-            background-color: #fff;
+            background-color: #000;
+            color: #fff;
             height: 100vh;
-            width: 60%;
+            width: 100%;
             top: 0;
             right: 0;
-            z-index: 4;
-            transform: translateX(100%);
+            z-index: 3;
+            transform: translateX(0%);
             transition: transform 5ms ease-in-out;
         }
 
@@ -67,7 +68,7 @@
 
         &__menu-icon {
             font-size: 1.8rem;
-            z-index: 2;
+            z-index: 4;
         }
     }
 
@@ -114,7 +115,7 @@
             position: unset;
             background: none;
             display: contents;
-            width: auto;
+            // width: auto;
             color: #fff;
             height: auto;
 

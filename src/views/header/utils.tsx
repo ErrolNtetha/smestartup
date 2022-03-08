@@ -4,6 +4,7 @@ export const nav = [
 		id: 'home-link',
 		url: '/',
 		isPrivate: false,
+		className: 'header__item',
 		key: 0,
 	},
 	{
@@ -11,6 +12,7 @@ export const nav = [
 		id: 'features-link',
 		url: '/features',
 		isPrivate: false,
+		className: 'header__item',
 		key: 3,
 	},
 	{
@@ -18,6 +20,7 @@ export const nav = [
 		id: 'about-link',
 		url: '/about',
 		isPrivate: false,
+		className: 'header__item',
 		key: 1,
 	},
 	{
@@ -25,6 +28,7 @@ export const nav = [
 		id: 'contact-link',
 		url: '/contact',
 		isPrivate: false,
+		className: 'header__item',
 		key: 2,
 	},
 	{
@@ -32,6 +36,7 @@ export const nav = [
 		id: 'faq-link',
 		url: '/faq',
 		isPrivate: false,
+		className: 'header__item',
 		key: 4,
 	},
 ];

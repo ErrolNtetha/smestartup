@@ -28,6 +28,6 @@
   "include": [
     "src/**/**/*.ts",
     "src/*"
-, "src/views/header/utils.tsx", "src/hoc/wrapper.tsx"  ],  
+, "src/views/header/utils.tsx", "src/hoc/wrapper.tsx", "src/store/index.js"  ],  
   "exclude": ["node_module", ".vscode"]
 }
