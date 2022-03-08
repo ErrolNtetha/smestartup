@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
-import { Route, RouteComponentProps } from 'react-router-dom';
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 
-interface Props extends RouteComponentProps {}
+interface Props extends RouteProps {
+    isAuth: boolean;
+}
 
-export const Private: FC<Props> = ({ match, history }) => {
-    console.log(match);
-    console.log(history);
-
-    return (
-        <Route />
-    );
+export const Private = ({ isAuth, ...rest }: Props) => {
+    if (isAuth) {
+        return <Route {...rest} />;
+    }
+    return <Redirect to='/login' />;
 };
