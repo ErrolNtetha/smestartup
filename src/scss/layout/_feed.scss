@@ -1,0 +1,112 @@
+@use '../mixins/' as *;
+@use '../base/color' as *;
+
+.feed {
+    margin: 0.4em;
+    @include flexbox();
+    flex: 1;
+    gap: 3em;
+
+    p, h1, h2, h3, h4, h5 {
+        padding: 0;
+        margin: 0;
+    }
+
+    @include respond-to('mobile') {
+        &__feedContainer {
+        }
+
+        &__list {
+            width: 100%;
+            background-color: $foregroundColor;
+            padding: .6em;
+            border-radius: .4em;
+        }
+
+        &__firstRow {
+            @include flexbox($justify-content: space-between);
+            margin-bottom: .8em;
+            
+        }
+
+        &__profile {
+            @include flexbox();
+            gap: .4em;
+        }
+
+        &__profileImage {
+            width: 50px;
+            border-radius: 100%;
+            border: 1px solid rgb(82, 82, 82);
+        }
+
+        &__name {
+            font-size: 1rem;
+        }
+
+        &__title {
+            font-size: .8rem;
+        }
+
+        &__recent {
+            font-size: .8rem;
+            align-self: flex-start;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__options {
+            align-self: flex-start;
+            font-size: 1.2rem;
+        }
+
+        &__listContent {
+            font-size: .9rem;
+            margin-bottom: .1em;
+        }
+
+        &__lastRow {
+            margin-top: .8em;
+        }
+
+        &__stats {
+            @include flexbox($justify-content: space-between);
+
+            &__bookmarks {
+                @include flexbox();
+                @include buttonHover($bgColor: $primaryColor, $padding: .6em 1.4em, $margin: 0);
+                background-color: $primaryColor;
+            }
+        }
+
+        &__starIcon {
+            font-size: 1.2rem;
+            margin-right: .4em;
+        }
+
+        &__sidebar,
+        &__followers {
+            display: none;
+        }
+
+        &__create {
+            position: fixed;
+            color: #000;
+            bottom: 0;
+
+            &__post {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .8em 1.4em );
+              
+            }
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__sidebar,
+        &__followers {
+            display: unset;
+        }
+    }
+}
