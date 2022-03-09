@@ -1,7 +1,7 @@
-const toggleField_OFF = () => {
+const toggleFieldOff = () => {
     return {
         type: 'TOGGLE_OFF',
-    }
-}
+    };
+};
 
-export default toggleField_OFF;
+export default toggleFieldOff;

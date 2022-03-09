@@ -12,7 +12,6 @@ app.use(verifyToken);
 
 // Handle routes
 router.get('/login', login_user);
-router.get('/feed', verifyToken, getProfile.getUserProfile);
 router.post('/login', login_user); 
 router.post('/signup', register_user);
 

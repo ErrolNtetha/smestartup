@@ -3,7 +3,7 @@ name: "Build and Deploy"
 on: 
   push:
     branch:
-      - production
+      - add-features
 
 jobs:
   build:
@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: "Run a one-line script"
-        run: echo 'Hello, world!'
+        run: npm test
         

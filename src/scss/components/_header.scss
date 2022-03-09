@@ -55,6 +55,12 @@
             @include flexbox();
         }
 
+        &__userIcon {
+            color: #fff;
+            font-size: 1.6rem;
+            margin: 0 .4em;
+        }
+
         &__button--signin {
             @include buttonHover(
                 $bgColor: $primaryColor,
@@ -69,6 +75,7 @@
         &__menu-icon {
             font-size: 1.8rem;
             z-index: 4;
+            margin-right: .4em
         }
     }
 

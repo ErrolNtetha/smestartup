@@ -14,8 +14,7 @@ import { Private } from './privateRoute';
 
 export const Main: React.FC = () => {
     // const isAuth = useSelector((state: RootState) => state.isLogged);
-    const isAuth = true;
-    console.log(isAuth);
+    const isAuth = false;
 
     return (
         <Router>
