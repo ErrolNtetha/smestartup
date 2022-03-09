@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Install all dependencies"
+      - name: "Install project dependencies"
         run: npm install --force
      
-      - name: "Run a one-line script"
+      - name: "Run Cypress tests"
         run: npm test
