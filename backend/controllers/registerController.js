@@ -6,8 +6,8 @@ const nodemailer = require('nodemailer');
 const register_user = async (req, res) => { 
    try {
     // store the data coming from the fontend to constants
-    const { firstName, lastName, email, password } = req.body;
-
+    const { firstName, lastName, email, password, file } = req.body;
+	console.log(file);
     // Check if email has already been taken or not
     // then hash the password and save it 
 
@@ -30,6 +30,7 @@ const register_user = async (req, res) => {
                     },
                     email: email.toLowerCase(),
                     password: hashedPassword,
+                    avatar: file
                 });
 
                 // Send am email to the user
@@ -45,7 +46,7 @@ const register_user = async (req, res) => {
                 const data = {
                     from: "test-email@gmail.com",
                     to: email,
-                    subject: 'A Warm Welcome On-board.',
+                    subject: 'Welcome to Blendot.',
                     text: `Welcome, ${firstName} ${lastName}! Your username is ${email}.`,
                     replyTo: email,
                 }
