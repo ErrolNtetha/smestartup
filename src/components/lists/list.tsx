@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { FiStar, FiMoreHorizontal } from 'react-icons/fi';
-import cat from 'assets/cat.jpg';
+import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 
 interface Props {
@@ -15,9 +15,9 @@ export const List:FC<Props> = ({ name, post }) => {
     <section className='feed__list'>
       <span className='feed__firstRow'>
         <div className='feed__profile'>
-          <img src={cat} alt="me" className='feed__profileImage' />
+          <img src={avatar} alt="me" className='feed__profileImage' />
           <span>
-            <h3 className='feed__name'> {name.user} </h3>
+            <h4 className='feed__name'> {name.user} </h4>
             <p className='feed__title'> Founder and CEO, Blendot </p>
             <p className='feed__recent'> 32 mins ago </p>
           </span>
