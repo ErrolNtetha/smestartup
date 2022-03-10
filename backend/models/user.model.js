@@ -7,6 +7,7 @@ const userData = new mongoose.Schema({
     },
     email: { type: String },
     password: { type: String },
+    avatar: Object,
     isVerified: { type: Boolean, default: false },
     isPremium: {  type: Boolean, default: false},
     type: {
