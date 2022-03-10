@@ -2,23 +2,19 @@ const Post = require('../models/post.model');
 const User = require('../models/user.model');
 
 exports.userPosts = async (req, res) => {
-
-	let userInfo = '';
-
-	const user = await User.find({ email: req.user.email })
-		.then((result => {
-			const { firstName } = result[0].name;
-			userInfo = firstName;
-			console.log('Test ', userInfo);
-		}))
-		.catch((err) => console.error(err))
+	// populate the user::: Get their first name, store in a variable
+	// and pass variable to the save method
+	const { name: { firstName, lastName }, avatar } = await User.findOne({ email: req.user.email })
+	console.log(avatar);
 		
     const post = req.body.post;
  
     const userPost = new Post({
-    	user: userInfo,
-        post,
+    	user: `${firstName} ${lastName}`,
+        post
     }); 
+    
+   
     
     // save post on the database
     await userPost.save()
