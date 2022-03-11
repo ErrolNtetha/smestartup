@@ -49,6 +49,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress open",
+    "cypress:open": "cypress open-ct",
     "eject": "react-scripts eject",
     "server": "npm run devStart --prefix backend",
     "dev": "concurrently \"yarn start\" \"npm run server\"",
