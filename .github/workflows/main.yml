@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Install project dependencies"
-        run: npm install --force
+      - name: "Install project all dependencies"
+        run: npm install
      
-      - name: "Run Cypress tests"
-        run: npm test
+      - name: "Run Cypress Component tests"
+        run: npm cypress:open
