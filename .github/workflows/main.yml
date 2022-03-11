@@ -16,4 +16,4 @@ jobs:
         run: npm install --legacy-peer-dep
      
       - name: "Run Cypress Component tests"
-        run: npm cypress:open
+        run: npm run cypress:open
