@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Header } from 'views/header';
+import avatar1 from 'assets/avatar.png';
 
 export const Profile = () => {
   const [avatar, setAvatar] = useState('');
+  console.log(avatar1);
 
   useEffect(() => {
     async function fetchUser() {
@@ -20,14 +22,12 @@ export const Profile = () => {
     }
 
     fetchUser();
-
-        return () => {};
   }, []);
+
   return (
     <>
       <Header />
       <section>
-        Profile page!
         <img src={avatar} alt='my avatar' />
       </section>
     </>

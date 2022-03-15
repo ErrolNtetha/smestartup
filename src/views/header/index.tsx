@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiMenu, FiUser } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-// import axios from 'axios';
+import axios from 'axios';
 import testLogo from '../../assets/testLogo.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
@@ -23,6 +23,14 @@ export const Header: React.FC = () => {
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
+
+    useEffect(() => {
+        axios.get('/', {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        });
+    });
 
     const loggedIn = useSelector((state: RootState) => state.isLogged);
 

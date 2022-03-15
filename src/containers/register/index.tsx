@@ -1,13 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
-// import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { Header } from '../../views/header';
 import { Button } from '../../components/button';
 // import { BASE_URL } from '../../config/baseURL';
 
 export const Register = () => {
-    // const history = useHistory();
+    const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
@@ -23,15 +23,17 @@ export const Register = () => {
                 return;
             }
 
-            console.log(values);
-            console.log(values.file);
+            // console.log(values);
+            // console.log(values.file);
 
-            // axios.post('http://localhost:5000/signup', values)
-            // .then(() => {
-            //     history.push('/login');
-            //     console.log(values);
-            // })
-            // .catch((err) => console.log(err));
+            axios.post('http://localhost:5000/signup', values)
+            .then((res) => {
+                if (res) {
+                    console.log(values);
+                    history.push('/login');
+                }
+            })
+            .catch((err) => console.log(err));
         }
     });
 
@@ -98,7 +100,6 @@ export const Register = () => {
                               type='file'
                               name='avatar'
                               accept='image/*'
-                              hidden
                               onChange={(event) => formik.setFieldValue('file', event.currentTarget.files[0])}
                               className='login__emailField'
                             />

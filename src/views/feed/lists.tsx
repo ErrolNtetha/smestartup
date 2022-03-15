@@ -24,14 +24,13 @@ React.useEffect(() => {
     .catch((err) => console.error(err));
 }, []);
 
-console.log(posts);
+const today = new Date();
+console.log(today);
 
     return (
         <div>
             { toggleState ? <PostField /> : null }
-            {posts.map((post) => {
-                return <List post={post} name={post} key={post._id} />;
-            })}
+            {posts.map((post) => <List post={post} name={post} key={post._id} />)}
         </div>
     );
 };

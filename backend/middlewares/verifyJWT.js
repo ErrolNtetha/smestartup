@@ -16,7 +16,6 @@ function verifyJWT(req, res, next) {
             req.user = {};
             req.user.id = decoded.id;
             req.user.email = decoded.email;
-            console.log('Token validated ');
             next();
         });
     }
