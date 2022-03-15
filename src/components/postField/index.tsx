@@ -1,6 +1,6 @@
 import { Button } from 'components/button';
-import React, { useState } from 'react';
-// import { RootState } from 'store';
+import React, { useState, useRef } from 'react';
+import { FiImage, FiVideo } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
@@ -8,6 +8,7 @@ import toggleFieldOff from 'store/actions/toggleField_OFF';
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
+const imageInput = useRef(null);
 
 const formData = {
   post,
@@ -25,9 +26,18 @@ const handleSubmit = () => {
 
   return (
     <section className='feed__postField'>
-        <textarea name='post' placeholder='What is your mind today?' onChange={(e) => setPost(e.target.value)} />
-        <Button onClick={() => dispatch(toggleFieldOff())}> Cancel </Button>
-        <Button onClick={handleSubmit}> Post </Button>
+        <textarea name='post' className='feed__textarea' rows='6' placeholder='What is your mind today?' onChange={(e) => setPost(e.target.value)} />
+        <section className='feed__btnGroup'>
+          <section className='feed__left'>
+            <FiImage className='feed__image' onClick={() => console.log(imageInput.current.click())} />
+              <input ref={imageInput} hidden accept='image/*' type='file' />
+            <FiVideo className='feed__video' />
+          </section>
+          <section className='feed__right'>
+            <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
+            <Button onClick={handleSubmit} className='feed__btn--post'> Post </Button>
+          </section>
+        </section>
     </section>
   );
 };
