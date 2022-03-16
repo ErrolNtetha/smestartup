@@ -34,7 +34,7 @@ console.log(image);
         <section className='feed__btnGroup'>
           <section className='feed__left'>
             <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
-              <input ref={imageInput} hidden accept='image/*' onChange={(e) => setImage(e.target.files[0])} type='file' />
+              <input ref={imageInput} hidden accept='image/*' multiple onChange={(e) => setImage(e.target.files)} type='file' />
 
             <FiVideo className='feed__video' />
           </section>
