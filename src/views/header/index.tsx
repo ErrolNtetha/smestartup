@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiMenu, FiUser } from 'react-icons/fi';
+import { FiMenu, FiMessageCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import axios from 'axios';
@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
                     ) : null}
                 <span className='header__BtnGroup'>
                     { loggedIn
-                    ? <Link className='header__userIcon' to='/profile'> <FiUser /> </Link>
+                    ? <Link className='header__userIcon' to='/profile'> <FiMessageCircle /> </Link>
                     : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
                 </span>
             </header>
