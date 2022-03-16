@@ -8,6 +8,8 @@ import toggleFieldOff from 'store/actions/toggleField_OFF';
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
+const [image, setImage] = useState(null);
+// const [video, setVideo] = useState(null);
 const imageInput = useRef(null);
 
 const formData = {
@@ -24,13 +26,16 @@ const handleSubmit = () => {
   .catch((err) => console.error(err));
 };
 
+console.log(image);
+
   return (
     <section className='feed__postField'>
-        <textarea name='post' className='feed__textarea' rows='6' placeholder='What is your mind today?' onChange={(e) => setPost(e.target.value)} />
+        <textarea name='post' className='feed__textarea' rows={6} placeholder='What is your mind today?' onChange={(e) => setPost(e.target.value)} />
         <section className='feed__btnGroup'>
           <section className='feed__left'>
-            <FiImage className='feed__image' onClick={() => console.log(imageInput.current.click())} />
-              <input ref={imageInput} hidden accept='image/*' type='file' />
+            <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
+              <input ref={imageInput} hidden accept='image/*' onChange={(e) => setImage(e.target.files[0])} type='file' />
+
             <FiVideo className='feed__video' />
           </section>
           <section className='feed__right'>
