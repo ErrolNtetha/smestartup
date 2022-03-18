@@ -110,19 +110,57 @@
 
         &__postField {
             position: absolute;
-            padding: .6em .6em;
+            padding: 0.6em 0.6em;
             background-color: black;
-            width: 100%;                                                    
+            width: 100%;
             height: max-content;
             z-index: 2;
             border-radius: 5px;
+        }
+
+        &__modalContainer {
+            @include flexbox();
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 30;
+            background-color: transparent;
+        }
+
+        &__modal {
+            background-color: black;
+            position: relative;
+            width: 90%;
+            height: 40%;
+            padding: 1em;
+            border-radius: 5px;
+        }
+
+        &__modalClose {
+            @include flexbox();
+            position: absolute;
+            margin: 0.2em;
+            font-size: 1.4rem;
+            top: 0;
+            right: 0;
+            padding: 0.4em;
+            border-radius: 50%;
+
+            &:active {
+                background-color: $foregroundColor;
+            }
+        }
+
+        &__postFieldContainer {
+            @include flexbox();
         }
 
         &__create,
         &__postField {
             position: fixed;
             bottom: 0;
-
 
             &__post {
                 @include buttonHover(
@@ -140,11 +178,11 @@
             color: #fff;
             font-family: $font-family;
             font-weight: 500;
-            font-size: .9rem;
+            font-size: 0.9rem;
             width: 100%;
             max-height: 40%;
-            border-radius: 5px;  
-            padding: .4em .8em;
+            border-radius: 5px;
+            padding: 0.4em 0.8em;
         }
 
         &__textarea::placeholder {
@@ -162,11 +200,12 @@
         }
 
         &__image {
-            margin-right: .8em;
+            margin-right: 0.8em;
         }
 
-        &__image, &__video {
-            opacity: .4;
+        &__image,
+        &__video {
+            opacity: 0.4;
 
             &:hover {
                 cursor: pointer;
@@ -179,14 +218,16 @@
         }
 
         &__btn--cancel {
-            @include buttonHover($bgColor: transparent, $padding: .4em 0.8em);
+            @include buttonHover($bgColor: transparent, $padding: 0.4em 0.8em);
             margin: 0;
         }
 
         &__btn--post {
-            @include buttonHover($bgColor: $foregroundColor, $padding: .4em 1.4em);
-            border: .6px solid #fff;
-
+            @include buttonHover(
+                $bgColor: $foregroundColor,
+                $padding: 0.4em 1.4em
+            );
+            border: 0.6px solid #fff;
         }
     }
 
