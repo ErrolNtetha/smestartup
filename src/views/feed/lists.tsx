@@ -40,7 +40,9 @@ export const Lists = () => {
 
   return (
     <div>
-      {toggleState ? <PostField /> : null}
+      <section className='feed__postFieldContainer'>
+        {toggleState ? <PostField /> : null}
+      </section>
       { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section> : posts.map((post) => <List post={post} name={post} key={post._id} />)}
     </div>
   );

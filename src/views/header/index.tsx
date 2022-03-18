@@ -5,6 +5,7 @@ import { FiMenu, FiMessageCircle, FiX } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import axios from 'axios';
+import avatar from 'assets/avatar.png';
 import testLogo from '../../assets/testLogo.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
@@ -52,9 +53,17 @@ export const Header: React.FC = () => {
                     <nav className='header__nav'>
                         <section>
                             <section className='header__profileContainer'>
-                                <section> Profile </section>
+                                <Link to='/profile' className='header__profile'>
+                                    <img src={avatar} alt="me" className='header__profileImage' />
+                                    <span>
+                                        <h4 className='header__name'> Mphumeleli Ntetha </h4>
+                                        <p className='header__title'> Founder and CEO, Blendot </p>
+                                        {/* <p className='header__recent'> 32 mins ago </p> */}
+                                    </span>
+                                </Link>
                                 <FiX className='header__close' onClick={() => setIsOpen(!isOpen)} />
                             </section>
+                            <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} />
                             <ul className='header__list'>
                                 { nav.map((item) => (
                                     !loggedIn && !item.isPrivate
