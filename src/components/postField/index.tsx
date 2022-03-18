@@ -10,14 +10,15 @@ const dispatch = useDispatch();
 const [post, setPost] = useState('');
 const [images, setImages] = useState<string[]>([]);
 // const [videos, setVideos] = useState(null);
+const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
 
 const formData = {
   post,
 };
 
-const handleSubmit = () => {
-  axios.post('http://localhost:5000/feed', formData, {
+const handleSubmit = async () => {
+  await axios.post('http://localhost:5000/feed', formData, {
     headers: {
       'x-access-token': localStorage.getItem('token')
     }
@@ -28,13 +29,22 @@ const handleSubmit = () => {
       return;
     }
 
+    setLoading(true);
+    console.log(loading);
+    console.log('fetching data');
+
+    if (res.statusText === 'OK') {
+      console.log('response arrived');
+      setLoading(false);
+    }
+
     console.log(res);
     console.log(images);
   })
   .catch((err) => console.error(err));
 };
 
-console.log(images[2]);
+// console.log(images[2]);
 
   return (
     <section className='feed__postField'>
@@ -59,7 +69,7 @@ console.log(images[2]);
           </section>
           <section className='feed__right'>
             <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
-            <Button onClick={handleSubmit} className='feed__btn--post'> Post </Button>
+            <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? 'loading' : 'Post'} </Button>
           </section>
         </section>
     </section>
