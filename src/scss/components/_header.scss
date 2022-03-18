@@ -16,7 +16,7 @@
 
         &__content {
             @include flexbox($justify-content: space-between);
-            padding: 0.6em 1.2em;
+            padding: 0.6em .4em;
             width: 100%;
             background-color: $foregroundColor;
             font-size: 1rem;
@@ -47,12 +47,48 @@
 
         &__profileContainer {
             @include flexbox($justify-content: space-between);
-            padding: 1em;
-            margin-bottom: 1em;
+            padding: .8em;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $foregroundColor;
+            }
+        }
+
+        &__profile {
+            @include flexbox();
+            gap: 0.4em;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        &__profileImage {
+            width: 50px;
+            border-radius: 100%;
+            border: 1px solid rgb(82, 82, 82);
+        }
+
+        &__name {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        &__title {
+            font-size: 0.8rem;
+            margin: 0;
+
+        }
+
+        &__recent {
+            font-size: 0.8rem;
+            align-self: flex-start;
+            margin: 0;
         }
 
         &__close {
             font-size: 1.6rem;
+            z-index: 20;
 
             &:hover {
                 cursor: pointer;
@@ -65,20 +101,18 @@
             align-items: unset;
             list-style: none;
             margin: 0;
-            padding-left: .8em;
+            padding: 0;
         }
 
         &__item {
             color: #fff;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 500;
-            padding: .6em;
+            padding: .8em;
 
             &:hover {
                 background-color: $foregroundColor;
-                transform: scale(1.1);
-                transition: transform 200ms ease-in-out;
             }
         }
 
