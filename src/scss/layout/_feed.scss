@@ -20,6 +20,12 @@
 
     @include respond-to('mobile') {
         &__feedContainer {
+            position: relative;
+        }
+
+        &__loader {
+            @include flexbox();
+            height: 90vh;
         }
 
         &__list {
@@ -103,6 +109,7 @@
         }
 
         &__postField {
+            position: absolute;
             padding: .6em .6em;
             background-color: black;
             width: 100%;                                                    
@@ -116,9 +123,10 @@
             position: fixed;
             bottom: 0;
 
+
             &__post {
                 @include buttonHover(
-                    $bgColor: $foregroundColor,
+                    $bgColor: $secondaryColor,
                     $padding: 0.8em 1.4em
                 );
             }
@@ -143,6 +151,10 @@
             color: #fff;
             font-family: $font-family;
             font-weight: 500;
+        }
+
+        &__imagePreview {
+            width: 200px;
         }
 
         &__btnGroup {
