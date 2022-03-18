@@ -37,6 +37,10 @@ export const Login = () => {
                 }
             })
                 .then((res) => {
+                    if (!res.data.isLogged) {
+                        console.log('Not ready');
+                    }
+
                     localStorage.setItem('token', res.data.token); // save token
 
                     if (res.data.isLoggedIn) {
