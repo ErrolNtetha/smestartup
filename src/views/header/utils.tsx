@@ -5,7 +5,6 @@ export const nav = [
 		url: '/',
 		isPrivate: false,
 		className: 'header__item',
-		key: 0,
 	},
 	{
 		name: 'Features',
@@ -13,7 +12,6 @@ export const nav = [
 		url: '/features',
 		isPrivate: false,
 		className: 'header__item',
-		key: 3,
 	},
 	{
 		name: 'About',
@@ -21,7 +19,13 @@ export const nav = [
 		url: '/about',
 		isPrivate: false,
 		className: 'header__item',
-		key: 1,
+	},
+	{
+		name: 'Notifications',
+		id: 'notifications-link',
+		url: '/notifications',
+		isPrivate: true,
+		className: 'header__item',
 	},
 	{
 		name: 'Contact',
@@ -29,7 +33,6 @@ export const nav = [
 		url: '/contact',
 		isPrivate: false,
 		className: 'header__item',
-		key: 2,
 	},
 	{
 		name: 'FAQ',
@@ -37,6 +40,5 @@ export const nav = [
 		url: '/faq',
 		isPrivate: false,
 		className: 'header__item',
-		key: 4,
 	},
 ];
