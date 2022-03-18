@@ -1,6 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiMenu, FiMessageCircle } from 'react-icons/fi';
+import { FiMenu, FiMessageCircle, FiX } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import axios from 'axios';
@@ -24,6 +25,11 @@ export const Header: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        history.push('/login');
+    };
+
     useEffect(() => {
         axios.get('/', {
             headers: {
@@ -44,13 +50,22 @@ export const Header: React.FC = () => {
                 { isOpen
                 ? (
                     <nav className='header__nav'>
-                        <ul className='header__list'>
-                            { nav.map((item) => (
-                                loggedIn
-                                ? <Link to={item.url} key={item.id} className={item.className}> {item.name} </Link>
-                                : null
-                                ))}
-                        </ul>
+                        <section>
+                            <section className='header__profileContainer'>
+                                <section> Profile </section>
+                                <FiX className='header__close' onClick={() => setIsOpen(!isOpen)} />
+                            </section>
+                            <ul className='header__list'>
+                                { nav.map((item) => (
+                                    !loggedIn && !item.isPrivate
+                                    ? <Link to={item.url} key={item.id} className={item.className}> {item.name} </Link>
+                                    : loggedIn
+                                    ? <Link to={item.url} key={item.id} className={item.className}> {item.name} </Link>
+                                    : null
+                                    ))}
+                            </ul>
+                        </section>
+                        { loggedIn && <Button className='header__logout' onClick={handleLogout}> Logout </Button>}
                     </nav>
                     ) : null}
                 <span className='header__BtnGroup'>
