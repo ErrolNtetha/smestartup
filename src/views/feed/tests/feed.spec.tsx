@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { mount } from '@cypress/react';
-import { Lists } from '../feed';
+import { FeedContainer } from '..';
 
 it('renders the text', () => {
-  mount(<Lists />);
+  mount(<FeedContainer />);
   cy.visit('/feed');
   cy.get('a').contains('Login');
 //   cy.get('button').contains('Login').click();
