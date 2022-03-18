@@ -8,8 +8,8 @@ import toggleFieldOff from 'store/actions/toggleField_OFF';
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
-const [image, setImage] = useState(null);
-// const [video, setVideo] = useState(null);
+const [images, setImages] = useState<string[]>([]);
+// const [videos, setVideos] = useState(null);
 const imageInput = useRef(null);
 
 const formData = {
@@ -22,19 +22,38 @@ const handleSubmit = () => {
       'x-access-token': localStorage.getItem('token')
     }
   })
-  .then((res) => console.log(res))
+  .then((res) => {
+    if (!post) {
+      console.log('Field is empty. Write something at least!');
+      return;
+    }
+
+    console.log(res);
+    console.log(images);
+  })
   .catch((err) => console.error(err));
 };
 
-console.log(image);
+console.log(images[2]);
 
   return (
     <section className='feed__postField'>
-        <textarea name='post' className='feed__textarea' rows={6} placeholder='What is your mind today?' onChange={(e) => setPost(e.target.value)} />
+        <textarea name='post' className='feed__textarea' rows={6} placeholder='Share what is happening today...' onChange={(e) => setPost(e.target.value)} />
+
         <section className='feed__btnGroup'>
           <section className='feed__left'>
             <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
-              <input ref={imageInput} hidden accept='image/*' multiple onChange={(e) => setImage(e.target.files)} type='file' />
+            <input
+              ref={imageInput}
+              hidden
+              accept='image/*'
+              multiple
+              onChange={(e) => setImages(e.target.files)}
+              type='file'
+            />
+            <section>
+              {images.map((image) => console.log(image.name))}
+            </section>
 
             <FiVideo className='feed__video' />
           </section>
