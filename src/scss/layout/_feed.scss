@@ -64,10 +64,6 @@
         &__recent {
             font-size: 0.8rem;
             align-self: flex-start;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
 
         &__options {
@@ -121,21 +117,32 @@
         &__modalContainer {
             @include flexbox();
             position: fixed;
-            top: 0;
+            top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
             left: 0;
             width: 100%;
             height: 100vh;
             z-index: 30;
-            background-color: transparent;
+            background: rgba(255, 255, 255, .2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         &__modal {
+            @include flexbox($justify-content: space-between);
+            flex-direction: column;
+            align-items: center;
             background-color: black;
             position: relative;
             width: 90%;
-            height: 40%;
+            height: 30%;
             padding: 1em;
-            border-radius: 5px;
+            border-radius: 10px;
+            z-index: 31;
+        }
+
+        &__modal--delete {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .6em 1em);
+            width: 100%;
         }
 
         &__modalClose {
@@ -147,6 +154,10 @@
             right: 0;
             padding: 0.4em;
             border-radius: 50%;
+
+            &:hover {
+                cursor: pointer;
+            }
 
             &:active {
                 background-color: $foregroundColor;

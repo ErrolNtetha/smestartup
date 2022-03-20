@@ -35,6 +35,7 @@ const handleSubmit = async () => {
 
     if (res.statusText === 'OK') {
       console.log('response arrived');
+      dispatch(toggleFieldOff());
       setLoading(false);
     }
 

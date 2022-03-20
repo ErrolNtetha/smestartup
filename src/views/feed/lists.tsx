@@ -5,10 +5,9 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { ScaleLoader } from 'react-spinners';
 import { useHistory } from 'react-router-dom';
-import { formatDistance, subDays } from 'date-fns';
 import axios from 'axios';
 
-// these are the lists of the all posts
+// these are the lists of all posts
 // call the useEffect hook to fetch all posts from the database
 
 export const Lists = () => {
@@ -18,7 +17,6 @@ export const Lists = () => {
   const history = useHistory();
 
   React.useEffect(() => {
-    console.log(formatDistance(subDays(new Date(), 4), new Date(), { addSuffix: true }));
     axios.get('/feed', {
       headers: {
         'x-access-token': localStorage.getItem('token')
@@ -33,7 +31,7 @@ export const Lists = () => {
 
         setLoading(false);
         setPosts(res.data.posts);
-        console.log(loading);
+        console.log(res.data.posts);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -43,7 +41,7 @@ export const Lists = () => {
       <section className='feed__postFieldContainer'>
         {toggleState ? <PostField /> : null}
       </section>
-      { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section> : posts.map((post) => <List post={post} name={post} key={post._id} />)}
+      { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section> : posts.map((post) => <List post={post} name={post} key={post._id} date={post.createdAt} id={post._id} />)}
     </div>
   );
 };
