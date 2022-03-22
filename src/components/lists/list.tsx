@@ -30,7 +30,7 @@ export const List:FC<Props> = ({
           <img src={avatar} alt='me' className='feed__profileImage' />
           <span>
             <h4 className='feed__name'> {name.user} </h4>
-            <p className='feed__title'> Works at Company X </p>
+            <p className='feed__title'> Works at Company  </p>
             <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
           </span>
         </div>
