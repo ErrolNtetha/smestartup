@@ -17,7 +17,7 @@ export const Lists = () => {
   const history = useHistory();
 
   React.useEffect(() => {
-    axios.get('/feed', {
+    axios.get('https://backend-sme.herokuapp.com/feed', {
       headers: {
         'x-access-token': localStorage.getItem('token')
       }
