@@ -23,7 +23,7 @@ import { Header } from '../../views/header';
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-        axios.get('/feed', {
+        axios.get('https://backend-sme.herokuapp.com/feed', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }
