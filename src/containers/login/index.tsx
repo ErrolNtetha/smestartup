@@ -9,8 +9,8 @@ import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { SERVER_URL } from 'config/baseURL';
 import logged from '../../store/actions/logged';
-// import { BASE_URL } from 'config/baseURL';
 
 export const Login = () => {
     const history = useHistory();
@@ -30,7 +30,7 @@ export const Login = () => {
                 return;
             }
 
-            axios.post('/login', values, {
+            axios.post(`${SERVER_URL}/login`, values, {
                 headers: {
                     'Content-type': 'application/json',
                     'x-access-token': localStorage.getItem('token'),
