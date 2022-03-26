@@ -23,10 +23,12 @@ export const Footer = () => {
         <span className='footer__links'>
           <h3> Where to now? </h3>
           <ul>
-            <li><Link to='/'> Home </Link></li>
-            <li><Link to='/'> FAQ </Link></li>
-            <li><Link to='/'> Suggestions </Link></li>
-            <li><Link to='/'> Register </Link></li>
+            <li className='footer__link'><Link to='/'> Home </Link></li>
+            <li className='footer__link'><Link to='/'> FAQ </Link></li>
+            <li className='footer__link'><Link to='/'> Suggestions </Link></li>
+            <li className='footer__link'><Link to='/'> Register </Link></li>
+            <li className='footer__link'><Link to='/terms'> Terms of Use </Link></li>
+            <li className='footer__link'><Link to='/'> Privacy Policy </Link></li>
           </ul>
         </span>
       </section>
