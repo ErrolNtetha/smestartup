@@ -37,8 +37,28 @@
             font-weight: 500;
         }
 
+        &__radioContainer {
+            display: flex;
+            gap: 1em;
+            margin: .4em;
+            // @include flexbox($justify-content: unset);
+        }
+
+        &__btnContainer {
+            @include flexbox();
+            gap: .4em;
+        }
+
+        &__radio {
+        }
+
         &__emailField {
-            @include inputField($padding: .4em .8em, $margin: .2em 0 .6em, $border: 1px solid #000, $inputRadius: 2em);
+            @include inputField(
+                $padding: 0.4em 0.8em,
+                $margin: 0.2em 0 0.6em,
+                $border: 1px solid #000,
+                $inputRadius: 2em
+            );
             font-size: 1rem;
             box-sizing: border-box;
 
@@ -49,7 +69,11 @@
         }
 
         &__button {
-            @include buttonHover($bgColor: $secondaryColor, $padding: .7em, $margin: 0);
+            @include buttonHover(
+                $bgColor: $secondaryColor,
+                $padding: 0.7em,
+                $margin: 0
+            );
             width: 100%;
             box-sizing: border-box;
 
@@ -98,7 +122,7 @@
     @include respond-to('laptop') {
         @include flexbox();
         height: 90vh;
-    
+
         &__container {
             border-radius: 0.6em;
             max-width: 400px;
