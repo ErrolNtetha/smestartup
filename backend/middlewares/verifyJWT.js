@@ -11,7 +11,7 @@ function verifyJWT(req, res, next) {
                     message: "Aunthetication failed",
                 });
             }
- 
+
             // create an empty abject
             req.user = {};
             req.user.id = decoded.id;
