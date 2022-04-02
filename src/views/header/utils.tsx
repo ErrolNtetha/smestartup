@@ -2,8 +2,8 @@ export const nav = [
     {
 		name: 'Home',
 		id: 'home-link',
-		url: '/',
-		isPrivate: false,
+		url: '/feed',
+		isPrivate: true,
 		className: 'header__item',
 	},
 	{
