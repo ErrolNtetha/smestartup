@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Formik } from 'formik';
+import {
+    Formik,
+    Form,
+    Field,
+    FormikConfig,
+    FormikValues
+} from 'formik';
+import { Input } from 'components/input';
 import { Button } from '../../components/button';
 // import { SERVER_URL } from '../../config/baseURL';
 
@@ -9,14 +17,13 @@ interface Props {
         firstName: string;
         lastName: string;
     } | null;
-    onChangeHandler: React.ChangeEventHandler<HTMLInputElement>
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     // nextPage: React.MouseEventHandler<HTMLButtonElement>;
     prevPage: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Business = ({
-prevPage, onChangeHandler, onSubmit, value
+prevPage, onSubmit, value
 }: Props) => {
     return (
             <section className='register'>
@@ -24,10 +31,10 @@ prevPage, onChangeHandler, onSubmit, value
                     <section className='register__left'>
                         Grow your business at the comfort of your own bed!
                     </section>
-                    <Formik
+                    <Stepper
                       initialValues={{
-                        firstName: value.firstName,
-                        lastName: value.lastName,
+                         firstName: '',
+                         lastName: '',
                         }}
                       onSubmit={(values) => {
                           console.log(values);
@@ -35,39 +42,50 @@ prevPage, onChangeHandler, onSubmit, value
                     >
                        {(props) => (
                             <section className='register__right'>
-                                {console.log(props)}
                             <span className='register__header'>  Company Information </span>
-                                <form onSubmit={onSubmit}>
-                                    <label className='register__label' htmlFor='firstName'> Company&apos;s Legal Name:
-                                        <input
-                                          type='text'
-                                          name='firstName'
-                                          placeholder='First Name'
-                                          value={value.firstName}
-                                          onChange={onChangeHandler}
-                                          className='register__emailField'
-                                        />
-                                    </label>
-                                    <label className='register__label' htmlFor='lastName'> Trading as:
-                                        <input
-                                          type='text'
-                                          name='lastName'
-                                          placeholder='Trading as (Optional)'
-                                          value={value.lastName}
-                                          onChange={onChangeHandler}
-                                          className='register__emailField'
-                                        />
-                                    </label>
+                                <Form onSubmit={props.handleSubmit}>
+                                    <div>
+                                    <Field
+                                      label='first name'
+                                      name='firstName'
+                                      type='text'
+                                      value={value.firstName}
+                                      component={Input}
+                                      placeholder='Enter your name'
+                                      className='register__emailField'
+                                      onChange={props.handleChange}
+                                    />
+                                    </div>
 
+                                    <div>
+                                    <Field
+                                      name='lastName'
+                                      type='text'
+                                      value={value.lastName}
+                                      component={Input}
+                                      placeholder='Enter your last name'
+                                      className='register__emailField'
+                                    />
+                                    </div>
                                     <span className='register__btnContainer'>
                                         <Button type='submit' onClick={prevPage} className='register__button'> Back </Button>
                                         <Button type='submit' onClick={onSubmit} className='register__button'> Next </Button>
                                     </span>
-                                </form>
+                                </Form>
                             </section>
                        )}
-                    </Formik>
+                    </Stepper>
                 </section>
             </section>
     );
+};
+
+export const Stepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
+    //    const childrenArray = React.Children.toArray(children);
+
+    return (
+        <Formik {...props}>
+            <Form>{children}</Form>
+        </Formik>
+  );
 };
