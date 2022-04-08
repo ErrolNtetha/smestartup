@@ -25,8 +25,13 @@
             // margin: 0 2em;
         }
 
+        &__innerContent {
+            @include flexbox();
+            align-items: center;
+        }
+
         &__logo {
-            width: 7em;
+            width: 6em;
         }
 
         &__nav {
@@ -105,6 +110,9 @@
         }
 
         &__item {
+            display: flex;
+            align-items: center;
+            gap: .8em;
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
@@ -144,8 +152,8 @@
 
         &__menu-icon {
             font-size: 1.8rem;
-            z-index: 4;
-            margin-right: .4em
+            z-index: 2;
+            margin-right: .2em
         }
     }
 
@@ -189,12 +197,9 @@
         }
 
         &__nav {
-            position: unset;
-            background: none;
+            background-color: red;
             display: contents;
-            // width: auto;
             color: #fff;
-            height: auto;
 
             ul {
                 margin: 0;
@@ -211,6 +216,9 @@
             font-size: 1.2rem;
         }
 
+        &__userIcon,
+        &__profileContainer,
+        &__close,
         &__item[href='/contact'],
         &__item[href='/faq'] {
             display: none;
