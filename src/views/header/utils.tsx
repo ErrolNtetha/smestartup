@@ -1,3 +1,13 @@
+import React from 'react';
+import {
+    FiHome,
+    FiPhone,
+    FiHelpCircle,
+    FiBell,
+    FiBox,
+    FiInfo
+} from 'react-icons/fi';
+
 export const nav = [
     {
 		name: 'Home',
@@ -5,6 +15,7 @@ export const nav = [
 		url: '/feed',
 		isPrivate: true,
 		className: 'header__item',
+        icon: <FiHome />
 	},
 	{
 		name: 'Features',
@@ -12,6 +23,7 @@ export const nav = [
 		url: '/features',
 		isPrivate: false,
 		className: 'header__item',
+        icon: <FiBox />
 	},
 	{
 		name: 'About',
@@ -19,6 +31,7 @@ export const nav = [
 		url: '/about',
 		isPrivate: false,
 		className: 'header__item',
+        icon: <FiInfo />
 	},
 	{
 		name: 'Notifications',
@@ -26,6 +39,7 @@ export const nav = [
 		url: '/notifications',
 		isPrivate: true,
 		className: 'header__item',
+        icon: <FiBell />
 	},
 	{
 		name: 'Contact',
@@ -33,6 +47,7 @@ export const nav = [
 		url: '/contact',
 		isPrivate: false,
 		className: 'header__item',
+        icon: <FiPhone />
 	},
 	{
 		name: 'FAQ',
@@ -40,5 +55,6 @@ export const nav = [
 		url: '/faq',
 		isPrivate: false,
 		className: 'header__item',
+        icon: <FiHelpCircle />
 	},
 ];
