@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable brace-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     Formik,
     Form,
@@ -15,9 +15,12 @@ import { Helmet } from 'react-helmet-async';
 // import { Input } from 'components/input';
 // import { Button } from '../../components/button';
 import * as Yup from 'yup';
+// import { FiImage } from 'react-icons/fi';
+// import cat from 'assets/cat.jpg';
+import { FiImage } from 'react-icons/fi';
 import { NODE_ENV } from '../../config/baseURL';
 
- const MyInput = ({ field, form, ...props }) => {
+const MyInput = ({ field, form, ...props }) => {
      return (
     <label htmlFor={props}>
         <input {...field} {...props} />
@@ -27,21 +30,26 @@ import { NODE_ENV } from '../../config/baseURL';
 
 export const Business = () => {
 const [avatar, setAvatar] = React.useState('');
+const [avatarURL, setAvatarURL] = React.useState('');
+const imageInput = useRef(null);
+
+const handleFileChange = (e) => {
+    setAvatar(e.target.files[0]);
+};
 
 React.useEffect(() => {
     const reader = new FileReader();
 
     if (avatar) {
-            reader.onload = (e) => {
-                const { result } = e.target;
-                if (result) {
-                    setAvatar(result);
-                    console.log(result);
-                }
-            };
-            console.log(avatar);
-            reader.readAsDataURL(avatar);
-        }
+        reader.onload = (e) => {
+            const { result } = e.target;
+
+            if (result) {
+                setAvatarURL(result);
+            }
+        };
+        reader.readAsDataURL(avatar);
+    }
 
     return () => {
         if (reader && reader.readyState === 1) {
@@ -60,7 +68,7 @@ React.useEffect(() => {
             gender: '',
             password: '',
             confirmPassword: '',
-            avatar: ''
+            avatarURL: ''
         }}
           onSubmit={() => {}}
         >
@@ -81,6 +89,23 @@ React.useEffect(() => {
                 <link rel='canonical' href='/register' />
             </Helmet>
                 <h3> Create Free Account </h3>
+                <label>
+                    <span>
+                        Set an avatar
+                        <div className='register__avatarContainer'>
+                            <img src={avatarURL} alt='my avatar' style={{ width: '100%' }} />
+                        </div>
+                        <FiImage onClick={() => imageInput.current.click()} />
+                    </span>
+                    <input
+                      type='file'
+                      hidden
+                      ref={imageInput}
+                      accept='image/*'
+                      onChange={handleFileChange}
+                      name='avatarURL'
+                    />
+                </label>
                 <label>
                     First Names:
                 <Field
@@ -119,11 +144,6 @@ React.useEffect(() => {
                         <option value='male'> Male </option>
                         <option value='female'> Female </option>
                     </Field>
-                </label>
-                <label>
-                    Choose profile picture
-                    <input type='file' accept='image/*' onChange={(e) => setAvatar(e.target.files[0])} name='avatar' />
-                    {console.log(avatar)}
                 </label>
             </FormikStep>
 
