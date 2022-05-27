@@ -1,0 +1,94 @@
+@use '../mixins/' as *;
+
+.profile {
+    &__profileGrid {
+        @include flexbox();
+    }
+    @include respond-to('mobile') {
+        &__container {
+        }
+
+        &__coverImage {
+            width: 100%;
+            height: 15vh;
+            background: purple;
+        }
+
+        &__details {
+            padding: 0 .8em;
+        }
+
+        &__avatar {
+            @include avatar($width: 80px);
+            margin-top: -2em;
+        }
+    
+        &__personalDetails {
+            @include flexbox();
+            gap: .6em;
+            justify-content: space-between;
+        } 
+
+        &__names {
+            margin: 0;
+            font-weight: 400;
+            font-size: .9em;
+        }
+
+        &__occupation {
+            margin: 0;
+            font-size: .8em;
+        }
+
+        &__joined {
+            font-size: .9em;
+        }
+        
+        &__bio {
+            font-size: .9em;
+        }
+
+        &__rightSection {
+            display: none;
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__avatar {
+            @include avatar($width: 160px);
+            margin-top: -3em;
+        }
+
+        &__details {
+            padding: 0 3em;
+        }
+
+        &__coverImage {
+            width: 100%;
+            height: 30vh;
+            background: purple;
+        }
+
+        &__names {
+            margin-top: 0;
+            font-weight: 400;
+            font-size: 2em;
+        }
+
+        &__occupation {
+            font-size: 1.2em;
+        }
+
+        &__joined {
+            font-size: 1.2em;
+        }
+        
+        &__bio {
+            font-size: 1.2em;
+        }
+
+        &__rightSection {
+            display: unset;
+        }
+    }
+}
