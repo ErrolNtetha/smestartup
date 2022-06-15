@@ -22,7 +22,6 @@ jobs:
 
         # Run yarn
         - run: npm install --global yarn
-        - run: yarn remove package-lock.json --if-present
         - run: yarn install
         - run: yarn run build
 
