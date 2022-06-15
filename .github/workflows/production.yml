@@ -1,4 +1,4 @@
-ame: 'Production Workflow'
+ame: 'Production'
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  Deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
 

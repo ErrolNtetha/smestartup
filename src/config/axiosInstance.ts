@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { BASE_URL } from './baseURL';
+import { NODE_ENV } from './baseURL';
 
 export const axiosPublic = axios.create({
-    baseURL: BASE_URL,
+    baseURL: NODE_ENV(),
 });
 
 export const axiosPrivate = axios.create({
-    baseURL: BASE_URL,
+    baseURL: NODE_ENV(),
     timeout: 50000,
     headers: {
         'Content-Type': 'application/json',
