@@ -23,6 +23,8 @@ jobs:
         # Run yarn
         - run: npm install --location=global yarn
         - run: yarn install
+          env: 
+            CI: false
         - run: yarn run build
 
         # Deploy to Netlify
