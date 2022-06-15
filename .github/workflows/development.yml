@@ -23,8 +23,7 @@ jobs:
         # Run yarn
         - run: npm install --location=global yarn
         - run: yarn install
-          env: 
-            CI: ${{ secrets.CI_DEFAULT }}
+        - run: echo $CI
         - run: yarn run build
 
         # Deploy to Netlify
