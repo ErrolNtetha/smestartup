@@ -1,0 +1,35 @@
+name: 'Cypress Workflow'
+
+on:
+  pull-request:
+    branches:
+      - development
+      - main
+
+jobs:
+  Test:
+      runs-on: ubuntu-latest
+
+      steps:
+        # Get the code from the repo
+        - name: Checkout Code
+          uses: actions/checkout@v3
+
+        # Install NodeJS
+        - name: Use Node v16
+          uses: actions/setup-node@v3
+          with: 
+            node-version: '16'
+
+        # Run yarn
+        - run: npm install --location=global yarn
+        - run: yarn install
+        - run: CI='' npm run build
+    
+        # Build the app with Cypress
+        - name: Building using Cypress
+          uses: cypress-io/github/actions@v1
+          with: 
+            build: yarn run test
+            start: yarn run dev
+            wait-on: http://localhost:3000
