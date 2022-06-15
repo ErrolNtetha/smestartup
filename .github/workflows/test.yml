@@ -30,6 +30,6 @@ jobs:
         - name: Building using Cypress
           uses: cypress-io/github/actions@v1
           with: 
-            build: yarn run test
-            start: yarn run dev
+            build: yarn run build
+            start: yarn start
             wait-on: http://localhost:3000
