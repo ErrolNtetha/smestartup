@@ -23,9 +23,7 @@ jobs:
         # Run yarn
         - run: npm install --location=global yarn
         - run: yarn install
-        - run echo "FOO:false" >> $CI
-        - run: echo $CI
-        - run: yarn run build
+        - run: CI='' npm run build
 
         # Deploy to Netlify
         - name: Deploy to Netlify
