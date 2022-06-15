@@ -1,0 +1,38 @@
+name: 'Development Workflow'
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+        # Get the code from the repo
+        - name: Checkout code
+          uses: actions/checkout@v1
+
+        # Install NodeJS
+        - name: Use Node.js 12.x
+          uses: actions/setup-node@v1
+          with: 
+            node: 12.x
+
+        # Run yarn
+        - run: npm install yarn
+        - run: yarn install
+        - run: yarn run build
+
+        # Deploy to Netlify
+        - name: Deploy to netlify
+          uses: netlify/actions/cli@master
+          env: 
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          with: 
+            args: deploy --dir=build --prod
+            secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+            NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
+            NETLIFY_DEPLOY_TO_PROD: true
