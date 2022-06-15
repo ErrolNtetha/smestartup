@@ -1,4 +1,4 @@
-name: 'Cypress Workflow'
+name: Cypress Workflow
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ jobs:
       steps:
         # Get the code from the repo
         - name: Checkout Code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v2
 
         # Install NodeJS
         - name: Use Node v16
@@ -32,4 +32,3 @@ jobs:
           with: 
             build: yarn run build
             start: yarn start
-            wait-on: http://localhost:3000
