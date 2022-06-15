@@ -1,4 +1,4 @@
-name: 'Development Workflow'
+name: 'Development'
 
 on:
   push:
@@ -6,28 +6,28 @@ on:
       - development
 
 jobs:
-  deploy:
+  Deploy:
       runs-on: ubuntu-latest
 
       steps:
         # Get the code from the repo
-        - name: Checkout code
+        - name: Checkout Code
           uses: actions/checkout@v3
 
         # Install NodeJS
-        - name: Use Node.js 16.x
+        - name: Use Node v16
           uses: actions/setup-node@v3
           with: 
             node-version: '16'
 
         # Run yarn
         - run: npm install --global yarn
-        - run: yarn remove package-lock.json
+        - run: yarn remove package-lock.json --if-present
         - run: yarn install
         - run: yarn run build
 
         # Deploy to Netlify
-        - name: Deploy to netlify
+        - name: Deploy to Netlify
           uses: netlify/actions/cli@master
           env: 
             NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
