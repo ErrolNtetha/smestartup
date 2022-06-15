@@ -23,6 +23,7 @@ jobs:
         # Run yarn
         - run: npm install --location=global yarn
         - run: yarn install
+        - run "" >> $CI
         - run: echo $CI
         - run: yarn run build
 
