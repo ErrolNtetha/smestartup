@@ -28,7 +28,7 @@ jobs:
     
         # Build the app with Cypress
         - name: Building using Cypress
-          uses: cypress-io/github/actions@v1
+          uses: cypress-io/github-actions@v1
           with: 
             build: yarn run build
             start: yarn start
