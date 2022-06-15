@@ -8,44 +8,40 @@ const validateLogin = async (req, res) => {
     const user_email = req.body.email;
     const user_password = req.body.password;
 
-    // Check on the database if we have the details 
-    // the user entered on login 
+    // Check on the database if we have the details
+    // the user entered on login
     await User.findOne({ email: user_email })
         .then(user => {
             if(!user) {
-                res.json({ 
-                    message: "Email or password incorrect.",
-                    isLoggedIn: false, 
+                res.json({
+                    message: 'Invalid or password incorrect.',
+                    isLoggedIn: false,
                 })
-                console.log('Invalid email or password. ');  
+                console.log('Invalid email or password. ');
             }
  
             else {
                 bcrypt.compare(user_password, user.password)
                     .then(isMatching => {
-                        // if password matches, sign the user with the token 
                         const payload = {
                             id: user._id,
-                            email: user.email, 
-                        } 
+                            email: user.email,
+                        };
 
+                        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '1d' });
+                        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '15s' });
+
+                        // if password matches, sign the user with the token
                         if (isMatching) {
-                            jwt.sign(
-                                payload,
-                                process.env.JWT_SECRET,
-                                {expiresIn: 86400},
-                                (err, token) => {
-                                    if(err) console.log(err);
-                                    return res.json({
-                                        isLoggedIn: true,
-                                        token: `Bearer ${token}`
-                                    });
-                                });
+                            res.json({
+                                isLoggedIn: true,
+                                accessToken: `Bearer ${accessToken}`,
+                                refreshToken
+                            })
                         } 
                         else {
-                            // send to client 
-                            console.log('The password does not match. Enter correct password.');
-                            res.json({ message: 'Password not matching', isLoggedIn: false });
+                            // send to client
+                            res.json({ message: 'Invalid email or password.', isLoggedIn: false });
                         }
                     })
                     .catch(err => console.log(err))

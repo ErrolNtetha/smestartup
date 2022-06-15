@@ -20,6 +20,8 @@
             text-align: center;
         }
         &__container {
+            display: flex;
+            flex-direction: column;
             background-color: #fff;
             height: min-content;
             width: 80%;
@@ -47,6 +49,25 @@
         &__btnContainer {
             @include flexbox();
             gap: .4em;
+        }
+
+        &__avatar {
+            position: relative;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            background-size: cover;
+            z-index: 2;
+        }
+
+        &__avatarLayer {
+            position: absolute;
+            background-color: white;
+            opacity: 0.2;
+            width: 100%;
+            z-index: 1;
         }
 
         &__radio {
@@ -103,11 +124,23 @@
                 transition: transform 50ms ease-in-out 100ms;
             }
         }
+        
+        &__header {
+            font-weight: bold;
+            margin-top: 0;
+        }
 
         &__button--register {
+            @include buttonHover($bgColor: purple, $padding: .8em, $margin: .2em);
+            display: inline-block;
+            width: 100%;
             p {
                 font-weight: 500;
             }
+        }
+
+        &__btnGroup {
+            margin-top: 1em;
         }
     }
 

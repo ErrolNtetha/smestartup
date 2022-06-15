@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
 import { Button } from 'components/button';
-// import { io } from 'socket.io-client';
-// import { NODE_ENV } from 'config/baseURL';
+import { io } from 'socket.io-client';
+import { NODE_ENV } from 'config/baseURL';
 
 export const PostField = () => {
 const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const [fileURL, setFileURL] = useState('');
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
 // const socket = io(`${NODE_ENV}`);
+const socket = io(`${NODE_ENV()}`, { transports: ['polling'] });
 
 const formData = {
     post,
@@ -26,13 +27,15 @@ const formData = {
 };
 
 const handleSubmit = async () => {
-  await axios.post('http://localhost:5000/feed', formData, {
-    headers: {
-      'x-access-token': localStorage.getItem('token')
-    }
+    await axios.post('http://localhost:5000/feed', formData, {
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': localStorage.getItem('accessToken')
+        }
   })
   .then((res) => {
     console.log(formData);
+    socket.emit('sendPost', post);
 
     if (!post) {
       console.log('Field is empty. Write something at least!');
@@ -50,6 +53,12 @@ const handleSubmit = async () => {
   })
   .catch((err) => console.error(err));
 };
+
+React.useEffect(() => {
+    socket.on('receivePost', (data) => {
+        console.log(data);
+    });
+}, [socket]);
 
 useEffect(() => {
     const reader = new FileReader();

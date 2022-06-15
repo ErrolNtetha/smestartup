@@ -12,18 +12,18 @@ export const nav = [
     {
 		name: 'Home',
 		id: 'home-link',
-		url: '/feed',
-		isPrivate: true,
-		className: 'header__item',
-        icon: <FiHome />
-	},
-	{
-		name: 'Features',
-		id: 'features-link',
-		url: '/features',
+		url: '/',
 		isPrivate: false,
 		className: 'header__item',
-        icon: <FiBox />
+        icon: <FiHome className='header__icon' />
+	},
+	{
+		name: 'Blogs',
+		id: 'blogs-link',
+		url: '/blogs',
+		isPrivate: false,
+		className: 'header__item',
+        icon: <FiBox className='header__icon' />
 	},
 	{
 		name: 'About',
@@ -31,7 +31,7 @@ export const nav = [
 		url: '/about',
 		isPrivate: false,
 		className: 'header__item',
-        icon: <FiInfo />
+        icon: <FiInfo className='header__icon' />
 	},
 	{
 		name: 'Notifications',
@@ -39,7 +39,7 @@ export const nav = [
 		url: '/notifications',
 		isPrivate: true,
 		className: 'header__item',
-        icon: <FiBell />
+        icon: <FiBell className='header__icon' />
 	},
 	{
 		name: 'Contact',
@@ -47,7 +47,7 @@ export const nav = [
 		url: '/contact',
 		isPrivate: false,
 		className: 'header__item',
-        icon: <FiPhone />
+        icon: <FiPhone className='header__icon' />
 	},
 	{
 		name: 'FAQ',
@@ -55,6 +55,6 @@ export const nav = [
 		url: '/faq',
 		isPrivate: false,
 		className: 'header__item',
-        icon: <FiHelpCircle />
+        icon: <FiHelpCircle className='header__icon' />
 	},
 ];

@@ -1,12 +1,17 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiMenu, FiMessageCircle, FiX } from 'react-icons/fi';
+import {
+    FiMenu,
+    FiMessageCircle,
+    FiX
+} from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import loggout from 'store/actions/loggout';
 import avatar from 'assets/avatar.png';
-import testLogo from '../../assets/testLogo.png';
+import { Search } from 'components/search';
+import blendot from '../../assets/blendot1.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
 
@@ -28,7 +33,7 @@ export const Header: React.FC = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('accessToken');
         dispatch(loggout());
         history.push('/login');
     };
@@ -40,7 +45,7 @@ export const Header: React.FC = () => {
             <header className='header__content'>
                 <span className='header__innerContent'>
                 <FiMenu onClick={handleToggle} className='header__menu-icon' />
-                <Link to={loggedIn ? '/feed' : '/'}> <img src={testLogo} className='header__logo' alt='Blendot' /> </Link>
+                <Link to={loggedIn ? '/feed' : '/'}> <img src={blendot} className='header__logo' alt='Blendot' /> </Link>
                 </span>
                 { isOpen
                 ? (
@@ -67,14 +72,14 @@ export const Header: React.FC = () => {
                                 </section>
                                 <FiX className='header__close' onClick={() => setIsOpen(!isOpen)} />
                             </section>
-                            <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} />
+                            <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} className='header__divider' />
                             <ul className='header__list'>
                                 { nav.map((item) => (
                                     !loggedIn && !item.isPrivate
-                                    ? <Link to={item.url} key={item.id} className={item.className}> {item.name} </Link>
-                                    : loggedIn
                                     ? <Link to={item.url} key={item.id} className={item.className}> {item.icon} {item.name} </Link>
-                                    : <Link to={item.url} key={item.id} className={item.className}> {item.name} </Link>
+                                    : loggedIn && (!item.isPrivate || item.isPrivate)
+                                    ? <Link to={item.url} key={item.id} className={item.className}> {item.icon} {item.name} </Link>
+                                    : null
                                     ))}
                             </ul>
                         </section>
@@ -83,7 +88,14 @@ export const Header: React.FC = () => {
                     ) : null}
                 <span className='header__BtnGroup'>
                     { loggedIn
-                    ? <Link className='header__userIcon' to='/messsages'> <FiMessageCircle /> </Link>
+                        ? (
+                            <section>
+                            <Link className='header__userIcon' to='/messsages'> <FiMessageCircle /> </Link>
+                            <span>
+                                <Search />
+                            </span>
+                            </section>
+                        )
                     : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
                 </span>
             </header>

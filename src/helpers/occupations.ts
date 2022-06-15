@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-const occupations = [
+export const occupations = [
     "Accountant",
     "Accounts Assistant",
     "Accounts Clerk",

@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const userPost = new mongoose.Schema({
-	user: { type: String },
-    post: { type: String },
-}, 
+    author: String,
+    user: String,
+    post: String,
+    image: String,
+    encodedImage: String,
+    likes: Number
+},
 {
     timestamps: true,
 });

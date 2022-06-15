@@ -1,13 +1,15 @@
 import React from 'react';
 import { PostField } from 'components/postField';
+import axios from 'axios';
 import { List } from 'components/lists/list';
 import { RootState } from 'store';
+import { Create } from 'components/create';
 // import { useFetchData } from 'hooks/useFetchData';
 import { useSelector } from 'react-redux';
 import { ScaleLoader } from 'react-spinners';
-// import { useHistory } from 'react-router-dom';
 // import { SERVER_URL } from 'config/baseURL';
-import axios from 'axios';
+// import { useHistory } from 'react-router-dom';
+// import { axiosInstance } from 'config/axiosInstance';
 
 // these are the lists of all posts
 // call the useEffect hook to fetch all posts from the database
@@ -21,14 +23,15 @@ export const Lists = () => {
 
   React.useEffect(() => {
     const fetchPosts = async () => {
-        await axios.get('https://backend-sme.herokuapp.com/feed', {
-      headers: {
-        'x-access-token': localStorage.getItem('token')
-      }
-    })
+        await axios.get('http://localhost:5000/feed', {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem('accessToken')
+            }
+        })
       .then((res) => {
         setLoading(false);
-        setPosts(res.data.posts.sort((a: string, b: string) => a.createdAt < b.createdAt));
+          setPosts(res.data.posts.sort((a: string, b: string) => b.createdAt > a.createdAt));
           console.log(res.data.posts);
       })
       .catch((err) => console.error(err));
@@ -37,11 +40,9 @@ export const Lists = () => {
   }, []);
 
   return (
-    <div>
-      <section className='feed__postFieldContainer'>
+    <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
-      </section>
-      { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
+        { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
           : posts.map((post) => (
               <List
                 post={post}
@@ -51,8 +52,13 @@ export const Lists = () => {
                 key={post._id}
                 date={post}
                 id={post}
+                title={post}
+                author={post}
               />
               ))}
+        {!toggleState
+        ? <Create />
+        : null}
     </div>
   );
 };

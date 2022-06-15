@@ -11,13 +11,13 @@ import {
     FormikValues
 } from 'formik';
 import axios from 'axios';
+import { occupations } from 'helpers/occupations';
 import { Helmet } from 'react-helmet-async';
 // import { Input } from 'components/input';
-// import { Button } from '../../components/button';
 import * as Yup from 'yup';
 // import { FiImage } from 'react-icons/fi';
-// import cat from 'assets/cat.jpg';
-import { FiImage } from 'react-icons/fi';
+import defaultAvatar from 'assets/blendot.png';
+import { Button } from '../../components/button';
 import { NODE_ENV } from '../../config/baseURL';
 
 const MyInput = ({ field, form, ...props }) => {
@@ -30,12 +30,17 @@ const MyInput = ({ field, form, ...props }) => {
 
 export const Business = () => {
 const [avatar, setAvatar] = React.useState('');
-const [avatarURL, setAvatarURL] = React.useState('');
+const [avatarURL, setAvatarURL] = React.useState(defaultAvatar);
 const imageInput = useRef(null);
+// const [titles, setTitle] = React.useState('');
+
+const title = [...occupations, 'Student', 'Unemployed', 'Founder & CEO'].sort();
 
 const handleFileChange = (e) => {
     setAvatar(e.target.files[0]);
 };
+
+console.log(title);
 
 React.useEffect(() => {
     const reader = new FileReader();
@@ -84,18 +89,20 @@ React.useEffect(() => {
             })}
             >
             <Helmet>
-                <title> Join Thousands of Enterpreneurs and Investors | Blendot </title>
+                <title> Join a new world of endless possibilities and meet Enterpreneurs and Investors | Blendot </title>
                 <meta name='description' content='Create an account for free and share enterpreneurial journey with other enterpreneurs.' />
                 <link rel='canonical' href='/register' />
             </Helmet>
-                <h3> Create Free Account </h3>
+                <h3 className='register__header'> Create Free Account </h3>
                 <label>
                     <span>
                         Set an avatar
-                        <div className='register__avatarContainer'>
-                            <img src={avatarURL} alt='my avatar' style={{ width: '100%' }} />
+                        <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
+                            {/* <div className='register__avatarLayer'>
+                                camera
+                        </div> */}
+                            <img src={avatarURL} alt='default avatar' className='register__avatar' />
                         </div>
-                        <FiImage onClick={() => imageInput.current.click()} />
                     </span>
                     <input
                       type='file'
@@ -129,12 +136,16 @@ React.useEffect(() => {
                     Occupation:
                     <Field as='select' name='occupation'>
                         <option> Select </option>
-                        <option value='employed'> Employed </option>
-                        <option value='selfEmployed'> Self-Employed </option>
-                        <option value='student'> Student </option>
-                        <option value='unemployed'> Unemployed </option>
-                        <option value='retired'> Retired </option>
+                        {title.map((item: string[]) => <option key={item}> {item} </option>)}
                     </Field>
+                </label>
+
+                <label>
+                    <Field
+                      name='company'
+                      placeholder='Name of the company you work for'
+                      className='register__emailField'
+                    />
                 </label>
 
                 <label>
@@ -157,7 +168,7 @@ React.useEffect(() => {
                         .required('Password is required!')
                 })}
             >
-                <h3> More Information </h3>
+                <h3 className='register__header'> More Information </h3>
                 <label>
                     Email Address:
                 <Field
@@ -196,49 +207,40 @@ export interface FormikStepProps extends Pick<FormikConfig<FormikValues>, 'child
 }
 
 export const FormikStep = ({ children }: FormikStepProps) => {
-    return <> {children} </>;
+    return <div> {children} </div>;
 };
 
 export const Stepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
     const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
     const [step, setStep] = React.useState(0);
-    const step1 = childrenArray[step] as React.ElementType<FormikStepProps>;
+    const currentStep = childrenArray[step] as React.ElementType<FormikStepProps>;
     const isLastChild = childrenArray.length - 1;
 
     return (
         <Formik
           {...props}
-          validationSchema={step1.props.validationSchema}
+          validationSchema={currentStep.props.validationSchema}
           onSubmit={async (values) => {
-            if (step === isLastChild) {
+            if (step === 1) {
                 await axios.post(`${NODE_ENV()}/register`, values, {
                     headers: {
                         'x-access-token': localStorage.getItem('token')
                     }
-                });
-                try {
-                    console.log('posted');
-                    console.log(values);
-                }
-
-                catch (err) {
-                    console.log(err);
-                }
-                console.log(values);
+                })
+                .then((res) => console.log('registered. ', res.data));
             }
             else {
                  setStep((nextStep) => nextStep + 1);
             }
           }}
         >
-            {(propss) => (
-                <Form>
-                    {step1}
-                    {console.log(propss)}
-                    {step > 0 && <button type='button' onClick={() => setStep((currentStep) => currentStep - 1)}> Back </button>}
-                    <button type='submit'> { step === isLastChild ? 'Create Account' : 'Continue' } </button>
+                <Form className='register__container'>
+                    {currentStep}
+                    <div className='register__btnGroup'>
+                        {step > 0 && <Button type='button' className='register__button--register' onClick={() => setStep((s) => s - 1)}> Back </Button>}
+                        <Button type='submit' className='register__button--register'> { step === isLastChild ? 'Create Account' : 'Continue' } </Button>
+                    </div>
                 </Form>
-            )}
         </Formik>
   );
 };

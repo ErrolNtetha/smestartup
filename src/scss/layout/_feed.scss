@@ -3,10 +3,11 @@
 @use '../base/typography' as *;
 
 .feed {
-    margin: 0.4em;
-    @include flexbox();
+    margin: .4em;
+    @include flexbox($justify-content: center);
+    align-items: unset;
     flex: 1;
-    gap: 3em;
+    gap: 1em;
 
     p,
     h1,
@@ -33,7 +34,7 @@
             background-color: $foregroundColor;
             padding: 0.6em;
             border-radius: 0.4em;
-            margin-bottom: 0.8em;
+            margin-bottom: 0.5em;
         }
 
         &__firstRow {
@@ -53,6 +54,9 @@
         }
 
         &__name {
+            display: flex;
+            gap: .2em;
+            align-items: center;
             font-size: 1rem;
             font-weight: 500;
         }
@@ -74,6 +78,8 @@
         &__listContent {
             font-size: 0.9rem;
             margin-bottom: 0.1em;
+            text-decoration: none;
+            color: #fff;
         }
 
         &__lastRow {
@@ -104,6 +110,59 @@
             display: none;
         }
 
+        &__postFieldWrapper {
+            @include flexbox();
+            top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 101%;
+            height: 100vh;
+            z-index: 31;
+            background: rgba(256, 255, 255, .2);
+            backdrop-filter: blur(11px);
+            -webkit-backdrop-filter: blur(10px)           
+        }
+
+        &__imageContainer {
+            @include flexbox($justify-content: unset);
+        }
+
+        &__imagePreview {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            margin: 5px 5px;
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__postImage {
+            object-fit: cover;
+            width: 100%;
+            margin-top: 1.2em;
+            border-radius: 6px;
+        }
+
+        &__addImage { 
+            @include flexbox();
+            width: 80px;
+            height: 80px;
+            border: 1px dashed #fff;
+            border-radius: 4px;
+            margin: 5px 5px;
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__plus {
+            font-size: 1.6rem;
+        }
+
         &__postField {
             position: absolute;
             padding: 0.6em 0.6em;
@@ -122,9 +181,9 @@
             width: 100%;
             height: 100vh;
             z-index: 30;
-            background: rgba(255, 255, 255, .2);
+            background: rgba(256, 255, 255, .2);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         &__modal {
@@ -138,6 +197,11 @@
             padding: 1em;
             border-radius: 10px;
             z-index: 31;
+        } 
+
+        &__btnContainer {
+            @include flexbox();
+            width: 100%;
         }
 
         &__modal--delete {
@@ -166,6 +230,17 @@
 
         &__postFieldContainer {
             @include flexbox();
+        }
+
+        &__create {
+            @include flexbox();
+            align-items: center;
+            width: 100%;
+            left: 0;
+        }
+
+        &__postField {
+            left: 0;
         }
 
         &__create,
@@ -240,12 +315,119 @@
             );
             border: 0.6px solid #fff;
         }
+
+        &__notFoundWrapper {
+            @include flexbox();
+            flex-direction: column;
+            height: 100vh;
+            padding: 2rem;
+        }
+
+        &__notFound {
+            @include flexbox();
+            flex-direction: column;
+        }
+
+        &__notFoundSVG {
+            width: 30%;
+            height: auto;
+        }
+
+        &__goBack {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
+        }
     }
 
     @include respond-to('laptop') {
         &__sidebar,
         &__followers {
             display: unset;
+            position: sticky;
+        }
+
+        &__postField {
+            position: unset;
+            margin-bottom: 1em;
+        }
+
+        &__create {
+            position: fixed;
+            left: 0; 
+        }
+
+        &__sidebar, &__followers {
+            background: $foregroundColor;
+            border-radius: 5px;
+            padding: 0;
+            height: max-content;
+            width: 20%;
+            z-index: 2;
+        }
+
+        &__followGroup {
+            @include flexbox();
+
+            &:hover {
+                background: $foregroundColor;
+            }
+        }
+
+        &__followBtn {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8em .8em);
+            border-radius: 5px;
+            font-size: .8rem;
+        }
+
+        &__followerTitle {
+            font-size: .8rem;
+        }
+
+        &__profileWrapper, &__followers {
+            padding: 1rem;
+        }
+
+        &__profileCover {
+            background: purple;
+            width: 100%;
+            height: 80px;
+            border-radius: 5px 5px 0 0;
+            z-index: 4;
+        }
+
+        &__profileAvatar {
+            width: 100px;
+            height: auto;
+            margin-top: -20%;
+            border: 2px solid $foregroundColor;
+            border-radius: 50%;
+
+        }
+
+        &__cardNames {
+            @include flexbox();
+            flex-direction: column;
+            margin-top: -10%;
+        }
+
+        &__toProfile {
+            @include flexbox();
+        }
+
+        &__bio {
+            margin: .8rem 0;
+        }
+
+        &__fullProfile {
+            @include buttonHover($bgColor: $primaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
+            width: 100%;
+        }
+
+        &__feedWrapper {
+            width: 40%;
+        }
+
+        &__list {
+            width: 100%;
         }
     }
 }

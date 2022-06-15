@@ -16,6 +16,7 @@
 
         &__content {
             @include flexbox($justify-content: space-between);
+            align-items: center;
             padding: 0.6em .4em;
             width: 100%;
             background-color: $foregroundColor;
@@ -26,12 +27,13 @@
         }
 
         &__innerContent {
-            @include flexbox();
+            @include flexbox($justify-content: space-between);
             align-items: center;
         }
 
         &__logo {
             width: 6em;
+
         }
 
         &__nav {
@@ -48,7 +50,7 @@
             z-index: 3;
             transform: translateX(0%);
             transition: transform 5ms ease-in-out;
-        }
+        } 
 
         &__profileContainer {
             @include flexbox($justify-content: space-between);
@@ -133,6 +135,10 @@
             @include flexbox();
         }
 
+        &__search {
+            display: none;
+        }
+
         &__userIcon {
             color: #fff;
             font-size: 1.6rem;
@@ -159,6 +165,10 @@
 
     @include respond-to('tablet') {
         @include flexbox();
+        
+        &__divider {
+            display: none;
+        }
 
         &__content {
             @include flexbox($justify-content: space-between);
@@ -167,7 +177,7 @@
             // max-width: 20em;
         }
 
-        &__list {
+        &__list, &__item {
             @include flexbox();
             list-style: none;
             text-decoration: none;
@@ -176,14 +186,13 @@
 
         &__item {
             text-decoration: none;
-            padding: 0.6em;
+            padding: 0.4em 0;
             color: #fff;
             font-weight: 500;
-            width: 2em;
         }
 
         &__item:hover {
-            border-bottom: 1px solid #fff;
+            border-bottom: 2px solid #fff;
         }
     }
 
@@ -196,8 +205,49 @@
             padding: 0.4em 4em;
         }
 
+        &__icon {
+            display: none;
+        }
+
+        &__list {
+            margin-botton: 1em;
+            padding-botton: 1em;
+        }
+
+        &__item {
+            width: max-content;
+            padding-botton: 1em;
+            margin-botton: 3em;
+        }
+
+        &__icon {
+            display: none;
+        }
+        
+        &__searchWrapper {
+            @include flexbox();
+            gap: .8em;
+            border-radius: 20px;
+            padding: .5em 1em;
+            background: #fff;
+        }
+
+        &__search {
+            display: unset;
+        }
+
+        &__searchBar {
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        &__searchIcon {
+            color: black;    
+            font-size: 1.2rem;
+        }
+
         &__nav {
-            background-color: red;
             display: contents;
             color: #fff;
 
@@ -205,6 +255,7 @@
                 margin: 0;
                 display: flex;
             }
+
             li {
                 padding: 0;
                 width: 6em;
@@ -213,7 +264,11 @@
 
         &__item {
             margin: 0 1em;
-            font-size: 1.2rem;
+            font-size: 1rem;
+        }
+
+        &__list {
+            width: 90%;
         }
 
         &__userIcon,
@@ -228,6 +283,10 @@
             display: unset;
             border-radius: 25px;
             width: 8em;
+        }
+
+        &__logout {
+            display: none;
         }
 
         &__menu-icon {

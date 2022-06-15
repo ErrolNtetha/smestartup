@@ -1,10 +1,13 @@
 @use '../mixins/buttons' as *;
+@use '../mixins/flexbox' as *;
 @use '../base/color' as *;
 
 .hero {
 
     &__left--action {
-        @include buttonHover($bgColor: $secondaryColor, $padding: 1.2em, $margin: 0.4em 0);
-        width: 15em;
+        @include flexbox();
+        @include buttonHover($bgColor: $secondaryColor, $padding: 1em .2em, $margin: 0.4em 0);
+        gap: 1em;
+        width: 14em;
     }
 }

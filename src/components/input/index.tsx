@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 import { useField } from 'formik';
 
@@ -7,17 +9,12 @@ interface Values {
 }
 
 export const Input = ({ label, ...props }: Values) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
 
   return (
-    <>
-      <label htmlFor='name'>
-        {label}
+      <label>
         <input {...field} {...props} />
+        {label}
       </label>
-      {meta.touched && meta.error && (
-          <div className="error">{meta.error?.firstName}</div>
-      )}
-    </>
   );
 };

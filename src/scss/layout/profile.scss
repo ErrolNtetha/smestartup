@@ -1,4 +1,5 @@
 @use '../mixins/' as *;
+@use '../base/color' as *;
 
 .profile {
     &__profileGrid {
@@ -15,11 +16,16 @@
         }
 
         &__details {
+            background: $foregroundColor;
+            border-radius: .2em;
+            margin: .4em 0;
             padding: 0 .8em;
+            padding-bottom: .4em;
         }
 
         &__avatar {
             @include avatar($width: 80px);
+            border: 3px solid $foregroundColor;
             margin-top: -2em;
         }
     
@@ -38,9 +44,18 @@
         &__occupation {
             margin: 0;
             font-size: .8em;
+        }   
+
+        &__editProfile {
+            @include flexbox();
+            @include buttonHover($bgColor: $primaryColor, $padding: 0);
+            font-size: 1.2rem;
+            gap: .4em;
         }
 
         &__joined {
+            @include flexbox($justify-content: unset);
+            gap: .6em;
             font-size: .9em;
         }
         
@@ -50,6 +65,68 @@
 
         &__rightSection {
             display: none;
+        }
+
+        &__bodyContainer {
+            background: $foregroundColor;
+            border-radius: .2em;
+            padding: .1em .2em;
+            padding-bottom: .4em;
+        }
+
+        &__tabsContainer {
+            @include flexbox();
+            gap: .8em;
+            background: $primaryColor;
+            margin-top: .6em;
+            border-radius: 2em;
+            padding: .2em .6em;
+        }
+
+        &__tabsContainer > * {
+            flex: 1 1 20%;
+        }
+
+        &__tabPosts, &__tabStarred {
+            padding: .4em;
+            border-radius: 2em;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__postsContainer {
+            margin: .6em;
+        }
+
+        &__post {
+            width: 100%;
+            background-color: $primaryColor;
+            padding: 0.6em;
+            border-radius: 0.4em;
+            margin-bottom: 0.5em;
+        }
+
+        &__titleContainer {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__titleChild {
+            @include flexbox($justify-content: unset);
+            width: 100%;
+        }
+
+        &__fullNames {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__timeAgo {
+            margin: 0;
+            padding: 0;
         }
     }
 
