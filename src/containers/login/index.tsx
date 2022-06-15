@@ -35,7 +35,7 @@ export const Login = () => {
                 console.log('Fields are empty...');
                 return;
             }
-            axiosPublic.post('http://localhost:5000/login', values)
+            axiosPublic.post('/login', values)
                 .then((res) => {
                     const { accessToken, message, isLoggedIn } = res.data;
 
