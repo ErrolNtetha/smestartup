@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  Test:
+  cypress-run:
       runs-on: ubuntu-latest
 
       steps:
@@ -24,10 +24,10 @@ jobs:
         # Run yarn
         - run: npm install --location=global yarn
         - run: yarn install
-        - run: CI='' npm run build
+        - run: CI='' yarn run build
     
         # Build the app with Cypress
-        - name: Building using Cypress
+        - name: Cypress run
           uses: cypress-io/github-action@v1
           with: 
             build: yarn run build
