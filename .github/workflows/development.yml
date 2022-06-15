@@ -12,16 +12,17 @@ jobs:
       steps:
         # Get the code from the repo
         - name: Checkout code
-          uses: actions/checkout@v1
+          uses: actions/checkout@v3
 
         # Install NodeJS
-        - name: Use Node.js 12.x
-          uses: actions/setup-node@v1
+        - name: Use Node.js 16.x
+          uses: actions/setup-node@v3
           with: 
-            node: 12.x
+            node-version: '16'
 
         # Run yarn
         - run: npm install yarn
+        - run: yarn remove package-lock.json
         - run: yarn install
         - run: yarn run build
 
