@@ -1,4 +1,4 @@
-name: 'Development'
+name: 'Publish on Netlify: Development'
 
 on:
   push:
@@ -29,8 +29,7 @@ jobs:
         - name: Deploy to Netlify
           uses: netlify/actions/cli@master
           env: 
-            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           with: 
-            args: deploy --dir=build --prod
-            secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
+            args: deploy --dir=build --alias="mphumeleli" --open --prod
