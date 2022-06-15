@@ -24,7 +24,7 @@ jobs:
         - run: npm install --location=global yarn
         - run: yarn install
           env: 
-            CI: false
+            CI: ${{ secrets.CI_DEFAULT }}
         - run: yarn run build
 
         # Deploy to Netlify
