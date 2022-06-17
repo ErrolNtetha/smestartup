@@ -6,7 +6,7 @@ const userPost = new mongoose.Schema({
     post: String,
     image: String,
     encodedImage: String,
-    likes: Number
+    stars: { type: Number, default: 0 }
 },
 {
     timestamps: true,
