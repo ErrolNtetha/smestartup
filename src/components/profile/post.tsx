@@ -15,9 +15,10 @@ export const Post = () => {
     console.log(posts);
 
     return (
-        <>
+        <section className='profile__wrapper'>
             <section className='profile__tabsContainer'>
                 <Link to={`${url}/posts`} className='profile__tabPosts'> Posts  <span> ({posts.length}) </span> </Link> |
+                <Link to={`${url}/starred`} className='profile__tabStarred'> Starred </Link> |
                 <Link to={`${url}/starred`} className='profile__tabStarred'> Starred </Link>
             </section>
             <section className='profile__postsContainer'>
@@ -42,6 +43,6 @@ export const Post = () => {
                 <Route path={`${path}/posts`} component={Starred} />
                 <Route path={`${path}/starred`} component={Starred} />
             </Switch>
-        </>
+        </section>
     );
 };
