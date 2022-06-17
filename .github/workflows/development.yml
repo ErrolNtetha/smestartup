@@ -25,10 +25,6 @@ jobs:
         - run: yarn install
         - run: CI='' npm run build
 
-        # Run Cypress test
-        - name: Cypress Test
-        - run: yarn run test
-
         # Deploy to Netlify
         - name: Deploy to Netlify
           uses: netlify/actions/cli@master
