@@ -13,6 +13,8 @@ jobs:
       - uses: stefanoeb/eslint-action@1.0.2
         with:
           files: src/
+
+      # Runs ES Lint
       - name: Run ES Lint
-        run: eslint --ext,.ts,.tsx
+      - run: eslint --ext,.ts,.tsx
         
