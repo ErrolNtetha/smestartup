@@ -107,6 +107,7 @@
         }
 
         &__post {
+            @include fontSize();
             width: 100%;
             background-color: $primaryColor;
             padding: 0.6em;
@@ -125,11 +126,13 @@
         }
 
         &__fullNames {
+            font-size: .9rem;
             margin: 0;
             padding: 0;
         }
 
         &__timeAgo {
+            @include fontSize();
             margin: 0;
             padding: 0;
         }
