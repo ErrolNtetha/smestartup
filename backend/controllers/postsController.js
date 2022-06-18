@@ -23,11 +23,10 @@ exports.userPosts = async (req, res) => {
 };
 
 exports.incrimementLikes = async (req, res) => {
-    const { id } = req.params;
     const { likes } = req.body;
     console.log(likes);
 
-    // find the post and update
+    // find the post and update the stars
    };
 
 exports.getSpecificUserPost = async (req, res) => {
