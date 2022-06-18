@@ -40,14 +40,20 @@ export const Login = () => {
                     const { accessToken, message, isLoggedIn } = res.data;
 
                     localStorage.setItem('accessToken', accessToken); // save token
-                    setResponse(message);
                     setLoading(false);
+                    setResponse(message);
+
                     if (isLoggedIn) {
                         dispatch(logged());
                         history.push('/feed');
+                    } else {
+                        setResponse(message);
                     }
                 })
-                .catch((err) => console.error('Something went wrong: ', err));
+                .catch(() => {
+                    setLoading(false);
+                    setResponse('An error occurred while trying to login. Try again.');
+                });
         }
     });
 
