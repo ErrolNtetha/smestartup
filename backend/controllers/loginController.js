@@ -13,11 +13,11 @@ const validateLogin = async (req, res) => {
     await User.findOne({ email: user_email })
         .then(user => {
             if(!user) {
-                res.json({
-                    message: 'Invalid or password incorrect.',
+                res.status(404).json({
+                    message: 'Invalid email or password.',
                     isLoggedIn: false,
                 })
-                console.log('Invalid email or password. ');
+                console.log('You have entered an invalid email or password. ');
             }
  
             else {
@@ -41,13 +41,15 @@ const validateLogin = async (req, res) => {
                         } 
                         else {
                             // send to client
-                            res.json({ message: 'Invalid email or password.', isLoggedIn: false });
+                            res.status(404).json({ message: 'Invalid email or password.', isLoggedIn: false });
                         }
                     })
                     .catch(err => console.log(err))
             }
         })
-        .catch(err => console.log(err))
+        .catch((err) => {
+            res.status(500).json({ error: err.message, message: 'There was a problem with the server. Try again later.' })
+        })
 }
 
 module.exports = validateLogin;
