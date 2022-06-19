@@ -3,7 +3,6 @@ import { PostField } from 'components/postField';
 import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
-// import { useFetchData } from 'hooks/useFetchData';
 import { useSelector } from 'react-redux';
 import { ScaleLoader } from 'react-spinners';
 import { useFetchData } from 'hoc/useFetchData';
@@ -15,21 +14,35 @@ export const Lists = () => {
     const { posts } = response.data;
     console.log(response.data.posts);
 
+    interface Props {
+        post: string;
+        encodedImage: string;
+        user: {
+            occupation: string;
+            isVerified: boolean;
+            _id: string;
+        };
+        _id: string;
+        createdAt: Date | number;
+    }
+
  return (
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
         { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
-                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map((item) => (
+                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
+                    post, encodedImage, user, _id, createdAt
+                }: Props) => (
               <List
-                post={item.post}
-                image={item.encodedImage}
-                isVerified={item.user.isVerified}
-                name={item.user.name}
-                key={item._id}
-                date={item.createdAt}
-                id={item._id}
-                occupation={item.user.occupation}
-                author={item.user._id}
+                post={post}
+                image={encodedImage}
+                isVerified={user.isVerified}
+                name={user.name}
+                key={_id}
+                date={createdAt}
+                id={_id}
+                occupation={user.occupation}
+                author={user._id}
               />
               ))}
         {!toggleState
