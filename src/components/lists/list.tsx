@@ -1,5 +1,6 @@
 /* eslint-disable operator-linebreak */
 import React, { FC } from 'react';
+import { Avatar } from 'components/avatar';
 import { FiStar, FiMoreHorizontal } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 import avatar from 'assets/avatar.png';
@@ -73,6 +74,7 @@ return (
       <span className='feed__firstRow'>
         <div className='feed__profile'>
           <img src={avatar} alt='me' className='feed__profileImage' />
+            <Avatar className='profile__profileImage' avatar={avatar} />
           <span>
             <h4 className='feed__name'> {name.user} <MdVerified /> {isVerified.isVerified && <MdVerified /> } </h4>
             <p className='feed__title'> Founder & CEO, Blendot </p>

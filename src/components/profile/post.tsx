@@ -1,4 +1,5 @@
 import React from 'react';
+import { Avatar } from 'components/avatar';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import {
     Route,
@@ -25,7 +26,7 @@ export const Post = () => {
                 <section className='profile__post'>
                     <span className='profile__titleContainer'>
                         <section className='profile__titleChild'>
-                            <p>avatar </p>
+                            <Avatar className='profile__postAvatar' avatar='d' />
                             <span style={{ paddingLeft: '.8em' }}>
                                 <h4 className='profile__fullNames'> Mphumeleli </h4>
                                 <p className='profile__timeAgo'> time </p>
