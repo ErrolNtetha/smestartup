@@ -14,10 +14,9 @@ const validateLogin = async (req, res) => {
         .then(user => {
             if(!user) {
                 res.json({
-                    message: 'Invalid or password incorrect.',
+                    message: 'Invalid email or password.',
                     isLoggedIn: false,
                 })
-                console.log('Invalid email or password. ');
             }
  
             else {
@@ -47,7 +46,9 @@ const validateLogin = async (req, res) => {
                     .catch(err => console.log(err))
             }
         })
-        .catch(err => console.log(err))
+        .catch((err) => {
+            res.status(500).json({ error: err.message, message: 'There was a problem with the server. Try again later.' })
+        })
 }
 
 module.exports = validateLogin;
