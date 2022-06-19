@@ -109,6 +109,11 @@
             margin-bottom: 0.5em;
         }
 
+        &__postAvatar {
+             @include avatar($width: 60px);
+            border: 1px solid $foregroundColor;
+        }
+
         &__titleContainer {
             @include flexbox($justify-content: space-between);
             width: 100%;
