@@ -1,6 +1,6 @@
 import React from 'react';
 import { PostField } from 'components/postField';
-import axios from 'axios';
+import { axiosPrivate } from 'config/axiosInstance';
 import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
@@ -19,16 +19,9 @@ export const Lists = () => {
   const [posts, setPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
-    //    const feed = useFetchData(`${SERVER_URL}/feed`);
-
   React.useEffect(() => {
     const fetchPosts = async () => {
-        await axios.get('http://localhost:5000/feed', {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': localStorage.getItem('accessToken')
-            }
-        })
+        await axiosPrivate.get('/feed')
       .then((res) => {
         setLoading(false);
           setPosts(res.data.posts.sort((a: string, b: string) => b.createdAt > a.createdAt));
