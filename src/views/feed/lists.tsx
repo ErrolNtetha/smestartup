@@ -19,7 +19,7 @@ export const Lists = () => {
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
         { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
-          : posts?.map((item) => (
+                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map((item) => (
               <List
                 post={item.post}
                 image={item.encodedImage}
