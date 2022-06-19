@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 
 const userPost = new mongoose.Schema({
     author: String,
-    user: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     post: String,
-    image: String,
     encodedImage: String,
     stars: { type: Number, default: 0 }
 },
