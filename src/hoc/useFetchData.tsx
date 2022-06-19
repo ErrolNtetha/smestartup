@@ -1,21 +1,19 @@
 import React from 'react';
-import axios from 'axios';
+import { axiosPrivate } from 'config/axiosInstance';
 
 export const useFetchData = (url: string) => {
     const [data, setData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
-    React.useEffect(async () => {
-        await axios.get(url, {
-              headers: {
-                'x-access-token': localStorage.getItem('token')
-              }
-         })
+    React.useEffect(() => {
+        axiosPrivate.get(url)
         .then((res) => {
-                console.log(res.data);
-                setData(res.data);
-            })
+            setData(res.data);
+            setLoading(false);
+            console.log(res.data);
+        })
         .catch((err) => console.log('Something went wrong: ', err));
     }, []);
 
-    return data;
+    return { data, loading };
 };
