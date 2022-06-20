@@ -1,8 +1,8 @@
 import React from 'react';
-import defaultAvatar from 'assets/avatar.png';
 import { FiMapPin, FiSettings } from 'react-icons/fi';
 import { useFetchUserId } from 'hoc/useFetchUserId';
 import { Link } from 'react-router-dom';
+import { Avatar } from 'components/avatar';
 // import { getDateInMonth } from 'helpers/formatDistance';
 
 interface Props {
@@ -19,7 +19,6 @@ interface Props {
 export const Intro = ({
     name, avatar, occupation, profileId, date
 }: Props) => {
-    const isTrue = !avatar ? defaultAvatar : 'there is an image';
     const userId = useFetchUserId();
     console.log(date);
 
@@ -29,7 +28,7 @@ export const Intro = ({
             <section className='profile__details'>
                 <span className='profile__personalDetails'>
                     <span className='profile__personalDetails'>
-                        <img src={isTrue} alt='this is me' className='profile__avatar' />
+                        <Avatar className='profile__avatar' avatar={avatar} />
                         <span className='profile__namesGroup'>
                             <h2 className='profile__names'> {name.firstName} {name.lastName} </h2>
                             <p className='profile__occupation'> {occupation} </p>

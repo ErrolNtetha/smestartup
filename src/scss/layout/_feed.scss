@@ -45,6 +45,7 @@
 
         &__profile {
             @include flexbox();
+            align-items: center;
             gap: 0.4em;
         }
 
@@ -79,6 +80,7 @@
         &__listContent {
             @include fontSize();
             margin-bottom: 0.1em;
+            line-height: 1;
             text-decoration: none;
             color: #fff;
         }
@@ -94,7 +96,7 @@
                 @include flexbox();
                 @include buttonHover(
                     $bgColor: none,
-                    $padding: 0.3em .8em,
+                    $padding: 0.2em .8em,
                     $margin: 0
                 );
                 background-color: $primaryColor;
@@ -104,7 +106,6 @@
         &__starIcon {
             font-size: .8rem;
             margin-right: 0.4em;
-            fill: #fff;
         }
 
         &__sidebar,
