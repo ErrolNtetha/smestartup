@@ -36,7 +36,7 @@ export const Intro = ({
                     </span>
                     {userId === profileId
                         ? <Link to={`/profile/${userId}`} className='profile__editProfile'> <FiSettings />  </Link>
-                    : 'other button'}
+                    : null}
                 </span>
                 <span>
                     <p className='profile__bio'> This is the bio. Just a dummy text to represent a bio of the account and visualize how it will look like. </p>
