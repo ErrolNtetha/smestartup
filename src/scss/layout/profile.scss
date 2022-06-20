@@ -74,7 +74,7 @@
         &__bodyContainer {
             background: $foregroundColor;
             border-radius: .2em;
-            padding: .1em .2em;
+            padding: .1em .4em;
             padding-bottom: .4em;
         }
 
@@ -106,6 +106,16 @@
             margin-top: .6em;
         }
 
+        &__titleGroup {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__ellipsis {
+            align-self: start;
+            font-size: 1.2rem;
+        }
+
         &__post {
             @include fontSize();
             width: 100%;
@@ -116,7 +126,7 @@
         }
 
         &__postAvatar {
-             @include avatar($width: 60px);
+             @include avatar($width: 50px);
             border: 1px solid $foregroundColor;
         }
 
