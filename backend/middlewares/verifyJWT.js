@@ -6,7 +6,7 @@ function verifyJWT(req, res, next) {
     if (token) {
         jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => {
             if (err) {
-                return res.json({
+                return res.status(403).json({
                     isLoggedIn: false,
                     message: 'Aunthetication failed',
                 });
@@ -20,7 +20,7 @@ function verifyJWT(req, res, next) {
         });
     }
     else {
-        res.json({ message: 'Invalid token.', isLoggedIn: false });
+        res.status(401).json({ message: 'Invalid token.', isLoggedIn: false });
         console.log('invalid token');
     }
 }
