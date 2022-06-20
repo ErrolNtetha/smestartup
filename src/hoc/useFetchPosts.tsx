@@ -4,6 +4,7 @@ import { axiosPrivate } from 'config/axiosInstance';
 export const useFetchPosts = () => {
     const [posts, setPosts] = useState([]);
     const [error, setErrorCode] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -13,9 +14,11 @@ export const useFetchPosts = () => {
                 console.log(res.data);
                 console.log(res.data?.posts);
                 setPosts(res.data?.posts);
+                setLoading(false);
             })
             .catch((err) => {
                 setErrorCode(err.code);
+                setLoading(false);
                 console.log(err.message);
             });
 
@@ -23,5 +26,5 @@ export const useFetchPosts = () => {
             controller.abort();
         };
     }, []);
-    return { posts, error };
+    return { posts, error, loading };
 };
