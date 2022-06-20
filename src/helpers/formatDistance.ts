@@ -12,6 +12,5 @@ export const getDistance = ({ createdAt }: Props): string => {
 
 export const getDateInMonth = ({ createdAt }: Props): string => {
     const date = format(new Date(createdAt), 'MMMMRRRR');
-    console.log(date);
     return date;
 };
