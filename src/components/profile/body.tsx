@@ -5,15 +5,15 @@ import { useFetchPosts } from '../../hoc/useFetchPosts';
 // import { Tabs } from './tabs';
 
 export const Body = () => {
-    const { posts, error } = useFetchPosts();
-    console.log(posts);
-    console.log(error);
+    const { posts, error, loading } = useFetchPosts();
 
     return (
         <section className='profile__bodyContainer'>
             {
-                !posts.length
+                loading
                 ? 'loading'
+                : error === 'ECONNABORTED'
+                ? 'There was a problem with your connection.'
                 : posts.map(({ post, createdAt, _id }) => (
                     <UserPosts
                       post={post}
@@ -21,8 +21,6 @@ export const Body = () => {
                       id={_id}
                     />
                     ))
-                ? error === 'ECONNABORTED'
-                : 'There was a problem with your connection.'
             }
         </section>
     );
