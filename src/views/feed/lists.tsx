@@ -12,7 +12,6 @@ export const Lists = () => {
     const response = useFetchData('/feed');
 
     const { posts } = response.data;
-    console.log(response.data.posts);
 
     interface Props {
         post: string;
