@@ -1,131 +1,72 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { Button } from '../../components/button';
-import { SERVER_URL } from '../../config/baseURL';
-import { Props } from './initialForm';
+import { Formik, Field } from 'formik';
+import { occupations } from 'helpers/occupations';
 
- export const User = ({ name, submit, setType }: Props) => {
-    const history = useHistory();
+export const User = () => {
+const title = [...occupations, 'Unemployed', 'Founder & CEO'].sort();
 
-    const formik = useFormik({
-        initialValues: {},
-        onSubmit(values) {
-            if (!values?.firstName || !values?.email || !values?.password) {
-                console.log('Fields empty...');
-                console.log(values);
-                return;
-            }
+return (
+    <div>
+    <h1>My Form</h1>
+    <Formik
+      initialValues={{ name: 'jared' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          console.log(JSON.stringify(values, null, 2));
+          actions.setSubmitting(false);
+        }, 1000);
+      }}
+    >
+      {(props) => (
+        <form onSubmit={props.handleSubmit}>
+                <h3 className='register__header'> Create Free Account </h3>
+                <hr style={{ margin: 0, opacity: 0.3 }} />
+                <label>
+                    First Names:
+                <Field
+                  name='firstName'
+                  placeholder='E.g. Mphumeleli Errol'
+                  className='register__emailField'
+                />
+                </label>
+                <label>
+                    Last Name:
+                <Field
+                  name='lastName'
+                  placeholder='E.g. Ntetha'
+                  className='register__emailField'
+                />
+                </label>
 
-            // console.log(values);
-            // console.log(values.file);
-
-            axios.post(`${SERVER_URL}/signup`, values)
-            .then((res) => {
-                if (res) {
-                    console.log(values);
-                    history.push('/login');
-                }
-            })
-            .catch((err) => console.log(err));
-        }
-    });
-
-    return (
-            <section className='register'>
-                <p className='register__introHeader'> Signup up for a free account! </p>
-                <section className='register__container'>
-                    <section className='register__left'>
-                        Grow your business at the comfort of your own bed!
-                    </section>
-                    <section className='register__right'>
-                       <span className='register__header'>  Personal Details </span>
-                        <form onSubmit={submit}>
-                        <label className='register__label' htmlFor='firstName'> First Name
-                            <input
-                              type='text'
-                              name={name}
-                              placeholder='Mphumeleli Ntetha'
-                              value={formik.values.firstName}
-                              onChange={formik.handleChange}
-                              className='register__emailField'
-                              autoCapitalize='false'
-                            />
-                        </label>
-                        <label className='register__label' htmlFor='firstName'> Last Name
-                            <input
-                              type='text'
-                              name='lastName'
-                              placeholder='Ntetha'
-                              value={formik.values.lastName}
-                              onChange={formik.handleChange}
-                              className='register__emailField'
-                              autoCapitalize='false'
-                            />
-                        </label>
-                        <label className='register__label' htmlFor='email'> Email
-                            <input
-                              type='email'
-                              name='name'
-                              placeholder='name@example.com'
-                              value={formik.values.email}
-                              onChange={setType}
-                              className='register__emailField'
-                              autoCapitalize='false'
-                            />
-                        </label>
-
-                        <span className='register__radioContainer'>
-                                <input
-                                  type='radio'
-                                  name={name}
-                                  value='Male'
-                                  onChange={formik.handleChange}
-                                //   className='register__emailField'
-                                /> Male
-                        </span>
-                        <span className='register__radioContainer'>
-                                <input
-                                  type='radio'
-                                  name='gender'
-                                  value='Female'
-                                  onChange={formik.handleChange}
-                                //   className='register__emailField'
-                                /> Female
-                        </span>
-
-                        {/* <label className='register__label register__radio' htmlFor='email'> Password:
-                            <input
-                              type='password'
-                              name='password'
-                              placeholder='Enter password'
-                              value={formik.values.password}
-                              onChange={formik.handleChange}
-                              className='register__emailField'
-                              autoComplete='false'
-                            />
-                        </label> */}
-                        {/* <label className='register__label' htmlFor='email'> Password:
-                            <Button className='login__button'>
-                                Choose Avatar
-                            <input
-                              type='file'
-                            />
-                              name='avatar'
-                              accept='image/*'
-                              onChange={(event) => formik.setFieldValue('file', event.currentTarget.files[0])}
-                              className='register__emailField'
-                            />
-                            </Button>
-                        </label> */}
-                            <span className='register__btnContainer'>
-                                <Button type='submit' className='register__button'> Back </Button>
-                                <Button type='submit' className='register__button'> Next </Button>
-                            </span>
-                        </form>
-                    </section>
-                </section>
-            </section>
+                <label>
+                    Occupation:
+                    <Field as='select' name='occupation'>
+                        <option> Select </option>
+                        {title.map((item: string[]) => <option key={item}> {item} </option>)}
+                    </Field>
+                </label>
+                <label>
+                    Your gender
+                    <Field as='select' name='gender'>
+                        <option> Select </option>
+                        <option value='male'> Male </option>
+                        <option value='female'> Female </option>
+                    </Field>
+                </label>
+          <input
+            type='text'
+            onChange={props.handleChange}
+            onBlur={props.handleBlur}
+            value={props.values.name}
+            name='name'
+          />
+          {props.errors.name && <div id='feedback'>{props.errors.name}</div>}
+          <button type='submit'>Submit</button>
+        </form>
+      )}
+    </Formik>
+    </div>
     );
 };

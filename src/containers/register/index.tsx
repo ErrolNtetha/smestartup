@@ -3,7 +3,7 @@ import React from 'react';
 import { Header } from 'views/header';
 import { User } from './user-0';
 import { InitialForm } from './initialForm';
-import { Business } from './business';
+import { Personal } from './personal';
 
 export const Register = () => {
     const [page, setPage] = React.useState(1);
@@ -46,7 +46,7 @@ export const Register = () => {
             ? (
 
             <div className='register'>
-                <Business
+                <Personal
                   prevPage={handlePrev}
                   nextPage={handleNext}
                   value={inputValue}
