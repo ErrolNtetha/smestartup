@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const socketIo = require('socket.io');
+const http = require('http');
+
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http, {
+const server = http.createServer(app);
+const io = socketIo(server, {
     cors: {
         origin: 'http://localhost:3000',
         methods: ['GET', 'POST'],
@@ -28,19 +31,22 @@ app.use(postRoutes);
 app.use(subsriberRoutes);
 app.use(verify);
 
+const name = 'Mphumeleli Ntetha';
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
     console.log('User conencted: ', socket.id);
 
     socket.on('sendPost', (post) => {
-        socket.broadcast.emit('receivePost', post)
-        console.log(post)
+        socket.broadcast.emit('receivePost', post);
+        console.log(post);
     });
- 
+
     // disconnect from server
-    socket.on('disconnect', (data) => console.log('User disconnected from server: ', data));
+    socket.on('disconnect', (data) => console.log('User disconnected: ', data));
 });
+
+exports = name;
 
 app.get('/', (req, res, next) => {
     res.send('<h2> Everything works fine. </h2>');
@@ -63,9 +69,9 @@ db.once('open', (err) => {
 
 const port = process.env.PORT || 5000;
 
-http.listen(port, (err) => {
+server.listen(port, (err) => {
     if (err) {
         console.log('An error has occured, ', err);
     }
     return console.log(`Sever is running on http://localhost:${port}`);
-});
+}););
