@@ -4,7 +4,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FiImage, FiPlus, FiVideo } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import { axiosPrivate } from 'config/axiosInstance';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
 import { Button } from 'components/button';
 import { io } from 'socket.io-client';
@@ -18,7 +18,6 @@ const [fileURL, setFileURL] = useState('');
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
-// const socket = io(`${NODE_ENV}`);
 const socket = io(`${NODE_ENV()}`, { transports: ['polling'] });
 
 const formData = {
@@ -27,29 +26,24 @@ const formData = {
 };
 
 const handleSubmit = async () => {
-    await axios.post('http://localhost:5000/feed', formData, {
-        headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': localStorage.getItem('accessToken')
+    await axiosPrivate.post('/feed', formData)
+    .then((res) => {
+        console.log(formData);
+        socket.emit('sendPost', post);
+
+        if (!post) {
+            console.log('Field is empty. Write something at least!');
+            return;
         }
-  })
-  .then((res) => {
-    console.log(formData);
-    socket.emit('sendPost', post);
 
-    if (!post) {
-      console.log('Field is empty. Write something at least!');
-      return;
-    }
+        if (res.statusText !== 'OK') {
+            setLoading(true);
+        }
 
-    if (res.statusText !== 'OK') {
-        setLoading(true);
-    }
-
-    if (res.statusText === 'OK') {
-      dispatch(toggleFieldOff());
-      setLoading(false);
-    }
+        if (res.statusText === 'OK') {
+            dispatch(toggleFieldOff());
+            setLoading(false);
+        }
   })
   .catch((err) => console.error(err));
 };
@@ -64,15 +58,15 @@ useEffect(() => {
     const reader = new FileReader();
 
     if (images) {
-            reader.onload = (e) => {
-                const { result } = e.target;
-                console.log(result);
-                if (result) {
-                   setFileURL(result);
-                }
-            };
-            reader.readAsDataURL(images);
+        reader.onload = (e) => {
+        const { result } = e.target;
+        console.log(result);
+        if (result) {
+            setFileURL(result);
         }
+    };
+        reader.readAsDataURL(images);
+    }
 
     return () => {
             if (reader && reader.readyState === 1) {

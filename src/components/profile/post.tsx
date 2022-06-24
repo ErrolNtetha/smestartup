@@ -1,48 +1,33 @@
 import React from 'react';
 import { Avatar } from 'components/avatar';
 import { FiMoreHorizontal } from 'react-icons/fi';
-import {
-    Route,
-    Switch,
-    Link,
-    useRouteMatch
-} from 'react-router-dom';
-import { Starred } from './starred';
-import { useFetchPosts } from '../../hoc/useFetchPosts';
 
-export const Post = () => {
-    const posts = useFetchPosts();
-    const { path, url } = useRouteMatch();
-    console.log(posts);
+interface Props {
+    post: string;
+    date: Date | number;
+    id: string;
+}
 
+export const UserPosts = ({ post, date, id }: Props) => {
     return (
-        <>
-            <section className='profile__tabsContainer'>
-                <Link to={`${url}/posts`} className='profile__tabPosts'> Posts  <span> ({posts.length}) </span> </Link> |
-                <Link to={`${url}/starred`} className='profile__tabStarred'> Starred </Link>
-            </section>
-            <section className='profile__postsContainer'>
-                {posts.length ? posts.map(({ post }) => (
-                <section className='profile__post'>
+        <section className='profile__postsContainer'>
+                <section className='profile__post' key={id}>
                     <span className='profile__titleContainer'>
                         <section className='profile__titleChild'>
-                            <Avatar className='profile__postAvatar' avatar='d' />
-                            <span style={{ paddingLeft: '.8em' }}>
-                                <h4 className='profile__fullNames'> Mphumeleli </h4>
-                                <p className='profile__timeAgo'> time </p>
+                            <Avatar className='profile__postAvatar' avatar='' />
+                            <span className='profile__titleGroup' style={{ paddingLeft: '.8em' }}>
+                                <span>
+                                    <h4 className='profile__fullNames'> Mphumeleli Errol Ntetha </h4>
+                                    <p className='profile__timeAgo'> {date} </p>
+                                </span>
+                                <span style={{ alignSelf: 'start' }}>
+                                    <FiMoreHorizontal className='profile__ellipsis' />
+                                </span>
                             </span>
                         </section>
-                        <FiMoreHorizontal />
                     </span>
-                    {post}
+                    <p>{post}</p>
                 </section>
-            )) : 'You have not created any post yet.'}
-            </section>
-
-            <Switch>
-                <Route path={`${path}/posts`} component={Starred} />
-                <Route path={`${path}/starred`} component={Starred} />
-            </Switch>
-        </>
+        </section>
     );
 };

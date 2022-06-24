@@ -8,9 +8,9 @@ type Props = {
 
 export const Avatar = ({ className, avatar }: Props) => {
     return (
-        <section>
+        <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {!avatar ? <img src={defaultAvatar} alt='just a random pic' className={className} />
-                : <img src={defaultAvatar} alt='just a random pic' className={className} />}
+                : <img src={avatar} alt='just a random pic' className={className} />}
         </section>
     );
 };

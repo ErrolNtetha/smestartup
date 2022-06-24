@@ -24,6 +24,7 @@ const MyInput = ({ field, form, ...props }) => {
      return (
     <label htmlFor={props}>
         <input {...field} {...props} />
+        {console.log(props)}
     </label>
      );
  };
@@ -34,13 +35,11 @@ const [avatarURL, setAvatarURL] = React.useState(defaultAvatar);
 const imageInput = useRef(null);
 // const [titles, setTitle] = React.useState('');
 
-const title = [...occupations, 'Student', 'Unemployed', 'Founder & CEO'].sort();
+const title = [...occupations, 'Unemployed', 'Founder & CEO'].sort();
 
 const handleFileChange = (e) => {
     setAvatar(e.target.files[0]);
 };
-
-console.log(title);
 
 React.useEffect(() => {
     const reader = new FileReader();
@@ -94,8 +93,9 @@ React.useEffect(() => {
                 <link rel='canonical' href='/register' />
             </Helmet>
                 <h3 className='register__header'> Create Free Account </h3>
+                <hr style={{ margin: 0, opacity: 0.3 }} />
                 <label>
-                    <span>
+                    <span className='register__avatarWrapper'>
                         Set an avatar
                         <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
                             {/* <div className='register__avatarLayer'>
@@ -140,13 +140,7 @@ React.useEffect(() => {
                     </Field>
                 </label>
 
-                <label>
-                    <Field
-                      name='company'
-                      placeholder='Name of the company you work for'
-                      className='register__emailField'
-                    />
-                </label>
+                <label />
 
                 <label>
                     Your gender
@@ -234,13 +228,16 @@ export const Stepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
             }
           }}
         >
+            {(meta) => (
                 <Form className='register__container'>
                     {currentStep}
+                    {meta.errors.firstName}
                     <div className='register__btnGroup'>
                         {step > 0 && <Button type='button' className='register__button--register' onClick={() => setStep((s) => s - 1)}> Back </Button>}
                         <Button type='submit' className='register__button--register'> { step === isLastChild ? 'Create Account' : 'Continue' } </Button>
                     </div>
                 </Form>
+            )}
         </Formik>
   );
 };

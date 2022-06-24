@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
 import { Terms } from 'views/legalties/tou';
-import { Starred } from 'components/profile/starred';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
@@ -33,7 +32,6 @@ export const Main: React.FC = () => {
                 <Route path='/terms' exact component={Terms} />
                 <Route path='/notifications' exact component={Notifications} />
                 <Route exact path='/feed/p/:id' component={Post} />
-                <Route path='/profile/starred' component={Starred} />
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />

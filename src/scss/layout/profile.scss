@@ -24,7 +24,7 @@
         }
 
         &__avatar {
-            @include avatar($width: 80px);
+            @include avatar($width: 70px);
             border: 3px solid $foregroundColor;
             margin-top: -2em;
         }
@@ -60,17 +60,21 @@
         }
         
         &__bio {
-            font-size: .9em;
+            @include fontSize();
         }
 
         &__rightSection {
             display: none;
         }
 
+        &__wrapper {
+            margin: .6em;
+        }
+
         &__bodyContainer {
             background: $foregroundColor;
             border-radius: .2em;
-            padding: .1em .2em;
+            padding: .1em .4em;
             padding-bottom: .4em;
         }
 
@@ -85,10 +89,11 @@
 
         &__tabsContainer > * {
             flex: 1 1 20%;
+            font-size: .9rem;
         }
 
         &__tabPosts, &__tabStarred {
-            padding: .4em;
+            padding: .3em;
             border-radius: 2em;
             text-align: center;
 
@@ -98,10 +103,21 @@
         }
 
         &__postsContainer {
-            margin: .6em;
+            margin-top: .6em;
+        }
+
+        &__titleGroup {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__ellipsis {
+            align-self: start;
+            font-size: 1.2rem;
         }
 
         &__post {
+            @include fontSize();
             width: 100%;
             background-color: $primaryColor;
             padding: 0.6em;
@@ -110,7 +126,7 @@
         }
 
         &__postAvatar {
-             @include avatar($width: 60px);
+             @include avatar($width: 50px);
             border: 1px solid $foregroundColor;
         }
 
@@ -125,11 +141,13 @@
         }
 
         &__fullNames {
+            font-size: .9rem;
             margin: 0;
             padding: 0;
         }
 
         &__timeAgo {
+            @include fontSize();
             margin: 0;
             padding: 0;
         }
