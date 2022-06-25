@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
     FiMenu,
@@ -16,15 +16,9 @@ import { nav } from './utils';
 import { Button } from '../../components/button';
 
 export const Header: React.FC = () => {
-    // interface IState {
-    //     user: {
-    //         email: string
-    //         name: string
-    //     }[]
-    // }
-
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
     // const [user, setUser] = useState<IState['user']>([]);
 
@@ -37,6 +31,13 @@ export const Header: React.FC = () => {
         dispatch(loggout());
         history.push('/login');
     };
+
+    useEffect(() => {
+        setInnerWidth(window.innerWidth);
+        if (innerWidth > 769) {
+            setIsOpen(true);
+        } else setIsOpen(false);
+    }, [innerWidth]);
 
     const loggedIn = useSelector((state: RootState) => state.isLogged);
 
