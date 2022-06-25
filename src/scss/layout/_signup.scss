@@ -11,7 +11,7 @@
     flex-direction: column;
     height: 90vh;
 
-    @include respond-to('mobile') {
+    @include respond-to('mobile') { 
         &__introHeader {
             font-weight: 300;
             font-size: 1.2rem;
@@ -26,18 +26,19 @@
             height: min-content;
             width: 80%;
             border-radius: $radius;
-            padding: 2.4em 2em;
+            padding: 1.8em 1.6em;
+        }
+
+        &__formContainer {
+            @include flexbox();
+            margin: 2em 0;
         }
 
         &__header {
             font-size: 1rem;
             text-align: center;
             margin-bottom: .8em;
-        }
-
-        &__label {
-            font-weight: 500;
-        }
+        } 
 
         &__radioContainer {
             display: flex;
@@ -62,6 +63,11 @@
             z-index: 2;
         }
 
+        &__avatarOuterContainer {
+            @include flexbox();
+
+        }
+
         &__avatarLayer {
             position: absolute;
             background-color: white;
@@ -71,6 +77,17 @@
         }
 
         &__radio {
+        }
+
+        &__select {
+            background: transparent;
+            border: 1px solid black;
+            color: black;
+            width: 100%;
+            padding: .8em;
+            cursor: pointer;
+            border-radius: 2em;
+            margin-bottom: 1.6em;
         }
 
         &__emailField {
@@ -87,6 +104,15 @@
                 background-color: rgba(0, 0, 0, 0.227);
                 border: none;
             }
+        }
+
+        &__errorMessage {
+            color: red;
+            margin: 0;
+        }
+        
+        &__accountInfo {
+            margin-top: 3em;
         }
 
         &__button {
@@ -158,12 +184,26 @@
 
         &__container {
             border-radius: 0.6em;
-            max-width: 400px;
-            height: 70%;
+            max-width: 500px;
+            height: max-content;
         }
 
-        &__label {
-            font-weight: 500;
+        &__avatarOuterContainer {
+            margin: 1em;
+        }
+
+        &__avatarContainer {
+            width: 100%;
+            height: max-content;
+        }
+
+        &__emailField {
+            padding: .8em 1.2em;
+        }
+
+        &__avatar {
+            width: 120px;
+            height: auto;
         }
     }
 }
