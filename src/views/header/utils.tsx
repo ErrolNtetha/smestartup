@@ -3,8 +3,8 @@ import {
     FiHome,
     FiPhone,
     FiHelpCircle,
-    FiBell,
-    FiBox,
+    //  FiBell,
+    //  FiBox,
     FiInfo
 } from 'react-icons/fi';
 
@@ -17,14 +17,14 @@ export const nav = [
 		className: 'header__item',
         icon: <FiHome className='header__icon' />
 	},
-	{
-		name: 'Blogs',
-		id: 'blogs-link',
-		url: '/blogs',
-		isPrivate: false,
-		className: 'header__item',
-        icon: <FiBox className='header__icon' />
-	},
+    //	{
+    //	name: 'Blogs',
+    //	id: 'blogs-link',
+    //	url: '/blogs',
+    //	isPrivate: false,
+    //	className: 'header__item',
+    //   icon: <FiBox className='header__icon' />
+    //	},
 	{
 		name: 'About',
 		id: 'about-link',
@@ -33,14 +33,14 @@ export const nav = [
 		className: 'header__item',
         icon: <FiInfo className='header__icon' />
 	},
-	{
-		name: 'Notifications',
-		id: 'notifications-link',
-		url: '/notifications',
-		isPrivate: true,
-		className: 'header__item',
-        icon: <FiBell className='header__icon' />
-	},
+    //	{
+    //	name: 'Notifications',
+    //	id: 'notifications-link',
+    //	url: '/notifications',
+    //	isPrivate: true,
+    //	className: 'header__item',
+    //   icon: <FiBell className='header__icon' />
+    //	},
 	{
 		name: 'Contact',
 		id: 'contact-link',
