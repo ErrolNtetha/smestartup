@@ -144,7 +144,7 @@ React.useEffect(() => {
 
                 <label>
                     Your gender
-                    <Field as='select' name='gender'>
+                    <Field as='select' name='gender' className='register__emailField'>
                         <option> Select </option>
                         <option value='male'> Male </option>
                         <option value='female'> Female </option>
