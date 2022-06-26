@@ -8,6 +8,7 @@ import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
 import { useFetchUserId } from 'hoc/useFetchUserId';
+import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { Link } from 'react-router-dom';
     import { io } from 'socket.io-client';
@@ -32,6 +33,7 @@ import { Link } from 'react-router-dom';
     }) => {
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
+        const [loading, setLoading] = React.useState<boolean | null>(null);
         const socket = io(`${NODE_ENV()}`);
         const userId = useFetchUserId();
 
@@ -51,11 +53,20 @@ import { Link } from 'react-router-dom';
         };
 
         const handleDelete = async (postId: string) => {
+            setLoading(true);
             await axiosPrivate.delete(`/feed/${postId}`)
                 .then((res) => {
-                    console.log(res.data);
+                    const { success } = res.data;
+                    console.log(success);
+                    if (success) {
+                        setLoading(false);
+                        setModal(false);
+                    }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err.message);
+                    setLoading(false);
+                });
         };
 
         React.useEffect(() => {
@@ -83,12 +94,14 @@ import { Link } from 'react-router-dom';
                 (
                     <Modal>
                         <section className='feed__options'>
+                            <section> Options </section>
+                            <hr />
                             {userId === author
                                 ? 'Edit post'
-                                : 'This aint your post'}
+                                : 'This is not your post'}
                         </section>
                         <section className='feed__btnContainer'>
-                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> Delete </Button>}
+                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
                         </section>
                     </Modal>
             )}
