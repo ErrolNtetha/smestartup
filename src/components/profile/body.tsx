@@ -1,5 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
+import { SyncLoader } from 'react-spinners';
+import { Button } from 'components/button';
 import { UserPosts } from './post';
 import { useFetchPosts } from '../../hoc/useFetchPosts';
 // import { Tabs } from './tabs';
@@ -11,9 +13,9 @@ export const Body = () => {
         <section className='profile__bodyContainer'>
             {
                 loading
-                ? 'loading'
+                ? <section className='profile__loadingContainer'> <SyncLoader color='white' /> </section>
                 : error === 'ECONNABORTED'
-                ? 'There was a problem with your connection.'
+                ? <section className='profile__errorContainer'> Connection is taking taking longer than expected. Check your internet connection and retry. <Button className='profile__retry'> Retry </Button> </section>
                 : posts.map(({ post, createdAt, _id }) => (
                     <UserPosts
                       post={post}
