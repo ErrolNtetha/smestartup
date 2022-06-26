@@ -9,7 +9,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import loggout from 'store/actions/loggout';
-import avatar from 'assets/avatar.png';
+import blendotDefault from 'assets/blendot.png';
 import { Search } from 'components/search';
 import blendot from '../../assets/blendot1.png';
 import { nav } from './utils';
@@ -20,6 +20,9 @@ export const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
+    const { userData } = useSelector((state: RootState) => state.userProfile);
+    const loggedIn = useSelector((state: RootState) => state.isLogged);
+    const { name, email, avatar } = userData;
     // const [user, setUser] = useState<IState['user']>([]);
 
     const handleToggle = () => {
@@ -39,8 +42,6 @@ export const Header: React.FC = () => {
         } else setIsOpen(false);
     }, [innerWidth]);
 
-    const loggedIn = useSelector((state: RootState) => state.isLogged);
-
     return (
         <div className='header'>
             <header className='header__content'>
@@ -57,10 +58,10 @@ export const Header: React.FC = () => {
                                     { loggedIn
                                     ? (
                                     <Link to='/profile' className='header__profile'>
-                                    <img src={avatar} alt='me' className='header__profileImage' />
+                                    <img src={!avatar ? blendotDefault : avatar} alt='my profile avatar' className='header__profileImage' />
                                     <span>
-                                        <h4 className='header__name'> Mphumeleli Ntetha </h4>
-                                        <p className='header__title'> Founder and CEO, Blendot </p>
+                                        <h4 className='header__name'> {name.firstName} {name.lastName} </h4>
+                                        <p className='header__title'> {email} </p>
                                         {/* <p className='header__recent'> 32 mins ago </p> */}
                                     </span>
                                     </Link>
