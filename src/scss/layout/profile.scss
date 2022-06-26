@@ -37,7 +37,6 @@
 
         &__names {
             margin: 0;
-            font-weight: 400;
             font-size: .9em;
         }
 
@@ -76,6 +75,18 @@
             border-radius: .2em;
             padding: .1em .4em;
             padding-bottom: .4em;
+        }
+
+        &__loadingContainer, &__errorContainer {
+            @include flexbox();
+            flex-direction: column;
+            height: 60vh;
+            padding: 3em;
+            text-align: center;
+        }
+
+        &__retry {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8em 1.6em);
         }
 
         &__tabsContainer {
