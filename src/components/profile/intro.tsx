@@ -3,24 +3,18 @@ import { FiMapPin, FiSettings } from 'react-icons/fi';
 import { useFetchUserId } from 'hoc/useFetchUserId';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'components/avatar';
+import { useSelector } from 'react-redux';
 // import { getDateInMonth } from 'helpers/formatDistance';
 
-interface Props {
-    name: {
-        firstName: string;
-        lastName: string;
-    };
-    avatar: string;
-    occupation: string;
-    profileId: string;
-    date: string;
-}
-
-export const Intro = ({
-    name, avatar, occupation, profileId, date
-}: Props) => {
+export const Intro = () => {
     const userId = useFetchUserId();
-    console.log(date);
+    const { userData } = useSelector((userState) => userState.userProfile);
+    const {
+        name,
+        occupation,
+        avatar,
+        _id
+    } = userData;
 
     return (
         <>
@@ -30,11 +24,11 @@ export const Intro = ({
                     <span className='profile__personalDetails'>
                         <Avatar className='profile__avatar' avatar={avatar} />
                         <span className='profile__namesGroup'>
-                            <h2 className='profile__names'> {name.firstName} {name.lastName} </h2>
+                            <h3 className='profile__names'> {name.firstName} {name.lastName} </h3>
                             <p className='profile__occupation'> {occupation} </p>
                         </span>
                     </span>
-                    {userId === profileId
+                    {userId === _id
                         ? <Link to={`/profile/${userId}`} className='profile__editProfile'> <FiSettings />  </Link>
                     : null}
                 </span>
