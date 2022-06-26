@@ -14,6 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import { SyncLoader } from 'react-spinners';
 // import { axiosInstance } from 'config/axiosInstance';
 import logged from '../../store/actions/logged';
+import { fetchProfile } from '../../store/actions/fetchProfile';
 
 export const Login = () => {
     const history = useHistory();
@@ -37,7 +38,12 @@ export const Login = () => {
             }
             axiosPublic.post('/login', values)
                 .then((res) => {
-                    const { accessToken, message, isLoggedIn } = res.data;
+                    const {
+                        accessToken,
+                        message,
+                        isLoggedIn,
+                        user
+                    } = res.data;
 
                     localStorage.setItem('accessToken', accessToken); // save token
                     setLoading(false);
@@ -45,6 +51,7 @@ export const Login = () => {
 
                     if (isLoggedIn) {
                         dispatch(logged());
+                        dispatch(fetchProfile(user));
                         history.push('/feed');
                     } else {
                         setResponse(message);
