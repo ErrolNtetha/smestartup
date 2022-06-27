@@ -112,8 +112,6 @@ import { Link } from 'react-router-dom';
                             )
                                 : (
                                     <span>
-                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
-                                        <hr className='feed__line' />
                                         <section className='feed__optionItem'> <FiAlertTriangle style={{ marginRight: '.6em' }} /> Report </section>
                                         <hr className='feed__line' />
                                     </span>
