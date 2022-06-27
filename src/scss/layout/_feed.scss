@@ -247,6 +247,11 @@
 
         &__optionItem {
             @include flexbox($justify-content: unset);
+
+            &:hover {
+                cursor: pointer;
+                background: $primaryColor;
+            }
         }
 
         &__postFieldContainer {

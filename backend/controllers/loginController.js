@@ -11,17 +11,15 @@ const validateLogin = async (req, res) => {
     // Check on the database if we have the details
     // the user entered on login
     await User.findOne({ email: user_email })
-        .then(user => {
-            if(!user) {
+        .then((user) => {
+            if (!user) {
                 res.json({
                     message: 'Invalid email or password.',
                     isLoggedIn: false,
                 })
-            }
- 
-            else {
+            } else {
                 bcrypt.compare(user_password, user.password)
-                    .then(isMatching => {
+                    .then((isMatching) => {
                         const payload = {
                             id: user._id,
                             email: user.email,
@@ -35,15 +33,15 @@ const validateLogin = async (req, res) => {
                             res.json({
                                 isLoggedIn: true,
                                 accessToken: `Bearer ${accessToken}`,
-                                refreshToken
+                                refreshToken,
+                                user
                             })
-                        } 
-                        else {
+                        } else {
                             // send to client
                             res.json({ message: 'Invalid email or password.', isLoggedIn: false });
                         }
                     })
-                    .catch(err => console.log(err))
+                    .catch((err) => console.log(err))
             }
         })
         .catch((err) => {
