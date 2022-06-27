@@ -1,7 +1,12 @@
 /* eslint-disable operator-linebreak */
 import React, { FC } from 'react';
 import { Avatar } from 'components/avatar';
-import { FiStar, FiMoreHorizontal } from 'react-icons/fi';
+import {
+    FiStar,
+    FiMoreHorizontal,
+    FiEdit3,
+    FiAlertTriangle
+} from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
@@ -92,13 +97,27 @@ import { Link } from 'react-router-dom';
             </div>
             {modal &&
                 (
-                    <Modal>
-                        <section className='feed__options'>
-                            <section> Options </section>
-                            <hr />
+                    <Modal className='feed__optionsModal'>
+                        <section className='feed__postOptions'>
+                            <span className='feed__optionsContainer'>
+                                <section style={{ textAlign: 'center', fontSize: '1.2rem', width: '100%' }}> Options </section>
+                                <hr className='feed__line' />
+                            </span>
                             {userId === author
-                                ? 'Edit post'
-                                : 'This is not your post'}
+                                ? (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )
+                                : (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
+                                        <hr className='feed__line' />
+                                        <section className='feed__optionItem'> <FiAlertTriangle style={{ marginRight: '.6em' }} /> Report </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )}
                         </section>
                         <section className='feed__btnContainer'>
                             {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
