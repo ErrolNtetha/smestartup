@@ -15,13 +15,13 @@ export const Features = () => {
           </span>
           <span className='features__item'>
             <img src={businessDeal} className='features__svg' alt='business deal svg' />
-            <h2 className='features__header'> Business Deal </h2>
-            <p className='features__description'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, error odit eaque sunt ut asperiores? Pariatur! Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+            <h2 className='features__header'> Find Suppliers </h2>
+            <p className='features__description'> Finding suppliers for your company has never been easier with our search directory. Our search tool lets you search suppliers by location so you can always get the one that is closest you. </p>
           </span>
           <span className='features__item'>
             <img src={businessListing} className='features__svg' alt='svg' />
-            <h2 className='features__header'> Business Listing </h2>
-            <p className='features__description'> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis sapiente sed eum provident aperiam? Incidunt. </p>
+            <h2 className='features__header'> Newsfeed </h2>
+            <p className='features__description'> Got some tips that you might want to share? Share with the community what is happening and what you are up to. Exchange thoughts and ideas with the like-minded entrepreneurs like you. </p>
           </span>
         </section>
     </section>
