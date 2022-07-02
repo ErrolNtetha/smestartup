@@ -1,12 +1,20 @@
-import { axiosPrivate } from 'config/axiosInstance';
+import { useState, useEffect } from 'react';
+import { axiosRefresh } from 'config/axiosInstance';
 
-export const useRefresh = () => {
-    const refresh = async () => {
-        axiosPrivate.get('/refresh')
-            .then((res) => {
-                console.log('Token: ', res.data);
-            });
-    };
+export const useRefreshToken = () => {
+    const [newAccessToken, setNewAccessToken] = useState('');
 
-    return refresh;
+    useEffect(() => {
+        async function fetchToken() {
+            const token = await axiosRefresh.get('/refresh');
+            try {
+                setNewAccessToken(token.data.accessToken);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchToken();
+    }, []);
+
+    return newAccessToken;
 };

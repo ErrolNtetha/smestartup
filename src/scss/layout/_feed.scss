@@ -258,6 +258,18 @@
             @include flexbox();
         }
 
+        &__toastMessageContainer {
+            position: fixed;
+            background: $primaryColor;
+            padding: .6em 1.2em;
+            border-radius: 5em;
+        }
+
+        &__toastMessage {
+            @include flexbox();
+            gap: .5em;
+        }
+
         &__create {
             @include flexbox();
             align-items: center;

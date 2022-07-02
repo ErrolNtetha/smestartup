@@ -1,0 +1,72 @@
+@use '../base/' as *;
+@use '../mixins/' as *;
+@use '../breakpoints/' as *;
+
+.contact {
+    padding: 3em;
+
+    @include respond-to('mobile') {
+        &__contactContainer {
+            @include flexbox();
+            height: 80vh;
+            gap: 5em;
+            margin: 1.2em;
+        }
+
+        
+
+        &__left {
+            background: $foregroundColor;
+            padding: 1em;
+            border-radius: $radius;
+            width: 100%;
+        }
+
+        &__right {
+            display: none;
+        }
+
+        &__textarea {
+            background-color: white;
+            border: none;
+            outline: none;
+            column-rule-style: dotted;
+            color: #000;
+            font-family: $font-family;
+            font-weight: 500;
+            font-size: 0.9rem;
+            width: 100%;
+            max-height: 40%;
+            border-radius: 5px;
+            padding: 0.4em 0.8em;
+        }
+
+        &__submit {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8em 1em);
+            margin: 1em 0;
+            width: 100%;
+        }
+    }
+
+    @include respond-to('tablet') {
+
+    }
+
+    @include respond-to('laptop') {
+        &__contactContainer {
+            width: 50%;
+        }
+
+        &__wrapper {
+            @include flexbox();
+        }
+
+
+        &__left {
+        }
+
+        &__right {
+            display: unset;
+        }
+    }
+}

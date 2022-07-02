@@ -5,7 +5,7 @@ import {
     FiStar,
     FiMoreHorizontal,
     FiEdit3,
-    FiAlertTriangle
+    FiAlertTriangle,
 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 import avatar from 'assets/avatar.png';
@@ -16,8 +16,6 @@ import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { Link } from 'react-router-dom';
-    import { io } from 'socket.io-client';
-    import { NODE_ENV } from 'config/baseURL';
 
     export interface Props {
       name: {
@@ -39,7 +37,6 @@ import { Link } from 'react-router-dom';
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
         const [loading, setLoading] = React.useState<boolean | null>(null);
-        const socket = io(`${NODE_ENV()}`);
         const userId = useFetchUserId();
 
            const handleLikes = (postId: string) => {
@@ -73,16 +70,6 @@ import { Link } from 'react-router-dom';
                     setLoading(false);
                 });
         };
-
-        React.useEffect(() => {
-                socket.on('connection', (socketid) => {
-                console.log('Front-end successfully connected. ', socketid);
-            });
-
-            socket.emit('post', (sockID: string) => {
-                console.log('The ID is: ', sockID);
-            });
-        }, []);
 
     return (
     <section className='feed__list'>

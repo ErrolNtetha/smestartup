@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NODE_ENV } from './baseURL';
 
-const timeout = 30000;
+const timeout = 60000;
 
 export const axiosPublic = axios.create({
     baseURL: NODE_ENV(),
@@ -34,3 +34,22 @@ export const axiosPrivate = axios.create({
         'x-access-token': localStorage.getItem('accessToken')
     }
 });
+
+export const axiosRefresh = axios.create({
+    baseURL: NODE_ENV(),
+    timeout,
+    headers: {
+        'Content-Type': 'application/json',
+        'x-refresh-token': localStorage.getItem('refreshToken')
+    }
+});
+
+axiosPrivate.interceptors.response.use(
+    (response) => {
+    console.log('Response: ', response);
+},
+(error) => {
+    console.log('An error: ', error);
+    return Promise.reject(error);
+}
+);

@@ -11,6 +11,7 @@ export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
     const response = useFetchData('/feed');
 
+    console.log(response);
     const { posts } = response.data;
 
     interface Props {

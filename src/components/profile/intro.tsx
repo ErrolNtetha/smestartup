@@ -1,10 +1,11 @@
 import React from 'react';
-import { FiMapPin, FiSettings } from 'react-icons/fi';
+import { FiClock, FiMapPin, FiSettings } from 'react-icons/fi';
 import { useFetchUserId } from 'hoc/useFetchUserId';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'components/avatar';
 import { useSelector } from 'react-redux';
 // import { getDateInMonth } from 'helpers/formatDistance';
+import { format } from 'date-fns';
 
 export const Intro = () => {
     const userId = useFetchUserId();
@@ -13,7 +14,8 @@ export const Intro = () => {
         name,
         occupation,
         avatar,
-        _id
+        _id,
+        createdAt
     } = userData;
 
     return (
@@ -34,6 +36,8 @@ export const Intro = () => {
                 </span>
                 <span>
                     <p className='profile__bio'> This is the bio. Just a dummy text to represent a bio of the account and visualize how it will look like. </p>
+                    {console.log(createdAt)}
+                    <p className='profile__joined'> <FiClock /> Joined {format(new Date(createdAt), 'd MMMM yyy')} </p>
                     <p className='profile__joined'> <FiMapPin /> Durban, South Africa </p>
                 </span>
             </section>
