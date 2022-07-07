@@ -45,7 +45,7 @@ export const Footer = () => {
             <input type='text' onChange={(e) => setLastName(e.target.value)} placeholder='Your Last Name' name='lastName' className='footer__inputs' />
             <input type='text' onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' name='email' className='footer__inputs' />
             <button type='submit' className='footer__button--submit'> {loading ? <SyncLoader size={8} color='#fff' /> : <section> subscribe <FiSend>hbhj</FiSend> </section>} </button>
-          <section>
+          <section style={{ color: 'green', fontSize: '1.2rem' }}>
             {!loading && response}
           </section>
         </form>
