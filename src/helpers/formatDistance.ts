@@ -1,5 +1,4 @@
-import { formatDistance } from 'date-fns';
-import format from 'date-fns/format';
+import { formatDistance, format } from 'date-fns';
 
 interface Props {
     createdAt: Date | number,
@@ -11,6 +10,6 @@ export const getDistance = ({ createdAt }: Props): string => {
 };
 
 export const getDateInMonth = ({ createdAt }: Props): string => {
-    const date = format(new Date(createdAt), 'MMMMRRRR');
+    const date = format(new Date(`${createdAt}`), 'do MMM yyyy');
     return date;
 };

@@ -1,7 +1,7 @@
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-export const decodeToken = () => {
-    const token: string | null = localStorage.getItem('token').split(' ')[1];
+export const decodedToken = () => {
+    const token: string | null = localStorage.getItem('accessToken').split(' ')[1];
 
     const decoded = jwtDecode<JwtPayload>(token);
     return decoded;

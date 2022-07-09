@@ -4,7 +4,6 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
-import { Terms } from 'views/legalties/tou';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
@@ -14,7 +13,6 @@ import { Login } from '../containers/login';
 import { Register } from '../containers/register';
 import { Feed } from '../containers/feed';
 import { Private } from './privateRoute';
-import { Notifications } from '../containers/notifications';
 
 export const Main: React.FC = () => {
     const isAuth = useSelector((state: RootState) => state.isLogged);
@@ -29,8 +27,6 @@ export const Main: React.FC = () => {
                 <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
                 <Route path='/faq' exact component={FAQ} />
-                <Route path='/terms' exact component={Terms} />
-                <Route path='/notifications' exact component={Notifications} />
                 <Route exact path='/feed/p/:id' component={Post} />
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />

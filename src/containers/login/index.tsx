@@ -14,6 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import { SyncLoader } from 'react-spinners';
 // import { axiosInstance } from 'config/axiosInstance';
 import logged from '../../store/actions/logged';
+import { fetchProfile } from '../../store/actions/fetchProfile';
 
 export const Login = () => {
     const history = useHistory();
@@ -37,14 +38,22 @@ export const Login = () => {
             }
             axiosPublic.post('/login', values)
                 .then((res) => {
-                    const { accessToken, message, isLoggedIn } = res.data;
+                    const {
+                        accessToken,
+                        refreshToken,
+                        message,
+                        isLoggedIn,
+                        user
+                    } = res.data;
 
-                    localStorage.setItem('accessToken', accessToken); // save token
+                    localStorage.setItem('accessToken', accessToken); // save access token
+                    localStorage.setItem('refreshToken', refreshToken); // save refresh token
                     setLoading(false);
                     setResponse(message);
 
                     if (isLoggedIn) {
                         dispatch(logged());
+                        dispatch(fetchProfile(user));
                         history.push('/feed');
                     } else {
                         setResponse(message);
@@ -69,7 +78,7 @@ export const Login = () => {
                 <section className='login__container'>
                         <h2 className='login__header'> Account Login </h2>
                         <form onSubmit={formik.handleSubmit} className='login__form'>
-                            <label className='login__label' htmlFor='email'> Email or Username: </label>
+                            <label className='login__label' htmlFor='email'> Email: </label>
                             <input
                               type='email'
                               name='email'

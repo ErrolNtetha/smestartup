@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken');
 
-function verifyJWT(req, res, next) {
-    const token = req.headers['x-access-token'].split(' ')[1];
+function verifyRefreshToken(req, res, next) {
+    const token = req.headers['x-refresh-token'];
 
     if (token) {
-        jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
             if (err) {
                 console.log('Token has expired, or is invalid...');
                 return res.status(403).json({
                     isLoggedIn: false,
-                    message: 'Token has expired or is invalid...',
+                    message: 'Your refresh token has expired or is invalid...',
                 });
             }
 
@@ -25,4 +25,4 @@ function verifyJWT(req, res, next) {
     }
 }
 
-module.exports = verifyJWT;
+module.exports = verifyRefreshToken;

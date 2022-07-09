@@ -5,10 +5,11 @@ import React from 'react';
 import { FiX } from 'react-icons/fi';
 
 interface Props {
+    className: string;
   children: React.ReactNode;
 }
 
-export const Modal:React.FC<Props> = ({ children }) => {
+export const Modal:React.FC<Props> = ({ children, className }) => {
     const [modal, setModal] = React.useState(true);
 
     return (
@@ -16,7 +17,7 @@ export const Modal:React.FC<Props> = ({ children }) => {
             {modal
             ?
             (
-                <div className='feed__modalContainer'>
+                <div className={className}>
                     <section className='feed__modal'>
                         {children}
                         <section className='feed__modalClose' onClick={() => setModal(!modal)}> <FiX /> </section>

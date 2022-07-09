@@ -72,6 +72,20 @@
             align-self: flex-start;
         }
 
+        &__optionsContainer {
+            background: white;
+        }
+
+        &__line {
+            opacity: 0.1;
+        }
+
+        &__postOptions {
+            width: 100%;
+            align-self: flex-start;
+            font-size: 1.2rem;
+        }
+
         &__options {
             align-self: flex-start;
             font-size: 1.2rem;
@@ -176,7 +190,7 @@
             border-radius: 5px;
         }
 
-        &__modalContainer {
+        &__optionsModal {
             @include flexbox();
             position: fixed;
             top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
@@ -196,7 +210,7 @@
             background-color: black;
             position: relative;
             width: 90%;
-            height: 30%;
+            height: max-content;
             padding: 1em;
             border-radius: 10px;
             z-index: 31;
@@ -231,8 +245,29 @@
             }
         }
 
+        &__optionItem {
+            @include flexbox($justify-content: unset);
+
+            &:hover {
+                cursor: pointer;
+                background: $primaryColor;
+            }
+        }
+
         &__postFieldContainer {
             @include flexbox();
+        }
+
+        &__toastMessageContainer {
+            position: fixed;
+            background: $primaryColor;
+            padding: .6em 1.2em;
+            border-radius: 5em;
+        }
+
+        &__toastMessage {
+            @include flexbox();
+            gap: .5em;
         }
 
         &__create {

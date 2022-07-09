@@ -1,5 +1,6 @@
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
+// const io = require('../socket.js').get();
 
 exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
@@ -9,22 +10,24 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
-    const userPost = new Post({
-        user: _id,
-        post,
-        encodedImage: fileURL,
-        author: id
-    });
+        const userPost = new Post({
+            user: _id,
+            post,
+            encodedImage: fileURL,
+            author: id
+        });
 
-    // save post on the database
-    await userPost.save()
-        .then(() => res.json({ message: 'Successfully posted' }))
-        .catch((err) => console.log('There was an error saving the post. ', err));
-};
+        // save post on the database
+        await userPost.save()
+            .then(() => {
+                res.json({ message: 'Successfully posted' });
+            })
+            .catch((err) => console.log('There was an error saving the post. ', err));
+    };
 
-exports.incrimementLikes = async (req, res) => {
-    const { likes } = req.body;
-    console.log(req.params);
+    exports.incrimementLikes = async (req, res) => {
+        const { likes } = req.body;
+        console.log(req.params);
     console.log(likes);
 
     // find the post and update the stars
@@ -56,7 +59,7 @@ exports.getUserPost = async (req, res) => {
         .populate('user')
         .then((posts) => {
             if (!posts) {
-                res.status(404).json({ message: 'No posts found yet. Follow people to see their posts.' })
+                res.status(404).json({ message: 'No posts found yet. Follow people to see their posts.' });
             }
             res.json({
                 posts,

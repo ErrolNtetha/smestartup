@@ -1,4 +1,4 @@
-import { axiosInstance } from 'config/axiosInstance';
+import { axiosPrivate } from 'config/axiosInstance';
 
 export const fetchProfile = (user) => {
     return {
@@ -13,9 +13,10 @@ export const fetchSuccess = () => {
     };
 };
 
-export const fetchError = () => {
+export const fetchError = (error) => {
     return {
-        type: 'FETCH_ERROR'
+        type: 'FETCH_ERROR',
+        paylaod: error
     };
 };
 
@@ -29,7 +30,7 @@ export const fetchLoader = (loading) => {
 export const getProfile = () => async (dispatch, getState) => {
     console.log('middleware ran');
     console.log(getState());
-    await axiosInstance.get('/profile')
+    await axiosPrivate.get('/profile')
         .then((res) => {
             console.log(res.data);
             dispatch({ type: 'FETCH_PROFILE', payload: res.data });

@@ -1,17 +1,21 @@
 /* eslint-disable operator-linebreak */
 import React, { FC } from 'react';
 import { Avatar } from 'components/avatar';
-import { FiStar, FiMoreHorizontal } from 'react-icons/fi';
+import {
+    FiStar,
+    FiMoreHorizontal,
+    FiEdit3,
+    FiAlertTriangle,
+} from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
 import { useFetchUserId } from 'hoc/useFetchUserId';
+import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { Link } from 'react-router-dom';
-    import { io } from 'socket.io-client';
-    import { NODE_ENV } from 'config/baseURL';
 
     export interface Props {
       name: {
@@ -32,7 +36,7 @@ import { Link } from 'react-router-dom';
     }) => {
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
-        const socket = io(`${NODE_ENV()}`);
+        const [loading, setLoading] = React.useState<boolean | null>(null);
         const userId = useFetchUserId();
 
            const handleLikes = (postId: string) => {
@@ -51,22 +55,21 @@ import { Link } from 'react-router-dom';
         };
 
         const handleDelete = async (postId: string) => {
+            setLoading(true);
             await axiosPrivate.delete(`/feed/${postId}`)
                 .then((res) => {
-                    console.log(res.data);
+                    const { success } = res.data;
+                    console.log(success);
+                    if (success) {
+                        setLoading(false);
+                        setModal(false);
+                    }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err.message);
+                    setLoading(false);
+                });
         };
-
-        React.useEffect(() => {
-                socket.on('connection', (socketid) => {
-                console.log('Front-end successfully connected. ', socketid);
-            });
-
-            socket.emit('post', (sockID: string) => {
-                console.log('The ID is: ', sockID);
-            });
-        }, []);
 
     return (
     <section className='feed__list'>
@@ -81,14 +84,28 @@ import { Link } from 'react-router-dom';
             </div>
             {modal &&
                 (
-                    <Modal>
-                        <section className='feed__options'>
+                    <Modal className='feed__optionsModal'>
+                        <section className='feed__postOptions'>
+                            <span className='feed__optionsContainer'>
+                                <section style={{ textAlign: 'center', fontSize: '1.2rem', width: '100%' }}> Options </section>
+                                <hr className='feed__line' />
+                            </span>
                             {userId === author
-                                ? 'Edit post'
-                                : 'This aint your post'}
+                                ? (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )
+                                : (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiAlertTriangle style={{ marginRight: '.6em' }} /> Report </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )}
                         </section>
                         <section className='feed__btnContainer'>
-                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> Delete </Button>}
+                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
                         </section>
                     </Modal>
             )}

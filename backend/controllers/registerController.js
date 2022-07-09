@@ -6,8 +6,9 @@ const hbs = require('nodemailer-express-handlebars');
 const register_user = async (req, res) => {
    try {
     // store the data coming from the fontend to constants
-    const { firstName, lastName, email, password, occupation, gender, avatarURL } = req.body;
-	console.log(password);
+    const { firstName, lastName, email, password, occupation, gender, avatar } = req.body;
+    console.log('Body object: ', req.body);
+	console.log('Password: ', password);
     // Check if email has already been taken or not
     // then hash the password and save it
 
@@ -16,7 +17,7 @@ const register_user = async (req, res) => {
     await UserInfo.findOne({ email })
         .then(e => {
             if(e) {
-            	res.json({ message: "Email already exist."});
+            	res.json({ success: false, message: 'Email already exist.' });
             	console.log('The email already exist.', e.createdAt);
             } 
   
@@ -32,16 +33,16 @@ const register_user = async (req, res) => {
                     password: hashedPassword,
                     occupation,
                     gender,
-                    avatar: avatarURL
+                    avatar
                 });
 
                 // Send am email to the user
                 // create a transporter for sending mails
                 const transporter = nodemailer.createTransport({
-                    service: 'gmail',
+                    host: 'premium111.web-hosting.com',
                     auth: {
-                        user: process.env.USERNAME,
-                        pass: process.env.PASSWORD
+                        user: process.env.MAIL_USERNAME,
+                        pass: process.env.MAIL_PASSWORD,
                     }
                 });
 
@@ -54,11 +55,10 @@ const register_user = async (req, res) => {
                 }));
 
                 const mailOptions = {
-                    from: 'test-email@gmail.com',
+                    from: 'no-reply@blendot.com',
                     to: email,
                     subject: 'Welcome to Blendot.',
-                    text: `Welcome, ${firstName} ${lastName}! Your username is ${email}.`,
-                    replyTo: email,
+                    text: `Welcome, ${firstName} ${lastName}!`,
                     template: 'index'
                 }
 
@@ -70,13 +70,15 @@ const register_user = async (req, res) => {
 
                 // save to the database
                 userData.save()
-                .then(user => console.log('User saved: ', user))
-                .catch(e => console.log(e))
+                .then((user) => {
+                    res.json({ success: true, user });
+                })
+                .catch((error) => console.error(error));
             }
-        })
+        });
 
    } catch (e) {
-       console.log(e.message);
+       console.log('An error occurred when registration: ', e.message);
    }
 }
 
