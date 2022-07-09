@@ -2,11 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
+const socketIntance = require('./socket.js');
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(app, {
+        cors: {
+            origin: 'http://localhost:3000',
+            methods: ['GET', 'POST']
+        }
+});
 
-const io = require('./socket.js').init(server);
+const io = socketIntance.init(server);
 const loginRoute = require('./routes/user.routes');
 const postRoutes = require('./routes/posts.routes');
 const subsriberRoutes = require('./routes/subscriber.routes');
@@ -34,6 +40,8 @@ io.on('connection', (socket) => {
     // disconnect from server
     socket.on('disconnect', (data) => console.log('User disconnected: ', data));
 });
+
+module.exports = { io };
 
 app.get('/', (req, res, next) => {
     res.send('<h2> Everything works fine. </h2>');

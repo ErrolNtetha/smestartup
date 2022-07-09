@@ -43,13 +43,3 @@ export const axiosRefresh = axios.create({
         'x-refresh-token': localStorage.getItem('refreshToken')
     }
 });
-
-axiosPrivate.interceptors.response.use(
-    (response) => {
-    console.log('Response: ', response);
-},
-(error) => {
-    console.log('An error: ', error);
-    return Promise.reject(error);
-}
-);

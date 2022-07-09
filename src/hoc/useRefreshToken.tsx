@@ -9,8 +9,8 @@ export const useRefreshToken = () => {
             const token = await axiosRefresh.get('/refresh');
             try {
                 setNewAccessToken(token.data.accessToken);
-            } catch (error) {
-                console.log(error);
+            } catch ({ response }) {
+                console.log(response);
             }
         }
         fetchToken();

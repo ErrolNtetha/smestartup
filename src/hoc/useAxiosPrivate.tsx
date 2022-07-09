@@ -14,7 +14,6 @@ export const useAxiosPrivate = () => {
             (response) => response,
             async (error) => {
                 const prevRequest = error?.config;
-                console.log('Previous request: ', prevRequest);
                 console.log(error?.response?.status);
 
                 const statusCode = error?.response?.status;
@@ -24,7 +23,6 @@ export const useAxiosPrivate = () => {
                     // and put in a new one
                     console.log(newToken);
                     prevRequest.headers['x-access-token'] = `Bearer ${newToken}`;
-                    console.log(prevRequest);
                     // axiosPrivate.request(prevRequest);
                     return;
                 }

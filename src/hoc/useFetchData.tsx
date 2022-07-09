@@ -1,11 +1,13 @@
 import React from 'react';
 import { axiosPrivate } from 'config/axiosInstance';
+import { useRefreshToken } from 'hoc/useRefreshToken';
 // import { io } from 'socket.io-client';
 // import { NODE_ENV } from 'config/baseURL';
 
-export const useFetchData = async (url: string) => {
+export const useFetchData = (url: string) => {
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const refreshToken = useRefreshToken();
     // const [error, setError] = React.useState('');
     // const socket = io(`${NODE_ENV()}`);
 
@@ -13,12 +15,19 @@ export const useFetchData = async (url: string) => {
         axiosPrivate.get(url)
         .then((res) => {
             setLoading(false);
-            console.log(res.data);
             setData(res.data);
         })
-        .catch((error) => {
+        .catch(({ response }) => {
+            const { status, config } = response;
+            if (status === 403) {
+                if (refreshToken) {
+                    console.log(refreshToken);
+                    localStorage.setItem('accessToken', `Bearer ${refreshToken}`);
+                    axiosPrivate.request(config);
+                }
+                console.log(config);
+            }
             setLoading(false);
-            console.log(error);
         });
     }, []);
     return { data, loading };

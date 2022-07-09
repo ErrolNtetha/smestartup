@@ -1,5 +1,4 @@
 import React from 'react';
-import { ContactForm } from 'views/contact';
 import { Header } from '../../views/header';
 
 export const Contact = () => {
@@ -7,7 +6,7 @@ export const Contact = () => {
     <>
       <Header />
       <section className='contact__wrapper'>
-        <ContactForm />
+          hello
       </section>
     </>
   );

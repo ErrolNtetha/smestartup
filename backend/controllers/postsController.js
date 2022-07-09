@@ -1,6 +1,6 @@
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
-const io = require('../socket.js').get();
+// const io = require('../socket.js').get();
 
 exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
@@ -61,8 +61,6 @@ exports.getUserPost = async (req, res) => {
             if (!posts) {
                 res.status(404).json({ message: 'No posts found yet. Follow people to see their posts.' });
             }
-
-            io.emit('renderPosts', posts);
             res.json({
                 posts,
             });
