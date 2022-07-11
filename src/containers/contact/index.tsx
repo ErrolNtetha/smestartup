@@ -12,7 +12,6 @@ export const Contact = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/contact')
             .then((res) => {
-                console.log(res.data.users);
                 setUsers(res.data.users);
                 fetchAllUsers();
                 dispatch(fetchUsers(res.data.users));
