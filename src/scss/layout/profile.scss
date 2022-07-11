@@ -1,0 +1,205 @@
+@use '../mixins/' as *;
+@use '../base/color' as *;
+
+.profile {
+    &__profileGrid {
+        @include flexbox();
+    }
+    @include respond-to('mobile') {
+        &__container {
+        }
+
+        &__coverImage {
+            width: 100%;
+            height: 15vh;
+            background: purple;
+        }
+
+        &__details {
+            background: $foregroundColor;
+            border-radius: .2em;
+            margin: .4em 0;
+            padding: 0 .8em;
+            padding-bottom: .4em;
+        }
+
+        &__avatar {
+            @include avatar($width: 70px);
+            border: 3px solid $foregroundColor;
+            margin-top: -2em;
+        }
+    
+        &__personalDetails {
+            @include flexbox();
+            gap: .6em;
+            justify-content: space-between;
+        } 
+
+        &__names {
+            margin: 0;
+            font-size: .9em;
+        }
+
+        &__occupation {
+            margin: 0;
+            font-size: .8em;
+        }   
+
+        &__editProfile {
+            @include flexbox();
+            @include buttonHover($bgColor: $primaryColor, $padding: 0);
+            font-size: 1.2rem;
+            gap: .4em;
+        }
+
+        &__joined {
+            @include flexbox($justify-content: unset);
+            gap: .6em;
+            font-size: .9em;
+        }
+        
+        &__bio {
+            @include fontSize();
+        }
+
+        &__rightSection {
+            display: none;
+        }
+
+        &__wrapper {
+            margin: .6em;
+        }
+
+        &__bodyContainer {
+            background: $foregroundColor;
+            border-radius: .2em;
+            padding: .1em .4em;
+            padding-bottom: .4em;
+        }
+
+        &__loadingContainer, &__errorContainer {
+            @include flexbox();
+            flex-direction: column;
+            height: 60vh;
+            padding: 3em;
+            text-align: center;
+        }
+
+        &__retry {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8em 1.6em);
+        }
+
+        &__tabsContainer {
+            @include flexbox();
+            gap: .8em;
+            background: $primaryColor;
+            margin-top: .6em;
+            border-radius: 2em;
+            padding: .2em .6em;
+        }
+
+        &__tabsContainer > * {
+            flex: 1 1 20%;
+            font-size: .9rem;
+        }
+
+        &__tabPosts, &__tabStarred {
+            padding: .3em;
+            border-radius: 2em;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__postsContainer {
+            margin-top: .6em;
+        }
+
+        &__titleGroup {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__ellipsis {
+            align-self: start;
+            font-size: 1.2rem;
+        }
+
+        &__post {
+            @include fontSize();
+            width: 100%;
+            background-color: $primaryColor;
+            padding: 0.6em;
+            border-radius: 0.4em;
+            margin-bottom: 0.5em;
+        }
+
+        &__postAvatar {
+             @include avatar($width: 50px);
+            border: 1px solid $foregroundColor;
+        }
+
+        &__titleContainer {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__titleChild {
+            @include flexbox($justify-content: unset);
+            width: 100%;
+        }
+
+        &__fullNames {
+            font-size: .9rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__timeAgo {
+            @include fontSize();
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__avatar {
+            @include avatar($width: 160px);
+            margin-top: -3em;
+        }
+
+        &__details {
+            padding: 0 3em;
+        }
+
+        &__coverImage {
+            width: 100%;
+            height: 30vh;
+            background: purple;
+        }
+
+        &__names {
+            margin-top: 0;
+            font-weight: 400;
+            font-size: 2em;
+        }
+
+        &__occupation {
+            font-size: 1.2em;
+        }
+
+        &__joined {
+            font-size: 1.2em;
+        }
+        
+        &__bio {
+            font-size: 1.2em;
+        }
+
+        &__rightSection {
+            display: unset;
+        }
+    }
+}

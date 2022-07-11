@@ -1,2 +1,2 @@
-export const title = 'Meet like-minded entrepreneurs. Start a Joint Venture...';
-export const para = 'Whether you have a business idea and looking for funding, or you are an investor looking for to invest.';
+export const title = 'A community for entrepreneurs. Share your story.';
+export const para = 'Blend the dots, gather with like-minded entrepreneurs and share what is happening ';

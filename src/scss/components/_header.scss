@@ -16,17 +16,24 @@
 
         &__content {
             @include flexbox($justify-content: space-between);
+            align-items: center;
             padding: 0.6em .4em;
             width: 100%;
             background-color: $foregroundColor;
             font-size: 1rem;
-            height: 8vh;
+            height: 7vh;
             box-sizing: border-box;
             // margin: 0 2em;
         }
 
+        &__innerContent {
+            @include flexbox($justify-content: space-between);
+            align-items: center;
+        }
+
         &__logo {
-            width: 7em;
+            width: 5em;
+
         }
 
         &__nav {
@@ -43,7 +50,7 @@
             z-index: 3;
             transform: translateX(0%);
             transition: transform 5ms ease-in-out;
-        }
+        } 
 
         &__profileContainer {
             @include flexbox($justify-content: space-between);
@@ -105,6 +112,9 @@
         }
 
         &__item {
+            display: flex;
+            align-items: center;
+            gap: .8em;
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
@@ -125,9 +135,13 @@
             @include flexbox();
         }
 
+        &__search {
+            display: none;
+        }
+
         &__userIcon {
             color: #fff;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin: 0 .4em;
         }
 
@@ -144,13 +158,17 @@
 
         &__menu-icon {
             font-size: 1.8rem;
-            z-index: 4;
-            margin-right: .4em
+            z-index: 2;
+            margin-right: .2em
         }
     }
 
     @include respond-to('tablet') {
         @include flexbox();
+        
+        &__divider {
+            display: none;
+        }
 
         &__content {
             @include flexbox($justify-content: space-between);
@@ -159,7 +177,7 @@
             // max-width: 20em;
         }
 
-        &__list {
+        &__list, &__item {
             @include flexbox();
             list-style: none;
             text-decoration: none;
@@ -168,14 +186,13 @@
 
         &__item {
             text-decoration: none;
-            padding: 0.6em;
+            padding: 0.4em 0;
             color: #fff;
             font-weight: 500;
-            width: 2em;
         }
 
         &__item:hover {
-            border-bottom: 1px solid #fff;
+            border-bottom: 2px solid #fff;
         }
     }
 
@@ -188,18 +205,57 @@
             padding: 0.4em 4em;
         }
 
-        &__nav {
-            position: unset;
+        &__icon {
+            display: none;
+        }
+
+        &__list {
+            margin-botton: 1em;
+            padding-botton: 1em;
+        }
+
+        &__item {
+            width: max-content;
+            padding-botton: 1em;
+            margin-botton: 3em;
+        }
+
+        &__icon {
+            display: none;
+        }
+        
+        &__searchWrapper {
+            @include flexbox();
+            gap: .8em;
+            border-radius: 20px;
+            padding: .5em 1em;
+            background: #fff;
+        }
+
+        &__search {
+            display: unset;
+        }
+
+        &__searchBar {
             background: none;
+            border: none;
+            outline: none;
+        }
+
+        &__searchIcon {
+            color: black;    
+            font-size: 1.2rem;
+        }
+
+        &__nav {
             display: contents;
-            // width: auto;
             color: #fff;
-            height: auto;
 
             ul {
                 margin: 0;
                 display: flex;
             }
+
             li {
                 padding: 0;
                 width: 6em;
@@ -208,9 +264,16 @@
 
         &__item {
             margin: 0 1em;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
+        &__list {
+            width: 90%;
+        }
+
+        &__userIcon,
+        &__profileContainer,
+        &__close,
         &__item[href='/contact'],
         &__item[href='/faq'] {
             display: none;
@@ -220,6 +283,10 @@
             display: unset;
             border-radius: 25px;
             width: 8em;
+        }
+
+        &__logout {
+            display: none;
         }
 
         &__menu-icon {

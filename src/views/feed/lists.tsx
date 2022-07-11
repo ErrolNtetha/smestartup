@@ -2,46 +2,51 @@ import React from 'react';
 import { PostField } from 'components/postField';
 import { List } from 'components/lists/list';
 import { RootState } from 'store';
+import { Create } from 'components/create';
 import { useSelector } from 'react-redux';
 import { ScaleLoader } from 'react-spinners';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-
-// these are the lists of all posts
-// call the useEffect hook to fetch all posts from the database
+import { useFetchData } from 'hoc/useFetchData';
 
 export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
-  const [posts, setPosts] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const history = useHistory();
+    const response = useFetchData('/feed');
 
-  React.useEffect(() => {
-    axios.get('/feed', {
-      headers: {
-        'x-access-token': localStorage.getItem('token')
-      }
-    })
-      .then((res) => {
-        if (res.data.isLoggedIn === 'false') {
-          // i want to check for the response and if returns false, redirect to login screen
-          history.push('/login');
-          return;
-        }
+    const { posts } = response.data;
 
-        setLoading(false);
-        setPosts(res.data.posts);
-        console.log(res.data.posts);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    interface Props {
+        post: string;
+        encodedImage: string;
+        user: {
+            occupation: string;
+            isVerified: boolean;
+            _id: string;
+        };
+        _id: string;
+        createdAt: Date | number;
+    }
 
-  return (
-    <div>
-      <section className='feed__postFieldContainer'>
+ return (
+    <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
-      </section>
-      { loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section> : posts.map((post) => <List post={post} name={post} key={post._id} date={post.createdAt} id={post._id} />)}
+        { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
+                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
+                    post, encodedImage, user, _id, createdAt
+                }: Props) => (
+              <List
+                post={post}
+                image={encodedImage}
+                isVerified={user.isVerified}
+                name={user.name}
+                key={_id}
+                date={createdAt}
+                id={_id}
+                occupation={user.occupation}
+                author={user._id}
+              />
+              ))}
+        {!toggleState
+        ? <Create />
+        : null}
     </div>
   );
 };

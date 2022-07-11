@@ -1,24 +1,29 @@
-import { Button } from 'components/button';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable operator-linebreak */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { FiX } from 'react-icons/fi';
 
 interface Props {
-  handleToggle: boolean,
-  id: string
+    className: string;
+  children: React.ReactNode;
 }
 
-export const Modal:React.FC<Props> = ({ handleToggle, id }) => {
-  return (
-    <div className='feed__modalContainer'>
-        <section className='feed__modal'>
-          <p> The ID of this post is {id} </p>
+export const Modal:React.FC<Props> = ({ children, className }) => {
+    const [modal, setModal] = React.useState(true);
 
-          <Button className='feed__modal--delete' onClick={() => console.log('delete clicked')}> Delete </Button>
-
-          <section className='feed__modalClose'>
-            <FiX onClick={handleToggle} />
-          </section>
-        </section>
-    </div>
-  );
+    return (
+        <div>
+            {modal
+            ?
+            (
+                <div className={className}>
+                    <section className='feed__modal'>
+                        {children}
+                        <section className='feed__modalClose' onClick={() => setModal(!modal)}> <FiX /> </section>
+                    </section>
+                </div>
+            ) : null}
+        </div>
+    );
 };

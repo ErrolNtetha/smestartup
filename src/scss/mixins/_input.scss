@@ -5,15 +5,10 @@
     outline: none;
     border: $border;
     border-radius: $inputRadius;
-
-    &::placeholder {
-        font-weight: bold;
-    }
 }
 
 @mixin formContainer {
     border-radius: .3em;
     padding: 2em;
     background: #fff;
-  
 }

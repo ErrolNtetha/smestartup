@@ -10,6 +10,7 @@
 
         &__left {
             max-width: 400px;
+            font-size: .8rem;
         }
 
         &__intro {
@@ -18,16 +19,16 @@
 
         &__inputs {
             @include inputField(
-                $padding: 1em,
+                $padding: .6em,
                 $border: none,
                 $inputRadius: 0,
-                $margin: 0.4em 0
+                $margin: 0.3em 0
             );
             width: 100%;
         }
 
         &__button--submit {
-            @include buttonHover($bgColor: $secondaryColor, $padding: 1em);
+            @include buttonHover($bgColor: $secondaryColor, $padding: .6em);
             border-radius: 0;
             margin: 0.4em 0;
             width: 100%;
@@ -38,6 +39,8 @@
             align-items: unset;
             gap: 1em;
             max-width: 400px;
+            font-size: .8rem;
+
 
         }
 
@@ -62,13 +65,14 @@
                 list-style: none;
 
                 li {
-                    margin: .4em 0;
+                    margin: .2em 0;
                     color: $secondaryColor;
 
 
                     a {
                         text-decoration: none;
                         color: blueviolet;
+                        font-size: .8rem;
 
                         &:hover {
                             color: rgba(67, 253, 5, 0.604);
@@ -101,6 +105,10 @@
 
         &__links {
             width: 100%;
+        }
+
+        &__link {
+            font-size: .8rem;
         }
     }
 }

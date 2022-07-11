@@ -4,14 +4,14 @@ function verifyJWT(req, res, next) {
     const token = req.headers['x-access-token'].split(' ')[1];
 
     if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => {
             if (err) {
-                return res.json({
+                return res.status(403).json({
                     isLoggedIn: false,
-                    message: "Aunthetication failed",
+                    message: 'Aunthetication failed',
                 });
             }
- 
+
             // create an empty abject
             req.user = {};
             req.user.id = decoded.id;
@@ -20,7 +20,7 @@ function verifyJWT(req, res, next) {
         });
     }
     else {
-        res.json({ message: 'Invalid token.', isLoggedIn: false });
+        res.status(401).json({ message: 'Invalid token.', isLoggedIn: false });
         console.log('invalid token');
     }
 }

@@ -1,0 +1,35 @@
+name: 'Publish on Netlify: Development'
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  Deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+        # Get the code from the repo
+        - name: Checkout Code
+          uses: actions/checkout@v3
+
+        # Install NodeJS
+        - name: Use Node v16
+          uses: actions/setup-node@v3
+          with: 
+            node-version: '16'
+
+        # Run yarn
+        - run: npm install --location=global yarn
+        - run: yarn install
+        - run: CI='' npm run build
+
+        # Deploy to Netlify
+        - name: Deploy to Netlify
+          uses: netlify/actions/cli@master
+          env: 
+            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          with: 
+            args: deploy --dir=build --alias="mphumeleli" --open --prod

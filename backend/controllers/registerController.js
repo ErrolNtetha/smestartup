@@ -1,26 +1,27 @@
 const UserInfo = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 
-
-const register_user = async (req, res) => { 
+const register_user = async (req, res) => {
    try {
     // store the data coming from the fontend to constants
-    const { firstName, lastName, email, password, file } = req.body;
-	console.log(file);
+    const { firstName, lastName, email, password, occupation, gender, avatar } = req.body;
+    console.log('Body object: ', req.body);
+	console.log('Password: ', password);
     // Check if email has already been taken or not
-    // then hash the password and save it 
+    // then hash the password and save it
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await UserInfo.findOne({ email })
         .then(e => {
             if(e) {
-            	res.json({ message: "Email already exist."});
+            	res.json({ success: false, message: 'Email already exist.' });
             	console.log('The email already exist.', e.createdAt);
             } 
   
-            // if no email exist, add user 
+            // if no email exist, add user
             else {
                 // hash the password before saving
                 const userData = new UserInfo({
@@ -30,42 +31,54 @@ const register_user = async (req, res) => {
                     },
                     email: email.toLowerCase(),
                     password: hashedPassword,
-                    avatar: file
+                    occupation,
+                    gender,
+                    avatar
                 });
 
                 // Send am email to the user
                 // create a transporter for sending mails
                 const transporter = nodemailer.createTransport({
-                    service: 'gmail',
+                    host: 'premium111.web-hosting.com',
                     auth: {
-                        user: 'mphumier@gmail.com',
-                        pass: 'hjjukvbttezjjbyp',
+                        user: process.env.MAIL_USERNAME,
+                        pass: process.env.MAIL_PASSWORD,
                     }
-                }); 
-            
-                const data = {
-                    from: "test-email@gmail.com",
+                });
+
+                transporter.use('compile', hbs({
+                    viewEngine: {
+                        partialsDir: "../views/partials",
+                        layoutsDir: "../views/layouts",
+                    },
+                    viewPath: 'views'
+                }));
+
+                const mailOptions = {
+                    from: 'no-reply@blendot.com',
                     to: email,
                     subject: 'Welcome to Blendot.',
-                    text: `Welcome, ${firstName} ${lastName}! Your username is ${email}.`,
-                    replyTo: email,
+                    text: `Welcome, ${firstName} ${lastName}!`,
+                    template: 'index'
                 }
 
                 // send an email
-                transporter.sendMail(data, (err, info) => {
-                    if(err) console.log('There was error ', err);
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) console.log('There was error ', err);
                     return console.log('Email sent, ', info);
                 });
-                
+
                 // save to the database
                 userData.save()
-                .then(user => console.log('User saved: ', user))
-                .catch(e => console.log(e))
+                .then((user) => {
+                    res.json({ success: true, user });
+                })
+                .catch((error) => console.error(error));
             }
-        })
+        });
 
    } catch (e) {
-       console.log(e.message);
+       console.log('An error occurred when registration: ', e.message);
    }
 }
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title> Welcome </title>
+
+    <style>
+        .container {
+            background: #000;
+            padding: .8em;
+            margin: .8em;
+        }
+
+        .header { 
+            padding: 0 .8em;
+            width: 100%;
+            float: right;
+            text-align: center;
+        }
+
+        .bodyContainer {
+            padding: .8em 1em 0;
+        }
+
+        .bodyContent {
+            font-size: .9rem;
+        }
+
+        .footer {
+            background: #000;
+            font-size: .6rem;
+            text-align: center;
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        li {
+            list-style: none;
+            text-decoration: underline;
+            align-items: center;
+        }
+
+        h4 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'> 
+        <section>
+            <span class='header'>
+                <h3> Blendot </h3>
+            </span>
+            <hr />
+            <section class='bodyContainer'>
+                <h2> Welcome to our space! </h2>
+                <p class='bodyContent'> 
+                    Congratulation! This is the first step. Thank you for subscribing to our newsletter.
+                    You can also login to <a href='https://blendot.com/login'> Blendot </a> and collaborate with like minded
+                    entrepreneurs.
+                </p> 
+            </section>
+            <footer> 
+                <p class='footer'>
+                    This was emailed to {{email}} because you have subscibed to our mailing lists. 
+                </p>
+                <ul>
+                    <li> <a href='blendot.com'> Privacy Policy </a> </li> |
+                    <li> <a href='blendot.com'> Terms of Use </a> </li> |
+                    <li> <a href='blendot.com'> Unsubscribe </a> </li>
+                </ul>
+                <p class='footer'> Copyright © 2000–2022 Blendot, Inc. All Right Reserved. Logos and "Blendot" are registered trademarks of Blendot (Pty) Ltd. </p>
+            </footer>
+        </section> 
+    </div>
+</body>
+</html>

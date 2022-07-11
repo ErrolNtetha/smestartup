@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
 const userPost = new mongoose.Schema({
-	user: { type: String },
-    post: { type: String },
-}, 
+    author: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    post: String,
+    encodedImage: String,
+    stars: { type: Number, default: 0 }
+},
 {
     timestamps: true,
 });

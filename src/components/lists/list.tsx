@@ -1,52 +1,146 @@
+/* eslint-disable operator-linebreak */
 import React, { FC } from 'react';
-import { FiStar, FiMoreHorizontal } from 'react-icons/fi';
+import { Avatar } from 'components/avatar';
+import {
+    FiStar,
+    FiMoreHorizontal,
+    FiEdit3,
+    FiAlertTriangle
+} from 'react-icons/fi';
+import { MdVerified } from 'react-icons/md';
 import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
+import { useFetchUserId } from 'hoc/useFetchUserId';
+import { SyncLoader } from 'react-spinners';
+import { axiosPrivate } from 'config/axiosInstance';
+import { Link } from 'react-router-dom';
+    import { io } from 'socket.io-client';
+    import { NODE_ENV } from 'config/baseURL';
 
-interface Props {
-  name: {
-    firstName: string;
-  };
-  post: string;
-  id: string;
-  date: Date;
-}
+    export interface Props {
+      name: {
+        firstName: string;
+        lastName: string;
+      };
+      post: string;
+      id: string;
+      date: Date;
+      image: string;
+      author: string,
+      isVerified: boolean;
+      occupation: string;
+    }
 
-export const List:FC<Props> = ({
- name, post, id, date
-}) => {
-  const [modal, setModal] = React.useState(false);
+    export const List:FC<Props> = ({
+     name, post, id, date, image, isVerified, occupation, author
+    }) => {
+      const [modal, setModal] = React.useState(false);
+        const [likes, setLikes] = React.useState(0);
+        const [loading, setLoading] = React.useState<boolean | null>(null);
+        const socket = io(`${NODE_ENV()}`);
+        const userId = useFetchUserId();
 
-  const handleToggle = () => {
-    setModal(!modal);
-  };
+           const handleLikes = (postId: string) => {
+            console.log('clicked');
+            setLikes(1);
 
-  return (
+            const formData = {
+                likes,
+            };
+
+            axiosPrivate.put(`/feed/${postId}`, formData)
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => console.log(err));
+        };
+
+        const handleDelete = async (postId: string) => {
+            setLoading(true);
+            await axiosPrivate.delete(`/feed/${postId}`)
+                .then((res) => {
+                    const { success } = res.data;
+                    console.log(success);
+                    if (success) {
+                        setLoading(false);
+                        setModal(false);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                    setLoading(false);
+                });
+        };
+
+        React.useEffect(() => {
+                socket.on('connection', (socketid) => {
+                console.log('Front-end successfully connected. ', socketid);
+            });
+
+            socket.emit('post', (sockID: string) => {
+                console.log('The ID is: ', sockID);
+            });
+        }, []);
+
+    return (
     <section className='feed__list'>
-      <span className='feed__firstRow'>
-        <div className='feed__profile'>
-          <img src={avatar} alt='me' className='feed__profileImage' />
-          <span>
-            <h4 className='feed__name'> {name.user} </h4>
-            <p className='feed__title'> Works at Company  </p>
-            <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
-          </span>
-        </div>
-        {modal && <Modal handleToggle={handleToggle} id={id} />}
+        <span className='feed__firstRow'>
+            <div className='feed__profile'>
+                <Avatar className='feed__profileImage' avatar={avatar} />
+              <span>
+                <h4 className='feed__name'> {name.firstName} {name.lastName} {isVerified && <MdVerified /> } </h4>
+                <p className='feed__title'> {occupation} </p>
+                <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
+              </span>
+            </div>
+            {modal &&
+                (
+                    <Modal className='feed__optionsModal'>
+                        <section className='feed__postOptions'>
+                            <span className='feed__optionsContainer'>
+                                <section style={{ textAlign: 'center', fontSize: '1.2rem', width: '100%' }}> Options </section>
+                                <hr className='feed__line' />
+                            </span>
+                            {userId === author
+                                ? (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )
+                                : (
+                                    <span>
+                                        <section className='feed__optionItem'> <FiAlertTriangle style={{ marginRight: '.6em' }} /> Report </section>
+                                        <hr className='feed__line' />
+                                    </span>
+                            )}
+                        </section>
+                        <section className='feed__btnContainer'>
+                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
+                        </section>
+                    </Modal>
+            )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
-      </span>
+        </span>
 
-      <p className='feed__listContent'> {post.post} </p>
+      <Link to={`/feed/p/${id}`} className='feed__listContent'> {post} </Link>
+    {!image ? null
+    :
+    (
+        <section>
+          <img src={image} alt='jfds' className='feed__postImage' />
+        </section>
+    )}
       <hr style={{ opacity: '0.1' }} />
 
-      <section className='feed__LastRow'>
+    <section className='feed__LastRow'>
         <span className='feed__stats'>
           <span className='feed__comments'>  </span>
-          <Button className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> 1 </Button>
+          <Button onClick={handleLikes} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
         </span>
-      </section>
+    </section>
     </section>
   );
 };

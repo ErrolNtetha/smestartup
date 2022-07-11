@@ -1,70 +1,112 @@
-import { Button } from 'components/button';
-import React, { useState, useRef } from 'react';
-import { FiImage, FiVideo } from 'react-icons/fi';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+import React, { useEffect, useState, useRef } from 'react';
+import { FiImage, FiPlus, FiVideo } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import { axiosPrivate } from 'config/axiosInstance';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
+import { Button } from 'components/button';
+import { io } from 'socket.io-client';
+import { NODE_ENV } from 'config/baseURL';
 
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
-const [images, setImages] = useState<string[]>([]);
+const [images, setImages] = useState('');
+const [fileURL, setFileURL] = useState('');
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
+const socket = io(`${NODE_ENV()}`, { transports: ['polling'] });
 
 const formData = {
-  post,
+    post,
+    fileURL,
 };
 
 const handleSubmit = async () => {
-  await axios.post('http://localhost:5000/feed', formData, {
-    headers: {
-      'x-access-token': localStorage.getItem('token')
-    }
-  })
-  .then((res) => {
-    if (!post) {
-      console.log('Field is empty. Write something at least!');
-      return;
-    }
+    await axiosPrivate.post('/feed', formData)
+    .then((res) => {
+        console.log(formData);
+        socket.emit('sendPost', post);
 
-    setLoading(true);
-    console.log(loading);
-    console.log('fetching data');
+        if (!post) {
+            console.log('Field is empty. Write something at least!');
+            return;
+        }
 
-    if (res.statusText === 'OK') {
-      console.log('response arrived');
-      dispatch(toggleFieldOff());
-      setLoading(false);
-    }
+        if (res.statusText !== 'OK') {
+            setLoading(true);
+        }
 
-    console.log(res);
-    console.log(images);
+        if (res.statusText === 'OK') {
+            dispatch(toggleFieldOff());
+            setLoading(false);
+        }
   })
   .catch((err) => console.error(err));
 };
 
-// console.log(images[2]);
+React.useEffect(() => {
+    socket.on('receivePost', (data) => {
+        console.log(data);
+    });
+}, [socket]);
+
+useEffect(() => {
+    const reader = new FileReader();
+
+    if (images) {
+        reader.onload = (e) => {
+        const { result } = e.target;
+        console.log(result);
+        if (result) {
+            setFileURL(result);
+        }
+    };
+        reader.readAsDataURL(images);
+    }
+
+    return () => {
+            if (reader && reader.readyState === 1) {
+                reader.abort();
+            }
+    };
+}, [images]);
 
   return (
     <section className='feed__postField'>
-        <textarea name='post' className='feed__textarea' rows={6} placeholder='Share what is happening today...' onChange={(e) => setPost(e.target.value)} />
-
+        <section>
+        <textarea
+          name='post'
+          className='feed__textarea'
+          rows={6}
+          placeholder='Share what is happening...'
+          onChange={(e) => setPost(e.target.value)}
+        />
+        <section>
+            { fileURL
+             && (
+                    <section className='feed__imageContainer'>
+                        <img src={fileURL} alt='screenshot' className='feed__imagePreview' style={{ width: '80px' }} />
+                        <span className='feed__addImage' onClick={() => imageInput.current.click()}>
+                            <FiPlus className='feed__plus' />
+                        </span>
+                    </section>
+                )}
+        </section>
         <section className='feed__btnGroup'>
           <section className='feed__left'>
-            <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
+              <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
             <input
               ref={imageInput}
               hidden
               accept='image/*'
               multiple
-              onChange={(e) => setImages(e.target.files)}
+              onChange={(e) => setImages(e.target.files[0])}
               type='file'
             />
-            <section>
-              {images.map((image) => console.log(image.name))}
-            </section>
 
             <FiVideo className='feed__video' />
           </section>
@@ -72,6 +114,7 @@ const handleSubmit = async () => {
             <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
             <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? 'loading' : 'Post'} </Button>
           </section>
+        </section>
         </section>
     </section>
   );

@@ -2,20 +2,21 @@ const mongoose = require('mongoose');
 
 const userData = new mongoose.Schema({
     name: {
-        firstName: { type: String },
+        firstName: String,
         lastName: String,
     },
-    email: { type: String },
-    password: { type: String },
+    email: String,
+    gender: String,
+    password: String,
     avatar: Object,
     isVerified: { type: Boolean, default: false },
-    isPremium: {  type: Boolean, default: false},
-    type: {
-        role: String, // Admin or regular user - Used for later
-        user: { type: String }, // Investor or Business or Advisor
-    },
+    isPremium: { type: Boolean, default: false },
+    bio: String,
+    occupation: String,
+    employmentStatus: String,
+    type: { type: String, default: 'personal' },
 }, { timestamps: true });
 
 const User = mongoose.model('User', userData);
 
-module.exports = User; 
+module.exports = User;

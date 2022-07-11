@@ -1,0 +1,42 @@
+name: Cypress Workflow
+
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+
+jobs:
+  cypress-run:
+      runs-on: ubuntu-latest
+
+      steps:
+        # Get the code from the repo
+        - name: Checkout Code
+          uses: actions/checkout@v2
+
+        # Install NodeJS
+        - name: Use Node v16
+          uses: actions/setup-node@v3
+          with: 
+            node-version: '16'
+
+        # Run yarn
+        - name: Run Yarn
+        - uses: actions/checkout@v2
+        - uses: borales/actions-yarn@v3.0.0
+          with:
+            cmd: install # will run `yarn install` command
+        - uses: borales/actions-yarn@v3.0.0
+          with:
+            cmd: CI="" run build # will run `yarn build` command
+        - uses: borales/actions-yarn@v3.0.0
+          with:
+            cmd: run test # will run `yarn test` command
+    
+        # Build the app with Cypress
+        - name: Cypress run
+          uses: cypress-io/github-action@v4
+          with: 
+            build: yarn run build
+            start: yarn start

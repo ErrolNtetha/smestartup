@@ -17,7 +17,7 @@ const handleClick = () => {
 
   return (
     <div className='feed__create'>
-      <Button className='feed__create__post' onClick={handleClick}> Create Post <FiEdit3 /> </Button>
+      <Button className='feed__create__post' onClick={handleClick}> New Post <FiEdit3 /> </Button>
     </div>
   );
 };
