@@ -4,6 +4,8 @@
 
 This is an official repository for [Blendot](https://blendot.com).
 
+![Login Screenshot](https://github.com/ErrolNtetha/smestartup/blob/dba7080930df5b7a837398625fc0901d6d4ec47d/src/assets/Screenshot_20220619-004603_Samsung%20Internet.png?raw=true)
+![Menu Screenshot](https://github.com/ErrolNtetha/smestartup/blob/dba7080930df5b7a837398625fc0901d6d4ec47d/src/assets/Screenshot_20220619-004647_Samsung%20Internet.png?raw=true)
 # Overview
 This project, **Blendot**, aims to be the platform for everyone who is in business or has potential to become an entrepreneur. Whether you are just getting started in business, already have an established business or perhaps you might be an investor.
 
