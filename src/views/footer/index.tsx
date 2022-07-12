@@ -18,21 +18,22 @@ export const Footer = () => {
         email
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.ChangeEvent) => {
         e.preventDefault();
-        console.log(formData);
-        console.log('loading');
         setLoading(true);
 
         await axios.post(`${NODE_ENV()}`, formData)
             .then((res) => {
-                if (res.statusText === 'OK') {
-                    console.log('sent');
+                if (res.status === 250) {
                     setResponse(res.data.message);
                     setLoading(false);
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+                setResponse('There was a problem subscribing. Please try again later.');
+            });
     };
 
   return (
