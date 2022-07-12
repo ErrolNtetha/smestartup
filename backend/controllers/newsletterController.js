@@ -1,7 +1,6 @@
-const SubscribersSchema = require('../models/newsletter.model');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
-
+const SubscribersSchema = require('../models/newsletter.model');
 require('dotenv').config();
 
 exports.getSubscriber = async (req, res) => {
@@ -29,20 +28,20 @@ exports.getSubscriber = async (req, res) => {
             subject: 'You have successfully subscribed!',
             template: 'index',
             context: {
-                name: fullNames,
+                fullNames,
                 lastName,
                 email
             }
         };
 
                 // send an email
-        transporter.sendMail(mailOptions, (err, info) => {
-            if (err) {
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
                 res.json({ message: 'There was an error subscribing.' });
-                console.log('There was an error ', err.message);
+                console.log('There was an error ', error.message);
                 return;
             }
-            console.log('Email sent, ', info.response);
+            res.json({ success: true, message: info.response });
     });
 
     const newSubscriber = new SubscribersSchema({
@@ -53,9 +52,10 @@ exports.getSubscriber = async (req, res) => {
 
     await newSubscriber.save()
     .then(() => {
-        res.json({ message: 'Sucessfully subscribed to receive news' });
+        res.status(250).json({ success: true, message: 'You have sucessfully subscribed to receive newsletters!' });
     })
-    .catch((err) => {
-        console.log(err);
-    })
+    .catch((error) => {
+        res.staus(500).json({ success: false, error });
+        console.log(error);
+    });
 };
