@@ -7,76 +7,102 @@
 
     <style>
         .container {
-            background: #000;
+            background: #181818;
             padding: .8em;
-            margin: .8em;
+            border-radius: .5em;
+            color: #fff;
         }
 
         .header { 
-            padding: 0 .8em;
             width: 100%;
-            float: right;
+        }
+
+        .header.a {
             text-align: center;
+        }
+
+        .logo {
+            width: 20%;
+        }
+
+        h2 {
+            display: grid;
+            place-items: center;
+        } 
+
+        .bodyContent {
+            font-size: .8rem;
+            color: #fff;
         }
 
         .bodyContainer {
-            padding: .8em 1em 0;
-        }
-
-        .bodyContent {
-            font-size: .9rem;
+            
         }
 
         .footer {
-            background: #000;
             font-size: .6rem;
             text-align: center;
+            padding: 1em 0;
         }
         
-        ul {
+        .linksContainer {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .divider {
+            opacity: 0.2;
         }
         
         li {
             list-style: none;
             text-decoration: underline;
-            align-items: center;
+            margin: .4em;
+            font-size: .6rem;
         }
 
         h4 {
             color: white;
         }
+
+        .footerContainer {
+        }
     </style>
 </head>
-<body>
-    <div class='container'> 
-        <section>
-            <span class='header'>
-                <h3> Blendot </h3>
-            </span>
-            <hr />
-            <section class='bodyContainer'>
-                <h2> Welcome to our space! </h2>
-                <p class='bodyContent'> 
-                    Congratulation! This is the first step. Thank you for subscribing to our newsletter.
-                    You can also login to <a href='https://blendot.com/login'> Blendot </a> and collaborate with like minded
-                    entrepreneurs.
-                </p> 
-            </section>
-            <footer> 
-                <p class='footer'>
-                    This was emailed to {{email}} because you have subscibed to our mailing lists. 
-                </p>
-                <ul>
-                    <li> <a href='blendot.com'> Privacy Policy </a> </li> |
-                    <li> <a href='blendot.com'> Terms of Use </a> </li> |
-                    <li> <a href='blendot.com'> Unsubscribe </a> </li>
-                </ul>
-                <p class='footer'> Copyright © 2000–2022 Blendot, Inc. All Right Reserved. Logos and "Blendot" are registered trademarks of Blendot (Pty) Ltd. </p>
-            </footer>
-        </section> 
-    </div>
-</body>
+    <body class='container'>
+        <span class='header'>
+            <a href='blendot.com'>
+                <img src='../views/assets/logo.png' alt='Blendot official logo' class='logo' />
+            </a>
+        </span>
+        <hr class='divider' />
+        <section class='bodyContainer'>
+            <h2> Welcome! </h2>
+
+            <p class='bodyContent'>Hi {{fullNames}} {{lastName}},</p>
+            <p class='bodyContent'> 
+            Thank you for subscribing to our newsletters. The website is still under-development and we will let you know when we are back in business.
+            All the news regarding the progress of our website, official announcements, new features and much more will be emailed to you.
+            <br />
+            <br />
+            If you wish to unsubscribe at anytime, you can click <a href='blendot.com/newsletters/unsubscribe'>here</a>.
+            </p> 
+        </section>
+        <hr class='divider' />
+        <footer class='footerContainer'> 
+            <p class='footer'>
+                This was emailed to {{email}} because you have subscribed to our mailing lists. 
+            </p>
+            <ul class='linksContainer'>
+                <li> <a href='blendot.com'> Privacy Policy </a> </li>
+                <li> <a href='blendot.com'> Terms of Use </a> </li>
+                <li> <a href='blendot.com'> Unsubscribe </a> </li>
+            </ul>
+            <p class='footer'> Copyright © 2022 Blendot. All Rights Reserved. Logos and "Blendot" are registered trademarks of Blendot (Pty) Ltd. </p>
+        </footer>
+    </body>
 </html>

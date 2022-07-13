@@ -26,6 +26,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
+app.use(express.static('./views/assets'));
 app.use(loginRoute);
 app.use(postRoutes);
 app.use(subsriberRoutes);

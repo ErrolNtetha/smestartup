@@ -1,2 +1,2 @@
-export const title = 'A community for entrepreneurs. Share your story.';
-export const para = 'Blend the dots, gather with like-minded entrepreneurs and share what is happening ';
+export const title = 'An open community built by entrepreneurs, for entrepreneurs.';
+export const para = 'Connect, share and find inspirations from the world of like-minded entrepreneurs like you.';

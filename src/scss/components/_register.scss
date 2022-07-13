@@ -12,7 +12,7 @@
     @include respond-to('mobile') {
         &__container {
             height: min-content;
-            max-width: 80%;
+            max-width: 90%;
             background-color: #fff;
             color: #000;
             padding: 2em 2em;
