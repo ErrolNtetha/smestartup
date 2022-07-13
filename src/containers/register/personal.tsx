@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
@@ -48,6 +49,9 @@ return (
             firstName: '',
             lastName: '',
             location: '',
+            company: '',
+            qualification: '',
+            school: '',
             email: '',
             gender: '',
             password: '',
@@ -55,6 +59,7 @@ return (
             avatar: ''
         }}
       onSubmit={async (values) => {
+            console.log(values);
           await axiosPublic.post('/register', values)
               .then((res) => {
                   const { success } = res.data;
@@ -63,7 +68,8 @@ return (
                       console.log(res.data);
                       return;
                   }
-                    history.push('/login');
+                  history.push('/login');
+                  console.log(values);
                 })
               .catch((error) => {
                 console.error(error.message);
@@ -132,13 +138,34 @@ return (
                         {title.map((item: string[]) => <option key={item}> {item} </option>)}
                     </Field>
                 </label>
-                {props.values.occupation !== 'Unemployed'
+                {props.values.occupation === ''
+                    ? null
+                    : props.values.occupation === 'Student'
+                    ? (
+                        <>
+                        <label>
+                            Qualification Name:
+                            <br />
+                            <span className='register__selectContainer'>
+                            <Field name='qualification' className='register__emailField' placeholder='E.g.  Diploma in Business Administration' />
+                            </span>
+                        </label>
+                        <label>
+                            School Name:
+                            <br />
+                            <span className='register__selectContainer'>
+                            <Field name='school' className='register__emailField' placeholder='E.g. Durban University of Technology' />
+                            </span>
+                        </label>
+                        </>
+                    )
+                    : props.values.occupation !== ('Unemployed' || 'Other')
                     ? (
                     <label>
                     Company Name:
                     <br />
                     <span className='register__selectContainer'>
-                        <Field name='occupation' className='register__emailField' placeholder='E.g. Blendot Inc.' />
+                        <Field name='company' className='register__emailField' placeholder='E.g. Blendot Inc.' />
                     </span>
                     </label>
                     )
@@ -172,7 +199,7 @@ return (
                 {props.touched.email && <p className='register__errorMessage'> {props.errors.email} </p>}
                 </label>
                 <label>
-                    Password:
+                    New Password:
                     <Field
                       name='password'
                       type='password'
