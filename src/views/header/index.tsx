@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
-    const { userData } = useSelector((state: RootState) => state.userProfile);
+    const { userData } = useSelector((state: RootState) => state?.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
     const { name, email, avatar } = userData;
     // const [user, setUser] = useState<IState['user']>([]);
