@@ -16,7 +16,7 @@
         &__container {
             background-color: #fff;
             height: min-content;
-            width: 80%;
+            width: 90%;
             border-radius: $radius;
             padding: .6em 2em;
         }
@@ -105,7 +105,7 @@
         &__container {
             border-radius: 0.6em;
             max-width: 400px;
-            height: 70%;
+            height: max-content;
         }
 
         &__label {
