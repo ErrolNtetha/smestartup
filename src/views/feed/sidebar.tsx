@@ -1,14 +1,22 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Avatar } from 'components/avatar';
+// import { useHistory } from 'react-router-dom';
+// import { Avatar } from 'components/avatar';
 import { Button } from 'components/button';
+import {
+    FiHome,
+    FiLogOut,
+    FiMessageSquare,
+    FiPlus,
+    FiStar,
+    FiUser
+} from 'react-icons/fi';
 
 export const Sidebar = () => {
-    const history = useHistory();
+    // const history = useHistory();
 
   return (
       <div className='feed__sidebar'>
-          <div className='feed__profileCover'> </div>
+          {/* <div className='feed__profileCover'> </div>
           <section className='feed__profileWrapper'>
               <span className='feed__cardNames'>
                 <Avatar className='feed__profileAvatar' />
@@ -21,7 +29,21 @@ export const Sidebar = () => {
             <section className='feed__toProfile'>
                 <Button onClick={() => history.push('/profile')} className='feed__fullProfile'> My Profile </Button>
             </section>
-          </section>
+        </section> */}
+
+        <section className='feed__navContainer'>
+            <section className='feed__dashboardContainer'>
+                <h6> DASHBOARD </h6>
+                <ul className='feed__sidebarLinks'>
+                <li> <FiHome /> Newsfeed </li>
+                <li> <FiMessageSquare /> Messages </li>
+                <li> <FiUser /> Profile </li>
+                <li> <FiStar /> Starred </li>
+                <li> <FiPlus /> New Post  </li>
+                </ul>
+                <Button className='feed__fullProfile'> <FiLogOut /> Logout </Button>
+            </section>
+        </section>
       </div>
   );
 };
