@@ -11,6 +11,7 @@ import { Contact } from '../containers/contact';
 import { Profile } from '../containers/profile';
 import { Login } from '../containers/login';
 import { Register } from '../containers/register';
+import { Suppliers } from '../containers/suppliers';
 import { Feed } from '../containers/feed';
 import { Private } from './privateRoute';
 
@@ -26,8 +27,9 @@ export const Main: React.FC = () => {
                 <Route path='/profile' exact component={Profile} />
                 <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
-                <Route path='/faq' exact component={FAQ} />
                 <Route exact path='/feed/p/:id' component={Post} />
+                <Route exact path='/suppliers' component={Suppliers} />
+                <Route path='/faq' exact component={FAQ} />
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
