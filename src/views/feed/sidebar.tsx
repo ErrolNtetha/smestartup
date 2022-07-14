@@ -1,15 +1,15 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { Avatar } from 'components/avatar';
-import { Button } from 'components/button';
+// import { Button } from 'components/button';
 import {
     FiHome,
-    FiLogOut,
     FiMessageSquare,
     FiPlus,
+    FiSearch,
     FiStar,
-    FiUser
 } from 'react-icons/fi';
+import { Avatar } from 'components/avatar';
 
 export const Sidebar = () => {
     // const history = useHistory();
@@ -33,15 +33,21 @@ export const Sidebar = () => {
 
         <section className='feed__navContainer'>
             <section className='feed__dashboardContainer'>
-                <h6> DASHBOARD </h6>
+                <h6> dashboard </h6>
                 <ul className='feed__sidebarLinks'>
-                <li> <FiHome /> Newsfeed </li>
-                <li> <FiMessageSquare /> Messages </li>
-                <li> <FiUser /> Profile </li>
-                <li> <FiStar /> Starred </li>
-                <li> <FiPlus /> New Post  </li>
+                    <li> <FiHome /> Newsfeed </li>
+                    <li> <FiMessageSquare /> Messages </li>
+                    <li> <FiStar /> Starred </li>
+                    <li> <Avatar className='feed__sidebarAvatar' avatar='' /> Profile </li>
+                    <li> <FiPlus /> New Post  </li>
                 </ul>
-                <Button className='feed__fullProfile'> <FiLogOut /> Logout </Button>
+                {/* <Button className='feed__fullProfile'> <FiLogOut /> Logout </Button> */}
+            </section>
+            <section className='feed__dashboardContainer'>
+                <h6> Company </h6>
+                <ul className='feed__sidebarLinks'>
+                    <li> <Link to='/suppliers'> <FiSearch /> Find Suppliers </Link> </li>
+                </ul>
             </section>
         </section>
       </div>
