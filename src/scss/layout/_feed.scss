@@ -398,6 +398,7 @@
 
         &__sidebar {
             padding: .1em;
+            background: none;
         }
         
         &__sidebarLinks {
@@ -411,7 +412,7 @@
             padding: .6em;
 
             &:hover {
-                background: $primaryColor;
+                background: $foregroundColor;
                 cursor: pointer;
                 border-radius: $radius;
 
