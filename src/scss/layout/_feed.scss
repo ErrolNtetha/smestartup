@@ -126,7 +126,7 @@
         &__sidebar,
         &__followers {
             display: none;
-        }
+        } 
 
         &__postFieldWrapper {
             @include flexbox();
@@ -391,6 +391,44 @@
             z-index: 2;
         }
 
+        &__navContainer {
+            padding: 0;
+            margin: .8em 0;;
+        }
+
+        &__sidebar {
+            padding: .1em;
+        }
+        
+        &__sidebarLinks {
+            list-style: none;
+            padding: 0;
+        }
+
+        &__sidebarLinks li {
+            @include flexbox($justify-content: unset);
+            gap: .6em;
+            padding: .6em;
+
+            &:hover {
+                background: $primaryColor;
+                cursor: pointer;
+                border-radius: $radius;
+
+            }
+        }
+
+        &__dashboardContainer {
+            padding: 0 .4em;
+        }
+
+        &__dashboardContainer h6 {
+            font-size: .9rem;
+            padding: 0;
+            margin: .8em;
+            opacity: 0.2;
+        }
+
         &__followGroup {
             @include flexbox();
 
@@ -398,6 +436,7 @@
                 background: $foregroundColor;
             }
         }
+
 
         &__followBtn {
             @include buttonHover($bgColor: $secondaryColor, $padding: .8em .8em);
@@ -445,7 +484,7 @@
         }
 
         &__fullProfile {
-            @include buttonHover($bgColor: $primaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
+            @include buttonHover($bgColor: $secondaryColor, $padding: .5em .9em, $margin: .2em 0);
             width: 100%;
         }
 
