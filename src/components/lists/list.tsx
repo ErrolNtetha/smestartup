@@ -15,9 +15,10 @@ import { formatDistance } from 'date-fns';
 import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
-import { Link } from 'react-router-dom';
-    import { io } from 'socket.io-client';
-    import { NODE_ENV } from 'config/baseURL';
+// import { Link } from 'react-router-dom';
+import { findLinks } from 'helpers/findLinks';
+import { io } from 'socket.io-client';
+import { NODE_ENV } from 'config/baseURL';
 
     export interface Props {
       name: {
@@ -43,7 +44,6 @@ import { Link } from 'react-router-dom';
         const userId = useFetchUserId();
 
            const handleLikes = (postId: string) => {
-            console.log('clicked');
             setLikes(1);
 
             const formData = {
@@ -62,7 +62,6 @@ import { Link } from 'react-router-dom';
             await axiosPrivate.delete(`/feed/${postId}`)
                 .then((res) => {
                     const { success } = res.data;
-                    console.log(success);
                     if (success) {
                         setLoading(false);
                         setModal(false);
@@ -125,7 +124,18 @@ import { Link } from 'react-router-dom';
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
 
-      <Link to={`/feed/p/${id}`} className='feed__listContent'> {post} </Link>
+            { findLinks(post) ?
+                (
+                    <p className='feed__listContent'>
+                        {/* console.log(findLinksAndReplace(post, '****'))}
+                        {findLinksAndReplace(post, findLinks(post).forEach((link) => {
+                            console.log('This is the link: ', link);
+                            return <a target='_blank' rel='noreferrer' href={link}>{link}</a>;
+                        })) */}
+                        {post}
+                    </p>
+                )
+                : <p className='feed__listContent'> {post} </p> }
     {!image ? null
     :
     (
