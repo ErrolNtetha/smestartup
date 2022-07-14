@@ -20,10 +20,9 @@ export const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
-    const { userData } = useSelector((state: RootState) => state?.userProfile);
+    const { userData } = useSelector((state: RootState) => state.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
-    const { name, email, avatar } = userData;
-    // const [user, setUser] = useState<IState['user']>([]);
+    console.log(userData);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -58,10 +57,10 @@ export const Header: React.FC = () => {
                                     { loggedIn
                                     ? (
                                     <Link to='/profile' className='header__profile'>
-                                    <img src={!avatar ? blendotDefault : avatar} alt='my profile avatar' className='header__profileImage' />
+                                    <img src={blendotDefault} alt='my profile avatar' className='header__profileImage' />
                                     <span>
-                                        <h4 className='header__name'> {name.firstName} {name.lastName} </h4>
-                                        <p className='header__title'> {email} </p>
+                                        <h4 className='header__name'> User Data </h4>
+                                        <p className='header__title'> *** </p>
                                         {/* <p className='header__recent'> 32 mins ago </p> */}
                                     </span>
                                     </Link>
