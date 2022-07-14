@@ -93,8 +93,8 @@
 
         &__listContent {
             @include fontSize();
-            margin-bottom: 0.1em;
-            line-height: 1;
+            margin-bottom: 0.6em;
+            line-height: 15px;
             text-decoration: none;
             color: #fff;
         }
