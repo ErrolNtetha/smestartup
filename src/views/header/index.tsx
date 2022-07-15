@@ -3,19 +3,24 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
     FiMenu,
-    FiMessageCircle,
     FiX
 } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { fetchAllUsers } from 'store/middlewares/fetchUsers';
+import { fetchUsers } from 'store/actions/fetchUsers';
 import { RootState } from 'store';
 import loggout from 'store/actions/loggout';
 import blendotDefault from 'assets/blendot.png';
 import { Search } from 'components/search';
+import { Avatar } from 'components/avatar';
 import blendot from '../../assets/blendot1.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
 
 export const Header: React.FC = () => {
+    const [users, setUsers] = useState(null);
+    const [searchWord, setSearchWord] = useState('');
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -41,6 +46,18 @@ export const Header: React.FC = () => {
         } else setIsOpen(false);
     }, [innerWidth]);
 
+    useEffect(() => {
+        axios.get('http://localhost:5000/contact')
+            .then((res) => {
+                setUsers(res.data.users);
+                console.log(res.data.users);
+                fetchAllUsers();
+                dispatch(fetchUsers(res.data.users));
+            })
+            .catch((err) => {
+                console.log('There was an error. ', err.message);
+            });
+    }, [searchWord]);
     return (
         <div className='header'>
             <header className='header__content'>
@@ -90,12 +107,23 @@ export const Header: React.FC = () => {
                 <span className='header__BtnGroup'>
                     { loggedIn
                         ? (
-                            <section>
-                            <Link className='header__userIcon' to='/messsages'> <FiMessageCircle /> </Link>
-                            <span>
-                                <Search />
-                            </span>
-                            </section>
+                            <>
+                                <span>
+                                    <Search placeholder='Search' searchKey={(e) => setSearchWord(e.target.value)}>
+                                        {!users ? null : users.filter((term: any) => {
+                                            return searchWord === '' ? null : term.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) ? term : null;
+                                        }).map((user: any) => {
+                                            return (
+                                                <section className='header__searchResult' key={user._id}>
+                                                    <p style={{ margin: '0' }} key={user._id}> {user.name.firstName} {user.name.lastName} </p>
+                                                    <p style={{ opacity: '0.5', margin: '0' }}> {user.occupation} </p>
+                                                </section>
+                                            );
+                                        })}
+                                    </Search>
+                                </span>
+                                <Link className='header__userIcon' to='/messsages'> <Avatar avatar={blendot} className='header__userAvatar' /> </Link>
+                            </>
                         )
                     : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
                 </span>
