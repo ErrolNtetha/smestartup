@@ -142,7 +142,7 @@
         &__userIcon {
             color: #fff;
             font-size: 1.4rem;
-            margin: 0 .4em;
+            margin: 0 .4em; 
         }
 
         &__button--signin {
@@ -241,6 +241,11 @@
         &__searchIcon {
             color: black;    
             font-size: 1.2rem;
+
+            &:hover {
+                cursor: pointer;
+                background: $foregroundColor;
+            }
         }
 
         &__nav {
