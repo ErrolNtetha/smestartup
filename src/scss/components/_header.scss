@@ -222,30 +222,58 @@
         
         &__searchWrapper {
             @include flexbox();
-            gap: .8em;
-            border-radius: 20px;
-            padding: .5em 1em;
-            background: #fff;
+            width: 100%;
+            background: transparent;
+            padding: .4em 0;
         }
 
         &__search {
-            display: unset;
+            @include flexbox();
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            display: block;
+            background: #fff;
+            border-radius: 20px;
+            width: 300px;
+            padding: .1em 0;
+        }
+
+        &__searchResult {
+            position: absolute;
+            background: inherit;
+            color: #000;
+            padding-bottom: .4em;
+            width: 100%;
+            padding: .1em .8em;
+            border-radius: 20px;
+            margin-top: .3em;
         }
 
         &__searchBar {
-            background: none;
+            background: transparent;
             border: none;
             outline: none;
+            width: inherit;
+            padding-right: 1.2em;
+        }
+
+        &__resultDivider {
+            opacity: 0.05;
         }
 
         &__searchIcon {
-            color: black;    
-            font-size: 1.2rem;
+            color: #000;    
+            font-size: 1.4rem;
+            margin: 0 .4em;
 
             &:hover {
                 cursor: pointer;
-                background: $foregroundColor;
             }
+        }
+
+        &__userAvatar {
+            width: 80px;
         }
 
         &__nav {
