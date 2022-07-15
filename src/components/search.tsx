@@ -1,13 +1,20 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 
-export const Search = () => {
+interface Props {
+    placeholder: string;
+    children: React.ReactNode;
+    searchKey: React.ChangeEventHandler<HTMLInputElement> | undefined;
+}
+
+export const Search = ({ placeholder, children, searchKey }: Props) => {
     return (
-        <div className='header__search'>
+        <section className='header__search'>
             <section className='header__searchWrapper'>
-                <input type='text' placeholder='Search' className='header__searchBar' />
                 <FiSearch className='header__searchIcon' />
+                <input type='text' placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
             </section>
-        </div>
+            {children}
+        </section>
     );
 };
