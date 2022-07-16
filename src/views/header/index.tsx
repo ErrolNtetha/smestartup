@@ -14,6 +14,7 @@ import loggout from 'store/actions/loggout';
 import blendotDefault from 'assets/blendot.png';
 import { Search } from 'components/search';
 import { Avatar } from 'components/avatar';
+import { Users } from 'components/users';
 import blendot from '../../assets/blendot1.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
@@ -111,13 +112,20 @@ export const Header: React.FC = () => {
                                 <span>
                                     <Search placeholder='Search' searchKey={(e) => setSearchWord(e.target.value)}>
                                         {!users ? null : users.filter((term: any) => {
-                                            return searchWord === '' ? null : term.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) ? term : null;
+                                            return searchWord === ''
+                                                ? null
+                                                : term.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) || term.name.lastName.toLowerCase().includes(searchWord.toLowerCase())
+                                                ? term
+                                                : null;
                                         }).map((user: any) => {
                                             return (
-                                                <section className='header__searchResult' key={user._id}>
-                                                    <p style={{ margin: '0' }} key={user._id}> {user.name.firstName} {user.name.lastName} </p>
-                                                    <p style={{ opacity: '0.5', margin: '0' }}> {user.occupation} </p>
-                                                </section>
+                                                <Users
+                                                  name={user.name}
+                                                  occupation={user.occupation}
+                                                  avatar={user.avatar}
+                                                  userId={user._id}
+                                                  verified={user.isVerified}
+                                                />
                                             );
                                         })}
                                     </Search>
