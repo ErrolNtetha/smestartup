@@ -26,9 +26,8 @@ export const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
-    const { userData } = useSelector((state: RootState) => state.userProfile);
+    //    const { userData } = useSelector((state: RootState) => state.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
-    console.log(userData);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -51,7 +50,6 @@ export const Header: React.FC = () => {
         axios.get('http://localhost:5000/contact')
             .then((res) => {
                 setUsers(res.data.users);
-                console.log(res.data.users);
                 fetchAllUsers();
                 dispatch(fetchUsers(res.data.users));
             })
@@ -110,12 +108,12 @@ export const Header: React.FC = () => {
                         ? (
                             <>
                                 <span>
-                                    <Search placeholder='Search' searchKey={(e) => setSearchWord(e.target.value)}>
-                                        {!users ? null : users.filter((term: any) => {
+                                    <Search placeholder='Search people...' clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}> {users && console.log(users)}
+                                        {!users ? null : users.filter((user: any) => {
                                             return searchWord === ''
                                                 ? null
-                                                : term.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) || term.name.lastName.toLowerCase().includes(searchWord.toLowerCase())
-                                                ? term
+                                                : user.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) || user.name.lastName.toLowerCase().includes(searchWord.toLowerCase())
+                                                ? user
                                                 : null;
                                         }).map((user: any) => {
                                             return (
@@ -130,7 +128,7 @@ export const Header: React.FC = () => {
                                         })}
                                     </Search>
                                 </span>
-                                <Link className='header__userIcon' to='/messsages'> <Avatar avatar={blendot} className='header__userAvatar' /> </Link>
+                                <Link to='/profile'> <Avatar avatar='' className='header__userAvatar' /> </Link>
                             </>
                         )
                     : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
