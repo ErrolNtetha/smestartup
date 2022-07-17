@@ -3,26 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
     FiMenu,
-    FiMessageCircle,
     FiX
 } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { fetchAllUsers } from 'store/middlewares/fetchUsers';
+import { fetchUsers } from 'store/actions/fetchUsers';
 import { RootState } from 'store';
 import loggout from 'store/actions/loggout';
 import blendotDefault from 'assets/blendot.png';
 import { Search } from 'components/search';
+import { Avatar } from 'components/avatar';
+import { Users } from 'components/users';
 import blendot from '../../assets/blendot1.png';
 import { nav } from './utils';
 import { Button } from '../../components/button';
 
 export const Header: React.FC = () => {
+    const [users, setUsers] = useState(null);
+    const [searchWord, setSearchWord] = useState('');
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
-    const { userData } = useSelector((state: RootState) => state.userProfile);
+    //    const { userData } = useSelector((state: RootState) => state.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
-    console.log(userData);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -41,6 +46,17 @@ export const Header: React.FC = () => {
         } else setIsOpen(false);
     }, [innerWidth]);
 
+    useEffect(() => {
+        axios.get('http://localhost:5000/contact')
+            .then((res) => {
+                setUsers(res.data.users);
+                fetchAllUsers();
+                dispatch(fetchUsers(res.data.users));
+            })
+            .catch((err) => {
+                console.log('There was an error. ', err.message);
+            });
+    }, [searchWord]);
     return (
         <div className='header'>
             <header className='header__content'>
@@ -90,12 +106,30 @@ export const Header: React.FC = () => {
                 <span className='header__BtnGroup'>
                     { loggedIn
                         ? (
-                            <section>
-                            <Link className='header__userIcon' to='/messsages'> <FiMessageCircle /> </Link>
-                            <span>
-                                <Search />
-                            </span>
-                            </section>
+                            <>
+                                <span>
+                                    <Search placeholder='Search people...' clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}> {users && console.log(users)}
+                                        {!users ? null : users.filter((user: any) => {
+                                            return searchWord === ''
+                                                ? null
+                                                : user.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) || user.name.lastName.toLowerCase().includes(searchWord.toLowerCase())
+                                                ? user
+                                                : null;
+                                        }).map((user: any) => {
+                                            return (
+                                                <Users
+                                                  name={user.name}
+                                                  occupation={user.occupation}
+                                                  avatar={user.avatar}
+                                                  userId={user._id}
+                                                  verified={user.isVerified}
+                                                />
+                                            );
+                                        })}
+                                    </Search>
+                                </span>
+                                <Link to='/profile'> <Avatar avatar='' className='header__userAvatar' /> </Link>
+                            </>
                         )
                     : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
                 </span>
