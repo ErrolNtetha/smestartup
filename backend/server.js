@@ -17,6 +17,7 @@ const loginRoute = require('./routes/user.routes');
 const postRoutes = require('./routes/posts.routes');
 const subsriberRoutes = require('./routes/subscriber.routes');
 const verify = require('./routes/verify.route');
+const suppliers = require('./routes/suppliers.routes');
 
 // Middlewares
 require('dotenv').config();
@@ -25,14 +26,12 @@ require('dotenv').config();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
-
 app.use(express.static('./views/assets'));
 app.use(loginRoute);
 app.use(postRoutes);
 app.use(subsriberRoutes);
 app.use(verify);
-
-const name = 'Mphumeleli Ntetha';
+app.use(suppliers);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
@@ -47,10 +46,8 @@ io.on('connection', (socket) => {
     socket.on('disconnect', (data) => console.log('User disconnected: ', data));
 });
 
-exports = name;
-
 app.get('/', (req, res, next) => {
-    res.send('<h2> Everything works fine. </h2>');
+    res.send('<h2> Server running successfully. </h2>');
 });
 
 // Connecting to the database;
