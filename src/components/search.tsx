@@ -5,7 +5,7 @@ interface Props {
     placeholder: string;
     children: React.ReactNode;
     searchKey: React.ChangeEventHandler<HTMLInputElement> | undefined;
-    clearSearchKey: string;
+    clearSearchKey: React.MouseEventHandler<SVGElement> | undefined;
     searchTerm: string;
 }
 
@@ -17,13 +17,12 @@ export const Search = ({
     searchTerm
 }: Props) => {
     const hasResult = children[2];
-
     return (
         <section className='header__search'>
             <section className='header__searchContainer'>
                 <section className='header__searchWrapper'>
                     <FiSearch className='header__searchIcon' />
-                    <input type='text' name='search' placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
+                    <input type='text' name='search' value={searchTerm} placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
                     {searchTerm && <FiX onClick={clearSearchKey} className='header__clearSearchKey' />}
                 </section>
                 { (hasResult && hasResult.length >= 1) && (
