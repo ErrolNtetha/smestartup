@@ -139,6 +139,46 @@
             display: none;
         }
 
+        &__userContainer {
+            @include flexbox($justify-content: unset);
+        }
+
+        &__userFullNames {
+            @include flexbox($justify-content: unset);
+            margin: 0;
+        }
+
+        &__groupDetails {
+            margin-left: .4em;
+        }
+
+        &__userOccupation {
+            margin: 0;
+            font-size: .9rem;
+            opacity: 0.5;
+        }
+
+        &__isVerified {
+            margin-left: .2em;
+            color: blue;
+        }
+
+        &__userAvatarResult {
+            @include avatar($width: 40px);
+        }
+
+        &__userAvatar {
+            @include avatar($width: 30px);
+        }
+
+        &__userIcon1 {
+            font-size: 1.5rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         &__userIcon {
             color: #fff;
             font-size: 1.4rem;
@@ -203,6 +243,7 @@
 
         &__content {
             padding: 0.4em 4em;
+            position: relative;
         }
 
         &__icon {
@@ -219,6 +260,27 @@
             padding-botton: 1em;
             margin-botton: 3em;
         }
+
+        &__seachIcon {
+            display: none;
+        }
+
+        &__searchResultContainer {
+            position: absolute;
+            margin-top: .2em;
+            background: #fff;
+            border-radius: inherit;
+            width: inherit;
+            margin-top: .2em;
+            padding-top: 1em;
+        }
+
+        &__searchContainer {
+            position: relative;
+            background: #fff;
+            border-radius: 20px;
+            width: 300px;
+        }
         
         &__searchWrapper {
             @include flexbox();
@@ -229,26 +291,33 @@
 
         &__search {
             @include flexbox();
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            display: block;
-            background: #fff;
-            border-radius: 20px;
-            width: 300px;
-            padding: .1em 0;
         }
 
         &__searchResult {
-            position: absolute;
-            background: inherit;
             color: #000;
             padding-bottom: .4em;
             width: 100%;
-            padding: .1em .8em;
-            border-radius: 20px;
-            margin-top: .3em;
+            margin-top: .1em;
             height: max-content;
+            text-decoration: none;
+
+            &:hover {
+                background: $foregroundColor;
+            }
+        }
+
+        &__clearSearchKey {
+            font-size: 1.3rem;
+            color: #000;
+            margin-right: .4em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__userContainer {
+            padding: 0 .8em;
         }
 
         &__searchBar {
@@ -260,7 +329,7 @@
         }
 
         &__resultDivider {
-            opacity: 0.05;
+            opacity: 0.08;
         }
 
         &__searchIcon {
@@ -274,7 +343,8 @@
         }
 
         &__userAvatar {
-            width: 80px;
+            width: 40px;
+            margin-left: 1em;
         }
 
         &__nav {
