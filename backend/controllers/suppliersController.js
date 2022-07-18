@@ -16,11 +16,18 @@ exports.getSuppliers = async (req, res) => {
 };
 
 exports.createSupplier = async (req, res) => {
-    const { name, about } = req.body;
+    const {
+        name,
+        about,
+        address,
+        storeId
+    } = req.body;
 
     const newSupplier = new Suppliers({
         name,
-        about
+        about,
+        address,
+        storeId
     });
 
     await newSupplier.save()
