@@ -46,7 +46,7 @@ export const Sidebar = () => {
             <section className='feed__dashboardContainer'>
                 <h6> Company </h6>
                 <ul className='feed__sidebarLinks'>
-                    <li> <Link to='/suppliers'> <FiSearch /> Find Suppliers </Link> </li>
+                    <li> <Link to='/suppliers'> <FiSearch /> Suppliers </Link> </li>
                 </ul>
             </section>
         </section>
