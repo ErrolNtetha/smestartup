@@ -108,7 +108,7 @@ export const Header: React.FC = () => {
                         ? (
                             <>
                                 <span>
-                                    <Search placeholder='Search people...' clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}> {users && console.log(users)}
+                                    <Search placeholder='Search people...' searchWord={searchWord} clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}> {users && console.log(users)}
                                         {!users ? null : users.filter((user: any) => {
                                             return searchWord === ''
                                                 ? null
