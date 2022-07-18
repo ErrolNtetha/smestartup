@@ -1,0 +1,25 @@
+@use '../mixins/' as *;
+@use '../breakpoints/' as *;
+@use '../base/' as *;
+
+.supplier {
+    margin-top: .9em;
+
+    @include respond-to('laptop') {
+        &__container {
+            @include flexbox();
+            gap: 1em;
+        }
+
+        &__filterContainer {
+            width: 15%;
+            padding: 1em;
+            background: $foregroundColor;
+            border-radius: $radius;
+        }
+
+        &__resultContainer {
+            background: $foregroundColor;
+        }
+    } 
+}
