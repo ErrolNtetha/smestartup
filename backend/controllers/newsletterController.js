@@ -3,6 +3,20 @@ const hbs = require('nodemailer-express-handlebars');
 const SubscribersSchema = require('../models/newsletter.model');
 require('dotenv').config();
 
+exports.getSubscribers = async (req, res) => {
+    await SubscribersSchema.find()
+        .then((subscribers) => res.status(200).json({ success: true, subscribers }))
+        .catch((error) => res.status(500).json({ error: error.message }));
+};
+
+exports.deleteSubscriber = async (req, res) => {
+    const { email } = req.query;
+
+    await SubscribersSchema.findOneAndRemove({ email })
+        .then(() => res.status(200).json({ success: true, message: 'You have successfully unsubscribed from our mailing list.' }))
+        .catch((error) => res.status(500).json({ error: error.message }));
+};
+
 exports.getSubscriber = async (req, res) => {
     const { fullNames, lastName, email } = req.body;
 
@@ -56,6 +70,5 @@ exports.getSubscriber = async (req, res) => {
     })
     .catch((error) => {
         res.staus(500).json({ success: false, error });
-        console.log(error);
     });
 };

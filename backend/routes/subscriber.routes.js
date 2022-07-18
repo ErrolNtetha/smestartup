@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const newSubscriber = require('../controllers/newsletterController');
+const subscribers = require('../controllers/newsletterController');
 
-router.post('/', newSubscriber.getSubscriber);
+router.route('/')
+    .get(subscribers.getSubscribers)
+    .post(subscribers.getSubscriber);
+
+// Delete subscriber
+router.route('/api/v1/unsubscribe').delete(subscribers.deleteSubscriber);
 
 module.exports = router;
