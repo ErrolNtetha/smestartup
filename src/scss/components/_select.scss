@@ -1,0 +1,64 @@
+@use '../base/color' as *;
+@use '../base/' as *;
+@use '../mixins/_flexbox.scss' as *;
+@use '../mixins/_respond.scss' as *;
+
+.select {
+    @include flexbox($justify-content: unset);
+    flex-direction: column;
+    border-radius: 20px;
+    max-height: 70vh;
+    overflow: scroll;
+
+    @include respond-to('mobile') {
+        background: $foregroundColor;
+        width: 80%;
+
+        &:hover {
+            cursor: pointer;
+        }
+        
+        &__selected {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+            padding: 0 .8em;
+
+            &__icon {
+                font-size: 1.2rem;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &__options {
+            width: 100%;
+            height: max-content;
+
+            p {
+                padding: .6em .8em;
+                margin: 0;
+            }
+
+            p:hover {
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            &__optionsDivider {
+                opacity: 0.05;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+
+    @include respond-to('tablet') {
+    }
+
+    @include respond-to('laptop') {
+    }
+
+    @include respond-to('deskop') {
+    }
+}
