@@ -1,4 +1,5 @@
 const Suppliers = require('../models/suppliers.model');
+// const geocoder = require('../utils/geocode');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -16,11 +17,12 @@ exports.getSuppliers = async (req, res) => {
 };
 
 exports.createSupplier = async (req, res) => {
-    const { name, about } = req.body;
+    const { name, about, address } = req.body;
 
-    const newSupplier = new Suppliers({
+        const newSupplier = new Suppliers({
         name,
-        about
+        about,
+        address
     });
 
     await newSupplier.save()
@@ -29,10 +31,8 @@ exports.createSupplier = async (req, res) => {
 };
 
 exports.deleteSupplier = async (req, res) => {
-    const { id } = req.params;
-
-    await Suppliers.findByIdAndRemove({ _id: id })
-        .then(() => res.status(200).json({ success: true, message: 'Supplier deleted.' }))
+    await Suppliers.deleteMany({})
+        .then(() => res.status(200).json({ success: true, message: 'Suppliers deleted.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
