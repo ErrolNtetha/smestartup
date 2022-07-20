@@ -1,5 +1,4 @@
 export const sectors = [
-    { id: 1, name: 'Choose sector' },
     { id: 2, name: 'Arts & Entertainment' },
     { id: 3, name: 'Autos & Vehicles' },
     { id: 4, name: 'Beauty & Fitness' },
@@ -10,7 +9,7 @@ export const sectors = [
     { id: 9, name: 'Food & Drink' },
     { id: 10, name: 'Games' },
     { id: 11, name: 'Health' },
-    { id: 12, name: 'Hobbies & Leasure' },
+    { id: 12, name: 'Hobbies & Leisure' },
     { id: 13, name: 'Home & Garden' },
     { id: 14, name: 'Internet & Telecom' },
     { id: 15, name: 'Jobs & Education' },
