@@ -3,23 +3,81 @@
 @use '../base/' as *;
 
 .supplier {
-    margin-top: .9em;
+    margin: .6em;
 
-    @include respond-to('laptop') {
-        &__container {
+    @include respond-to('mobile') {
+        &__filterContainer {
             @include flexbox();
-            gap: 1em;
+            align-items: unset;
+            flex-direction: column;
         }
 
-        &__filterContainer {
-            width: 15%;
-            padding: 1em;
+        &__filterTitle {
+            opacity: 0.6;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        &__titleDivider {
+            opacity: 0.1;
+            margin: .8em 0;
+        }
+
+        &__locationInputs {
+            @include flexbox();
+            flex: 50% 1 1;
+
+            &__location {
+                @include flexbox();
+                gap: .8em;
+
+                &__city, &__zip {
+                    @include inputField($padding: .5em 1em, $border: none, $inputRadius: 20px);
+                    background: $primaryColor;
+                    color: #fff;
+                    font-weight: bold;
+                    margin: .6rem 0;
+                }
+            }
+        }
+
+        &__resultContainer {
+            padding: .6em;
             background: $foregroundColor;
             border-radius: $radius;
         }
 
-        &__resultContainer {
+        &__search--button {
+            @include buttonHover($bgColor: $primaryColor, $padding: .5em);
+            width: 100%;
+            margin: .6em 0;
+        }
+
+        &__buttonContainer {
+            @include flexbox();
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__container {
+            @include flexbox();
+            align-items: unset;
+            gap: 1em;
+            height: 30%;
+        }
+
+        &__filterContainer, &__previewContainer {
+            width: 20%;
             background: $foregroundColor;
+            padding: 1em;
+            border-radius: $radius;
+            height: 40%;
+        }
+
+        &__resultContainer {
+            width: 50%;
+            background: $foregroundColor;
+            height: max-content;
         }
     } 
 }

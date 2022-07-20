@@ -4,25 +4,31 @@
 @use '../mixins/_respond.scss' as *;
 
 .select {
-    @include flexbox($justify-content: unset);
-    flex-direction: column;
-    border-radius: 20px;
-    max-height: 70vh;
-    overflow: scroll;
-
     @include respond-to('mobile') {
-        background: $foregroundColor;
+        @include flexbox($justify-content: unset);
+        flex-direction: column;
+        border-radius: 20px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+        background-color: red;
         width: 80%;
+        display: none;
+        position: relative;
+        z-index: 5;
 
         &:hover {
             cursor: pointer;
         }
-        
+
+        &__selected p {
+            margin: 0;
+        }
+     
         &__selected {
             @include flexbox($justify-content: space-between);
             width: 100%;
-            padding: 0 .8em;
+            padding: .5em .8em;
 
+            
             &__icon {
                 font-size: 1.2rem;
 
@@ -35,6 +41,9 @@
         &__options {
             width: 100%;
             height: max-content;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border: 0 0 50px 50px;
 
             p {
                 padding: .6em .8em;
@@ -43,6 +52,8 @@
 
             p:hover {
                 background: rgba(0, 0, 0, 0.3);
+                transform: scaleX(1.02);
+                transition: transform .500s ease-in-out;
             }
 
             &__optionsDivider {
@@ -57,8 +68,26 @@
     }
 
     @include respond-to('laptop') {
+        width: 100%;
+        display: unset;
+        background: $primaryColor;
+        box-shadow: none;
+        height: max-content;
+        transition: height 500ms ease-in-out;
+
+        &__options {
+            height: 70vh;
+            margin-top: .2em;
+            overflow-y: auto;
+            background: $primaryColor;
+            position: absolute;
+            width: inherit;
+            border: .8px solid rgba(255, 255, 255, 0.05);
+            transition: height 500ms ease-in-out;
+            border-radius: 20px;
+        }
     }
 
-    @include respond-to('deskop') {
+    @include respond-to('desktop') {
     }
 }
