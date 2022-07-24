@@ -16,6 +16,8 @@ export const Intro = () => {
         _id
     } = userData;
 
+    console.log(userData);
+
     return (
         <>
             <section className='profile__coverImage' />
