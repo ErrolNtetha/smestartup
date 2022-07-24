@@ -8,10 +8,8 @@ export const useFetchPosts = () => {
 
     useEffect(() => {
         const controller = new AbortController();
-        axiosPrivate.get('/p/posts', {
-        })
+        axiosPrivate.get('/p/posts')
             .then((res) => {
-                console.log(res.data);
                 console.log(res.data?.posts);
                 setPosts(res.data?.posts);
                 setLoading(false);
