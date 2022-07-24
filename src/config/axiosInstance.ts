@@ -13,19 +13,6 @@ export const axiosRegister = axios.create({
     timeout
 });
 
-axiosRegister.interceptors.request.use((config) => {
-    const avatarObj = config.data.avatar;
-    console.log(config.data);
-
-    const reader = new FileReader();
-    reader.readAsDataURL(avatarObj);
-    reader.onload = () => {
-        const dataOb = JSON.parse(config.data);
-        dataOb.avatar = reader.result;
-    };
-    return config;
-});
-
 export const axiosPrivate = axios.create({
     baseURL: NODE_ENV(),
     timeout,

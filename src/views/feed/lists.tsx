@@ -12,17 +12,22 @@ export const Lists = () => {
     const response = useFetchData('/feed');
 
     const { posts } = response.data;
+    console.log('Posts: ', posts);
 
     interface Props {
         post: string;
         encodedImage: string;
         user: {
+            name: {
+                firstName: string;
+                lastName: string;
+            }
             occupation: string;
             isVerified: boolean;
             _id: string;
         };
         _id: string;
-        createdAt: Date | number;
+        createdAt: Date;
     }
 
  return (
@@ -35,13 +40,13 @@ export const Lists = () => {
               <List
                 post={post}
                 image={encodedImage}
-                isVerified={user.isVerified}
-                name={user.name}
+                isVerified={user?.isVerified}
+                name={user?.name}
                 key={_id}
                 date={createdAt}
                 id={_id}
-                occupation={user.occupation}
-                author={user._id}
+                occupation={user?.occupation}
+                author={user?._id}
               />
               ))}
         {!toggleState

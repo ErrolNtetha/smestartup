@@ -89,7 +89,7 @@ import { NODE_ENV } from 'config/baseURL';
             <div className='feed__profile'>
                 <Avatar className='feed__profileImage' avatar={avatar} />
               <span>
-                <h4 className='feed__name'> {name.firstName} {name.lastName} {isVerified && <MdVerified /> } </h4>
+                <h4 className='feed__name'> {name?.firstName} {name?.lastName} {isVerified && <MdVerified /> } </h4>
                 <p className='feed__title'> {occupation} </p>
                 <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
               </span>

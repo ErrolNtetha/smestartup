@@ -26,7 +26,7 @@ export const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const dispatch = useDispatch();
-    //    const { userData } = useSelector((state: RootState) => state.userProfile);
+    const { userData } = useSelector((state: RootState) => state.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
 
     const handleToggle = () => {
@@ -57,6 +57,7 @@ export const Header: React.FC = () => {
                 console.log('There was an error. ', err.message);
             });
     }, [searchWord]);
+    console.log(userData);
     return (
         <div className='header'>
             <header className='header__content'>
@@ -75,7 +76,7 @@ export const Header: React.FC = () => {
                                     <Link to='/profile' className='header__profile'>
                                     <img src={blendotDefault} alt='my profile avatar' className='header__profileImage' />
                                     <span>
-                                        <h4 className='header__name'> User Data </h4>
+                                        <h4 className='header__name'> {console.log(userData)} </h4>
                                         <p className='header__title'> *** </p>
                                         {/* <p className='header__recent'> 32 mins ago </p> */}
                                     </span>
