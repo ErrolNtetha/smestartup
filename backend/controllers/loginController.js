@@ -7,6 +7,7 @@ const validateLogin = async (req, res) => {
     // catch the user from the front end fields
     const user_email = req.body.email;
     const user_password = req.body.password;
+    console.log(user_password);
 
     // Check on the database if we have the details
     // the user entered on login

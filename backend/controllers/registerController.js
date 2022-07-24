@@ -4,22 +4,31 @@ const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 
 const register_user = async (req, res) => {
+const {
+        firstName,
+        lastName,
+        email,
+        password,
+        occupation,
+        gender,
+        avatar
+    } = req.body;
+
+    console.log(req.body);
+
    try {
     // store the data coming from the fontend to constants
-    const { firstName, lastName, email, password, occupation, gender, avatar } = req.body;
-    console.log('Body object: ', req.body);
-	console.log('Password: ', password);
     // Check if email has already been taken or not
     // then hash the password and save it
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await UserInfo.findOne({ email })
-        .then(e => {
-            if(e) {
+        .then((user) => {
+            if(user) {
             	res.json({ success: false, message: 'Email already exist.' });
-            	console.log('The email already exist.', e.createdAt);
-            } 
+            	console.log('The email already exist.', user.createdAt);
+            }
   
             // if no email exist, add user
             else {
@@ -60,7 +69,7 @@ const register_user = async (req, res) => {
                     subject: 'Welcome to Blendot.',
                     text: `Welcome, ${firstName} ${lastName}!`,
                     template: 'index'
-                }
+                };
 
                 // send an email
                 transporter.sendMail(mailOptions, (err, info) => {
@@ -76,10 +85,10 @@ const register_user = async (req, res) => {
                 .catch((error) => console.error(error));
             }
         });
-
-   } catch (e) {
-       console.log('An error occurred when registration: ', e.message);
+   } catch (error) {
+       console.log('An error occurred when registering: ', error.message);
+       res.status(500).json({ error: error.message })
    }
-}
+};
 
 module.exports = register_user;

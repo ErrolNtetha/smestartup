@@ -12,13 +12,12 @@ export const Filter = () => {
     const [selected, setSelected] = useState('');
     // const element = useRef(null);
 
-    console.log(selected);
     return (
         <section className='supplier__filterContainer'>
-            <section className='supplier__filterTitle'> Search Filter </section>
-            <hr className='supplier__titleDivider' />
+            <section className='supplier__filterContainer__innerContainer'>
             <Select
-              title={!selected ? 'Filter by:' : selected}
+              title={!selected ? 'Choose sector:' : selected}
+              className='supplier__selected'
             >
                 <section className='select__options'>
                     {sectors.map((sector) => {
@@ -33,12 +32,15 @@ export const Filter = () => {
             </Select>
             <section className='supplier__locationInputs'>
                 <span className='supplier__locationInputs__location'>
-                    <input className='supplier__locationInputs__location__city' placeholder='City' type='text' />
+                    <span>
+                        <input className='supplier__locationInputs__location__city' placeholder='City' type='text' />
+                    </span>
                     <input className='supplier__locationInputs__location__zip' placeholder='ZIP Code' type='text' />
                 </span>
             </section>
             <section className='supplier__buttonContainer'>
                 <Button className='supplier__search--button'> Search </Button>
+            </section>
             </section>
         </section>
     );

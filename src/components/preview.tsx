@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 
 interface Props {
-    image: string | Blob;
+    image: Blob;
     className: string;
 }
 
 export const Preview = ({ image, className }: Props) => {
-    const [preview, setPreview] = useState(null);
+    const [preview, setPreview] = useState<string | ArrayBuffer>('');
     const reader = new FileReader();
 
-    reader.readAsDataURL(image);
+    console.log(image);
+
     reader.onload = () => {
+        reader.readAsDataURL(image);
+        console.log(reader);
+        if (reader.result) {
             setPreview(reader.result);
+            console.log(reader.result);
+        }
     };
 
-    return (
-        <div>
-            <img src={preview} alt='upload preview' className={className} />
-        </div>
-    );
+    return <img src={preview} alt='upload preview' className={className} />;
 };

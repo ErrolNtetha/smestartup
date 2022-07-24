@@ -3,7 +3,7 @@ import axios from 'axios';
 import { fetchAllUsers } from 'store/middlewares/fetchUsers';
 import { fetchUsers } from 'store/actions/fetchUsers';
 import { useDispatch, connect } from 'react-redux';
-import { Header } from '../../views/header';
+// import { Header } from '../../views/header';
 
 export const Contact = () => {
     const [users, setUsers] = useState(null);
@@ -23,7 +23,6 @@ export const Contact = () => {
 
   return (
     <section>
-      <Header />
       <div>
         <h4> Users </h4>
         <section>

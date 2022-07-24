@@ -6,14 +6,15 @@ import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
 interface Props {
     title: string;
+    className: string;
     children: React.ReactChild;
 }
 
-export const Select = ({ title, children }: Props) => {
+export const Select = ({ title, className, children }: Props) => {
     const [open, setOpen] = useState(false);
     return (
-        <section className='select' onClick={() => setOpen(!open)}>
-            <section className='select__selected' custom-data='true'>
+        <section className={className} onClick={() => setOpen(!open)}>
+            <section className='select__selected'>
                 <p> {title} </p>
                 {open
                     ? <FiChevronUp className='select__selected__icon' />
