@@ -4,16 +4,23 @@ import { axiosPrivate } from 'config/axiosInstance';
 export const useFetchData = (url: string) => {
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState('');
 
     React.useEffect(() => {
-        axiosPrivate.get(url)
-        .then((res) => {
-            setData(res.data);
-            setLoading(false);
-            console.log(res.data);
-        })
-        .catch((err) => console.log('Something went wrong: ', err));
+        const fetchData = async () => {
+           await axiosPrivate.get(url)
+                .then((res) => {
+                setData(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log('Something went wrong: ', err);
+                setLoading(false);
+                setError(err);
+            });
+        };
+            fetchData();
     }, []);
 
-    return { data, loading };
+    return { data, error, loading };
 };

@@ -165,6 +165,7 @@
 
         &__userAvatarResult {
             @include avatar($width: 40px);
+            border: .8px solid $foregroundColor;
         }
 
         &__userAvatar {
@@ -343,9 +344,10 @@
         }
 
         &__userAvatar {
-            width: 40px;
+            @include avatar($width: 30px);
             margin-left: 1em;
-        }
+
+        } 
 
         &__nav {
             display: contents;
