@@ -51,7 +51,7 @@
         }
 
         &__profileImage {
-            width: 50px;
+            @include avatar($width: 50px);
             border-radius: 100%;
             border: 1px solid rgb(82, 82, 82);
         }

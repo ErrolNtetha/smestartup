@@ -5,15 +5,17 @@ exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
     // and pass variable to the save method
     const { id, email } = req.user;
+    console.log(email);
 
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
+    console.log(_id);
 
     const userPost = new Post({
         user: _id,
         post,
         encodedImage: fileURL,
-        author: id
+        author: _id
     });
 
     // save post on the database

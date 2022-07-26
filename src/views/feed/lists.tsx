@@ -25,6 +25,7 @@ export const Lists = () => {
             occupation: string;
             isVerified: boolean;
             _id: string;
+            avatar: string;
         };
         _id: string;
         createdAt: Date;
@@ -46,6 +47,7 @@ export const Lists = () => {
                 date={createdAt}
                 id={_id}
                 occupation={user?.occupation}
+                avatar={user?.avatar}
                 author={user?._id}
               />
               ))}

@@ -25,11 +25,10 @@ exports.getSubscriber = async (req, res) => {
         const mailOptions = {
             from: 'no-reply@blendot.com',
             to: email,
-            subject: 'You have successfully subscribed!',
+            subject: 'Happy to have you on board. - Blendot',
             template: 'index',
             context: {
                 fullNames,
-                lastName,
                 email
             }
         };

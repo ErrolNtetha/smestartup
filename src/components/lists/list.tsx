@@ -8,7 +8,7 @@ import {
     FiAlertTriangle
 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
-import avatar from 'assets/avatar.png';
+// import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
@@ -32,10 +32,11 @@ import { NODE_ENV } from 'config/baseURL';
       author: string,
       isVerified: boolean;
       occupation: string;
+      avatar: string;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, date, image, isVerified, occupation, author
+     name, post, id, date, image, isVerified, occupation, author, avatar
     }) => {
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
