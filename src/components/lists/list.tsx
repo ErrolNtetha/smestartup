@@ -48,7 +48,7 @@ import { NODE_ENV } from 'config/baseURL';
             setLikes(1);
 
             const formData = {
-                likes,
+                postId,
             };
 
             axiosPrivate.put(`/feed/${postId}`, formData)
@@ -149,7 +149,7 @@ import { NODE_ENV } from 'config/baseURL';
     <section className='feed__LastRow'>
         <span className='feed__stats'>
           <span className='feed__comments'>  </span>
-          <Button onClick={handleLikes} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
+          <Button onClick={() => handleLikes(id)} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
         </span>
     </section>
     </section>
