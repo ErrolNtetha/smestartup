@@ -15,14 +15,15 @@ const verifyJWT = require('../middlewares/verifyJWT');
 const allUsers = require('../controllers/getAllUsers')
 const postRoutes = require('../controllers/postsController');
 
-app.use(verifyJWT);
 
 // Handle routes
 router.get('/login', login_user);
 router.get('/profile', cors(corsOption), verifyJWT, getProfile.getUserProfile);
 router.get('/p/posts', verifyJWT, postRoutes.getAllUserPosts);
 router.post('/login', login_user);
-router.post('/register', register_user);
 router.get('/contact', allUsers.getUsers);
+
+router.route('/profile/delete-account').delete(allUsers.deleteUser);
+router.route('/register').post(register_user);
 
 module.exports = router;

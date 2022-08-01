@@ -4,11 +4,14 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
+// import { Wrapper } from 'containers';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
 import { Contact } from '../containers/contact';
+// import { Header } from '../views/header';
 import { Profile } from '../containers/profile';
+import { Edit } from '../components/profile/edit';
 import { Login } from '../containers/login';
 import { Register } from '../containers/register';
 import { Suppliers } from '../containers/suppliers';
@@ -33,6 +36,7 @@ export const Main: React.FC = () => {
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
+                <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
 
                 <Route path='/' component={NotFound} />
             </Switch>

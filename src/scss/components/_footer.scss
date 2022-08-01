@@ -71,7 +71,7 @@
 
                     a {
                         text-decoration: none;
-                        color: blueviolet;
+                        color: #fff;
                         font-size: .8rem;
 
                         &:hover {
@@ -80,6 +80,10 @@
                     }
                 }
             }
+        }
+
+        &__moreInfo a {
+            color: #fff;
         }
 
         // &__copyrights {
@@ -94,8 +98,11 @@
     @include flexbox();
     @include respond-to('laptop') {
         gap: 2em;
-    @include flexbox();
+        @include flexbox();
 
+        &__left p {
+            font-size: .9rem;
+        }
 
         &__right {
             @include flexbox($direction: column);
@@ -105,10 +112,41 @@
 
         &__links {
             width: 100%;
+            margin: 0;
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    margin: .2em 0;
+                    color: $secondaryColor;
+
+                    a {
+                        text-decoration: none;
+                        color: #fff;
+                        font-size: .9rem;
+
+                        &:hover {
+                            color: rgba(67, 253, 5, 0.604);
+                        }
+                    }
+                }
+            }
+        }
+
+        &__links h3 {
+           margin-top: 0; 
         }
 
         &__link {
             font-size: .8rem;
+        }
+
+        &__moreInfo p {
+            color: #fff;
+            font-size: .9rem;
         }
     }
 }

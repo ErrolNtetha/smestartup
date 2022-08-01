@@ -14,7 +14,9 @@ export const Hero: React.FC = () => {
         <aside className='hero__left'>
             <p className='hero__left__title'> {title} </p>
             <p className='hero__left__paragraph'> {para} </p>
-            { !isLoggedIn ? <Button onClick={() => history.push('/register')} className='hero__left--action'> get started <FiArrowRight style={{ fontSize: '1.2rem' }} /> </Button> : <Button onClick={() => history.push('/register')} className='hero__left--action'> go to feed <FiArrowRight style={{ fontSize: '1.2rem' }} /> </Button>}
+      { !isLoggedIn
+          ? <Button onClick={() => history.push('/register')} className='hero__left--action'> get started <FiArrowRight style={{ fontSize: '1.2rem' }} /> </Button>
+          : <Button onClick={() => history.push('/feed')} className='hero__left--action'> go to feed <FiArrowRight style={{ fontSize: '1.2rem' }} /> </Button>}
         </aside>
         <aside className='hero__right'>
             This is left hero section

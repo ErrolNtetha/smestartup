@@ -26,6 +26,11 @@
             // margin: 0 2em;
         }
 
+        &__arrowLeft {
+            font-size: 1.2rem;
+            width: 1em;
+        }
+
         &__innerContent {
             @include flexbox($justify-content: space-between);
             align-items: center;
@@ -165,6 +170,7 @@
 
         &__userAvatarResult {
             @include avatar($width: 40px);
+            border: .8px solid $foregroundColor;
         }
 
         &__userAvatar {
@@ -343,8 +349,14 @@
         }
 
         &__userAvatar {
-            width: 40px;
+            @include avatar($width: 30px);
             margin-left: 1em;
+
+        } 
+
+        &__arrowLeft {
+            font-size: 1.8rem;
+            width: 1em;
         }
 
         &__nav {

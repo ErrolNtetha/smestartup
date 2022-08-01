@@ -1,11 +1,14 @@
 import React from 'react';
 import { Header } from 'views/header';
+import { SupplierContainer } from 'views/suppliers';
 
 export const Suppliers = () => {
     return (
-        <section>
+        <>
             <Header />
-            Hello, i am supplier!
-        </section>
+            <section className='supplier'>
+                <SupplierContainer />
+            </section>
+        </>
     );
 };
