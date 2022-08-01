@@ -39,7 +39,19 @@
     @include respond-to('laptop') {
         &__inner {
             @include flexbox();
+            align-items: unset;
             gap: 2em;
+        }
+
+        &__header {
+            margin: .2em 0;
+            padding: .4em 0;
+        }
+        
+        &__item {
+            @include flexbox($justify-content: unset, $direction: column);
+            margin: 2em 0;
+            padding: 1em 0;
         }
 
         &__header {
