@@ -26,6 +26,11 @@
             // margin: 0 2em;
         }
 
+        &__arrowLeft {
+            font-size: 1.2rem;
+            width: 1em;
+        }
+
         &__innerContent {
             @include flexbox($justify-content: space-between);
             align-items: center;
@@ -348,6 +353,11 @@
             margin-left: 1em;
 
         } 
+
+        &__arrowLeft {
+            font-size: 1.8rem;
+            width: 1em;
+        }
 
         &__nav {
             display: contents;
