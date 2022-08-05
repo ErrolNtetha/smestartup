@@ -42,8 +42,6 @@ exports.incrimementLikes = async (req, res) => {
             // Then add the user ID to the 'stars' array
             post.stars.push(id);
             console.log(post.stars);
-            console.log('Is this an array?', post.stars typeof Array);
-            console.log('Is this an object?', post.stars typeof Object);
             const addUser = post.stars.push(id.toString());
             console.log('add user:', addUser);
             const addStar = new Post({ stars: addUser });
