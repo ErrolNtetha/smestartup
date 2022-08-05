@@ -1,19 +1,23 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable  jsx-a11y/click-events-have-key-events */
+
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { occupations } from 'helpers/occupations';
-// import defaultAvatar from 'assets/blendot.png';
+import defaultAvatar from 'assets/blendot.png';
 // import { Preview } from 'components/preview';
 import * as Yup from 'yup';
 import { axiosPublic } from 'config/axiosInstance';
 import { SyncLoader } from 'react-spinners';
+import { Select } from 'components/select';
 import { Button } from '../../components/button';
 
 export const Personal = () => {
-// const imageInput = useRef(null);
+const imageInput = useRef(null);
 const history = useHistory();
 
 const title = [...occupations, 'Unemployed', 'Founder & CEO'].sort();
@@ -39,10 +43,6 @@ return (
           password: Yup.string()
                     .min(6, 'The password is too short. At least 6 characters minimum.')
                     .required('Password is required. Please create password.'),
-          confirmPassword: Yup.string()
-                    .label('confirm password')
-                    .required('Password is required.')
-                    .oneOf([Yup.ref('password'), null], 'Passwords must match'),
             })}
       initialValues={{
             occupation: '',
@@ -50,25 +50,16 @@ return (
             lastName: '',
             location: '',
             company: '',
-            qualification: '',
-            school: '',
             email: '',
             gender: '',
             password: '',
-            confirmPassword: '',
-            avatar: ''
+            avatar: '',
         }}
       onSubmit={async (values) => {
-            console.log(values);
+          console.log(values);
           await axiosPublic.post('/register', values)
-              .then((res) => {
-                  const { success } = res.data;
-                  if (!success) {
-                      console.log('Looks like you already have an account with us. Please try logging in instead.');
-                      console.log(res.data);
-                      return;
-                  }
-                  history.push('/login');
+              .then(() => {
+                history.push('/login');
                   console.log(values);
                 })
               .catch((error) => {
@@ -80,13 +71,13 @@ return (
         <Form onSubmit={props.handleSubmit}>
                 <h3 className='register__header'> Personal Details </h3>
                 <hr style={{ margin: 0, opacity: 0.3, marginBottom: '1em' }} />
-                {/* <span className='register__avatarOuterContainer'>
+                <span className='register__avatarOuterContainer'>
                 <label>
                     <span className='register__avatarWrapper'>
                         Set an avatar
                         <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
-                            {props.values.avatarBlob ? <Preview image={props.values.avatar} className='register__avatar' />
-                            : <img src={defaultAvatar} alt='default avatar' className='register__avatar' />}
+                            {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='register__avatar' />
+                            : <img src={defaultAvatar} alt='new user avatar' className='register__avatar' />}
                         </div>
                     </span>
                     <input
@@ -95,10 +86,19 @@ return (
                       ref={imageInput}
                       accept='image/*'
                       name='avatar'
-                      onChange={(e) => props.setFieldValue('avatar', e.currentTarget.files[0])}
+                      onChange={(e) => {
+                          const reader = new FileReader();
+                          reader.readAsDataURL(e.currentTarget.files[0]);
+
+                          reader.onload = () => {
+                              if (reader.result) {
+                                  props.setFieldValue('avatar', reader.result);
+                              }
+                          };
+                      }}
                     />
                 </label>
-                </span> */}
+                </span>
 
                 <label>
                     First Names:
@@ -133,9 +133,17 @@ return (
                 <label>
                     Occupation:
                     <br />
-                    <Field as='select' name='occupation' className='register__select'>
-                        <option> Choose title </option>
-                        {title.map((item: string[]) => <option key={item}> {item} </option>)}
+                    <Field as='select' title={!props.values.occupation ? 'Choose title' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
+                        <section className='register__options'>
+                            {title.map((item: string) => {
+                                return (
+                                    <section key={item}>
+                                        <hr className='select__options__optionsDivider' />
+                                        <p className='register__options__option' onClick={() => props.setFieldValue('occupation', item)}> {item} </p>
+                                    </section>
+                                );
+                            })}
+                        </section>
                     </Field>
                 </label>
                 {props.values.occupation === ''
@@ -175,10 +183,12 @@ return (
                     Gender:
                     <br />
                     <span className='register__selectContainer'>
-                    <Field as='select' name='gender' className='register__select'>
-                        <option className='register__option'> Select </option>
-                        <option value='male'> Male </option>
-                        <option value='female'> Female </option>
+                    <Field as='select' name='gender' title={!props.values.gender ? 'Choose gender' : props.values.gender} className='register__selectOccupation' component={Select}>
+                        <section className='register__genderOptions'>
+                            <p className='register__options__option' onClick={() => props.setFieldValue('gender', 'Male')}> Male </p>
+                            <hr className='select__options__optionsDivider' />
+                            <p className='register__options__option' onClick={() => props.setFieldValue('gender', 'Female')}> Female </p>
+                        </section>
                     </Field>
                     </span>
                 </label>
@@ -208,17 +218,6 @@ return (
                     />
 
                     {props.touched.password && <p className='register__errorMessage'> {props.errors.password} </p>}
-                </label>
-                <label className='register__label'>
-                    Confirm Password:
-                    <Field
-                      name='confirmPassword'
-                      type='password'
-                      placeholder='Repeat the passowrd'
-                      className='register__emailField'
-                    />
-
-                    {props.touched.confirmPassword && <p className='register__errorMessage'> {props.errors.confirmPassword} </p>}
                 </label>
                 </section>
                 <Button type='submit' className='register__button--register'> { props.isSubmitting ? <SyncLoader color='white' size={8} /> : 'Create Account' } </Button>
