@@ -1,0 +1,93 @@
+@use '../base/_color.scss' as *;
+@use '../base' as *;
+@use '../mixins/_flexbox.scss' as *;
+@use '../mixins/_respond.scss' as *;
+
+.faq {
+    @include respond-to('mobile') {
+        &__intro {
+            @include flexbox();
+            flex-direction: column;
+            padding: 5em;
+            background: $secondaryColor;
+
+        }
+    }
+
+    @include respond-to('tablet') {
+
+    }
+
+    @include respond-to('laptop') {
+        &__questionsContainer {
+            @include flexbox();
+            width: 70%;
+        }
+
+        &__h3, &__paragraph {
+            text-align: center;
+        }
+
+        &__h3 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        &__paragraph {
+            font-size: 1rem;
+            padding-bottom: 1em;
+        }
+
+        &__search {
+            width: 50%;
+        }
+
+        &__search > * {
+            width: 100%;
+            font-size: 1.4rem;
+        }
+
+        &__searchWrapper {
+            width: 100%;
+        }
+
+        &__searchResultContainer {
+            position: absolute;
+            margin-top: .2em;
+            background: #fff;
+            border-radius: inherit;
+            width: inherit;
+            margin-top: .2em;
+            padding-top: 1em;
+            color: #000;
+        }
+
+        &__questionsContainer {
+            @include flexbox();
+            width: 100%;
+            margin-top: 2em;
+        }
+
+        &__questionInner {
+            width: 50%;
+        }
+
+        &__question {
+            @include flexbox($justify-content: space-between);
+            padding: .8em .4em;
+            margin: 0;
+            transition: 0.4s;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        &__answer {
+            background: $foregroundColor;
+            margin: 0;
+            padding: .8em;
+        }
+    }
+}
