@@ -27,8 +27,6 @@
             @include flexbox($justify-content: space-between);
             width: 100%;
             padding: .5em .8em;
-            position: relative;
-            border: 2px solid black;
 
             
             &__icon {
@@ -70,7 +68,7 @@
     }
 
     @include respond-to('laptop') {
-        width: 100%;
+        width: 30%;
         display: unset;
         background: $primaryColor;
         box-shadow: none;
@@ -79,11 +77,11 @@
 
         &__options {
             height: 70vh;
+            width: 100%;
             margin-top: .2em;
             overflow-y: auto;
             background: $primaryColor;
             position: absolute;
-            width: inherit;
             border: .8px solid rgba(255, 255, 255, 0.05);
             transition: height 500ms ease-in-out;
             border-radius: 20px;
