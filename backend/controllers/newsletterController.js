@@ -7,7 +7,7 @@ exports.getSubscriber = async (req, res) => {
     const { fullNames, lastName, email } = req.body;
 
     const transporter = nodemailer.createTransport({
-        host: 'premium111.web-hosting.com',
+        host: 'dns1.p07.nsone.net',
         auth: {
                 user: process.env.MAIL_USERNAME,
                 pass: process.env.MAIL_PASSWORD,

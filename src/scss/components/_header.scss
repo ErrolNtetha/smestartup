@@ -207,6 +207,17 @@
             z-index: 2;
             margin-right: .2em
         }
+
+
+        &__searchWrapper {
+            display: none;
+            font-size: 1.4rem;
+            width: 40%;
+        }
+
+        &__search > * {
+            width: 100%;
+        }
     }
 
     @include respond-to('tablet') {

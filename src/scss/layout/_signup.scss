@@ -168,6 +168,12 @@
         &__btnGroup {
             margin-top: 1em;
         }
+
+        &__genderOptions {
+            border: 2px solid black;
+            position: absolute;
+            width: inherit;
+        }
     }
 
     @include respond-to('tablet') {

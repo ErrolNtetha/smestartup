@@ -27,6 +27,8 @@
             @include flexbox($justify-content: space-between);
             width: 100%;
             padding: .5em .8em;
+            position: relative;
+            border: 2px solid black;
 
             
             &__icon {
