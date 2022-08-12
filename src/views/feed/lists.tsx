@@ -10,9 +10,7 @@ import { useFetchData } from 'hoc/useFetchData';
 export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
     const response = useFetchData('/feed');
-
     const { posts } = response.data;
-    console.log('Posts: ', posts);
 
     interface Props {
         post: string;

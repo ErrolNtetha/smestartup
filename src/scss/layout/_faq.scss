@@ -40,6 +40,8 @@
 
         &__search {
             width: 50%;
+            border-radius: 30px;
+            font-size: 1.4rem;
         }
 
         &__search > * {
@@ -49,17 +51,18 @@
 
         &__searchWrapper {
             width: 100%;
+            font-size: 1.4rem;
+            margin: .9em 0;
         }
 
         &__searchResultContainer {
             position: absolute;
-            margin-top: .2em;
             background: #fff;
             border-radius: inherit;
             width: inherit;
-            margin-top: .2em;
-            padding-top: 1em;
+            margin-top: .6em;
             color: #000;
+            font-size: 1.4rem;
         }
 
         &__questionsContainer {

@@ -7,24 +7,16 @@ import React from 'react';
 // import { RootState } from 'store';
 // import logged from 'store/actions/logged';
 // import loggout from 'store/actions/loggout';
+import { Logo } from 'components/header/logo';
 import { FeedContainer } from '../../views/feed';
 import { Header } from '../../views/header';
 
     export const Feed = () => {
-    // interface IState {
-    //     posts: {
-    //         post: string
-    //         _id: number
-    //     }[]
-    // }
-
-    // const [posts, setPosts] = React.useState<IState['posts']>([]);
-    // const loggedIn = useSelector((state: RootState) => state.isLogged);
-    // const dispatch = useDispatch();
-
     return (
         <>
-            <Header />
+            <Header>
+                <Logo />
+            </Header>
             <section className='feed__feedContainer'>
                <FeedContainer />
             </section>

@@ -40,12 +40,14 @@ export const Login = () => {
                 .then((res) => {
                     const {
                         accessToken,
+                        refreshToken,
                         message,
                         isLoggedIn,
                         user
                     } = res.data;
 
-                    localStorage.setItem('accessToken', accessToken); // save token
+                    localStorage.setItem('accessToken', accessToken); // save access token
+                    localStorage.setItem('refreshToken', refreshToken); // save refresh token
                     setLoading(false);
                     setResponse(message);
 

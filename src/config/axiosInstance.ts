@@ -21,3 +21,12 @@ export const axiosPrivate = axios.create({
         'x-access-token': localStorage.getItem('accessToken')
     }
 });
+
+export const axiosRefresh = axios.create({
+baseURL: NODE_ENV(),
+    timeout,
+    headers: {
+        'Content-Type': 'application/json',
+        'x-refresh-token': localStorage.getItem('refreshToken')
+    }
+});

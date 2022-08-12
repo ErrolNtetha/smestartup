@@ -16,7 +16,7 @@ import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 // import { Link } from 'react-router-dom';
-import { findLinks } from 'helpers/findLinks';
+// import { findLinks } from 'helpers/findLinks';
 import { io } from 'socket.io-client';
 import { NODE_ENV } from 'config/baseURL';
 
@@ -124,19 +124,7 @@ import { NODE_ENV } from 'config/baseURL';
             )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
-
-            { findLinks(post) ?
-                (
-                    <p className='feed__listContent'>
-                        {/* console.log(findLinksAndReplace(post, '****'))}
-                        {findLinksAndReplace(post, findLinks(post).forEach((link) => {
-                            console.log('This is the link: ', link);
-                            return <a target='_blank' rel='noreferrer' href={link}>{link}</a>;
-                        })) */}
-                        {post}
-                    </p>
-                )
-                : <p className='feed__listContent'> {post} </p> }
+            <p className='feed__listContent'> {post} </p>
     {!image ? null
     :
     (

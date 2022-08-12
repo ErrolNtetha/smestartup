@@ -297,13 +297,14 @@
             background: #fff;
             border-radius: 20px;
             width: 300px;
+            padding: .4em 0;
         }
         
         &__searchWrapper {
             @include flexbox();
             width: 100%;
             background: transparent;
-            padding: .4em 0;
+            height: 100%;
         }
 
         &__search {
@@ -343,6 +344,7 @@
             outline: none;
             width: inherit;
             padding-right: 1.2em;
+            font-size: .9rem;
         }
 
         &__resultDivider {
