@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NODE_ENV } from './baseURL';
 
-const timeout = 30000;
+const timeout = 60000; // 1 minute
 
 export const axiosPublic = axios.create({
     baseURL: NODE_ENV(),

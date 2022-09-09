@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiSend } from 'react-icons/fi';
 import { axiosPublic } from 'config/axiosInstance';
 import { SyncLoader } from 'react-spinners';
+import { useStore } from 'hoc/useStore';
 
 export const Footer = () => {
     const [fullNames, setFullNames] = useState('');
@@ -10,6 +11,7 @@ export const Footer = () => {
     const [email, setEmail] = useState('');
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState<Boolean | null>(null);
+    const { isLogged } = useStore();
 
     const formData = {
         fullNames,
@@ -40,14 +42,19 @@ export const Footer = () => {
     };
 
   return (
+    <>
     <footer className='footer'>
       <section className='footer__left'>
         <h2 className='footer__intro'> Stay up to date! </h2>
         <p> Fill up your details so that you do not miss out on our new important updates and announcements. </p>
         <form onSubmit={handleSubmit}>
-            <input type='text' onChange={(e) => setFullNames(e.target.value)} placeholder='Your Full Names' name='fullNames' className='footer__inputs' />
-            <input type='text' onChange={(e) => setLastName(e.target.value)} placeholder='Your Last Name' name='lastName' className='footer__inputs' />
-            <input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' name='email' className='footer__inputs' />
+            {!isLogged && (
+                <section>
+                    <input type='text' onChange={(e) => setFullNames(e.target.value)} placeholder='Your Full Names' name='fullNames' className='footer__inputs' />
+                    <input type='text' onChange={(e) => setLastName(e.target.value)} placeholder='Your Last Name' name='lastName' className='footer__inputs' />
+                    <input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' name='email' className='footer__inputs' />
+                </section>
+            )}
             <button type='submit' className='footer__button--submit'> {loading ? <SyncLoader size={8} color='#fff' /> : <section> subscribe <FiSend>hbhj</FiSend> </section>} </button>
           <section>
             {!loading && response}
@@ -62,14 +69,22 @@ export const Footer = () => {
         <span className='footer__links'>
           <h3> Where to now? </h3>
           <ul>
-            <li className='footer__link'><Link to='/'> Home </Link></li>
+              <li className='footer__link'><Link to={isLogged ? '/feed' : '/'}> Home </Link></li>
             <li className='footer__link'><Link to='/'> FAQ </Link></li>
-            <li className='footer__link'><Link to='/'> Register </Link></li>
+            {!isLogged && <li className='footer__link'><Link to='/'> Register </Link></li>}
             <li className='footer__link'><a href='../legalties/terms.html'> Terms of Use </a></li>
             <li className='footer__link'><Link to='/'> Privacy Policy </Link></li>
           </ul>
         </span>
       </section>
     </footer>
+    <section className='footer__copyrights'>
+        <span> &#169; Blendot, 2022. All Rights Reserved. </span>
+        {/* <ul className='footer__socialLinks'>
+                <li> <a href='fb.me/blendotSA'> <FiFacebook className='footer__facebook' /> </a></li>
+                <li> <a href='linkedin.com'> <FiLinkedin className='footer__linkedin' /> </a></li>
+            </ul> */}
+    </section>
+    </>
   );
 };

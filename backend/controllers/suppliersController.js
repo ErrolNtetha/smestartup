@@ -15,12 +15,55 @@ exports.getSuppliers = async (req, res) => {
         });
 };
 
+exports.getSupplier = async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    await Suppliers.find({ _id: id })
+        .then((suppliers) => {
+            if (!suppliers) {
+                res.status(404).json({ message: 'No suppliers in the database yet.' });
+                return;
+            }
+            res.status(200).json({ suppliers: suppliers[0] });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({ success: false, error });
+        });
+};
+
 exports.createSupplier = async (req, res) => {
-    const { name, about } = req.body;
+    const {
+        name,
+        about,
+        description,
+        contacts,
+        addresses,
+        tags,
+        isRegistered
+    } = req.body;
+    const { id } = req.user;
+    const {
+        email,
+        website,
+        cellphone,
+        telephone
+    } = contacts;
 
     const newSupplier = new Suppliers({
         name,
-        about
+        about,
+        description,
+        contacts: {
+            email,
+            cellphone,
+            telephone,
+            website
+        },
+        addresses,
+        tags,
+        author: id,
+        isRegistered
     });
 
     await newSupplier.save()
@@ -32,7 +75,7 @@ exports.deleteSupplier = async (req, res) => {
     const { id } = req.params;
 
     await Suppliers.findByIdAndRemove({ _id: id })
-        .then(() => res.status(200).json({ success: true, message: 'Supplier deleted.' }))
+        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully deleted.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 

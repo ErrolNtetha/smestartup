@@ -1,0 +1,52 @@
+@use '../base/_color.scss' as *;
+
+.tooltipContainer {
+    position: relative;
+}
+
+.tooltipContainer {
+}
+
+.tooltipContainer:hover {
+    cursor: pointer;
+}
+
+.tooltipContainer:before,
+.tooltipContainer:after {
+    position: absolute;
+    content: '';
+    display: none;
+    transition: all 0.4s ease;
+}
+
+.tooltipContainer:before {
+    border-width: 10px 8px 0 8px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    z-index: 1000;
+    top: -10px;
+    transform: translateY(20px);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, .05);
+}
+
+.tooltipContainer:after {
+    content: attr(data-tooltip);
+    background: #fff;
+    color: #000;
+    font-size: .7rem;
+    padding: .5em .7em;
+    border-radius: 5px;
+    transform: translateY(20px);
+    width: 160px;
+    height: max-content;
+    bottom: 30px;
+    left: -10px;
+    z-index: 999;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, .05);
+}
+
+.tooltipContainer:hover::before,
+.tooltipContainer:hover::after {
+    display: unset;
+    transform: translateY(-2px);
+}

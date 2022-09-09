@@ -1,17 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const socketIo = require('socket.io');
 const http = require('http');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, {
-    cors: {
-        origin: ['http://localhost:3000', 'https://blendot.com'],
-        methods: ['GET', 'POST'],
-    }
+const server = http.createServer(app, {
+    origin: ['http://localhost:3000', 'https://blendot.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
+const io = require('./socket.js').init(server);
 
 const loginRoute = require('./routes/user.routes');
 const postRoutes = require('./routes/posts.routes');

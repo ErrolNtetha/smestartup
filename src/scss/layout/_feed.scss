@@ -124,7 +124,7 @@
         }
 
         &__sidebar,
-        &__followers {
+        &__leftColumn {
             display: none;
         } 
 
@@ -368,9 +368,8 @@
 
     @include respond-to('laptop') {
         &__sidebar,
-        &__followers {
+        &__rightColumn {
             display: unset;
-            position: sticky;
         }
 
         &__postField {
@@ -379,17 +378,22 @@
         }
 
         &__create {
+            display: none;
             position: fixed;
             left: 0; 
         }
 
-        &__sidebar, &__followers {
+        &__sidebar, &__rightColumn {
             background: $foregroundColor;
-            border-radius: 5px;
+            border-radius: $radius;
             padding: 0;
             height: max-content;
             width: 20%;
             z-index: 2;
+        }
+
+        &__rightColumn {
+            // border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         &__navContainer {
@@ -410,6 +414,10 @@
         &__sidebarAvatar {
             @include avatar($width: 1em);
             border: .2px solid white;
+        }
+
+        &__counter {
+                @include flexbox($justify-content: space-between);
         }
 
         &__sidebarLinks li {
@@ -470,7 +478,7 @@
             font-size: .8rem;
         }
 
-        &__profileWrapper, &__followers {
+        &__profileWrapper {
             padding: 1rem;
         }
 

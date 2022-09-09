@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 import { axiosPublic } from 'config/axiosInstance';
 import { SyncLoader } from 'react-spinners';
 import { Select } from 'components/select';
+// import { Checkbox } from 'components/checkbox';
 import { Button } from '../../components/button';
 
 export const Personal = () => {
@@ -36,7 +37,7 @@ return (
                     .required('Last name is required!'),
             location: Yup.string()
                     .min(3, 'Location cannot be less than 3 characters long.')
-                    .required('Please fill the location field as well!'),
+                    .required('Location is required!'),
             email: Yup.string()
                         .email('The email is invalid.')
                         .required('Email is required!'),
@@ -58,12 +59,14 @@ return (
       onSubmit={async (values) => {
           console.log(values);
           await axiosPublic.post('/register', values)
-              .then(() => {
-                history.push('/login');
-                  console.log(values);
+              .then((response) => {
+                    console.log(response);
+                  if (response.status === 201) {
+                        history.push('/login');
+                  }
                 })
-              .catch((error) => {
-                console.error(error.message);
+              .catch(({ response }) => {
+                console.error(response);
               });
       }}
     >
@@ -133,7 +136,7 @@ return (
                 <label>
                     Occupation:
                     <br />
-                    <Field as='select' title={!props.values.occupation ? 'Choose title' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
+                    <Field as='select' title={!props.values.occupation ? '- Choose title -' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
                         <section className='register__options'>
                             {title.map((item: string) => {
                                 return (
@@ -173,7 +176,7 @@ return (
                     Company Name:
                     <br />
                     <span className='register__selectContainer'>
-                        <Field name='company' className='register__emailField' placeholder='E.g. Blendot Inc.' />
+                        <Field name='company' className='register__emailField' placeholder='Name of the company' />
                     </span>
                     </label>
                     )

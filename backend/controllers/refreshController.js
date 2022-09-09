@@ -9,8 +9,7 @@ exports.refreshToken = (req, res, next) => {
         email
     };
 
-    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '2m' });
+    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '10d' });
     res.status(200).json({ accessToken });
-    console.log('New access token: ', accessToken);
     next();
 };

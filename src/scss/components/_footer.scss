@@ -44,6 +44,34 @@
 
         }
 
+        &__copyrights {
+            @include flexbox();
+            align-self: flex-end;
+            background: $foregroundColor;
+            padding: .4em 0;
+        }
+
+        &__copyrights > span {
+                font-size: .8rem;
+        }
+
+        &__socialLinks {
+            @include flexbox();
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        &__socialLinks li.a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        &__facebook, &__linkedin {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
         &__right > * {
             flex: 1 1 10em;
         }
@@ -138,6 +166,7 @@
 
         &__links h3 {
            margin-top: 0; 
+           margin: 0;
         }
 
         &__link {
@@ -147,6 +176,7 @@
         &__moreInfo p {
             color: #fff;
             font-size: .9rem;
+            margin: 0;
         }
     }
 }

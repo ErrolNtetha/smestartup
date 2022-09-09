@@ -36,7 +36,7 @@ exports.getSubscriber = async (req, res) => {
                 // send an email
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                res.json({ message: 'There was an error subscribing.' });
+                // res.json({ message: 'There was an error subscribing.' });
                 console.log('There was an error ', error.message);
                 return;
             }

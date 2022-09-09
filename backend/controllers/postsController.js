@@ -59,12 +59,13 @@ exports.getSpecificUserPost = async (req, res) => {
     await Post.findById({ _id: id })
         .then((posts) => {
             if (!posts) {
-               res.json({ message: 'Post not found. It might have been removed by user.' });
+                res.json({ message: 'Post not found. It might have been removed by user.' });
+                return;
             }
             res.json({ posts });
         })
         .catch((err) => {
-            res.json({ error: err, message: 'There was an error getting posts.' });
+            res.status(500).json({ error: err, message: 'There was an error getting posts.' });
         });
 };
 
