@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
 const userPost = new mongoose.Schema({
-    author: String,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    author: {
+        name: String,
+        occupation: String,
+        avatar: String
+    },
     post: String,
     encodedImage: String,
     reports: {

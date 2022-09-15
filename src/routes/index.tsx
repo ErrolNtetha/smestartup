@@ -6,7 +6,7 @@ import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
 import { AddSupplier } from 'views/suppliers/addSupplier';
 import { SupplierView } from 'views/suppliers/page';
-import { Founder } from 'views/suppliers/founder';
+import { Founder } from 'views/founders';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
