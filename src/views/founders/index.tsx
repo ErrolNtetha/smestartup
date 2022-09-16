@@ -3,12 +3,11 @@ import React from 'react';
 import { Header } from 'views/header';
 import { Helmet } from 'react-helmet-async';
 import { useFetchData } from 'hoc/useFetchData';
-import { SyncLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import { Home } from './home';
 
 export const Founder = () => {
     const { data, loading } = useFetchData('/founders');
-    const { founders } = data;
 
     return (
         <section className='founder'>
@@ -25,8 +24,8 @@ export const Founder = () => {
                 <meta property='og:site_name' content='Blendot' />
             </Helmet>
         {loading
-            ? <span className='founder__loader'><SyncLoader color='#fff' /></span>
-            : founders.map((founder) => (
+            ? <span className='founder__loader'><ScaleLoader color='#fff' /></span>
+            : data?.founders?.map((founder) => (
                 <Home author={founder} />
             ))}
         </section>
