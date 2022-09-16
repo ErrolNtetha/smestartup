@@ -18,7 +18,7 @@ const [fileURL, setFileURL] = useState('');
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
-const socket = io(`${NODE_ENV()}`, { transports: ['polling'] });
+const socket = io(`${NODE_ENV()}`);
 
 const formData = {
     post,
@@ -32,7 +32,6 @@ const handleSubmit = async () => {
         socket.emit('sendPost', post);
 
         if (!post) {
-            console.log('Field is empty. Write something at least!');
             return;
         }
 
@@ -44,15 +43,8 @@ const handleSubmit = async () => {
             dispatch(toggleFieldOff());
             setLoading(false);
         }
-  })
-  .catch((err) => console.error(err));
+  });
 };
-
-React.useEffect(() => {
-    socket.on('receivePost', (data) => {
-        console.log(data);
-    });
-}, [socket]);
 
 useEffect(() => {
     const reader = new FileReader();
@@ -81,7 +73,7 @@ useEffect(() => {
           name='post'
           className='feed__textarea'
           rows={6}
-          placeholder='Share what is happening...'
+          placeholder='What is happening?'
           onChange={(e) => setPost(e.target.value)}
         />
         <section>
