@@ -25,7 +25,7 @@ exports.getSubscriber = async (req, res) => {
         const mailOptions = {
             from: 'no-reply@blendot.com',
             to: email,
-            subject: 'Happy to have you on board. - Blendot',
+            subject: 'You have just subscribed to our newsletter!',
             template: 'index',
             context: {
                 fullNames,
@@ -50,11 +50,6 @@ exports.getSubscriber = async (req, res) => {
     });
 
     await newSubscriber.save()
-    .then(() => {
-        res.status(250).json({ success: true, message: 'You have sucessfully subscribed to receive newsletters!' });
-    })
-    .catch((error) => {
-        res.staus(500).json({ success: false, error });
-        console.log(error);
-    });
+    .then(() => res.status(250).json({ success: true, message: 'You have sucessfully subscribed to receive newsletters!' }))
+    .catch((error) => res.staus(500).json({ success: false, error }));
 };
