@@ -21,10 +21,7 @@ export const Footer = () => {
 
     const handleSubmit = async (e: React.ChangeEvent) => {
         e.preventDefault();
-        if (!fullNames || !lastName || !email) {
-            return;
-        }
-
+        if (!fullNames || !lastName || !email) return;
         setLoading(true);
 
         await axiosPublic.post('/', formData)
@@ -48,13 +45,11 @@ export const Footer = () => {
         <h2 className='footer__intro'> Stay up to date! </h2>
         <p> Fill up your details so that you do not miss out on our new important updates and announcements. </p>
         <form onSubmit={handleSubmit}>
-            {!isLogged && (
                 <section>
                     <input type='text' onChange={(e) => setFullNames(e.target.value)} placeholder='Your Full Names' name='fullNames' className='footer__inputs' />
                     <input type='text' onChange={(e) => setLastName(e.target.value)} placeholder='Your Last Name' name='lastName' className='footer__inputs' />
                     <input type='email' onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' name='email' className='footer__inputs' />
                 </section>
-            )}
             <button type='submit' className='footer__button--submit'> {loading ? <SyncLoader size={8} color='#fff' /> : <section> subscribe <FiSend>hbhj</FiSend> </section>} </button>
           <section>
             {!loading && response}
