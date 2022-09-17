@@ -295,6 +295,7 @@
     @include respond-to('laptop') {
         &__container {
             @include flexbox();
+            position: relative;
             margin: .6em;
             align-items: unset;
             gap: 1em;
@@ -303,9 +304,13 @@
 
         &__leftColumn, &__rightColumn {
             @include flexbox($justify-content: unset);
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 8vh;
             align-items: unset;
             flex-direction: column;
             width: 25%;
+            height: max-content;
             margin-bottom: .8em;
         }
 
