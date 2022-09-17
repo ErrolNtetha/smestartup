@@ -74,7 +74,7 @@ export const Footer = () => {
       </section>
     </footer>
     <section className='footer__copyrights'>
-        <span> &#169; Blendot, 2022. All Rights Reserved. </span>
+        <span> Copyright &#169; Blendot, 2022. All Rights Reserved. </span>
         {/* <ul className='footer__socialLinks'>
                 <li> <a href='fb.me/blendotSA'> <FiFacebook className='footer__facebook' /> </a></li>
                 <li> <a href='linkedin.com'> <FiLinkedin className='footer__linkedin' /> </a></li>
