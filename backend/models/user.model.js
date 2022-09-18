@@ -13,7 +13,7 @@ const userData = new mongoose.Schema({
         max: 40,
         required: [true, 'Password cannot be empty.']
     },
-    avatar: Object,
+    avatar: String,
     isVerified: { type: Boolean, default: false },
     isPremium: { type: Boolean, default: false },
     bio: String,
