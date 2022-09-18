@@ -15,10 +15,11 @@ import { formatDistance } from 'date-fns';
 import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
+import { useStore } from 'hoc/useStore';
 // import { Link } from 'react-router-dom';
 // import { findLinks } from 'helpers/findLinks';
-import { io } from 'socket.io-client';
-import { NODE_ENV } from 'config/baseURL';
+// import { io } from 'socket.io-client';
+// import { NODE_ENV } from 'config/baseURL';
 
     export interface Props {
       name: {
@@ -29,20 +30,20 @@ import { NODE_ENV } from 'config/baseURL';
       id: string;
       date: Date;
       image: string;
-      author: string,
       isVerified: boolean;
       occupation: string;
       avatar: string;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, date, image, isVerified, occupation, author, avatar
+     name, post, id, date, image, isVerified, occupation, avatar
     }) => {
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
         const [loading, setLoading] = React.useState<boolean | null>(null);
-        const socket = io(`${NODE_ENV()}`);
-        const userId = useFetchUserId();
+        const { authorId } = useFetchUserId();
+        const { userProfile } = useStore();
+        const { userData } = userProfile;
 
            const handleLikes = (postId: string) => {
             setLikes(1);
@@ -74,16 +75,6 @@ import { NODE_ENV } from 'config/baseURL';
                 });
         };
 
-        React.useEffect(() => {
-                socket.on('connection', (socketid) => {
-                console.log('Front-end successfully connected. ', socketid);
-            });
-
-            socket.emit('post', (sockID: string) => {
-                console.log('The ID is: ', sockID);
-            });
-        }, []);
-
     return (
     <section className='feed__list'>
         <span className='feed__firstRow'>
@@ -103,7 +94,7 @@ import { NODE_ENV } from 'config/baseURL';
                                 <section style={{ textAlign: 'center', fontSize: '1.2rem', width: '100%' }}> Options </section>
                                 <hr className='feed__line' />
                             </span>
-                            {userId === author
+                            {authorId === userData._id
                                 ? (
                                     <span>
                                         <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
@@ -118,7 +109,7 @@ import { NODE_ENV } from 'config/baseURL';
                             )}
                         </section>
                         <section className='feed__btnContainer'>
-                            {userId === author && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
+                            {authorId === userData._id && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
                         </section>
                     </Modal>
             )}
