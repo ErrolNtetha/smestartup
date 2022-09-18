@@ -18,11 +18,7 @@ function verifyJWT(req, res, next) {
             req.user.email = decoded.email;
             next();
         });
-    }
-    else {
-        res.status(401).json({ message: 'Invalid token.', isLoggedIn: false });
-        console.log('invalid token');
-    }
+    } else res.status(401).json({ message: 'Invalid token.', isLoggedIn: false });
 }
 
 module.exports = verifyJWT;
