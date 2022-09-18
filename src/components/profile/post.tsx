@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from 'components/avatar';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import { formatDistance } from 'date-fns';
 
 interface Props {
     post: string;
@@ -18,7 +19,7 @@ export const UserPosts = ({ post, date, id }: Props) => {
                             <span className='profile__titleGroup' style={{ paddingLeft: '.8em' }}>
                                 <span>
                                     <h4 className='profile__fullNames'> Mphumeleli Errol Ntetha </h4>
-                                    <p className='profile__timeAgo'> {date} </p>
+                                    <p className='profile__timeAgo'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
                                 </span>
                                 <span style={{ alignSelf: 'start' }}>
                                     <FiMoreHorizontal className='profile__ellipsis' />
