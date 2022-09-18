@@ -12,41 +12,23 @@ export const Lists = () => {
     const response = useFetchData('/feed');
     const { posts } = response.data;
 
-    interface Props {
-        post: string;
-        encodedImage: string;
-        user: {
-            name: {
-                firstName: string;
-                lastName: string;
-            }
-            occupation: string;
-            isVerified: boolean;
-            _id: string;
-            avatar: string;
-        };
-        _id: string;
-        createdAt: Date;
-    }
-
  return (
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
         { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
                 : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
-                    post, encodedImage, user, _id, createdAt
-                }: Props) => (
+                    post, encodedImage, _id, createdAt
+                }) => (
               <List
                 post={post}
                 image={encodedImage}
-                isVerified={user?.isVerified}
-                name={user?.name}
+                isVerified={author?.isVerified}
+                name={author?.name}
                 key={_id}
                 date={createdAt}
                 id={_id}
-                occupation={user?.occupation}
-                avatar={user?.avatar}
-                author={user?._id}
+                occupation={author?.occupation}
+                avatar={author?.avatar}
               />
               ))}
         {!toggleState
