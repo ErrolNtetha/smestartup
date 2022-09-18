@@ -5,16 +5,31 @@ const User = require('../models/user.model');
 exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
     // and pass variable to the save method
-    const { id, email } = req.user;
+    const { email } = req.user;
 
-    const { _id } = await User.findOne({ email });
+    const {
+        _id,
+        name,
+        occupation,
+        isVerified,
+        avatar
+    } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
     const userPost = new Post({
-        user: _id,
+        author: {
+            name: {
+                firstName: name.firstName,
+                lastName: name.lastName,
+            },
+            id: _id,
+            occupation,
+            isVerified,
+            email,
+            avatar
+        },
         post,
-        encodedImage: fileURL,
-        author: id
+        encodedimage: fileURL,
     });
 
     // save post on the database
@@ -71,7 +86,6 @@ exports.getUserPost = async (req, res) => {
     // this is same as verified and occupation as well.
     // get all the posts from the database
     await Post.find({ })
-        .populate('user')
         .then((posts) => {
             if (!posts) {
                 res.status(404).json({ message: 'No posts found yet. Follow people to see their posts.' })
