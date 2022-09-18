@@ -53,20 +53,15 @@ exports.incrimementLikes = async (req, res) => {
    };
 
 exports.getSpecificUserPost = async (req, res) => {
-    const { id } = req.params;
+    const { email } = req.user;
 
     // get all the posts from the database
-    await Post.findById({ _id: id })
+    await Post.find({ email })
         .then((posts) => {
-            if (!posts) {
-                res.json({ message: 'Post not found. It might have been removed by user.' });
-                return;
-            }
-            res.json({ posts });
+            if (!posts) return res.status(404).json({ message: 'Posts not found.' });
+            return res.status(200).json({ posts });
         })
-        .catch((err) => {
-            res.status(500).json({ error: err, message: 'There was an error getting posts.' });
-        });
+        .catch((err) => res.status(500).json({ error: err, message: 'There was an error getting posts.' }));
 };
 
 exports.getUserPost = async (req, res) => {
