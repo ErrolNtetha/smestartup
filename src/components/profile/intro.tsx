@@ -5,13 +5,11 @@ import { Link } from 'react-router-dom';
 import { Avatar } from 'components/avatar';
 import cover from 'assets/bg/cover.png';
 import { format } from 'date-fns';
-// import { getDistance } from 'helpers/formatDistance';
 import { useSelector } from 'react-redux';
 import { MdVerified } from 'react-icons/md';
-// import { getDateInMonth } from 'helpers/formatDistance';
 
 export const Intro = () => {
-    const userId = useFetchUserId();
+    const { authorId } = useFetchUserId();
     const { userData } = useSelector((userState) => userState.userProfile);
     const {
         name,
@@ -20,10 +18,6 @@ export const Intro = () => {
         _id,
         isVerified
     } = userData;
-    console.log(userData);
-    console.log(typeof userData.createdAt);
-    console.log(userData.createdAt);
-    // console.log(getDistance(userData.createdAt));
 
     return (
         <>
@@ -39,7 +33,7 @@ export const Intro = () => {
                             <p className='profile__occupation'> {occupation} </p>
                         </span>
                     </span>
-                    {userId === _id
+                    {authorId === _id
                         && <Link to='/profile/edit' className='profile__editProfile'> <FiSettings /> <span>Edit Profile</span> </Link> }
                 </span>
                 <span>
