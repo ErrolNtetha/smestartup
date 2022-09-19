@@ -86,19 +86,11 @@ exports.getUserPost = async (req, res) => {
 };
 
 exports.getAllUserPosts = async (req, res) => {
-    const { id } = req.user;
-
     // get all the posts from the database
-    await Post.find({ author: id })
+    await Post.find()
         .then((posts) => {
-            if (!posts) {
-               console.log('No posts yet. Follow people to see their posts.');
-            }
-            res.json({
-                posts
-            });
+            if (!posts) return res.status(200).json({ message: 'No posts. You posts will appear here.' });
+            return res.status(200).json({ posts });
         })
-        .catch((err) => {
-            res.json({ message: 'Error getting the posts.', err });
-        });
+        .catch((err) => res.status(500).json({ message: 'Error getting the posts.', err }));
 };
