@@ -12,7 +12,6 @@ export const useFetchUserId = () => {
             .then((res) => {
                 const { userId } = res.data;
                 setAuthorId(userId);
-                console.log(userId);
             })
             .catch(({ response }) => {
                 setError(`An error occurred. ${response?.status}`);
