@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const UserPosts = ({ post, date, id }: Props) => {
+    console.log(post);
     return (
         <section className='profile__postsContainer'>
                 <section className='profile__post' key={id}>
@@ -20,6 +21,7 @@ export const UserPosts = ({ post, date, id }: Props) => {
                                 <span>
                                     <h4 className='profile__fullNames'> Mphumeleli Errol Ntetha </h4>
                                     <p className='profile__timeAgo'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
+                                    <section />
                                 </span>
                                 <span style={{ alignSelf: 'start' }}>
                                     <FiMoreHorizontal className='profile__ellipsis' />
@@ -28,6 +30,7 @@ export const UserPosts = ({ post, date, id }: Props) => {
                         </section>
                     </span>
                     <p>{post}</p>
+                    <hr className='global' />
                 </section>
         </section>
     );
