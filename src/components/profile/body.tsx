@@ -7,7 +7,6 @@ import { useFetchData } from '../../hoc/useFetchData';
 
 export const Body = () => {
     const { data, error, loading } = useFetchData('/p/posts');
-    console.log(data);
 
     return (
         <section className='profile__bodyContainer'>
