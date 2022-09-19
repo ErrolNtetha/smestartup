@@ -20,6 +20,7 @@ export const Body = () => {
                       post={post}
                       date={createdAt}
                       id={_id}
+                      key={_id}
                     />
                     ))
             }
