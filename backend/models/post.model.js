@@ -11,7 +11,8 @@ const userPost = new mongoose.Schema(
             avatar: String,
             occupation: String,
             isVerified: Boolean,
-            email: String
+            email: { type: String, lowercase: true },
+            isOwner: { type: Boolean }
         },
         post: String,
         encodedImage: String,
