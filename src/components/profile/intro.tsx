@@ -42,7 +42,7 @@ export const Intro = () => {
                         This is the bio. Just a dummy text to represent a bio of the account and visualize how it will look like. jflaskjf jfklsdjf ;asfdjfhdf dfj;dlkjf hdafljdfkld aljdfldsjfd
                     </p>
                     <p className='profile__joined'> <FiMapPin /> Durban, South Africa </p>
-                    <p className='profile__joined'> <FiClock /> Member since {format(new Date(userData.createdAt), 'd MMM u')} </p>
+                    <p className='profile__joined'> <FiClock /> Joined {format(new Date(userData.createdAt), 'd MMMM u')} </p>
                 </span>
             </section>
         </>
