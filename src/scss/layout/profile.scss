@@ -62,10 +62,14 @@
             @include flexbox();
             @include buttonHover($bgColor: $primaryColor, $padding: 0);
             text-decoration: none;
-            font-size: .8rem;
+            font-size: 1rem;
             padding: .6em .8em;
             gap: .4em;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        &__editProfile span {
+            display: none;
         }
 
         &__joined {
@@ -183,6 +187,16 @@
         }
     }
 
+    @include respond-to('tablet') {
+        &__editProfile {
+            display: unset;
+        }
+
+        &__editProfile span {
+            display: unset;
+        }
+    }
+
     @include respond-to('laptop') {
         &__container {
             @include flexbox();
@@ -261,5 +275,5 @@
             gap: .4em;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-    }
+    } 
 }
