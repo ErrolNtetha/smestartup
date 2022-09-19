@@ -2,7 +2,6 @@ const User = require('../models/user.model');
 
 exports.verifyUser = async (req, res) => {
     const { email } = req.user;
-    console.log(email);
 
     await User.findOne({ email })
         .then((user) => {
