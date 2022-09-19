@@ -132,7 +132,9 @@
         }
 
         &__postsContainer {
-            margin-top: .6em;
+            margin-top: .1em;
+            background: $foregroundColor;
+            border-radius: $radius;
         }
 
         &__titleGroup {
@@ -148,7 +150,6 @@
         &__post {
             @include fontSize();
             width: 100%;
-            background-color: $primaryColor;
             padding: 0.6em;
             border-radius: 0.4em;
             margin-bottom: 0.5em;
