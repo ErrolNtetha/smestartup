@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const UserPosts = ({ post, date, id }: Props) => {
-    console.log(post);
     return (
         <section className='profile__postsContainer'>
                 <section className='profile__post' key={id}>
