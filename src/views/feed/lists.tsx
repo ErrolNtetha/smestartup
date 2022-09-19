@@ -17,7 +17,7 @@ export const Lists = () => {
         {toggleState ? <PostField /> : null}
         { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
                 : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
-                    post, encodedImage, _id, createdAt
+                    post, encodedImage, author, _id, createdAt
                 }) => (
               <List
                 post={post}
