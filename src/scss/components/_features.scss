@@ -13,13 +13,14 @@
     @include respond-to('mobile') {
         &__inner {
             @include flexbox($direction: column);
+            padding: .9em 0;
             // padding: 2em 1em;
 
         }
 
         &__item {
             @include flexbox($direction: column);
-            padding: 2em 0;
+            padding: .4em 0;
         }
 
         &__svg {
@@ -27,7 +28,8 @@
         }
 
         &__header {
-            margin: .6em 0;
+            padding: .3em 0;
+            margin: .2em 0;
         }
 
         p {
@@ -39,7 +41,19 @@
     @include respond-to('laptop') {
         &__inner {
             @include flexbox();
+            align-items: unset;
             gap: 2em;
+        }
+
+        &__header {
+            margin: .2em 0;
+            padding: .4em 0;
+        }
+        
+        &__item {
+            @include flexbox($justify-content: unset, $direction: column);
+            margin: 0;
+            padding: 1em 0;
         }
 
         &__header {

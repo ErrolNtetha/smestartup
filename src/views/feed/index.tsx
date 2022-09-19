@@ -1,5 +1,5 @@
 import React from 'react';
-import { Followers } from './followers';
+// import { Followers } from './followers';
 import { Sidebar } from './sidebar';
 import { Lists } from './lists';
 
@@ -8,7 +8,7 @@ export const FeedContainer = () => {
     <section className='feed'>
         <Sidebar />
         <Lists />
-        <Followers />
+        <section className='feed__rightColumn' />
     </section>
   );
 };

@@ -1,22 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const socketIo = require('socket.io');
 const http = require('http');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, {
-    cors: {
-        origin: '*.*',
-        methods: ['GET', 'POST'],
-    }
+const server = http.createServer(app, {
+    origin: ['http://localhost:3000', 'https://blendot.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
+const io = require('./socket.js').init(server);
 
 const loginRoute = require('./routes/user.routes');
 const postRoutes = require('./routes/posts.routes');
 const subsriberRoutes = require('./routes/subscriber.routes');
 const verify = require('./routes/verify.route');
+const suppliers = require('./routes/suppliers.routes');
+const refresh = require('./routes/refresh.router');
 
 // Middlewares
 require('dotenv').config();
@@ -25,14 +24,13 @@ require('dotenv').config();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
-
 app.use(express.static('./views/assets'));
 app.use(loginRoute);
 app.use(postRoutes);
 app.use(subsriberRoutes);
 app.use(verify);
-
-const name = 'Mphumeleli Ntetha';
+app.use(suppliers);
+app.use(refresh);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
@@ -47,10 +45,8 @@ io.on('connection', (socket) => {
     socket.on('disconnect', (data) => console.log('User disconnected: ', data));
 });
 
-exports = name;
-
 app.get('/', (req, res, next) => {
-    res.send('<h2> Everything works fine. </h2>');
+    res.send('<h2> Server running successfully. </h2>');
 });
 
 // Connecting to the database;

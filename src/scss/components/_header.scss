@@ -26,6 +26,11 @@
             // margin: 0 2em;
         }
 
+        &__arrowLeft {
+            font-size: 1.2rem;
+            width: 1em;
+        }
+
         &__innerContent {
             @include flexbox($justify-content: space-between);
             align-items: center;
@@ -139,10 +144,51 @@
             display: none;
         }
 
+        &__userContainer {
+            @include flexbox($justify-content: unset);
+        }
+
+        &__userFullNames {
+            @include flexbox($justify-content: unset);
+            margin: 0;
+        }
+
+        &__groupDetails {
+            margin-left: .4em;
+        }
+
+        &__userOccupation {
+            margin: 0;
+            font-size: .9rem;
+            opacity: 0.5;
+        }
+
+        &__isVerified {
+            margin-left: .2em;
+            color: blue;
+        }
+
+        &__userAvatarResult {
+            @include avatar($width: 40px);
+            border: .8px solid $foregroundColor;
+        }
+
+        &__userAvatar {
+            @include avatar($width: 30px);
+        }
+
+        &__userIcon1 {
+            font-size: 1.5rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         &__userIcon {
             color: #fff;
             font-size: 1.4rem;
-            margin: 0 .4em;
+            margin: 0 .4em; 
         }
 
         &__button--signin {
@@ -160,6 +206,17 @@
             font-size: 1.8rem;
             z-index: 2;
             margin-right: .2em
+        }
+
+
+        &__searchWrapper {
+            display: none;
+            font-size: 1.4rem;
+            width: 40%;
+        }
+
+        &__search > * {
+            width: 100%;
         }
     }
 
@@ -203,6 +260,13 @@
 
         &__content {
             padding: 0.4em 4em;
+            position: relative;
+        }
+
+        &__innerContent {
+            @include flexbox();
+            gap: 5em;
+            // width: 100%;
         }
 
         &__icon {
@@ -219,28 +283,110 @@
             padding-botton: 1em;
             margin-botton: 3em;
         }
+
+        &__seachIcon {
+            display: none;
+        }
+
+        &__searchResultContainer {
+            position: absolute;
+            margin-top: .2em;
+            background: #fff;
+            border-radius: inherit;
+            width: inherit;
+            margin-top: .2em;
+            padding-top: 1em;
+        }
+
+        &__searchContainer {
+            position: relative;
+            background: #fff;
+            border-radius: 20px;
+            width: 300px;
+            padding: .4em 0;
+        }
         
+        &__usersContainer {
+            position: absolute;
+            @include flexbox();
+            width: inherit;
+            top: 2.5em;
+            padding: .6em 0;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 20px;
+        }
+
         &__searchWrapper {
             @include flexbox();
-            gap: .8em;
-            border-radius: 20px;
-            padding: .5em 1em;
-            background: #fff;
+            width: 100%;
+            background: transparent;
+            height: 100%;
         }
 
         &__search {
-            display: unset;
+            @include flexbox();
+        }
+
+        &__searchResult {
+            color: #000;
+            width: 100%;
+            margin-top: .1em;
+            height: max-content;
+            text-decoration: none;
+
+            &:hover {
+                background: $foregroundColor;
+            }
+        }
+
+        &__clearSearchKey {
+            font-size: 1.3rem;
+            color: #000;
+            margin-right: .4em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__userContainer {
+            padding: .4em .8em;
+            margin: 0;
         }
 
         &__searchBar {
-            background: none;
+            background: transparent;
             border: none;
             outline: none;
+            width: inherit;
+            padding-right: 1.2em;
+            font-size: .9rem;
+        }
+
+        &__resultDivider {
+            opacity: 0.08;
         }
 
         &__searchIcon {
-            color: black;    
-            font-size: 1.2rem;
+            color: #000;    
+            font-size: 1.4rem;
+            margin: 0 .4em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__userAvatar {
+            @include avatar($width: 30px);
+            margin-left: 1em;
+
+        } 
+
+        &__arrowLeft {
+            font-size: 1.8rem;
+            width: 1em;
         }
 
         &__nav {
@@ -271,6 +417,8 @@
         &__profileContainer,
         &__close,
         &__item[href='/contact'],
+        &__item[href='/founders'],
+        &__item[href='/suppliers'],
         &__item[href='/faq'] {
             display: none;
         }

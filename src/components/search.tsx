@@ -1,13 +1,34 @@
 import React from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiX } from 'react-icons/fi';
 
-export const Search = () => {
+interface Props {
+    placeholder: string;
+    children: React.ReactNode;
+    searchKey: React.ChangeEventHandler<HTMLInputElement> | undefined;
+    clearSearchKey: React.MouseEventHandler<SVGElement> | undefined;
+    searchTerm: string;
+    className: string;
+}
+
+export const Search = ({
+    placeholder,
+    children,
+    searchKey,
+    clearSearchKey,
+    searchTerm,
+    className
+}: Props) => {
+    // const hasResult = children[2];
     return (
-        <div className='header__search'>
-            <section className='header__searchWrapper'>
-                <input type='text' placeholder='Search' className='header__searchBar' />
-                <FiSearch className='header__searchIcon' />
+        <section className={className}>
+            <section className='header__searchContainer'>
+                <section className='header__searchWrapper'>
+                    <FiSearch className='header__searchIcon' />
+                    <input type='text' name='search' value={searchTerm} placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
+                    {searchTerm && <FiX onClick={clearSearchKey} className='header__clearSearchKey' />}
+                </section>
+                {children}
             </section>
-        </div>
+        </section>
     );
 };

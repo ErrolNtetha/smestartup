@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
 
@@ -23,11 +24,32 @@ exports.userPosts = async (req, res) => {
 };
 
 exports.incrimementLikes = async (req, res) => {
-    const { likes } = req.body;
-    console.log(req.params);
-    console.log(likes);
+    console.log(req.user);
+    const { id } = req.user;
+    const { postId } = req.body;
+    console.log('Post ID: ', postId);
 
-    // find the post and update the stars
+    // find the post, add the stars and update the stars
+    await Post.findOne({ _id: postId })
+        .then((post) => {
+            // In a case where the post does not exist, return with 404
+            if (!post) return console.log('Post not found...');
+
+            // First, checks if the the user ID already exist in the 'stars' array
+            const exist = post.stars.includes(id);
+            if (exist) return console.log('You have already liked this post');
+
+            // Then add the user ID to the 'stars' array
+            post.stars.push(id);
+            console.log(post.stars);
+            const addUser = post.stars.push(id.toString());
+            console.log('add user:', addUser);
+            const addStar = new Post({ stars: addUser });
+            addStar.save()
+                .then(() => console.log('You have starred this post'))
+                .catch((error) => console.log('There was an error liking the post.', error.message));
+        })
+        .catch((error) => console.error(error));
    };
 
 exports.getSpecificUserPost = async (req, res) => {
@@ -37,12 +59,13 @@ exports.getSpecificUserPost = async (req, res) => {
     await Post.findById({ _id: id })
         .then((posts) => {
             if (!posts) {
-               res.json({ message: 'Post not found. It might have been removed by user.' });
+                res.json({ message: 'Post not found. It might have been removed by user.' });
+                return;
             }
             res.json({ posts });
         })
         .catch((err) => {
-            res.json({ error: err, message: 'There was an error getting posts.' });
+            res.status(500).json({ error: err, message: 'There was an error getting posts.' });
         });
 };
 

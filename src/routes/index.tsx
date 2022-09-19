@@ -4,6 +4,9 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
+import { AddSupplier } from 'views/suppliers/addSupplier';
+import { SupplierView } from 'views/suppliers/page';
+import { Founder } from 'views/suppliers/founder';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
@@ -11,6 +14,7 @@ import { Contact } from '../containers/contact';
 import { Profile } from '../containers/profile';
 import { Login } from '../containers/login';
 import { Register } from '../containers/register';
+import { Suppliers } from '../containers/suppliers';
 import { Feed } from '../containers/feed';
 import { Private } from './privateRoute';
 
@@ -26,11 +30,15 @@ export const Main: React.FC = () => {
                 <Route path='/profile' exact component={Profile} />
                 <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
-                <Route path='/faq' exact component={FAQ} />
                 <Route exact path='/feed/p/:id' component={Post} />
+                <Route exact path='/suppliers' component={Suppliers} />
+                <Route path='/faq' exact component={FAQ} />
+                <Route path='/suppliers/:id' exact component={SupplierView} />
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
+                <Private exact isAuth={isAuth} path='/suppliers/register' component={AddSupplier} />
+                <Private exact isAuth={isAuth} path='/founders' component={Founder} />
 
                 <Route path='/' component={NotFound} />
             </Switch>

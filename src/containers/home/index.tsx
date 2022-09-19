@@ -4,6 +4,7 @@ import React from 'react';
 // import { BASE_URL } from 'config/baseURL';
 import { Helmet } from 'react-helmet-async';
 import home from 'assets/home.png';
+import { Logo } from 'components/header/logo';
 import { Hero } from '../../views/hero';
 import { Header } from '../../views/header';
 import { Features } from '../../views/features';
@@ -22,7 +23,9 @@ export const Home: React.FC = () => {
                 <meta property='og:image' content={home} />
                 <meta property='og:url' content='http://blendot.com' />
             </Helmet>
-            <Header />
+            <Header>
+                <Logo />
+            </Header>
             <section className='home__asideLeft'>
                 <Hero />
                 <Features />

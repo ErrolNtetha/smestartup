@@ -51,7 +51,7 @@
         }
 
         &__profileImage {
-            width: 50px;
+            @include avatar($width: 50px);
             border-radius: 100%;
             border: 1px solid rgb(82, 82, 82);
         }
@@ -124,9 +124,9 @@
         }
 
         &__sidebar,
-        &__followers {
+        &__leftColumn {
             display: none;
-        }
+        } 
 
         &__postFieldWrapper {
             @include flexbox();
@@ -162,6 +162,7 @@
             width: 100%;
             margin-top: 1.2em;
             border-radius: 6px;
+            height: 400px;
         }
 
         &__addImage { 
@@ -367,9 +368,8 @@
 
     @include respond-to('laptop') {
         &__sidebar,
-        &__followers {
+        &__rightColumn {
             display: unset;
-            position: sticky;
         }
 
         &__postField {
@@ -378,17 +378,85 @@
         }
 
         &__create {
+            display: none;
             position: fixed;
             left: 0; 
         }
 
-        &__sidebar, &__followers {
+        &__sidebar, &__rightColumn {
             background: $foregroundColor;
-            border-radius: 5px;
+            border-radius: $radius;
             padding: 0;
             height: max-content;
             width: 20%;
             z-index: 2;
+        }
+
+        &__rightColumn {
+            // border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__navContainer {
+            padding: 0;
+            margin: .8em 0;;
+        }
+
+        &__sidebar {
+            padding: .1em;
+            background: none;
+        }
+        
+        &__sidebarLinks {
+            list-style: none;
+            padding: 0;
+        }
+
+        &__sidebarAvatar {
+            @include avatar($width: 1em);
+            border: .2px solid white;
+        }
+
+        &__counter {
+                @include flexbox($justify-content: space-between);
+        }
+
+        &__sidebarLinks li {
+            @include flexbox($justify-content: unset);
+            gap: .6em;
+            padding: .6em;
+
+            &:hover {
+                background: $foregroundColor;
+                cursor: pointer;
+                border-radius: $radius;
+
+            }
+        }
+
+        &__sidebarLinks li a {
+            @include flexbox($justify-content: unset);
+            gap: .6em;
+            text-decoration: none;
+            color: #fff;
+
+            &:hover {
+                background: $foregroundColor;
+                cursor: pointer;
+                border-radius: $radius;
+
+            }
+        }
+
+        &__dashboardContainer {
+            padding: 0 .4em;
+        }
+
+        &__dashboardContainer h6 {
+            text-transform: uppercase;
+            font-size: .9rem;
+            padding: 0;
+            margin: .8em;
+            opacity: 0.2;
         }
 
         &__followGroup {
@@ -398,6 +466,7 @@
                 background: $foregroundColor;
             }
         }
+
 
         &__followBtn {
             @include buttonHover($bgColor: $secondaryColor, $padding: .8em .8em);
@@ -409,7 +478,7 @@
             font-size: .8rem;
         }
 
-        &__profileWrapper, &__followers {
+        &__profileWrapper {
             padding: 1rem;
         }
 
@@ -445,7 +514,7 @@
         }
 
         &__fullProfile {
-            @include buttonHover($bgColor: $primaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
+            @include buttonHover($bgColor: $secondaryColor, $padding: .5em .9em, $margin: .2em 0);
             width: 100%;
         }
 

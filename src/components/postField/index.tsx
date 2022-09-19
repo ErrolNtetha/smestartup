@@ -60,18 +60,17 @@ useEffect(() => {
     if (images) {
         reader.onload = (e) => {
         const { result } = e.target;
-        console.log(result);
-        if (result) {
-            setFileURL(result);
-        }
-    };
+            if (result) {
+                setFileURL(result);
+            }
+        };
         reader.readAsDataURL(images);
     }
 
     return () => {
-            if (reader && reader.readyState === 1) {
-                reader.abort();
-            }
+        if (reader && reader.readyState === 2) {
+            reader.abort();
+        }
     };
 }, [images]);
 
@@ -104,7 +103,7 @@ useEffect(() => {
               hidden
               accept='image/*'
               multiple
-              onChange={(e) => setImages(e.target.files[0])}
+              onChange={(e) => setImages(e.target.files)}
               type='file'
             />
 
