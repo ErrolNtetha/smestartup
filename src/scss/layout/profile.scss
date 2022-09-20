@@ -185,6 +185,85 @@
             margin: 0;
             padding: 0;
         }
+
+        &__formContainer {
+            width: 95%;
+            background: $foregroundColor;
+            border-radius: 10px;
+        }
+
+
+        &__formContainer h4 {
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0;
+            padding: .4em .6em;
+            font-size: .9rem;
+            opacity: .5;
+        }
+
+        &__updateContainer {
+            @include flexbox();
+            margin-top: .8em;
+            width: 100%;
+        }
+
+        &__avatarContainer {
+            @include flexbox($justify-content: space-between);
+            flex-direction: row;
+            background: $primaryColor;
+            border-radius: 10px;
+            padding: .6em;
+            margin-bottom: .8em;
+        }
+
+        &__avatarBtns {
+            @include flexbox();
+            flex-direction: column;
+        }
+
+        &__removeAvatar {
+            background: red;
+        }
+
+        &__personalContainer {
+            padding: .8em .6em;
+        }
+
+
+        &__personalContainer > section {
+            margin-bottom: .5em;
+        }
+
+        &__avatarContainer > span {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__changeAvatar {
+            @include buttonHover($bgColor: $primaryColor, $padding: .4em 1.2em);
+            border: 1px solid white;
+        }
+
+        &__editAvatar {
+            @include avatar($width: 80px);
+        }
+
+        &__inputBio {
+            @include inputField($padding: .6em .8em, $border: 1px solid black, $inputRadius: 10px, $margin: 0);
+            font-family: $font-family;
+        }
+
+        &__input {
+            @include inputField($padding: .6em .8em, $border: 1px solid black, $inputRadius: 20px, $margin: 0);
+        } 
+
+        &__button--save {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .6em .8em);
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
     }
 
     @include respond-to('tablet') {
@@ -194,6 +273,28 @@
 
         &__editProfile span {
             display: unset;
+        }
+
+        &__avatarContainer > span {
+            @include flexbox();
+            flex-direction: column;
+        }
+
+        &__avatarContainer > span div {
+            width: max-content;
+        }
+
+        &__updateContainer {
+            height: max-content;
+        }
+
+        &__editAvatar {
+            @include avatar($width: 110px);
+        }
+
+        &__formContainer {
+            max-width: 40%;
+            padding: .2em .8em;
         }
     }
 
