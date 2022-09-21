@@ -7,15 +7,21 @@ interface Props {
     post: string;
     date: Date | number;
     id: string;
+    avatar: string;
 }
 
-export const UserPosts = ({ post, date, id }: Props) => {
+export const UserPosts = ({
+    post,
+    date,
+    id,
+    avatar
+}: Props) => {
     return (
         <section className='profile__postsContainer'>
                 <section className='profile__post' key={id}>
                     <span className='profile__titleContainer'>
                         <section className='profile__titleChild'>
-                            <Avatar className='profile__postAvatar' avatar='' />
+                            <Avatar className='profile__postAvatar' avatar={avatar} />
                             <span className='profile__titleGroup' style={{ paddingLeft: '.8em' }}>
                                 <span>
                                     <h4 className='profile__fullNames'> Mphumeleli Errol Ntetha </h4>
