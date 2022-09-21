@@ -178,8 +178,8 @@ return (
                           placeholder='Tell people about yourself and what makes you special...'
                           className='profile__inputBio'
                         />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values?.bio.length)}/200`} characters </section>
-                        {props.errors?.bio && <p style={{ color: 'red', margin: '0' }}>{props.errors?.bio}</p>}
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.bio.length)}/200`} characters </section>
+                        {props.errors.bio && <p style={{ color: 'red', margin: '0' }}>{props.errors.bio}</p>}
                     </section>
 
                 <hr className='global' style={{ marginTop: '3em' }} />
