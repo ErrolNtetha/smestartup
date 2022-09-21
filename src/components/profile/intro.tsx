@@ -16,7 +16,8 @@ export const Intro = () => {
         occupation,
         avatar,
         _id,
-        isVerified
+        isVerified,
+        bio
     } = userData;
 
     return (
@@ -37,10 +38,7 @@ export const Intro = () => {
                         && <Link to='/profile/edit' className='profile__editProfile'> <FiSettings /> <span>Edit Profile</span> </Link> }
                 </span>
                 <span>
-                    <p className='profile__bio'>
-                        This is the bio. Just a dummy text to represent a bio of the account and visualize how it will look like. jflaskjf jfklsdjf ;asfdjfhdf dfj;dlkjf hdafljdfkld aljdfldsjfd
-                        This is the bio. Just a dummy text to represent a bio of the account and visualize how it will look like. jflaskjf jfklsdjf ;asfdjfhdf dfj;dlkjf hdafljdfkld aljdfldsjfd
-                    </p>
+                    <p className='profile__bio'> {bio}</p>
                     <p className='profile__joined'> <FiMapPin /> Durban, South Africa </p>
                     <p className='profile__joined'> <FiClock /> Joined {format(new Date(userData.createdAt), 'd MMMM u')} </p>
                 </span>
