@@ -5,19 +5,24 @@ const userData = new mongoose.Schema({
         firstName: { type: String, required: [true, 'First name cannot be empty.'] },
         lastName: { type: String, required: [true, 'Last name cannot be empty.'] },
     },
-    email: { type: String, lowercase: true, required: [true, 'Email is required.'] },
-    gender: { type: String, required: [true, 'Gender is required.'] },
+    email: {
+        type: String,
+        lowercase: true,
+        unique: true,
+    },
+    gender: { type: String, },
     password: {
         type: String,
         min: 6,
         max: 40,
-        required: [true, 'Password cannot be empty.']
     },
     avatar: String,
     isVerified: { type: Boolean, default: false },
     isPremium: { type: Boolean, default: false },
-    bio: String,
+    bio: { type: String, max: 180 },
     occupation: String,
+    company: String,
+    school: String,
     employmentStatus: String,
     type: { type: String, default: 'personal' },
 }, { timestamps: true });
