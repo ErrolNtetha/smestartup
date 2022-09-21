@@ -72,7 +72,6 @@ const Profile = ({ isLoggedIn }: Props) => {
                         <span>
                             <h4 className='header__name'> {name.firstName} {name.lastName} </h4>
                             <p className='header__title'> {occupation} </p>
-                            {/* <p className='header__recent'> 32 mins ago </p> */}
                         </span>
                         </Link>
                         )
