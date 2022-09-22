@@ -6,7 +6,6 @@ const suppliers = require('../controllers/suppliersController');
 const verifyToken = require('../middlewares/verifyJWT');
 
 router.route('/suppliers')
-    .get(suppliers.getSupplierProfiles)
     .get(suppliers.getSuppliers); // get all suppliers
 router.route('/suppliers/:id').get(suppliers.getSupplier); // view specific supplier infomation
 router.route('/suppliers/register').post(verifyToken, suppliers.createSupplier); // register new supplier record
