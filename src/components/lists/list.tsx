@@ -8,7 +8,7 @@ import {
     FiAlertTriangle
 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
-import avatar from 'assets/avatar.png';
+// import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
@@ -16,7 +16,7 @@ import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 // import { Link } from 'react-router-dom';
-import { findLinks } from 'helpers/findLinks';
+// import { findLinks } from 'helpers/findLinks';
 import { io } from 'socket.io-client';
 import { NODE_ENV } from 'config/baseURL';
 
@@ -32,10 +32,11 @@ import { NODE_ENV } from 'config/baseURL';
       author: string,
       isVerified: boolean;
       occupation: string;
+      avatar: string;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, date, image, isVerified, occupation, author
+     name, post, id, date, image, isVerified, occupation, author, avatar
     }) => {
       const [modal, setModal] = React.useState(false);
         const [likes, setLikes] = React.useState(0);
@@ -47,7 +48,7 @@ import { NODE_ENV } from 'config/baseURL';
             setLikes(1);
 
             const formData = {
-                likes,
+                postId,
             };
 
             axiosPrivate.put(`/feed/${postId}`, formData)
@@ -89,7 +90,7 @@ import { NODE_ENV } from 'config/baseURL';
             <div className='feed__profile'>
                 <Avatar className='feed__profileImage' avatar={avatar} />
               <span>
-                <h4 className='feed__name'> {name.firstName} {name.lastName} {isVerified && <MdVerified /> } </h4>
+                <h4 className='feed__name'> {name?.firstName} {name?.lastName} {isVerified && <MdVerified /> } </h4>
                 <p className='feed__title'> {occupation} </p>
                 <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
               </span>
@@ -123,19 +124,7 @@ import { NODE_ENV } from 'config/baseURL';
             )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
-
-            { findLinks(post) ?
-                (
-                    <p className='feed__listContent'>
-                        {/* console.log(findLinksAndReplace(post, '****'))}
-                        {findLinksAndReplace(post, findLinks(post).forEach((link) => {
-                            console.log('This is the link: ', link);
-                            return <a target='_blank' rel='noreferrer' href={link}>{link}</a>;
-                        })) */}
-                        {post}
-                    </p>
-                )
-                : <p className='feed__listContent'> {post} </p> }
+            <p className='feed__listContent'> {post} </p>
     {!image ? null
     :
     (
@@ -148,7 +137,7 @@ import { NODE_ENV } from 'config/baseURL';
     <section className='feed__LastRow'>
         <span className='feed__stats'>
           <span className='feed__comments'>  </span>
-          <Button onClick={handleLikes} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
+          <Button onClick={() => handleLikes(id)} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
         </span>
     </section>
     </section>

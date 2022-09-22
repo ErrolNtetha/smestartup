@@ -7,7 +7,7 @@ exports.getSubscriber = async (req, res) => {
     const { fullNames, lastName, email } = req.body;
 
     const transporter = nodemailer.createTransport({
-        host: 'premium111.web-hosting.com',
+        host: 'dns1.p07.nsone.net',
         auth: {
                 user: process.env.MAIL_USERNAME,
                 pass: process.env.MAIL_PASSWORD,
@@ -25,11 +25,10 @@ exports.getSubscriber = async (req, res) => {
         const mailOptions = {
             from: 'no-reply@blendot.com',
             to: email,
-            subject: 'You have successfully subscribed!',
+            subject: 'Happy to have you on board. - Blendot',
             template: 'index',
             context: {
                 fullNames,
-                lastName,
                 email
             }
         };
@@ -37,7 +36,7 @@ exports.getSubscriber = async (req, res) => {
                 // send an email
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                res.json({ message: 'There was an error subscribing.' });
+                // res.json({ message: 'There was an error subscribing.' });
                 console.log('There was an error ', error.message);
                 return;
             }

@@ -5,6 +5,7 @@
 
 .select {
     @include respond-to('mobile') {
+
         @include flexbox($justify-content: unset);
         flex-direction: column;
         border-radius: 20px;
@@ -27,6 +28,8 @@
             @include flexbox($justify-content: space-between);
             width: 100%;
             padding: .5em .8em;
+            border: 1px solid rgba(0, 0, 0, .5);
+            border-radius: 20px;
 
             
             &__icon {
@@ -38,9 +41,22 @@
             }
         }
 
+        &__options::-webkit-scrollbar {
+            width: .2em;
+        }
+
+        &__options::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &__options::-webkit-scrollbar-thumb {
+            background: darkgrey;
+            border-radius: $radius;
+        }
+
         &__options {
             width: 100%;
-            height: max-content;
+            max-height: max-content;
             overflow-y: scroll;
             overflow-x: hidden;
             border: 0 0 50px 50px;
@@ -68,7 +84,7 @@
     }
 
     @include respond-to('laptop') {
-        width: 100%;
+        width: 30%;
         display: unset;
         background: $primaryColor;
         box-shadow: none;
@@ -76,12 +92,12 @@
         transition: height 500ms ease-in-out;
 
         &__options {
-            height: 70vh;
+            max-height: 70vh;
+            width: 100%;
             margin-top: .2em;
             overflow-y: auto;
             background: $primaryColor;
             position: absolute;
-            width: inherit;
             border: .8px solid rgba(255, 255, 255, 0.05);
             transition: height 500ms ease-in-out;
             border-radius: 20px;

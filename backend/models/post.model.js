@@ -5,11 +5,17 @@ const userPost = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     post: String,
     encodedImage: String,
-    stars: { type: Number, default: 0 }
+    reports: {
+        count: Number,
+        users: { type: [mongoose.Schema.Types.ObjectId], ref: 'User' },
+    },
+    stars: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User'
+    },
 },
-{
-    timestamps: true,
-});
+{ timestamps: true }
+);
 
 const Post = mongoose.model('Post', userPost);
 

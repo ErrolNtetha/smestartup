@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { fetchAllUsers } from 'store/middlewares/fetchUsers';
+import { Logo } from 'components/header/logo';
 import { fetchUsers } from 'store/actions/fetchUsers';
 import { useDispatch, connect } from 'react-redux';
 import { Header } from '../../views/header';
@@ -23,7 +24,9 @@ export const Contact = () => {
 
   return (
     <section>
-      <Header />
+      <Header>
+          <Logo />
+      </Header>
       <div>
         <h4> Users </h4>
         <section>

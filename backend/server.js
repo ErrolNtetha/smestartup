@@ -1,23 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const socketIo = require('socket.io');
 const http = require('http');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, {
-    cors: {
-        origin: ['http://localhost:3000', 'https://blendot.com'],
-        methods: ['GET', 'POST'],
-    }
+const server = http.createServer(app, {
+    origin: ['http://localhost:3000', 'https://blendot.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
+const io = require('./socket.js').init(server);
 
 const loginRoute = require('./routes/user.routes');
 const postRoutes = require('./routes/posts.routes');
 const subsriberRoutes = require('./routes/subscriber.routes');
 const verify = require('./routes/verify.route');
 const suppliers = require('./routes/suppliers.routes');
+const refresh = require('./routes/refresh.router');
 
 // Middlewares
 require('dotenv').config();
@@ -32,6 +30,7 @@ app.use(postRoutes);
 app.use(subsriberRoutes);
 app.use(verify);
 app.use(suppliers);
+app.use(refresh);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {

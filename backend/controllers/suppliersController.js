@@ -1,5 +1,4 @@
 const Suppliers = require('../models/suppliers.model');
-// const geocoder = require('../utils/geocode');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -16,13 +15,55 @@ exports.getSuppliers = async (req, res) => {
         });
 };
 
-exports.createSupplier = async (req, res) => {
-    const { name, about, address } = req.body;
+exports.getSupplier = async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    await Suppliers.find({ _id: id })
+        .then((suppliers) => {
+            if (!suppliers) {
+                res.status(404).json({ message: 'No suppliers in the database yet.' });
+                return;
+            }
+            res.status(200).json({ suppliers: suppliers[0] });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({ success: false, error });
+        });
+};
 
-        const newSupplier = new Suppliers({
+exports.createSupplier = async (req, res) => {
+    const {
         name,
         about,
-        address
+        description,
+        contacts,
+        addresses,
+        tags,
+        isRegistered
+    } = req.body;
+    const { id } = req.user;
+    const {
+        email,
+        website,
+        cellphone,
+        telephone
+    } = contacts;
+
+    const newSupplier = new Suppliers({
+        name,
+        about,
+        description,
+        contacts: {
+            email,
+            cellphone,
+            telephone,
+            website
+        },
+        addresses,
+        tags,
+        author: id,
+        isRegistered
     });
 
     await newSupplier.save()
@@ -31,8 +72,10 @@ exports.createSupplier = async (req, res) => {
 };
 
 exports.deleteSupplier = async (req, res) => {
-    await Suppliers.deleteMany({})
-        .then(() => res.status(200).json({ success: true, message: 'Suppliers deleted.' }))
+    const { id } = req.params;
+
+    await Suppliers.findByIdAndRemove({ _id: id })
+        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully deleted.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 

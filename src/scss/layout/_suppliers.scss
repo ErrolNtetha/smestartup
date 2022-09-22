@@ -2,14 +2,40 @@
 @use '../breakpoints/' as *;
 @use '../base/' as *;
 
+.global {
+    opacity: 0.1;
+    margin: 0;
+}
+
 .supplier {
-    margin: .6em;
 
     @include respond-to('mobile') {
-        &__filterContainer {
-            @include flexbox();
-            align-items: unset;
-            flex-direction: column;
+        &__previewContainer {
+            display: none;
+            width: 100%;
+            background: $foregroundColor;
+            padding: 1em;
+            margin-bottom: .4em;
+            border-radius: $radius;
+        }
+
+        &__innerContainer {
+            background: red;
+            display: none;
+            background: $foregroundColor;
+        }
+        
+        &__filterModal > &__filterContainer {
+            display: none;
+        }
+
+        &__filterContainr {
+            width: 100%;
+        }
+
+        &__leftBarContainer {
+            width: 25%;
+            border-radius: $radius;
         }
 
         &__filterTitle {
@@ -18,21 +44,90 @@
             font-weight: bold;
         }
 
+        &__createContainer, &__create {
+            display: none;
+        }
+
+        &__filterIconGroup {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: $foregroundColor;
+            padding: .4em .8em;
+            z-index: 29;
+            height: 6vh;
+        }
+
+        &__filterIconGroup span {
+           @include flexbox($justify-content: space-evenly);
+            background: $primaryColor;
+            padding: .5em .6em;
+            border-radius: 50px;
+        }
+
+        &__filterContainer > * {
+            display: unset;
+        }
+
+        &__filterSearchContainer {
+            z-index: 31;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 6vh;
+        }
+
+        &__searchFilter {
+            display: unset;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 54543539;
+        }
+
+        &__filterIconGroup span > * {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__filterIconGroup span p {
+            margin: 0;
+        }
+
+        &__modal {
+            @include flexbox();
+            position: fixed;
+            top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 999;
+            background: rgba(256, 255, 255, .2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        &__modal > * > &__filterContainer {
+            display: unset;
+            width: 100%;
+            background: rgba(256, 255, 255, .2);
+        }
+
         &__titleDivider {
             opacity: 0.1;
             margin: .8em 0;
         }
 
         &__locationInputs {
-            @include flexbox();
-            flex: 50% 1 1;
+                width: 100%;
 
             &__location {
-                @include flexbox();
-                gap: .8em;
+                width: 100%;
 
                 &__city, &__zip {
-                    @include inputField($padding: .5em 1em, $border: none, $inputRadius: 20px);
+                    @include inputField($padding: .8em 1em, $border: none, $inputRadius: 20px);
+                    display: block;
                     background: $primaryColor;
                     color: #fff;
                     font-weight: bold;
@@ -41,10 +136,91 @@
             }
         }
 
+        &__another {
+            display: block;
+        }
         &__resultContainer {
-            padding: .6em;
             background: $foregroundColor;
-            border-radius: $radius;
+            height: max-content;
+        }
+
+        &__responseContainer {
+            @include flexbox();
+            flex-direction: column;
+            text-align: center;
+            height: 80vh;
+            padding: 0 2em;
+        }
+
+        &__retryButton {
+            @include buttonHover($bgColor: $primaryColor, $padding: .4em .8em);
+            border: 1px solid white;
+        }
+
+        &__supplierPost {
+            @include flexbox($justify-content: unset);
+            align-items: unset;
+            padding: .6em;
+        }
+
+        &__names {
+            @include flexbox($justify-content: unset);
+            flex-direction: column;
+            align-items: unset;
+            gap: .4em;
+            margin: 0;
+            padding: 0;
+            margin-left: .5em;
+        }
+
+
+        &__details {
+            font-size: .8rem;
+        }
+
+        &__detailsGroup > p {
+            font-size: .8rem;
+        }
+
+        &__moreDetails {
+            position: absolute;
+        }
+
+        &__detailsGroup > * {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__names > p {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__supplierName {
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
+        }
+
+        &__tags {
+            display: inline-block;
+            width: max-content;
+            font-size: .7rem;
+            padding: .4em .6em;
+            background: $primaryColor;
+            border-radius: 5px;
+        }
+
+        &__about {
+            font-size: .8rem;
+            margin: .2em;
+        }
+
+        &__profilePicture {
+            @include avatar($width: 45px);
+            border: none;
+            border-radius: 3px;
         }
 
         &__search--button {
@@ -53,31 +229,232 @@
             margin: .6em 0;
         }
 
+        &__more {
+            @include flexbox($justify-content: space-between);
+            padding: 0 .8em;
+            margin: .2em 0;
+            height: 2em;
+        }
+
+        &__viewMore {
+            @include flexbox();
+            color: #fff;
+            text-transform: uppercase;
+            gap: .3em;
+            font-weight: 500;
+            margin: 0;
+            text-align: center;
+            text-decoration: none;
+            font-size: .8rem;
+            border-radius: 0px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__likeBtn {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__reactButtons {
+            @include flexbox();
+            gap: .6em;
+        }
+
+        &__reactButtons > span {
+            @include flexbox();
+            gap: .4em;
+            font-size: .9rem;
+            background: $primaryColor;
+            padding: .3em .8em;
+            border-radius: 20px;
+
+            &:hover {
+                cursor: pointer;
+                color: #000;
+                background: #fff;
+                transform: scale(1);
+            }
+        } 
+
+        &__payNow {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .6em 1em);
+            font-size: .8rem;
+            margin: 0;
+        }
+
         &__buttonContainer {
             @include flexbox();
+            gap: .6em;
         }
     }
 
     @include respond-to('laptop') {
         &__container {
             @include flexbox();
+            margin: .6em;
             align-items: unset;
             gap: 1em;
             height: 30%;
         }
 
-        &__filterContainer, &__previewContainer {
-            width: 20%;
+        &__leftColumn, &__rightColumn {
+            @include flexbox($justify-content: unset);
+            align-items: unset;
+            flex-direction: column;
+            width: 25%;
+            margin-bottom: .8em;
+        }
+
+        &__filterContainer {
             background: $foregroundColor;
-            padding: 1em;
+        }
+
+        &__previewContainer {
+            display: unset;
+            background: $foregroundColor;
+            padding: .6em .3em;
+        }
+
+        &__filterContainer, &__previewContainer {
             border-radius: $radius;
-            height: 40%;
+            height: max-content;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__filterModal > &__filterContainer {
+            display: unset;
+        }
+
+        &__filterIconGroup {
+            display: none;
+        }
+
+        &__previewContainer {
+            padding: 0;
+        }
+
+        &__information {
+            text-align: center;
+            padding: .6em 0;
+            margin: 0;
         }
 
         &__resultContainer {
-            width: 50%;
             background: $foregroundColor;
             height: max-content;
+            margin-bottom: .4em;
+            border-radius: $radius;
+        }
+
+        &__supplierResults {
+            @include flexbox($justify-content: unset);
+            flex-direction: column;
+            align-items: unset;
+            width: 50%;
+        }
+
+        &__createContainer {
+            @include flexbox($justify-content: unset);
+            flex-direction: column;
+            width: 100%;
+            margin-top: 1em;
+            border-radius: $radius;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: $foregroundColor;
+            height: max-content;
+        }
+
+        &__supplierListContainer {
+            margin: .5em .2em;
+        }
+
+        &__supplierPreContainer {
+            @include flexbox($justify-content: space-between);
+            padding: .4em .6em;
+            margin: .2em;
+            border-radius: 10px;
+            background: $primaryColor;
+            text-decoration: none;
+            color: #fff;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+
+        &__supplierPreContainer > section {
+            @include flexbox();
+            gap: .4em;
+        }
+
+        &__supplierPicture {
+            @include avatar($width: 30px);
+        }
+
+        &__createContainer span p {
+            font-size: .8rem;
+            margin: 0;
+        }
+
+        &__supplierProfiles {
+            @include flexbox();
+            flex-direction: column;
+            padding: 0 .5em;
+        }
+
+        &__create {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .5em 1em);
+            display: unset;
+            text-decoration: none;
+            width: 100%;
+            margin: .6em 0;
+            text-align: center;
+        }
+
+        &__responseContainer {
+            width: 50%;
+        }
+
+        &__map {
+            width: 100%;
+            height: 150px;
+        }
+
+        &__map, &__details {
+            padding: .8em;
+        }
+
+        &__details span {
+            @include flexbox($justify-content: space-between);
+            padding: 0;
+            width: 100%;
+        }
+
+        &__details span p {
+            margin: .2em;
+        }
+
+        &__details span a {
+            margin: .2em;
+        }
+
+        &__infoList {
+            @include flexbox();
+            align-items: unset;
+            gap: .4em;
+        }
+
+
+        &__infoList.p {
+            margin: 0;
+            padding: 0;
+            display: inline;
         }
     } 
 }

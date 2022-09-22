@@ -1,5 +1,6 @@
 @use '../mixins/' as *;
 @use '../base/color' as *;
+@use '../base/' as *;
 
 .profile {
     &__profileGrid {
@@ -10,9 +11,20 @@
         }
 
         &__coverImage {
+            position: relative;
             width: 100%;
-            height: 15vh;
-            background: purple;
+            height: 120px;
+            border-radius: $radius;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__cover {
+            @include avatar($width: 100%);
+            position: absolute;
+            border: none;
+            border-radius: inherit;
+            max-height: inherit;
+            z-index: 2;
         }
 
         &__details {
@@ -27,6 +39,7 @@
             @include avatar($width: 70px);
             border: 3px solid $foregroundColor;
             margin-top: -2em;
+            z-index: 3;
         }
     
         &__personalDetails {
@@ -48,8 +61,11 @@
         &__editProfile {
             @include flexbox();
             @include buttonHover($bgColor: $primaryColor, $padding: 0);
-            font-size: 1.2rem;
+            text-decoration: none;
+            font-size: .8rem;
+            padding: .6em .8em;
             gap: .4em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         &__joined {
@@ -71,7 +87,6 @@
         }
 
         &__bodyContainer {
-            background: $foregroundColor;
             border-radius: .2em;
             padding: .1em .4em;
             padding-bottom: .4em;
@@ -80,13 +95,16 @@
         &__loadingContainer, &__errorContainer {
             @include flexbox();
             flex-direction: column;
-            height: 60vh;
+            height: 20vh;
             padding: 3em;
             text-align: center;
         }
 
         &__retry {
-            @include buttonHover($bgColor: $secondaryColor, $padding: .8em 1.6em);
+            @include buttonHover($bgColor: $primaryColor, $padding: 0);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: .6em 1em;
+            font-size: 1rem;
         }
 
         &__tabsContainer {
@@ -165,41 +183,82 @@
     }
 
     @include respond-to('laptop') {
-        &__avatar {
-            @include avatar($width: 160px);
-            margin-top: -3em;
+        &__container {
+            @include flexbox();
         }
 
-        &__details {
+        &__avatar {
+            @include avatar($width: 150px);
+            margin-top: -3em;
+            z-index: 3;
+        }
+
+        &__header {
+            margin-top: 1em;
+            width: 1200px;
+        }
+
+         &__details {
+            border-radius: $radius;
             padding: 0 3em;
+            padding-bottom: 1em;
+        }
+
+        &__loadingContainer, &__errorContainer {
+            @include flexbox();
+            flex-direction: column;
+            height: 30vh;
+            padding: 3em;
+            text-align: center;
         }
 
         &__coverImage {
+            position: relative;
             width: 100%;
-            height: 30vh;
-            background: purple;
+            height: 250px;
+            border-radius: $radius;
+        }
+
+        &__cover {
+            @include avatar($width: 100%);
+            position: absolute;
+            border: none;
+            border-radius: inherit;
+            max-height: inherit;
+            z-index: 2;
         }
 
         &__names {
             margin-top: 0;
             font-weight: 400;
-            font-size: 2em;
+            font-size: 1.8rem;
         }
 
         &__occupation {
-            font-size: 1.2em;
+            font-size: 1rem;
         }
 
         &__joined {
-            font-size: 1.2em;
+            font-size: 1rem;
         }
         
         &__bio {
-            font-size: 1.2em;
+            font-size: 1rem;
+            max-width: 80%;
         }
 
         &__rightSection {
             display: unset;
+        }
+
+        &__editProfile {
+            @include flexbox();
+            @include buttonHover($bgColor: $primaryColor, $padding: 0);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: .6em .8em;
+            gap: .4em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
     }
 }

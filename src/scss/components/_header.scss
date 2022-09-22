@@ -26,6 +26,11 @@
             // margin: 0 2em;
         }
 
+        &__arrowLeft {
+            font-size: 1.2rem;
+            width: 1em;
+        }
+
         &__innerContent {
             @include flexbox($justify-content: space-between);
             align-items: center;
@@ -165,6 +170,7 @@
 
         &__userAvatarResult {
             @include avatar($width: 40px);
+            border: .8px solid $foregroundColor;
         }
 
         &__userAvatar {
@@ -200,6 +206,17 @@
             font-size: 1.8rem;
             z-index: 2;
             margin-right: .2em
+        }
+
+
+        &__searchWrapper {
+            display: none;
+            font-size: 1.4rem;
+            width: 40%;
+        }
+
+        &__search > * {
+            width: 100%;
         }
     }
 
@@ -246,6 +263,12 @@
             position: relative;
         }
 
+        &__innerContent {
+            @include flexbox();
+            gap: 5em;
+            // width: 100%;
+        }
+
         &__icon {
             display: none;
         }
@@ -280,13 +303,25 @@
             background: #fff;
             border-radius: 20px;
             width: 300px;
+            padding: .4em 0;
         }
         
+        &__usersContainer {
+            position: absolute;
+            @include flexbox();
+            width: inherit;
+            top: 2.5em;
+            padding: .6em 0;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 20px;
+        }
+
         &__searchWrapper {
             @include flexbox();
             width: 100%;
             background: transparent;
-            padding: .4em 0;
+            height: 100%;
         }
 
         &__search {
@@ -295,7 +330,6 @@
 
         &__searchResult {
             color: #000;
-            padding-bottom: .4em;
             width: 100%;
             margin-top: .1em;
             height: max-content;
@@ -317,7 +351,8 @@
         }
 
         &__userContainer {
-            padding: 0 .8em;
+            padding: .4em .8em;
+            margin: 0;
         }
 
         &__searchBar {
@@ -326,6 +361,7 @@
             outline: none;
             width: inherit;
             padding-right: 1.2em;
+            font-size: .9rem;
         }
 
         &__resultDivider {
@@ -343,8 +379,14 @@
         }
 
         &__userAvatar {
-            width: 40px;
+            @include avatar($width: 30px);
             margin-left: 1em;
+
+        } 
+
+        &__arrowLeft {
+            font-size: 1.8rem;
+            width: 1em;
         }
 
         &__nav {
@@ -375,6 +417,8 @@
         &__profileContainer,
         &__close,
         &__item[href='/contact'],
+        &__item[href='/founders'],
+        &__item[href='/suppliers'],
         &__item[href='/faq'] {
             display: none;
         }

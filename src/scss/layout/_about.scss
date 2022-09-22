@@ -1,0 +1,126 @@
+@use '../mixins/_respond.scss' as *;
+@use '../mixins/_flexbox.scss' as *;
+@use '../base' as *;
+
+.about {
+    @include respond-to('mobile') {
+        &__container {
+            height: max-content;
+        }
+
+        &__intro {
+            @include flexbox();
+            gap: 1em;
+            background: $secondaryColor;
+            height: max-content;
+        }
+
+        &__left {
+            @include flexbox();
+            flex-direction: column;
+            padding: 2em 1em;
+            width: 100%;
+        }
+
+        &__screenshot {
+            display: none;
+            width: 400px;
+            transform: perspective(50em) rotateY(-10deg);
+        }
+
+        &__left h2 {
+            font-size: 1.6rem;
+            margin: 0;
+            text-align: center;
+        }
+
+        &__left p {
+            margin: 0;
+            padding-top: 1em;
+            font-size: .9rem;
+            text-align: center;
+        }
+
+        &__veges {
+            width: 100%;
+            border-radius: 5px;
+            border: .5px solid rgba(255, 255, 255, .2);
+        }
+
+        &__visionText {
+            font-size: .8rem;
+            margin-bottom: .9em;
+        }
+
+        &__wrapper {
+            padding: .2em .6em;
+            background: $foregroundColor;
+        }
+    }
+    
+    @include respond-to('laptop') {
+        &__intro {
+            @include flexbox();
+            gap: 4em;
+            background: $secondaryColor;
+            height: 50vh;
+        }
+
+        &__wrapper {
+            padding-top: 4em;
+        }
+
+        &__left h2 {
+            font-size: 3rem;
+            margin: 0;
+            text-align: left;
+        }
+
+        &__left p {
+            margin: 0;
+            padding-top: .8em;
+            font-size: 1rem;
+            text-align: unset;
+        }
+
+        &__left {
+            align-items: unset;
+            width: 40%;
+            padding: unset;
+        }
+
+        &__screenshot {
+            display: unset;
+            width: 400px;
+            transform: perspective(50em) rotateY(-10deg);
+        }
+
+        &__visionContainer, &__missionContainer {
+            @include flexbox();
+            gap: 2em;
+            margin-bottom: 4em;
+            padding: .8em 0;
+        }
+
+        &__mission::after {
+            width: 90%;
+            border: 2px dashed red;
+        }
+
+        &__visionContainer {
+            flex-direction: row-reverse;
+        }
+
+        &__visionText {
+            font-size: 1rem;
+        }
+
+        &__vision, &__mission {
+            width: 40%;
+        }
+
+        &__veges {
+            width: 300px;
+        }
+    }
+}
