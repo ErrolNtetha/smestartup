@@ -20,7 +20,7 @@ app.use(verifyJWT);
 // Handle routes
 router.get('/login', login_user);
 router.get('/profile', cors(corsOption), verifyJWT, profile.getUserProfile);
-router.get('/p/posts', verifyJWT, postRoutes.getAllUserPosts);
+router.get('/profile/posts', verifyJWT, postRoutes.getAllUserPosts);
 router.post('/login', login_user);
 router.post('/register', register_user);
 router.get('/contact', allUsers.getUsers);
