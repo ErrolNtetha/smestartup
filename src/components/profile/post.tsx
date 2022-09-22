@@ -7,25 +7,26 @@ interface Props {
     post: string;
     date: Date | number;
     id: string;
-    avatar: string;
+    author: any;
 }
 
 export const UserPosts = ({
     post,
     date,
     id,
-    avatar
+    author
 }: Props) => {
     return (
         <section className='profile__postsContainer'>
                 <section className='profile__post' key={id}>
                     <span className='profile__titleContainer'>
                         <section className='profile__titleChild'>
-                            <Avatar className='profile__postAvatar' avatar={avatar} />
+                            <Avatar className='profile__postAvatar' avatar={author.avatar} />
                             <span className='profile__titleGroup' style={{ paddingLeft: '.8em' }}>
                                 <span>
-                                    <h4 className='profile__fullNames'> Mphumeleli Errol Ntetha </h4>
+                                    <h4 className='profile__fullNames'> {author.name.firstName} {author.name.lastName} </h4>
                                     <p className='profile__timeAgo'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
+                                    <p className='profile__timeAgo'> {author.occupation} </p>
                                     <section />
                                 </span>
                                 <span style={{ alignSelf: 'start' }}>
@@ -34,7 +35,7 @@ export const UserPosts = ({
                             </span>
                         </section>
                     </span>
-                    <p>{post}</p>
+                    <p className='profile__userPost'>{post}</p>
                     <hr className='global' />
                 </section>
         </section>
