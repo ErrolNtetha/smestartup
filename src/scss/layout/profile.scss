@@ -230,6 +230,11 @@
             padding: .8em .6em;
         }
 
+        &__personalContainer > section > &__tooltipContainer {
+            &:before {
+                border: 1px solid red;
+            }
+        }
 
         &__personalContainer > section {
             margin-bottom: .5em;
@@ -260,9 +265,30 @@
 
         &__button--save {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em .8em);
-            display: block;
             width: 100%;
             margin: 0;
+        }
+
+        &__button--cancel {
+            @include buttonHover($bgColor: white, $padding: .6em .8em);
+            color: black;
+            width: 100%;
+            margin: 0;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+        }
+
+        &__actionBtns {
+            @include flexbox();
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+
+        &__tooltip {
+            @include tooltip(); 
         }
     }
 
@@ -295,6 +321,9 @@
         &__formContainer {
             max-width: 40%;
             padding: .2em .8em;
+        }
+
+        &__tooltip {
         }
     }
 
