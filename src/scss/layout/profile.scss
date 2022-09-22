@@ -2,6 +2,8 @@
 @use '../base/color' as *;
 @use '../base/' as *;
 
+$container-width: 70%;
+
 .profile {
     &__profileGrid {
         @include flexbox();
@@ -354,15 +356,21 @@
         }
 
         &__header {
+            @include flexbox();
+            flex-direction: column;
             margin-top: 1em;
-            width: 1200px;
+            width: $container-width;
+        }
+
+        &__bodyContainer {
+            padding: 0;
         }
 
          &__details {
             border-radius: $radius;
-            padding: 0 3em;
+            padding: 0 1.5em;
             padding-bottom: 1em;
-        }
+        } 
 
         &__loadingContainer, &__errorContainer {
             @include flexbox();
@@ -404,7 +412,15 @@
         
         &__bio {
             font-size: 1rem;
-            max-width: 80%;
+            max-width: 65%;
+        }
+
+        &__postContainer {
+            width: $container-width;
+        }
+
+        &__userPost {
+            font-size: 1rem;
         }
 
         &__rightSection {
