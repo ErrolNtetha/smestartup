@@ -230,14 +230,31 @@
             padding: .8em .6em;
         }
 
+        &__personalContainer > section {
+            margin-bottom: 1em;
+        }
+
         &__personalContainer > section > &__tooltipContainer {
             &:before {
                 border: 1px solid red;
             }
         }
 
-        &__personalContainer > section {
-            margin-bottom: .5em;
+        &__personalContainer section section > * {
+            postion: relative;
+            background: white;
+            color: black;
+        }
+
+        &__personalContainer section section span.__options {
+        }
+
+        &__personalContainer section section > &__input {
+            margin-top: .4em;
+        }
+
+        &__personalContainer section section > &__input > * {
+            postion: absolute;
         }
 
         &__avatarContainer > span {
@@ -270,15 +287,12 @@
         }
 
         &__button--cancel {
-            @include buttonHover($bgColor: white, $padding: .6em .8em);
-            color: black;
+            @include buttonHover($bgColor: transparent, $padding: .6em .8em);
+            color: white;
             width: 100%;
+            border: 2px solid white;
             margin: 0;
-
-            &:hover {
-                background: rgba(255, 255, 255, 0.1);
-                color: white;
-            }
+            
         }
 
         &__actionBtns {
@@ -323,7 +337,8 @@
             padding: .2em .8em;
         }
 
-        &__tooltip {
+        .tooltipContainer {
+            @include tooltip($ttBg: red);
         }
     }
 

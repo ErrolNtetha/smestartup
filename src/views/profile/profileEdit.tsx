@@ -129,16 +129,16 @@ return (
                     </section>
 
                     <section>
-                        <label htmlFor='occupation'> Occupation </label>
+                        <label htmlFor='location'> Location </label>
                         <Field
-                          name='occupation'
-                          placeholder='What best decribe what you do currently?'
+                          name='location'
+                          placeholder='City, Country. Example: Durban, South Africa'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                        <label> Occupation <Tooltip className='profile__tooltip' message='I you cannot find a title that best describe you, you can choose Other.' /> </label>
+                        <label> Occupation <Tooltip className='tooltipContainer' message='I you cannot find a title that best describe you, you can choose Other.' /> </label>
                         <Field as='select' title={!props.values.occupation ? '- Choose title -' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
                             <section className='profile__input'>
                                 {title.map((item: string) => {

@@ -1,6 +1,6 @@
 @use '../base/_color.scss' as *;
 
-@mixin tooltip() {
+@mixin tooltip($ttBg: yellow) {
     .tooltipContainer {
         position: relative;
     }
@@ -32,7 +32,7 @@
 
     .tooltipContainer:after {
         content: attr(data-tooltip);
-        background: #fff;
+        background: $ttBg;
         color: #000;
         font-size: .7rem;
         padding: .5em .7em;
