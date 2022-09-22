@@ -4,7 +4,7 @@ exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
         .then((suppliers) => {
             if (!suppliers) {
-                res.status(404).json({ message: 'No suppliers in the database yet.' });
+                res.status(404).json({ message: 'No suppliers yet. Check back later.' });
                 return;
             }
             res.status(200).json({ success: true, suppliers });
@@ -30,6 +30,18 @@ exports.getSupplier = async (req, res) => {
             console.log(error);
             res.status(500).json({ success: false, error });
         });
+};
+
+exports.getSupplierProfiles = async (req, res) => {
+    const { id } = req.user;
+    console.log(id);
+
+    await Suppliers.find({ _id: id })
+        .then((profiles) => {
+            if (!profiles) return res.status(404).json({ message: 'You have no supplier profiles.' });
+            return res.status(200).json({ profiles });
+        })
+        .catch((error) => res.status(500).json({ success: false, error }));
 };
 
 exports.createSupplier = async (req, res) => {
