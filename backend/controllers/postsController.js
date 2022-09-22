@@ -74,8 +74,11 @@ exports.getUserPost = async (req, res) => {
 };
 
 exports.getAllUserPosts = async (req, res) => {
-    // get all the posts from the database
-    await Post.find()
+    const { email } = req.user;
+    const { _id } = await User.findOne({ email });
+
+    await Post.find({ author: _id })
+        .populate('author')
         .then((posts) => {
             if (!posts) return res.status(404).json({ message: 'No posts. You posts will appear here.' });
             return res.status(200).json({ posts });
