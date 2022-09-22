@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { axiosRefresh } from 'config/axiosInstance';
+import { axiosPrivate } from 'config/axiosInstance';
 
 export const useFetchUserId = () => {
     const [authorId, setAuthorId] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const abortController = new AbortController();
 
-        axiosRefresh.get('/verify')
+        axiosPrivate.get('/verify')
             .then((res) => {
                 const { userId } = res.data;
                 setAuthorId(userId);
             })
             .catch(({ response }) => {
-                console.error('Fetch user id request: ', response);
+                setError(`An error occurred. ${response?.status}`);
             });
 
         return () => {
@@ -21,5 +22,5 @@ export const useFetchUserId = () => {
         };
     }, []);
 
-    return authorId;
+    return { authorId, error };
 };

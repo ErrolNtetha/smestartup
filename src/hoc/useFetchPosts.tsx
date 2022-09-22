@@ -11,15 +11,14 @@ export const useFetchPosts = () => {
         axiosPrivate.get('/p/posts', {
         })
             .then((res) => {
-                console.log(res.data);
-                console.log(res.data?.posts);
+                console.log(res?.data);
+                console.log(res?.data?.posts);
                 setPosts(res.data?.posts);
                 setLoading(false);
             })
             .catch((err) => {
-                setErrorCode(err.code);
+                setErrorCode(err?.code);
                 setLoading(false);
-                console.log(err.message);
             });
 
         return () => {

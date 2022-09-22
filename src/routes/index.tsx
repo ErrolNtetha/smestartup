@@ -7,6 +7,7 @@ import { Post } from 'views/feed/post';
 import { AddSupplier } from 'views/suppliers/addSupplier';
 import { SupplierView } from 'views/suppliers/page';
 import { Founder } from 'views/suppliers/founder';
+import { Edit } from 'views/profile/edit';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
@@ -39,6 +40,7 @@ export const Main: React.FC = () => {
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
                 <Private exact isAuth={isAuth} path='/suppliers/register' component={AddSupplier} />
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
+                <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
 
                 <Route path='/' component={NotFound} />
             </Switch>

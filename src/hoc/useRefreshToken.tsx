@@ -6,7 +6,7 @@ export const useRefresh = () => {
     axiosRefresh.get('/refresh')
         .then((res) => {
             setNewAccessToken(res.data.accessToken);
-            localStorage.setItem('accessToken', `Bearer ${res.data.accessToken}`);
+            localStorage.setItem('accessToken', `Bearer ${res?.data?.accessToken}`);
         })
         .catch(({ response }) => {
             console.log(response);
