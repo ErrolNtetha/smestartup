@@ -19,6 +19,10 @@ const [fileURL, setFileURL] = useState(null);
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
+<<<<<<< HEAD
+=======
+const socket = io(`${NODE_ENV()}`);
+>>>>>>> add/founders-page
 
 const formData = {
     post,
@@ -30,7 +34,6 @@ const handleSubmit = async () => {
     await axiosPrivate.post('/feed', formData)
     .then((res) => {
         if (!post) {
-            console.log('Field is empty. Write something at least!');
             return;
         }
 
@@ -72,7 +75,7 @@ useEffect(() => {
           name='post'
           className='feed__textarea'
           rows={6}
-          placeholder='Share what is happening...'
+          placeholder='What is happening?'
           onChange={(e) => setPost(e.target.value)}
         />
         <section>

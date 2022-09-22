@@ -1,0 +1,101 @@
+@use '../base/' as *;
+@use '../base/_color.scss' as *;
+@use '../mixins/_flexbox.scss' as *;
+@use '../mixins/_respond.scss' as *;
+@use '../mixins/_avatar.scss' as *;
+
+.founder {
+    @include respond-to('mobile') {
+        &__homeContainer {
+            @include flexbox();
+            margin: 5px;
+        }
+
+        &__right, &__left {
+            display: none;
+        }
+        
+        &__center {
+            background: $foregroundColor;
+            border-radius: $radius;
+        }
+
+        &__avatar {
+            @include avatar($width: 50px);
+            border: 1px solid black;
+        }
+
+        &__nameGroup {
+            @include flexbox($justify-content: unset);
+            width: 100%;
+            padding: .5em;
+        }
+
+        &__names > * {
+            margin: 0;
+            margin-left: .4em;
+            font-size: .8rem;
+        }
+
+        &__post {
+            font-size: .8rem;
+            padding: .6em;
+            margin: 0;
+        }
+
+        &__buttonGroup {
+            @include flexbox($justify-content: unset);
+            gap: .4em;
+            padding: .5em;
+        }
+
+        &__buttonGroup > span {
+            border-radius: 20px;
+            background: $primaryColor;
+            padding: .2em .5em;
+
+            &:hover {
+                cursor: pointer;
+                background: #fff;
+                color: #000;
+            }
+        }
+
+        &__snapInfo {
+            padding: .5em 0;
+        }
+
+        &__snapInfo > * {
+            @include flexbox($justify-content: space-between);
+            margin: 0;
+            font-size: .8rem;
+            padding: .2em .4em;
+        }
+
+
+        &__snapInfo > p:nth-child(even) {
+            background: $primaryColor;
+        }
+
+        &__highlight {
+            font-size: .8rem;
+            box-sizing: border-box;
+            padding: .6em;
+            margin-top: .8em;
+            border-radius: $radius;
+            background: $primaryColor;
+        }
+
+        &__loader {
+            @include flexbox();
+            height: 90vh;
+        }
+    }
+
+    @include respond-to('laptop') {
+        &__center {
+            width: 45%;
+        }
+    }
+
+}
