@@ -56,6 +56,7 @@ exports.createSupplier = async (req, res) => {
         tags,
         isRegistered
     } = req.body;
+
     const {
         email,
         website,
