@@ -7,18 +7,18 @@ import { useDispatch } from 'react-redux';
 import { axiosPrivate } from 'config/axiosInstance';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
 import { Button } from 'components/button';
-import { io } from 'socket.io-client';
-import { NODE_ENV } from 'config/baseURL';
+import { SyncLoader } from 'react-spinners';
+// import { io } from 'socket.io-client';
+// import { NODE_ENV } from 'config/baseURL';
 
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
-const [images, setImages] = useState('');
-const [fileURL, setFileURL] = useState('');
+const [images, setImages] = useState<Blob | null>(null);
+const [fileURL, setFileURL] = useState(null);
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
-const socket = io(`${NODE_ENV()}`, { transports: ['polling'] });
 
 const formData = {
     post,
@@ -26,13 +26,10 @@ const formData = {
 };
 
 const handleSubmit = async () => {
+    setLoading(true);
     await axiosPrivate.post('/feed', formData)
     .then((res) => {
-        console.log(formData);
-        socket.emit('sendPost', post);
-
         if (!post) {
-            console.log('Field is empty. Write something at least!');
             return;
         }
 
@@ -44,15 +41,8 @@ const handleSubmit = async () => {
             dispatch(toggleFieldOff());
             setLoading(false);
         }
-  })
-  .catch((err) => console.error(err));
+  });
 };
-
-React.useEffect(() => {
-    socket.on('receivePost', (data) => {
-        console.log(data);
-    });
-}, [socket]);
 
 useEffect(() => {
     const reader = new FileReader();
@@ -68,7 +58,7 @@ useEffect(() => {
     }
 
     return () => {
-        if (reader && reader.readyState === 2) {
+        if (reader && reader.readyState === 1) {
             reader.abort();
         }
     };
@@ -81,7 +71,7 @@ useEffect(() => {
           name='post'
           className='feed__textarea'
           rows={6}
-          placeholder='Share what is happening...'
+          placeholder='What is happening?'
           onChange={(e) => setPost(e.target.value)}
         />
         <section>
@@ -111,7 +101,7 @@ useEffect(() => {
           </section>
           <section className='feed__right'>
             <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
-            <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? 'loading' : 'Post'} </Button>
+            <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? <SyncLoader color='#fff' size={6} /> : 'Post'} </Button>
           </section>
         </section>
         </section>

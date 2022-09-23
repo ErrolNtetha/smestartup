@@ -38,7 +38,7 @@ export const Group = () => {
                 ? (
                     <>
                         <span>
-                            <Search placeholder='Search people...' searchWord={searchWord} clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}> {users && console.log(users)}
+                            <Search placeholder='Search people...' searchWord={searchWord} clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}>
                         {users
                             && (
                                 <section className='header__usersContainer'>

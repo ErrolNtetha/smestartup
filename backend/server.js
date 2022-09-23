@@ -16,6 +16,7 @@ const subsriberRoutes = require('./routes/subscriber.routes');
 const verify = require('./routes/verify.route');
 const suppliers = require('./routes/suppliers.routes');
 const refresh = require('./routes/refresh.router');
+const founders = require('./routes/founder.routes');
 
 // Middlewares
 require('dotenv').config();
@@ -31,6 +32,7 @@ app.use(subsriberRoutes);
 app.use(verify);
 app.use(suppliers);
 app.use(refresh);
+app.use(founders);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {

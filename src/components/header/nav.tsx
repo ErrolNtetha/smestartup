@@ -5,12 +5,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiBriefcase, FiSearch, FiX } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
-import blendotDefault from 'assets/blendot.png';
 import loggout from 'store/actions/loggout';
 import { nav } from 'views/header/utils';
 import { RootState } from 'store';
 import { useStore } from 'hoc/useStore';
 import { toggleNavOff } from 'store/actions/toggleMenu';
+import { Avatar } from 'components/avatar';
 import { Button } from '../../components/button';
 
 interface Props {
@@ -21,8 +21,6 @@ export const Nav = () => {
     const loggedIn = useSelector((state: RootState) => state.isLogged);
     const dispatch = useDispatch();
     const history = useHistory();
-    const store = useStore();
-    console.log(store);
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
@@ -56,6 +54,13 @@ export const Nav = () => {
 };
 
 const Profile = ({ isLoggedIn }: Props) => {
+    const { userProfile: { userData } } = useStore();
+    const {
+        name,
+        avatar,
+        occupation
+    } = userData;
+
     const dispatch = useDispatch();
     return (
         <section className='header__profileContainer'>
@@ -63,11 +68,10 @@ const Profile = ({ isLoggedIn }: Props) => {
                 { isLoggedIn
                     ? (
                         <Link to='/profile' className='header__profile'>
-                        <img src={blendotDefault} alt='my profile avatar' className='header__profileImage' />
+                        <Avatar avatar={avatar} className='header__profileImage' />
                         <span>
-                            <h4 className='header__name'> User </h4>
-                            <p className='header__title'> *** </p>
-                            {/* <p className='header__recent'> 32 mins ago </p> */}
+                            <h4 className='header__name'> {name.firstName} {name.lastName} </h4>
+                            <p className='header__title'> {occupation} </p>
                         </span>
                         </Link>
                         )

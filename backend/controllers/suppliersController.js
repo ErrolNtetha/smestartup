@@ -1,10 +1,11 @@
 const Suppliers = require('../models/suppliers.model');
+const User = require('../models/user.model');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
         .then((suppliers) => {
             if (!suppliers) {
-                res.status(404).json({ message: 'No suppliers in the database yet.' });
+                res.status(404).json({ message: 'No suppliers yet. Check back later.' });
                 return;
             }
             res.status(200).json({ success: true, suppliers });
@@ -32,7 +33,20 @@ exports.getSupplier = async (req, res) => {
         });
 };
 
+exports.getSupplierProfiles = async (req, res) => {
+    const { id } = req.user;
+    console.log(req.user);
+
+    await Suppliers.find({ author: id })
+        .then((profiles) => {
+            if (!profiles) return res.status(404).json({ message: 'You have no supplier profiles.' });
+            return res.status(200).json({ profiles });
+        })
+        .catch((error) => res.status(500).json({ success: false, error }));
+};
+
 exports.createSupplier = async (req, res) => {
+    const { _id } = await User.findOne({ email: req.user.email });
     const {
         name,
         about,
@@ -42,7 +56,7 @@ exports.createSupplier = async (req, res) => {
         tags,
         isRegistered
     } = req.body;
-    const { id } = req.user;
+
     const {
         email,
         website,
@@ -62,12 +76,12 @@ exports.createSupplier = async (req, res) => {
         },
         addresses,
         tags,
-        author: id,
+        author: _id,
         isRegistered
     });
 
     await newSupplier.save()
-        .then(() => res.json({ success: true, message: 'Supplier successfully added.' }))
+        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully added.' }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 

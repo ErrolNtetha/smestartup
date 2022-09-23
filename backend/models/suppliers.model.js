@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const geocoder = require('../utils/geocode');
 
 const SuppliersSchema = new mongoose.Schema({
     author: {
@@ -33,14 +34,27 @@ const SuppliersSchema = new mongoose.Schema({
         telephone: [Number],
         website: { type: String, lowercase: true },
         email: { type: Array, lowercase: true },
+        fax: String,
         other: String
     },
-    verified: Boolean,
+    verified: { type: Boolean, default: false },
     addresses: {
         physical: {
-            name: String,
-            latitude: Number,
-            longitude: Number
+            type: {
+                type: String,
+                enum: ['Point']
+            },
+            coordinates: {
+                type: [Number],
+                index: '2dsphere'
+            },
+            country: String,
+            zip: String,
+            city: String,
+            streetName: String,
+            countryCode: String,
+            province: String,
+            formattedAddress: String
         },
         postal: String
     },
