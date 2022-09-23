@@ -61,24 +61,4 @@ const SuppliersSchema = new mongoose.Schema({
     isRegistered: { type: Boolean, default: false },
 }, { timestamps: true });
 
-SuppliersSchema.pre('save', async function(next) {
-    const location = await geocoder.geocode(this.address);
-    console.log(location[0]);
-
-    this.addresses.physical = {
-        type: ['Point'],
-        coordinates: [location[0].longitude, location[0].latitude],
-        country: location[0].country,
-        zip: location[0].zipcode,
-        city: location[0].city,
-        countryCode: location[0].countryCode,
-        province: location[0].stateCode,
-        formattedAddress: location[0].formattedAddress
-    };
-
-    // Do not save address
-    this.address = undefined;
-    next();
-});
-
 module.exports = mongoose.model('Suppliers', SuppliersSchema);
