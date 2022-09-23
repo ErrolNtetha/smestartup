@@ -34,9 +34,10 @@ const SuppliersSchema = new mongoose.Schema({
         telephone: [Number],
         website: { type: String, lowercase: true },
         email: { type: Array, lowercase: true },
+        fax: String,
         other: String
     },
-    verified: Boolean,
+    verified: { type: Boolean, default: false },
     addresses: {
         physical: {
             type: {

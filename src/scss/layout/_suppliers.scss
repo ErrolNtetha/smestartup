@@ -220,7 +220,7 @@
         &__profilePicture {
             @include avatar($width: 45px);
             border: none;
-            border-radius: 3px;
+            border-radius: 50%;
         }
 
         &__search--button {
@@ -289,6 +289,16 @@
         &__buttonContainer {
             @include flexbox();
             gap: .6em;
+        }
+
+        &__registerSupplierContainer {
+            @include flexbox();
+            padding: 2em 0;
+            height: 100%;
+        }
+
+        &__registerSupplierContainer .profile__formContainer > section {
+            margin-bottom: .8em;
         }
     }
 

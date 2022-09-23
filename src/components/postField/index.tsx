@@ -19,10 +19,6 @@ const [fileURL, setFileURL] = useState(null);
 // const [videos, setVideos] = useState(null);
 const [loading, setLoading] = useState(false);
 const imageInput = useRef(null);
-<<<<<<< HEAD
-=======
-const socket = io(`${NODE_ENV()}`);
->>>>>>> add/founders-page
 
 const formData = {
     post,

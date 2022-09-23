@@ -3,7 +3,7 @@ import { Avatar } from 'components/avatar';
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useFetchData } from 'hoc/useFetchData';
+// import { useFetchData } from 'hoc/useFetchData';
 
 interface Props {
     id: string;
@@ -12,8 +12,7 @@ interface Props {
 }
 
 export const Create = ({ id, supplierName, supplierPicture }: Props) => {
-    const { data } = useFetchData('/suppliers');
-    console.log(data);
+    //     const { data } = useFetchData('/suppliers');
     return (
         <section className='supplier__createContainer'>
             <span>
