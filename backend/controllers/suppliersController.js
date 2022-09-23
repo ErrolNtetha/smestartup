@@ -1,4 +1,5 @@
 const Suppliers = require('../models/suppliers.model');
+const User = require('../models/user.model');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -45,6 +46,7 @@ exports.getSupplierProfiles = async (req, res) => {
 };
 
 exports.createSupplier = async (req, res) => {
+    const { _id } = await User.findOne({ email: req.user.email });
     const {
         name,
         about,
@@ -54,7 +56,6 @@ exports.createSupplier = async (req, res) => {
         tags,
         isRegistered
     } = req.body;
-    const { id } = req.user;
     const {
         email,
         website,
@@ -74,12 +75,12 @@ exports.createSupplier = async (req, res) => {
         },
         addresses,
         tags,
-        author: id,
+        author: _id,
         isRegistered
     });
 
     await newSupplier.save()
-        .then(() => res.json({ success: true, message: 'Supplier successfully added.' }))
+        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully added.' }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 
