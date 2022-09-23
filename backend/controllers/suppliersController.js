@@ -1,4 +1,5 @@
 const Suppliers = require('../models/suppliers.model');
+const User = require('../models/user.model');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -33,6 +34,7 @@ exports.getSupplier = async (req, res) => {
 };
 
 exports.createSupplier = async (req, res) => {
+    const { _id } = await User.findOne({ email: req.user.email });
     const {
         name,
         about,
@@ -42,7 +44,7 @@ exports.createSupplier = async (req, res) => {
         tags,
         isRegistered
     } = req.body;
-    const { id } = req.user;
+
     const {
         email,
         website,
@@ -62,7 +64,7 @@ exports.createSupplier = async (req, res) => {
         },
         addresses,
         tags,
-        author: id,
+        author: _id,
         isRegistered
     });
 
