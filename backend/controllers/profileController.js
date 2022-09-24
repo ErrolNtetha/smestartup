@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.getUserProfile = async (req, res) => {
     const { email } = req.user;
@@ -20,12 +21,19 @@ exports.updateProfile = async (req, res) => {
         bio
     } = req.body;
 
+    let avatarId;
+    await cloudinary.uploader.upload(avatar, {
+        upload_preset: 'user_avatar'
+    })
+        .then((response) => avatarId = response.url)
+        .catch((error) => res.status(500).json(error.messsage));
+
     await User.findByIdAndUpdate({ _id: id }, {
         name: {
                 firstName,
                 lastName,
             },
-        avatar,
+        avatar: avatarId,
         occupation,
         bio
     })
