@@ -300,6 +300,114 @@
         &__registerSupplierContainer .profile__formContainer > section {
             margin-bottom: .8em;
         }
+
+        &__coverContainer {
+            position: relative;
+            wdith: 100%;
+            background: red;
+        }
+
+        &__cover {
+            max-width: 100%;            
+            height: auto;
+        }
+
+        &__supplierIntroText {
+            background: rgb(0,0,0);
+            background: -moz-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+        }
+
+        &__text {
+            position: absolute;
+            padding: 0 .8em;
+            bottom: 5px;
+        }
+
+        &__text h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        &__text > p {
+            @include flexbox($justify-content: unset);
+            gap: .5em;
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        &__infoContainer {
+            padding: .5em .6em;
+        }
+
+        &__listContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            padding: .6em;
+            text-align: center;
+        }
+
+        &__infoContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        &__infoContainer p {
+            font-size: .9rem;
+        }
+
+        &__arrowLeft {
+            font-size: 1.4rem;
+        }
+
+
+        &__navigationContainer span {
+            @include flexbox($justify-content: space-evenly);
+        }
+
+        &__navigationContainer {
+            background: $foregroundColor;
+            width: 100%;
+            padding: .6em 0;
+            overflow-y: scroll;
+        }
+
+        &__navigationContainer span a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__lists {
+            @include flexbox();
+            padding: 0 .6em;
+            display: block;
+        }
+
+        &__lists li {
+            @include flexbox($justify-content: space-between);
+            list-style-type: none;
+            width: 100%;
+            padding: .1em .3em;
+
+            &:nth-child(even) {
+                background: rgba(255, 255, 255, .08);
+            }
+        }
     }
 
     @include respond-to('laptop') {
