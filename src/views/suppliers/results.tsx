@@ -7,7 +7,6 @@ import { Supplier } from './supplier';
 
 export const Results = () => {
     const { data, error, loading } = useFetchData('/suppliers');
-    console.log(data);
     return (
         <>
             { loading
