@@ -23,10 +23,10 @@ export const Founder = () => {
               ogSiteName='Blendot'
               ogDescription='Meet entrepreneurs who aspires to be great with unique skills required for your business. | Blendot'
             />
-        {loading
+            {loading
             ? <span className='founder__loader'><ScaleLoader color='#fff' /></span>
             : data?.founders?.map((founder) => (
-                <Home author={founder} />
+                <Home user={founder} />
             ))}
         </section>
     );
