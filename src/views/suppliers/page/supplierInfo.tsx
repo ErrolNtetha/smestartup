@@ -1,6 +1,6 @@
 import React from 'react';
 import dots from 'assets/veges.jpg';
-import format from 'date-fns/format';
+// import format from 'date-fns/format';
 import { FiCalendar, FiHardDrive, FiUser } from 'react-icons/fi';
 // import { format } from 'date-fns';
 import {
@@ -13,15 +13,13 @@ import {
 
 interface DProps {
     name: string;
-    createdAt: Date | string;
     photos: string[];
     about: string;
-    isRegistered: string;
+    isRegistered: boolean;
 }
 
 export const SupplierInfo = ({
     name,
-    createdAt,
     photos,
     about,
     isRegistered
@@ -35,7 +33,7 @@ export const SupplierInfo = ({
                     <span className='supplier__text'>
                         <h1> {name} </h1>
                         <p> <FiHardDrive /> Category: Wholesaler </p>
-                        <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'dd MMMM yyy')}`} </p>
+                        <p> <FiCalendar /> Published: 18 September 2022 </p>
                         <p> <FiUser /> Created by: Mphumeleli Errol Ntetha </p>
                     </span>
                 </section>
