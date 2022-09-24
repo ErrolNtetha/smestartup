@@ -55,6 +55,7 @@ exports.getUserPost = async (req, res) => {
     // this is same as verified and occupation as well.
     // get all the posts from the database
     await Post.find()
+        .populate('author', 'name isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(404).json({ message: 'No posts found yet. Be the first to post!' });
             res.json({ posts });
@@ -67,9 +68,9 @@ exports.getAllUserPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
 
     await Post.find({ author: _id })
-        .populate('author')
+        .populate('author', 'name occupation avatar')
         .then((posts) => {
-            if (!posts) return res.status(404).json('No posts yet. Follow people to see their posts.');
+            if (!posts) return res.status(404).json('No posts yet. You posts will apppear here.');
             return res.json({ posts });
         })
         .catch((error) => res.json({ message: 'Error getting the posts.', error }));
