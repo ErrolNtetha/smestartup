@@ -1,9 +1,9 @@
-import { Logo } from 'components/header/logo';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { Header } from 'views/header';
 import { useFetchData } from 'hoc/useFetchData';
+import { FiArrowLeft } from 'react-icons/fi';
 import { Details } from './details';
 
 export const SupplierView = () => {
@@ -13,7 +13,7 @@ export const SupplierView = () => {
     console.log('supplier data: ', id, data);
 
     return (
-        <section>
+        <>
             <Helmet>
                 <title> { loading ? 'Loading' : `${suppliers?.name}`} | Blendot </title>
                 <meta property='og:title' content={`${suppliers?.name} | Bledot`} />
@@ -24,9 +24,9 @@ export const SupplierView = () => {
                 <meta property='og:site_name' content='Blendot' />
             </Helmet>
             <Header>
-                <Logo />
+                <FiArrowLeft className='supplier__arrowLeft' />
             </Header>
             <Details name={suppliers?.name} about={suppliers?.about} />
-        </section>
+        </>
     );
 };
