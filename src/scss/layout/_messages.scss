@@ -1,0 +1,91 @@
+@use '../mixins/' as *;
+@use '../base/' as *;
+
+.messages {
+    @include respond-to('mobile') {
+        &__conversationContainer {
+            position: relative;
+            height: 93vh;
+        }
+
+        &__textareaContainer {
+            @include flexbox();
+            padding: .2em 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: $foregroundColor;
+        }
+
+        &__textareaContainer span {
+            @include flexbox($justify-content: space-between);
+            gap: .2em;
+            margin: .2em;
+            background: $primaryColor;
+            width: 95%;
+            border-radius: 20px;
+            height: max-content;
+            z-index: 4;
+        }
+
+        &__textareaContainer span div {
+            background: transparent;
+            border: none;
+            font-family: $font-family;
+            color: #fff;
+            outline: none;
+            font-size: 1.1rem;
+            max-height: 100px;
+            overflow-y: auto;
+            padding: .6em .8em;
+
+            &::placeholder {
+                font-size: 1.2rem;
+            }
+        }
+
+        &__messageLeft, &__messageRight {
+            padding: .6em;
+            margin: .3em .6em;
+            min-width: 14%;
+            max-width: 80%;
+            max-height: max-content;
+        }
+
+        &__messageLeft, __messageRight::after {
+                content: '';
+                clear: both;
+                display: table;
+        }
+
+        &__messageLeft {
+            float: left;
+            background: $foregroundColor;
+            border-radius: 0 20px 20px 20px;
+        }
+
+        &__messageRight {
+            float: right;
+            background: $primaryColor;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px 0 20px 20px;
+        }
+
+        &__backIcon {
+            font-size: 1.6rem;
+        }
+
+        &__sendIcon {
+            font-size: 1.4rem;
+            margin-right: .8em;
+        }
+    }    
+
+    @include respond-to('tablet') {
+
+    } 
+
+    @include respond-to('laptop') {
+
+    } 
+}
