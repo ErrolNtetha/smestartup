@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
+        .populate('author', 'avatar name occupation isVerified')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers yet. Check back later.' });
@@ -18,8 +19,8 @@ exports.getSuppliers = async (req, res) => {
 
 exports.getSupplier = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     await Suppliers.find({ _id: id })
+        .populate('author')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers in the database yet.' });
@@ -47,6 +48,7 @@ exports.getSupplierProfiles = async (req, res) => {
 
 exports.createSupplier = async (req, res) => {
     const { _id } = await User.findOne({ email: req.user.email });
+    console.log('Author: ', _id);
     const {
         name,
         about,
