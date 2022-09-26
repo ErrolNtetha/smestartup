@@ -10,7 +10,7 @@ export const SupplierView = () => {
     const { id } = useParams();
     const { data, loading } = useFetchData(`/suppliers/${id}`);
     const { suppliers } = data;
-    console.log('supplier data: ', id, data);
+    console.log('supplier data: ', data);
 
     return (
         <>
