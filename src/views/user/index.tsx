@@ -14,19 +14,21 @@ export const Users = () => {
             <Header>
                 <Logo />
             </Header>
-            <section className='user__userProfileContainer'>
-                {!loading && <User user={profile} />}
-                {!loading && userPost?.map((item) => {
-                    return (
-                        <Posts
-                          post={item.post}
-                          id={item._id}
-                          author={item.author}
-                          date={item.createdAt}
-                          key={item._id}
-                        />
-                    );
-                })}
+            <section className='user__mainContainer'>
+                <section className='user__userProfileContainer'>
+                    {!loading && <User user={profile} />}
+                    {!loading && userPost?.map((item) => {
+                        return (
+                            <Posts
+                              post={item.post}
+                              id={item._id}
+                              author={item.author}
+                              date={item.createdAt}
+                              key={item._id}
+                            />
+                        );
+                    })}
+                </section>
             </section>
         </main>
     );
