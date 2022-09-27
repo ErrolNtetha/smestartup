@@ -1,8 +1,7 @@
 @use '../mixins/' as *;
 @use '../base/color' as *;
 @use '../base/' as *;
-
-$container-width: 70%;
+@use '../base/layout' as *;
 
 .profile {
     &__profileGrid {
