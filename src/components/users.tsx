@@ -22,7 +22,7 @@ import { Avatar } from './avatar';
     verified
  }: Props) => {
      return (
-            <Link target='_self' to={`/p/user/${userId}`} className='header__searchResult'>
+            <Link target='_self' to={`/users/${userId}`} className='header__searchResult'>
                 <section className='header__userContainer'>
                     <Avatar avatar={avatar} className='header__userAvatarResult' />
                     <span className='header__groupDetails'>

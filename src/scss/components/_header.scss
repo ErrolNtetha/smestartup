@@ -334,9 +334,12 @@
             margin-top: .1em;
             height: max-content;
             text-decoration: none;
+            transition: all 5s ease-in-out 2s;
 
             &:hover {
-                background: $foregroundColor;
+                background: $primaryColor;
+                color: #fff;
+                transform: scale(1.1);
             }
         }
 

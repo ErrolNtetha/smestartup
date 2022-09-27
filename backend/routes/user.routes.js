@@ -25,5 +25,6 @@ router.post('/login', login_user);
 router.post('/register', register_user);
 router.get('/contact', allUsers.getUsers);
 router.route('/profile/:id/update').put(verifyJWT, profile.updateProfile);
+router.route('/users/:id').get(verifyJWT, profile.getProfile);
 
 module.exports = router;

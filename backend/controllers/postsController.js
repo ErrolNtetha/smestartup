@@ -70,7 +70,7 @@ exports.getAllUserPosts = async (req, res) => {
     await Post.find({ author: _id })
         .populate('author', 'name occupation avatar')
         .then((posts) => {
-            if (!posts) return res.status(404).json('No posts yet. You posts will apppear here.');
+            if (!posts) return res.status(404).json('No posts yet. Your posts will apppear here.');
             return res.json({ posts });
         })
         .catch((error) => res.json({ message: 'Error getting the posts.', error }));

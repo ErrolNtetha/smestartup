@@ -3,7 +3,8 @@
 @use '../base/' as *;
 @use '../base/layout' as *;
 
-.profile {
+
+.user {
     &__profileGrid {
         @include flexbox();
     }
@@ -354,6 +355,10 @@
             z-index: 3;
         }
 
+        &__mainContainer {
+            @include flexbox();
+        }
+
         &__header {
             @include flexbox();
             flex-direction: column;
@@ -414,7 +419,7 @@
             max-width: 65%;
         }
 
-        &__postContainer {
+        &__postContainer, &__userProfileContainer {
             width: $container-width;
         }
 
