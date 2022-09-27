@@ -12,6 +12,7 @@ import {
     useRouteMatch,
     BrowserRouter
 } from 'react-router-dom';
+import { Collapsable } from 'components/collapsable';
 
 interface DProps {
     name: string;
@@ -67,7 +68,9 @@ export const SupplierInfo = ({
             </section>
             <article className='supplier__infoContainer'>
                     <h4> description & info </h4>
-                    <p> {about} </p>
+                    <Collapsable end={300}>
+                        {about}
+                    </Collapsable>
             </article>
             <hr className='global' />
             <section className='supplier__listContainer'>
