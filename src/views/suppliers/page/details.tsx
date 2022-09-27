@@ -4,6 +4,7 @@ import { useFetchData } from 'hoc/useFetchData';
 import { useParams } from 'react-router-dom';
 import { Loading } from 'components/loading';
 import { SupplierInfo } from './supplierInfo';
+import { SkeletonLoading } from '../skeletonLoading';
 
 export const Details = () => {
     const { id } = useParams();
@@ -13,7 +14,7 @@ export const Details = () => {
         <main>
             <section>
                 { loading
-                    ? <Loading className='supplier__loading' content='article' />
+                    ? <SkeletonLoading cards={2} numCount={12} />
                     : (
                         <SupplierInfo
                           author={data?.suppliers?.author}

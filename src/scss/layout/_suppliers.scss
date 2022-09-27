@@ -293,6 +293,19 @@
             gap: .6em;
         }
 
+        &__skeletonCard {
+            @include flexbox();
+            align-items: unset;
+            flex-direction: column;
+            gap: .6em;
+            flex: 1;
+            margin: .4em .6em;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 5px;
+            padding: .4em;
+        }
+ 
+
         &__reactButtons > span {
             @include flexbox();
             gap: .4em;

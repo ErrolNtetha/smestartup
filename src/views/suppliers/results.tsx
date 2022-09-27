@@ -4,17 +4,14 @@ import React from 'react';
 import { useFetchData } from 'hoc/useFetchData';
 import { Button } from 'components/button';
 import { Supplier } from './supplier';
+import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
     const { data, error, loading } = useFetchData('/suppliers');
     return (
         <>
             { loading
-                ? (
-                    <section className='supplier__responseContainer'>
-                        loading
-                    </section>
-                )
+                ? <SkeletonLoading cards={6} numCount={5} />
                 : error
                 ? (
                     <section className='supplier__responseContainer'>
