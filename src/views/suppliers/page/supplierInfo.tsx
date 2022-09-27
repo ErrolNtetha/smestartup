@@ -1,7 +1,9 @@
+/* eslint-disable new-cap */
 import React from 'react';
 import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
 import { FiCalendar, FiHardDrive, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
 // import { format } from 'date-fns';
 import {
     Link,
@@ -16,13 +18,31 @@ interface DProps {
     photos: string[];
     about: string;
     isRegistered: boolean;
+    author: {
+        name: {
+            firstName: string;
+            lastName: string;
+        }
+        avatar: string;
+        _id: string;
+        occupation: string;
+    }
+    established: number;
+    companyType: string;
+    category: string;
+    createdAt: Date | string;
 }
 
 export const SupplierInfo = ({
     name,
     photos,
     about,
-    isRegistered
+    isRegistered,
+    author,
+    established,
+    companyType,
+    category,
+    createdAt
 }: DProps) => {
     const { path, url } = useRouteMatch();
     return (
@@ -32,9 +52,9 @@ export const SupplierInfo = ({
                 <section className='supplier__supplierIntroText'>
                     <span className='supplier__text'>
                         <h1> {name} </h1>
-                        <p> <FiHardDrive /> Category: Wholesaler </p>
-                        <p> <FiCalendar /> Published: 18 September 2022 </p>
-                        <p> <FiUser /> Created by: Mphumeleli Errol Ntetha </p>
+                        <p> <FiHardDrive /> Category: {category} </p>
+                        <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
+                        <p> <FiUser /> Created by: <Link to={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </Link> </p>
                     </span>
                 </section>
             </section>
@@ -54,7 +74,11 @@ export const SupplierInfo = ({
                 <ul className='supplier__lists'>
                     <li>
                         <span> Type </span>
-                        <span> Private </span>
+                        <span> {companyType} </span>
+                    </li>
+                    <li>
+                        <span> Established </span>
+                        <span> {established} </span>
                     </li>
                     <li>
                         <span> Minimum Units </span>
@@ -70,7 +94,7 @@ export const SupplierInfo = ({
                     </li>
                     <li>
                         <span> Registered </span>
-                        <span> {isRegistered} </span>
+                        <span> {isRegistered ? 'Yes' : 'No'} </span>
                     </li>
                 </ul>
             </section>

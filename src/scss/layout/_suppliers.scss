@@ -364,6 +364,12 @@
             margin: 0;
         }
 
+        &__authorLink {
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+        }
+
         &__text > p {
             @include flexbox($justify-content: unset);
             gap: .5em;
