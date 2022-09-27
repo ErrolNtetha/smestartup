@@ -11,9 +11,9 @@ import { Button } from 'components/button';
 import {
     FiHeart,
     FiList,
-    FiSearch,
     FiPlusCircle,
-    FiSliders
+    FiSliders,
+    FiHome
 } from 'react-icons/fi';
 import { Modal } from 'components/modal';
 import { Search } from 'components/search';
@@ -71,9 +71,9 @@ export const Filter = () => {
             )}
             <section className='supplier__filterIconGroup'>
                 <span>
-                    <span onClick={() => setSearch(!search)}>
-                        <FiSearch className='supplier__icon' />
-                        <p> Search </p>
+                    <span>
+                        <FiHome className='supplier__icon' />
+                        <p> Home </p>
                     </span>
                     <span>
                         <FiList className='supplier__icon' onClick={() => setIsOpen(!isOpen)} />
