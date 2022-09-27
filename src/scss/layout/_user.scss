@@ -355,6 +355,10 @@
             z-index: 3;
         }
 
+        &__mainContainer {
+            @include flexbox();
+        }
+
         &__header {
             @include flexbox();
             flex-direction: column;
