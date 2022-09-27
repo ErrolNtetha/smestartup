@@ -12,10 +12,13 @@ export const Collapsable = ({ children, end }: IProps) => {
     const [seeMore, setSeeMore] = useState(true);
     return (
         <section className='textContainer'>
-            { seeMore ? text.slice(0, end) : text }
-            <span onClick={() => setSeeMore(!seeMore)} className='seeMore'>
-                {seeMore ? '...see more' : ' show less'}
-            </span>
+            { seeMore && (text.length > end) ? text.slice(0, end).concat('...') : text }
+            { text.length > end
+                && (
+                    <span onClick={() => setSeeMore(!seeMore)} style={{ borderBottom: '.6px solid white', marginLeft: '.4em' }}>
+                        {seeMore ? 'see more' : 'show less'}
+                    </span>
+                )}
         </section>
     );
 };
