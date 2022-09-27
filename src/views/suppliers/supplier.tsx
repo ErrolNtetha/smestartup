@@ -1,5 +1,4 @@
 import React from 'react';
-import blendot from 'assets/blendot.png';
 import {
     FiChevronRight,
     FiHeart,
@@ -25,7 +24,7 @@ export const Supplier = ({
     return (
         <section className='supplier__resultContainer'>
             <section className='supplier__supplierPost'>
-                <img src={blendot} className='supplier__profilePicture' alt={`${name}'s avatar`} />
+                {/* <img src={blendot} className='supplier__profilePicture' alt={`${name}'s avatar`} /> */}
                 <section className='supplier__names'>
                     <section className='supplier__detailsGroup'>
                         <h4 className='supplier__supplierName'> {name} </h4>
