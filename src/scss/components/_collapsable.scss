@@ -1,0 +1,20 @@
+.textContainer {
+    position: absolute;
+    top: 10%;
+    left: 23%;
+    width: 50%;
+}
+
+.textContainer .seeMore {
+    display: inline;
+    width: 100%;
+    color: red;
+    text-decoration: underline;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.text {
+    color: red;
+    text-decoration: underline;
+}
