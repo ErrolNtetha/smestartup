@@ -44,7 +44,7 @@ export const Main: React.FC = () => {
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
                 <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
                 <Private exact isAuth={isAuth} path='/suppliers/:id' component={SupplierView} />
-                <Private exact isAuth={isAuth} path='/user/:id' component={Users} />
+                <Private exact isAuth={isAuth} path='/users/:id' component={Users} />
 
                 <Route path='/' component={NotFound} />
             </Switch>
