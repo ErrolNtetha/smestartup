@@ -1,32 +1,33 @@
 import React from 'react';
-import { FiArrowLeft } from 'react-icons/fi';
 import { Header } from 'views/header';
 import { useFetchData } from 'hoc/useFetchData';
-import Skeleton from 'react-loading-skeleton';
-
-interface Props {
-    user: {
-        name: { firstName: string };
-    }
-}
+import { Logo } from 'components/header/logo';
+import { User } from './user';
+import { Posts } from './posts';
 
 export const Users = () => {
-    const { data } = useFetchData('users/622a334f4ca80ec781fd4d72');
+    const { data, loading } = useFetchData('users/622a334f4ca80ec781fd4d72');
+    const profile = data?.user;
+    const userPost = data?.posts;
     return (
         <main className='user'>
             <Header>
-                <FiArrowLeft className='goBackArrow' />
+                <Logo />
             </Header>
-            <p> Users: </p>
-            <Person user={data?.name} />
+            <section className='user__userProfileContainer'>
+                {!loading && <User user={profile} />}
+                {!loading && userPost?.map((item) => {
+                    return (
+                        <Posts
+                          post={item.post}
+                          id={item._id}
+                          author={item.author}
+                          date={item.createdAt}
+                          key={item._id}
+                        />
+                    );
+                })}
+            </section>
         </main>
-    );
-};
-
-const Person = ({ user }: Props) => {
-    return (
-        <section>
-            {user?.firstName || <Skeleton count={4} />}
-        </section>
     );
 };
