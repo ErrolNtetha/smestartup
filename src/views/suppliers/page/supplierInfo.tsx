@@ -4,6 +4,7 @@ import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
 import { FiCalendar, FiHardDrive, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
+import { Tooltip } from 'components/tooltip';
 // import { format } from 'date-fns';
 import {
     Link,
@@ -46,6 +47,7 @@ export const SupplierInfo = ({
     createdAt
 }: DProps) => {
     const { path, url } = useRouteMatch();
+    const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
     return (
         <main>
             <section className='supplier__coverContainer'>
@@ -55,7 +57,7 @@ export const SupplierInfo = ({
                         <h1> {name} </h1>
                         <p> <FiHardDrive /> Category: {category} </p>
                         <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
-                        <p> <FiUser /> Created by: <Link to={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </Link> </p>
+                        <p> <FiUser /> Created by: <a href={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </a> </p>
                     </span>
                 </section>
             </section>
@@ -84,7 +86,7 @@ export const SupplierInfo = ({
                         <span> {established} </span>
                     </li>
                     <li>
-                        <span> Minimum Units </span>
+                        <span> MOQ <Tooltip message={message} className='$1' /> </span>
                         <span> 10 000 </span>
                     </li>
                     <li>
