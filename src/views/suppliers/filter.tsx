@@ -70,7 +70,28 @@ export const Filter = () => {
                 </section>
             )}
             <section className='supplier__filterIconGroup'>
-                <span> <FiSearch onClick={() => setSearch(!search)} /> <FiList onClick={() => setIsOpen(!isOpen)} /> <FiPlusCircle onClick={() => history.push('/suppliers/register')} /> <FiSliders /> <FiHeart /> </span>
+                <span>
+                    <span onClick={() => setSearch(!search)}>
+                        <FiSearch className='supplier__icon' />
+                        <p> Search </p>
+                    </span>
+                    <span>
+                        <FiList className='supplier__icon' onClick={() => setIsOpen(!isOpen)} />
+                        <p> Sort </p>
+                    </span>
+                    <span>
+                        <FiPlusCircle className='supplier__icon' onClick={() => history.push('/suppliers/register')} />
+                        <p> Add </p>
+                    </span>
+                    <span>
+                        <FiSliders className='supplier__icon' />
+                        <p> Filter </p>
+                    </span>
+                    <span>
+                        <FiHeart className='supplier__icon' />
+                        <p> Saved </p>
+                    </span>
+                </span>
             </section>
             {isOpen
                 && (
