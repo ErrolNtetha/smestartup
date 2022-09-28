@@ -4,9 +4,10 @@ const User = require('../models/user.model');
 exports.getFounders = async (req, res) => {
     await Founder.find()
         .then((response) => {
-            if (!response.length) res.status(200).json({ message: 'No founders available yet.' });
-            res.status(200).json({ founders: response, count: response.length });
-        });
+            if (!response.length) return res.status(200).json({ message: 'No founders available yet.' });
+            return res.status(200).json({ founders: response, count: response.length });
+        })
+        .catch((error) => res.status(500).json({ error }));
 };
 
 exports.addFounder = async (req, res) => {

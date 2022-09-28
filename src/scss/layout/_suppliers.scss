@@ -410,8 +410,9 @@
             font-weight: 600;
         }
 
-        &__infoContainer p {
+        &__infoContainer &__description {
             font-size: .9rem;
+            white-space: pre-line;
         }
 
         &__arrowLeft {

@@ -14,6 +14,7 @@ import { SyncLoader } from 'react-spinners';
 export const PostField = () => {
 const dispatch = useDispatch();
 const [post, setPost] = useState('');
+// const [lineBreak, setLineBreak] = useState('');
 const [images, setImages] = useState<Blob | null>(null);
 const [fileURL, setFileURL] = useState(null);
 // const [videos, setVideos] = useState(null);
@@ -25,8 +26,13 @@ const formData = {
     fileURL,
 };
 
+const onPostSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPost(e.target.value);
+};
+
 const handleSubmit = async () => {
     setLoading(true);
+    console.log(post);
     await axiosPrivate.post('/feed', formData)
     .then((res) => {
         if (!post) {
@@ -72,7 +78,7 @@ useEffect(() => {
           className='feed__textarea'
           rows={6}
           placeholder='What is happening?'
-          onChange={(e) => setPost(e.target.value)}
+          onChange={onPostSubmit}
         />
         <section>
             { fileURL

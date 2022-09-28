@@ -5,13 +5,14 @@ import React, { useState } from 'react';
 interface IProps {
     children: string;
     end: number;
+    className?: string;
 }
 
-export const Collapsable = ({ children, end }: IProps) => {
+export const Collapsable = ({ children, end, className }: IProps) => {
     const text = children;
     const [seeMore, setSeeMore] = useState(true);
     return (
-        <section className='textContainer'>
+        <section className={className}>
             { seeMore && (text.length > end) ? text.slice(0, end).concat('...') : text }
             { text.length > end
                 && (

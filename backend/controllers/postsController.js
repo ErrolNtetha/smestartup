@@ -23,7 +23,13 @@ exports.userPosts = async (req, res) => {
 };
 
 exports.incrimementLikes = async (req, res) => {
-    console.log('Post liked');
+    const { _id } = await User.findOne({ email: req.user.email });
+    console.log(_id);
+    await Post.findById(req.params.id, {
+        stars: _id,
+    })
+        .then((response) => console.log('Successfully liked the post.', response))
+        .catch((error) => console.log('Ops. There was a problem.', error.message));
 };
 
 exports.getSpecificUserPost = async (req, res) => {

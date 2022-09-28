@@ -9,6 +9,7 @@ import { Home } from './home';
 
 export const Founder = () => {
     const { data, loading } = useFetchData('/founders');
+    console.log(data);
 
     return (
         <section className='founder'>
@@ -26,7 +27,7 @@ export const Founder = () => {
             {loading
             ? <span className='founder__loader'><ScaleLoader color='#fff' /></span>
             : data?.founders?.map((founder) => (
-                <Home user={founder} />
+                <Home user={founder} key={founder._id} />
             ))}
         </section>
     );

@@ -33,6 +33,7 @@ interface DProps {
     companyType: string;
     category: string;
     createdAt: Date | string;
+    description: string;
 }
 
 export const SupplierInfo = ({
@@ -44,7 +45,8 @@ export const SupplierInfo = ({
     established,
     companyType,
     category,
-    createdAt
+    createdAt,
+    description
 }: DProps) => {
     const { path, url } = useRouteMatch();
     const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
@@ -58,6 +60,8 @@ export const SupplierInfo = ({
                         <p> <FiHardDrive /> Category: {category} </p>
                         <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
                         <p> <FiUser /> Created by: <a href={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </a> </p>
+                        <hr className='global' style={{ margin: '.3em 0' }} />
+                        <p className='supllier__aboutIntro'>{about}</p>
                     </span>
                 </section>
             </section>
@@ -70,8 +74,8 @@ export const SupplierInfo = ({
             </section>
             <article className='supplier__infoContainer'>
                     <h4> description & info </h4>
-                    <Collapsable end={300}>
-                        {about}
+                    <Collapsable end={300} className='supplier__description'>
+                        {description}
                     </Collapsable>
             </article>
             <hr className='global' />
