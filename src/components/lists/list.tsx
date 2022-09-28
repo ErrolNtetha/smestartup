@@ -33,21 +33,20 @@ import { useStore } from 'hoc/useStore';
       isVerified: boolean;
       occupation: string;
       avatar: string;
+      stars: number;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, date, image, isVerified, occupation, avatar
+     name, post, id, date, image, isVerified, occupation, avatar, stars
     }) => {
       const [modal, setModal] = React.useState(false);
-        const [likes, setLikes] = React.useState(0);
         const [loading, setLoading] = React.useState<boolean | null>(null);
         const { authorId } = useFetchUserId();
         const { userProfile } = useStore();
         const { userData } = userProfile;
+        console.log(stars);
 
            const handleLikes = (postId: string) => {
-            setLikes(1);
-
             const formData = {
                 postId,
             };
@@ -128,7 +127,7 @@ import { useStore } from 'hoc/useStore';
     <section className='feed__LastRow'>
         <span className='feed__stats'>
           <span className='feed__comments'>  </span>
-          <Button onClick={() => handleLikes(id)} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {likes} </Button>
+          <Button onClick={() => handleLikes(id)} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {stars.length} </Button>
         </span>
     </section>
     </section>
