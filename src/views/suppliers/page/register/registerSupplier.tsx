@@ -4,9 +4,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable  jsx-a11y/click-events-have-key-events */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
+import defaultAvatar from 'assets/blendot.png';
 import { axiosPrivate } from 'config/axiosInstance';
 import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
@@ -14,6 +15,7 @@ import { SyncLoader } from 'react-spinners';
 import { Button } from 'components/button';
 
 export const RegisterSupplier = () => {
+    const imageInput = useRef(null);
     const history = useHistory();
     const traceChars = (chars: number) => chars;
     return (
@@ -36,7 +38,9 @@ export const RegisterSupplier = () => {
               initialValues={{
                   name: '',
                   pictures: '',
+                  avatar: '',
                   about: '',
+                  established: '',
                   contacts: {
                     email: '',
                     website: '',
@@ -62,6 +66,32 @@ export const RegisterSupplier = () => {
               <Form onSubmit={props.handleSubmit} className='profile__formContainer'>
                 <h4>register supplier</h4>
                 <hr className='global' />
+                <section className='profile__avatarContainer'>
+                        <span className='register__avatarWrapper'>
+                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
+                                {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
+                                : <img src={defaultAvatar} alt={`${props.values.firstName}'s avatar'`} className='supplier__companyLogo' />}
+                            </div>
+                            <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> Company Logo </Button>
+                        </span>
+                    <input
+                      type='file'
+                      hidden
+                      ref={imageInput}
+                      accept='image/png]'
+                      name='avatar'
+                      onChange={(e) => {
+                          const reader = new FileReader();
+                          reader.readAsDataURL(e.currentTarget.files[0]);
+
+                          reader.onload = () => {
+                              if (reader.result) {
+                                  props.setFieldValue('avatar', reader.result);
+                              }
+                          };
+                      }}
+                    />
+                </section>
                     <section>
                         <label htmlFor='name'> Company Name </label>
                         <Field
@@ -102,6 +132,7 @@ export const RegisterSupplier = () => {
                     <section>
                         <label htmlFor='company'> Cellphone Number </label>
                         <Field
+                          type='number'
                           name='cellphone'
                           placeholder='Cellphone'
                           className='profile__input'
@@ -109,8 +140,9 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='company'> Telephone Number </label>
+                        <label htmlFor='telephone'> Telephone Number </label>
                         <Field
+                          type='number'
                           name='telephone'
                           placeholder='Telephone'
                           className='profile__input'
@@ -118,8 +150,19 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='company'>Fax</label>
+                        <label htmlFor='established'> Established Year </label>
                         <Field
+                          type='number'
+                          name='established'
+                          placeholder='The year the company was established'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='fax'>Fax</label>
+                        <Field
+                          type='number'
                           name='fax'
                           placeholder='Fax Number'
                           className='profile__input'
@@ -157,7 +200,7 @@ export const RegisterSupplier = () => {
                             Cancel
                         </Button>
                         <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
-                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'save' }
+                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Publish' }
                         </Button>
                     </section>
               </Form>
