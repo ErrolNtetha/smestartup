@@ -1,0 +1,39 @@
+@use '../mixins' as *;
+
+.skeletonWrapper {
+    margin-bottom: .8em;
+    width: 100%;
+    z-index: 4;
+}
+
+.sleftColumn {
+    width: max-content;
+    align-items: unset;
+    justify-content: unset;
+}
+
+.srightColumn {
+    @include flexbox();    
+    justify-content: unset;
+    align-items: unset;
+    flex-direction: column;
+    width: 50%;
+}
+
+.sname {
+    width: 60%;
+}
+
+.stitle {
+    width: 30%;
+}
+
+.skeletonHeader {
+    @include flexbox();    
+    justify-content: unset;
+    gap: .2em;
+}
+
+.spost {
+    width: 30%;
+}
