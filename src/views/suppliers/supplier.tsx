@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Collapsable } from 'components/collapsable';
 // import { Button } from 'components/button';
 // import { Modal } from 'components/modal';
+import { BusinessAvatar } from 'components/avatar/business';
 
 interface SProps {
     name: string;
@@ -28,8 +29,11 @@ export const Supplier = ({
                 {/* <img src={blendot} className='supplier__profilePicture' alt={`${name}'s avatar`} /> */}
                 <section className='supplier__names'>
                     <section className='supplier__detailsGroup'>
-                        <h4 className='supplier__supplierName'> {name} </h4>
-                        <p> {description} </p>
+                        <BusinessAvatar avatar='' className='supplier__profilePicture' />
+                        <span>
+                            <h4 className='supplier__supplierName'> {name} </h4>
+                            <p> {description} </p>
+                        </span>
                     </section>
                     <p className='supplier__about'>
                         <Collapsable end={200}>
