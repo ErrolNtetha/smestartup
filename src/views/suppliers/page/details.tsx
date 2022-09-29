@@ -14,7 +14,7 @@ export const Details = () => {
         <main>
             <section>
                 { loading
-                    ? <SkeletonLoading cards={2} numCount={12} />
+                    ? <SkeletonLoading cards={1} numCount={12} />
                     : (
                         <SupplierInfo
                           author={data?.suppliers?.author}
