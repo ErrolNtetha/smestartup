@@ -215,12 +215,16 @@
             position: absolute;
         }
 
-        &__detailsGroup > * {
-            margin: 0;
-            padding: 0;
+        &__detailsGroup {
+            @include flexbox($justify-content: unset);
+        } 
+
+        &__detailsGroup span {
+            margin-left: .5em;
+            align-self: start;
         }
 
-        &__names > p {
+        &__detailsGroup span > p {
             margin: 0;
             padding: 0;
         }
@@ -245,11 +249,11 @@
             font-size: .8rem;
             margin: .2em;
         }
-
+        
         &__profilePicture {
             @include avatar($width: 45px);
             border: none;
-            border-radius: 50%;
+            border-radius: 0px;
         }
 
         &__search--button {
@@ -335,8 +339,9 @@
 
         &__registerSupplierContainer {
             @include flexbox();
-            padding: 2em 0;
+            padding: 1em 0;
             height: 100%;
+            background: none;
         }
 
         &__registerSupplierContainer .profile__formContainer > section {
@@ -346,7 +351,6 @@
         &__coverContainer {
             position: relative;
             wdith: 100%;
-            background: red;
         }
 
         &__cover {
@@ -367,9 +371,7 @@
         }
 
         &__text {
-            position: absolute;
-            padding: 0 .8em;
-            bottom: 5px;
+            align-self: start;
         }
 
         &__text h1 {
@@ -381,6 +383,27 @@
             font-weight: 500;
             color: white;
             text-decoration: none;
+        }
+
+        &__companyLogo {
+            @include avatar($width: 100px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__textContainer {
+            @include flexbox($justify-content: unset);
+            position: absolute;
+            // border: 2px solid red;
+            bottom: 5px;
+            width: 100%;
+        }
+
+        &__infoAvatar {
+            @include avatar($width: 70px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 .4em;
         }
 
         &__text > p {

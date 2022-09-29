@@ -2,7 +2,7 @@
 import React from 'react';
 import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
-import { FiCalendar, FiHardDrive, FiUser } from 'react-icons/fi';
+import { FiCalendar, FiHardDrive } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { Tooltip } from 'components/tooltip';
 // import { format } from 'date-fns';
@@ -14,39 +14,30 @@ import {
     BrowserRouter
 } from 'react-router-dom';
 import { Collapsable } from 'components/collapsable';
+import { BusinessAvatar } from 'components/avatar/business';
 
 interface DProps {
     name: string;
     photos: string[];
-    about: string;
     isRegistered: boolean;
-    author: {
-        name: {
-            firstName: string;
-            lastName: string;
-        }
-        avatar: string;
-        _id: string;
-        occupation: string;
-    }
     established: number;
     companyType: string;
     category: string;
     createdAt: Date | string;
     description: string;
+    avatar: string;
 }
 
 export const SupplierInfo = ({
     name,
     photos,
-    about,
     isRegistered,
-    author,
     established,
     companyType,
     category,
     createdAt,
-    description
+    description,
+    avatar
 }: DProps) => {
     const { path, url } = useRouteMatch();
     const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
@@ -55,13 +46,15 @@ export const SupplierInfo = ({
             <section className='supplier__coverContainer'>
                 <img src={dots} alt='dfd' className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
-                    <span className='supplier__text'>
-                        <h1> {name} </h1>
-                        <p> <FiHardDrive /> Category: {category} </p>
-                        <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
-                        <p> <FiUser /> Created by: <a href={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </a> </p>
+                    <span className='supplier__textContainer'>
+                        <BusinessAvatar avatar={avatar} className='supplier__infoAvatar' />
+                        <span className='supplier__text'>
+                            <h1> {name} </h1>
+                            <p> <FiHardDrive /> Sector: {category} </p>
+                            <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
+                            {/* <p> <FiUser /> Created by: <a href={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </a> </p> */}
+                        </span>
                         <hr className='global' style={{ margin: '.3em 0' }} />
-                        <p className='supllier__aboutIntro'>{about}</p>
                     </span>
                 </section>
             </section>
