@@ -7,6 +7,7 @@ const SuppliersSchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'The author is required.']
     },
+    customerID: String,
     name: {
         type: String,
         required: [true, 'The name is required.']
@@ -24,17 +25,18 @@ const SuppliersSchema = new mongoose.Schema({
         max: 1200
     },
     type: { type: String, default: 'supplier' },
-    sector: String,
+    sector: { type: String, enum: ['Wholesaler & Distributor', 'Importer', 'Manufacturer', 'Independant Craftspeople', 'Other'] },
     tags: [String],
     registrationNumber: String,
     established: Number,
     photos: [String],
+    avatar: [String],
     contacts: {
         cellphone: [Number],
         telephone: [Number],
         website: { type: String, lowercase: true },
         email: { type: Array, lowercase: true },
-        fax: String,
+        fax: Number,
         other: String
     },
     verified: { type: Boolean, default: false },
