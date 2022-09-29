@@ -56,7 +56,8 @@ exports.createSupplier = async (req, res) => {
         contacts,
         addresses,
         tags,
-        isRegistered
+        isRegistered,
+        avatar
     } = req.body;
 
     const {
@@ -79,7 +80,8 @@ exports.createSupplier = async (req, res) => {
         addresses,
         tags,
         author: _id,
-        isRegistered
+        isRegistered,
+        avatar
     });
 
     await newSupplier.save()
