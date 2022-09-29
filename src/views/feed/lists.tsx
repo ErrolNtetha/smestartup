@@ -4,8 +4,9 @@ import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
 import { useSelector } from 'react-redux';
-import { ScaleLoader } from 'react-spinners';
+// import { ScaleLoader } from 'react-spinners';
 import { useFetchData } from 'hoc/useFetchData';
+import { SkeletonPosts } from 'components/skeleton';
 
 export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
@@ -15,8 +16,8 @@ export const Lists = () => {
  return (
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
-        { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
-                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
+        { !response.loading ? <SkeletonPosts cards={10} />
+                : posts?.sort((a: Date, b: Date) => b.createdAt > a.createdAt).map(({
                     post, encodedImage, author, _id, createdAt, stars
                 }) => (
               <List

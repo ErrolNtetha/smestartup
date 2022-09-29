@@ -8,17 +8,20 @@
 
 .sleftColumn {
     width: max-content;
+    align-items: unset;
+    justify-content: unset;
 }
 
 .srightColumn {
     @include flexbox();    
     justify-content: unset;
+    align-items: unset;
     flex-direction: column;
     width: 50%;
 }
 
 .sname {
-    width: 50%;
+    width: 60%;
 }
 
 .stitle {
