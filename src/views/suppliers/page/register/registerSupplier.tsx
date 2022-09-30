@@ -25,10 +25,10 @@ export const RegisterSupplier = () => {
                   name: Yup.string()
                         .min(2, 'Your name is too short!')
                         .max(100, 'Name is too long!')
-                        .required('First name cannot be empty.'),
+                        .required('Business name cannot be empty.'),
                   about: Yup.string()
                         .min(30, 'About should be at least 30 characters.')
-                        .max(140, 'Name is too long!')
+                        .max(200, 'You about is too long!')
                         .required('About  is required!'),
                   description: Yup.string()
                         .min(30, 'Description should be at least 30 characters.')
@@ -54,6 +54,7 @@ export const RegisterSupplier = () => {
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
+                          history.push('/suppliers');
                           console.log('posted');
                       }
                     })
@@ -78,7 +79,7 @@ export const RegisterSupplier = () => {
                       type='file'
                       hidden
                       ref={imageInput}
-                      accept='image/png]'
+                      accept='image/*'
                       name='avatar'
                       onChange={(e) => {
                           const reader = new FileReader();
