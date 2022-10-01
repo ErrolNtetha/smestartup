@@ -46,6 +46,7 @@ export const RegisterSupplier = () => {
                     website: '',
                     cellphone: '',
                     telephone: '',
+                    fax: '',
                 },
                   description: '',
                   addresses: '',
@@ -179,7 +180,7 @@ export const RegisterSupplier = () => {
                           placeholder='What is the business is about? Be short and precise.'
                           className='profile__inputBio'
                         />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/140`} characters </section>
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
                         {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
                     </section>
 
