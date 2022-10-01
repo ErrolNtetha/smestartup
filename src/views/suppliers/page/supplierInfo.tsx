@@ -103,15 +103,15 @@ export const SupplierInfo = ({
             <hr className='global' />
 
             <BrowserRouter>
-            <Switch>
-                <Route exact path={`${path}`} />
-                <Route path={`${path}/photos`}>
-                    <p> Photos </p>
-                </Route>
-                <Route path={`${path}/reviews`}>
-                    <p> Reviews </p>
-                </Route>
-            </Switch>
+                <Switch>
+                    <Route exact path={`${path}`} />
+                    <Route path={`${path}/photos`}>
+                        <p> Photos </p>
+                    </Route>
+                    <Route path={`${path}/reviews`}>
+                        <p> Reviews </p>
+                    </Route>
+                </Switch>
             </BrowserRouter>
         </main>
     );
