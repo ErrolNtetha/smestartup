@@ -15,13 +15,15 @@ interface SProps {
     description: string;
     about: string;
     id: string;
+    avatar: string;
 }
 
 export const Supplier = ({
     name,
     description,
     about,
-    id
+    id,
+    avatar
 }: SProps) => {
     return (
         <section className='supplier__resultContainer'>
@@ -29,7 +31,7 @@ export const Supplier = ({
                 {/* <img src={blendot} className='supplier__profilePicture' alt={`${name}'s avatar`} /> */}
                 <section className='supplier__names'>
                     <section className='supplier__detailsGroup'>
-                        <BusinessAvatar avatar='' className='supplier__profilePicture' />
+                        <BusinessAvatar avatar={avatar} className='supplier__profilePicture' />
                         <span>
                             <h4 className='supplier__supplierName'> {name} </h4>
                             <p> {description} </p>
