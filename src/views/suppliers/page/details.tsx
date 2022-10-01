@@ -27,6 +27,7 @@ export const Details = () => {
                           name={data?.suppliers?.name}
                           createdAt={data?.suppliers?.createdAt}
                           description={data?.suppliers?.description}
+                          avatar={data?.suppliers?.avatar}
                         />
                     )}
             </section>
