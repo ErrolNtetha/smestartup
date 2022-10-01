@@ -25,8 +25,8 @@ exports.updateProfile = async (req, res) => {
     await cloudinary.uploader.upload(avatar, {
         upload_preset: 'user_avatar'
     })
-        .then((response) => avatarId = response.url)
-        .catch((error) => res.status(500).json(error.messsage));
+    .then((response) => avatarId = response.secure_url)
+    .catch((error) => res.status(500).json(error.messsage));
 
     await User.findByIdAndUpdate({ _id: id }, {
         name: {

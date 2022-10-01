@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const geocoder = require('../utils/geocode');
+// const geocoder = require('../utils/geocode');
 
 const SuppliersSchema = new mongoose.Schema({
     author: {
@@ -16,7 +16,7 @@ const SuppliersSchema = new mongoose.Schema({
         type: String,
         required: [true, 'About is required.'],
         min: 30,
-        max: 140
+        max: 200
     },
     description: {
         type: String,
@@ -30,7 +30,7 @@ const SuppliersSchema = new mongoose.Schema({
     registrationNumber: String,
     established: Number,
     photos: [String],
-    avatar: [String],
+    avatar: String,
     contacts: {
         cellphone: [Number],
         telephone: [Number],

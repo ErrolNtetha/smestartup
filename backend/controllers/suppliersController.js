@@ -1,5 +1,6 @@
 const Suppliers = require('../models/suppliers.model');
 const User = require('../models/user.model');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -48,7 +49,6 @@ exports.getSupplierProfiles = async (req, res) => {
 
 exports.createSupplier = async (req, res) => {
     const { _id } = await User.findOne({ email: req.user.email });
-    console.log('Author: ', _id);
     const {
         name,
         about,
@@ -64,7 +64,8 @@ exports.createSupplier = async (req, res) => {
         email,
         website,
         cellphone,
-        telephone
+        telephone,
+        fax
     } = contacts;
 
     const newSupplier = new Suppliers({
@@ -75,7 +76,8 @@ exports.createSupplier = async (req, res) => {
             email,
             cellphone,
             telephone,
-            website
+            website,
+            fax
         },
         addresses,
         tags,
