@@ -21,12 +21,18 @@ export const Results = () => {
                 )
                 : (
                     <section className='supplier__supplierResults'>
-                        { data?.suppliers?.map(({ name, about, _id }) => (
+                        { data?.suppliers?.map(({
+                            name,
+                            about,
+                            _id,
+                            avatar
+                        }) => (
                         <Supplier
                           name={name}
                           description='Manufacturers'
                           about={about}
                           id={_id}
+                          avatar={avatar}
                         />
                     ))}
                     </section>
