@@ -13,6 +13,7 @@ import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
 // import { Select } from 'components/select';
 import { Button } from 'components/button';
+import { Grammarly } from 'components/grammarly';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
@@ -173,13 +174,15 @@ export const RegisterSupplier = () => {
 
                     <section>
                         <label htmlFor='about'> About </label>
-                        <Field
-                          name='about'
-                          as='textarea'
-                          rows={4}
-                          placeholder='What is the business is about? Be short and precise.'
-                          className='profile__inputBio'
-                        />
+                        <Grammarly>
+                            <Field
+                              name='about'
+                              as='textarea'
+                              rows={4}
+                              placeholder='What is the business is about? Be short and precise.'
+                              className='profile__inputBio'
+                            />
+                        </Grammarly>
                         <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
                         {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
                     </section>
