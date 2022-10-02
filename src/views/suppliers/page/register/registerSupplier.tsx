@@ -192,7 +192,7 @@ export const RegisterSupplier = () => {
                         <Field
                           name='description'
                           as='textarea'
-                          rows={6}
+                          rows={10}
                           placeholder='Write a description of what the business does.'
                           className='profile__inputBio'
                         />
