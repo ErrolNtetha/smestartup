@@ -480,6 +480,10 @@
                 background: rgba(255, 255, 255, .08);
             }
         }
+
+        &__selectContainer {
+            @include select();
+        }
     }
 
     @include respond-to('laptop') {

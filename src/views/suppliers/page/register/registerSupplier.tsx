@@ -13,6 +13,8 @@ import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
 // import { Select } from 'components/select';
 import { Button } from 'components/button';
+import { Select } from 'components/select';
+import { levels } from './bee';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
@@ -50,6 +52,7 @@ export const RegisterSupplier = () => {
                 },
                   description: '',
                   addresses: '',
+                  bbeLevel: ''
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
@@ -116,12 +119,11 @@ export const RegisterSupplier = () => {
                     <section>
                         <label htmlFor='website'>Website</label>
                         <Field
-                          name='website'
+                          name='url'
                           placeholder='Company Website'
                           className='profile__input'
                         />
                     </section>
-
                     <section>
                         <label htmlFor='location'> Address </label>
                         <Field
@@ -149,6 +151,26 @@ export const RegisterSupplier = () => {
                           placeholder='Telephone'
                           className='profile__input'
                         />
+                    </section>
+
+                    <section>
+                        <label htmlFor='bbeLevel'> BBBEE Level </label>
+                        <Field
+                          as='select'
+                          name='bbeLevel'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.bbeLevel ? '- Choose BBBEE Level -' : props.values.bbeLevel}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                {levels.map((item) => (
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('bbeLevel', item)}>{item}</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                    </section>
+                                ))}
+                            </section>
+                        </Field>
                     </section>
 
                     <section>
