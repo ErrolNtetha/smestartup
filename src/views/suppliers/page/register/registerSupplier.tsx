@@ -7,13 +7,14 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import defaultAvatar from 'assets/blendot.png';
+import defaultBusiness from 'assets/defaultBusiness.png';
 import { axiosPrivate } from 'config/axiosInstance';
 import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
 // import { Select } from 'components/select';
 import { Button } from 'components/button';
 import { Select } from 'components/select';
+import { sectors } from '../../sectors';
 import { levels } from './bee';
 
 export const RegisterSupplier = () => {
@@ -52,7 +53,11 @@ export const RegisterSupplier = () => {
                 },
                   description: '',
                   addresses: '',
-                  bbeLevel: ''
+                  bbeLevel: '',
+                  sector: '',
+                  moq: '',
+                  moqNumber: '',
+                  quotation: ''
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
@@ -75,7 +80,7 @@ export const RegisterSupplier = () => {
                         <span className='register__avatarWrapper'>
                             <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
                                 {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
-                                : <img src={defaultAvatar} alt={`${props.values.firstName}'s avatar'`} className='supplier__companyLogo' />}
+                                : <img src={defaultBusiness} alt={`${props.values.firstName}'s avatar'`} className='supplier__companyLogo' />}
                             </div>
                             <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> Company Logo </Button>
                         </span>
@@ -101,10 +106,10 @@ export const RegisterSupplier = () => {
                         <label htmlFor='name'> Company Name </label>
                         <Field
                           name='name'
-                          placeholder='Name of the supplier'
+                          placeholder='Company Trading name'
                           className='profile__input'
                         />
-                        {props.errors.name && <p style={{ color: 'red', margin: '0' }}>{props.errors.name}</p>}
+                        {(props.errors.name && props.touched.name) && <p style={{ color: 'red', margin: '0' }}>{props.errors.name}</p>}
                     </section>
 
                     <section>
@@ -144,7 +149,7 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='telephone'> Telephone Number </label>
+                        <label htmlFor='telephone'> Telephone Number: </label>
                         <Field
                           type='number'
                           name='telephone'
@@ -154,7 +159,7 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='bbeLevel'> BBBEE Level </label>
+                        <label htmlFor='bbeLevel'> BBBEE Level: </label>
                         <Field
                           as='select'
                           name='bbeLevel'
@@ -169,6 +174,78 @@ export const RegisterSupplier = () => {
                                         <hr className='supplier__selectContainer__options__optionsDivider' />
                                     </section>
                                 ))}
+                            </section>
+                        </Field>
+                    </section>
+
+                    <section>
+                        <label htmlFor='sector'> Sector: </label>
+                        <Field
+                          as='select'
+                          name='sector'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.sector ? '- Choose a sector -' : props.values.sector}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                {sectors.map((item) => (
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('sector', item.name)}>{item.name}</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                    </section>
+                                ))}
+                            </section>
+                        </Field>
+                    </section>
+
+                    <section>
+                        <label htmlFor='moq'> Do you apply Minimum Order Quantity? </label>
+                        <Field
+                          as='select'
+                          name='moq'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.moq ? '- Choose -' : props.values.moq}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('moq', 'Yes')}>Yes</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                        <p onClick={() => props.setFieldValue('moq', 'No')}>No</p>
+                                    </section>
+                            </section>
+                        </Field>
+                    </section>
+
+                        { props.values.moq === 'Yes'
+                            ? (
+                                <section>
+                                    <label htmlFor='moqNumber'> What is the minimum number? </label>
+                                    <Field
+                                      type='number'
+                                      name='moqNumber'
+                                      placeholder='Enter minimum order quantity number'
+                                      className='profile__input'
+                                    />
+                                </section>
+                        )
+                        : null}
+
+                    <section>
+                        <label htmlFor='quotation'> Do you give quotations? </label>
+                        <Field
+                          as='select'
+                          name='quotation'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.quotation ? '- Choose -' : props.values.quotation}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('quotation', 'Yes')}>Yes</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                        <p onClick={() => props.setFieldValue('quotation', 'No')}>No</p>
+                                    </section>
                             </section>
                         </Field>
                     </section>
