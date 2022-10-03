@@ -1687,6 +1687,18 @@
   resolved "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@grammarly/editor-sdk-react@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@grammarly/editor-sdk-react/-/editor-sdk-react-2.0.2.tgz#50d968d42d8c689e54ca2c281a410fc6346d8cd2"
+  integrity sha512-ZT6x7GrN2gzXItudChWpmLl/lVLm8RVInDY3TcCHnDtP3UrneOKIrEMNK9SbYYDy/09I+E7Afnav54STThT01w==
+  dependencies:
+    "@grammarly/editor-sdk" "2.0.2"
+
+"@grammarly/editor-sdk@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@grammarly/editor-sdk/-/editor-sdk-2.0.2.tgz#208b7a58ce21003ed44da2e07fc4cd9d63223eea"
+  integrity sha512-LC6H1rg0vvPa4+ITyEmuqCji+1PvEhREh+15cZ286x6L9YsPz5ZwDC6dE5nBUlrdHX4X4vrt2h5ghsh6jfTzKg==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@hapi/address/-/address-2.1.4.tgz"
@@ -7417,6 +7429,11 @@ dotenv@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
   integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
+
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 download@^8.0.0:
   version "8.0.0"
