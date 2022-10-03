@@ -483,6 +483,7 @@
 
         &__selectContainer {
             @include select();
+            z-index: 1;
         }
     }
 
