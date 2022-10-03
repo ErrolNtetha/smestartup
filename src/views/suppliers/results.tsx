@@ -33,6 +33,7 @@ export const Results = () => {
                           about={about}
                           id={_id}
                           avatar={avatar}
+                          key={_id}
                         />
                     ))}
                     </section>

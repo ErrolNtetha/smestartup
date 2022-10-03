@@ -4,19 +4,20 @@ import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
 import { FiCalendar, FiHardDrive } from 'react-icons/fi';
 import { format } from 'date-fns';
-import { Tooltip } from 'components/tooltip';
 // import { format } from 'date-fns';
 import {
     Link,
     Route,
     Switch,
     useRouteMatch,
-    BrowserRouter
 } from 'react-router-dom';
-import { Collapsable } from 'components/collapsable';
+// import { Collapsable } from 'components/collapsable';
 import { BusinessAvatar } from 'components/avatar/business';
+import { Photos } from './photos';
+import { Reviews } from './reviews';
+import { Overview } from './overview';
 
-interface DProps {
+export interface DProps {
     name: string;
     photos: string[];
     isRegistered: boolean;
@@ -31,20 +32,19 @@ interface DProps {
 export const SupplierInfo = ({
     name,
     photos,
-    isRegistered,
-    established,
-    companyType,
     category,
     createdAt,
+    avatar,
     description,
-    avatar
+    companyType,
+    established,
+    isRegistered
 }: DProps) => {
     const { path, url } = useRouteMatch();
-    const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
     return (
-        <main>
+        <>
             <section className='supplier__coverContainer'>
-                <img src={dots} alt='dfd' className='supplier__cover' />
+                <img src={dots} alt={`${name} avatar`} className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
                     <span className='supplier__textContainer'>
                         <BusinessAvatar avatar={avatar} className='supplier__infoAvatar' />
@@ -61,58 +61,22 @@ export const SupplierInfo = ({
             <section className='supplier__navigationContainer'>
                 <span>
                     <Link to={`${url}`}> Overview </Link>
-                    <Link to={`${url}/photos`}> Photos {`(${photos.length})`} </Link>
+                    <Link to={`${url}/photos`}> Photos {`(${photos?.length})`} </Link>
                     <Link to={`${url}/reviews`}> Reviews </Link>
                 </span>
             </section>
-            <article className='supplier__infoContainer'>
-                    <h4> description & info </h4>
-                    <Collapsable end={300} className='supplier__description'>
-                        {description}
-                    </Collapsable>
-            </article>
-            <hr className='global' />
-            <section className='supplier__listContainer'>
-                <ul className='supplier__lists'>
-                    <li>
-                        <span> Type </span>
-                        <span> {companyType} </span>
-                    </li>
-                    <li>
-                        <span> Established </span>
-                        <span> {established} </span>
-                    </li>
-                    <li>
-                        <span> MOQ <Tooltip message={message} className='$1' /> </span>
-                        <span> 10 000 </span>
-                    </li>
-                    <li>
-                        <span> BEE Compliance </span>
-                        <span> Level 2 </span>
-                    </li>
-                    <li>
-                        <span> Quotation </span>
-                        <span> No </span>
-                    </li>
-                    <li>
-                        <span> Registered </span>
-                        <span> {isRegistered ? 'Yes' : 'No'} </span>
-                    </li>
-                </ul>
-            </section>
-            <hr className='global' />
-
-            <BrowserRouter>
             <Switch>
-                <Route exact path={`${path}`} />
-                <Route path={`${path}/photos`}>
-                    <p> Photos </p>
+                <Route exact path={`${path}`}>
+                    <Overview
+                      isRegistered={isRegistered}
+                      established={established}
+                      companyType={companyType}
+                      description={description}
+                    />
                 </Route>
-                <Route path={`${path}/reviews`}>
-                    <p> Reviews </p>
-                </Route>
+                <Route exact path={`${path}/photos`} component={Photos} />
+                <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-            </BrowserRouter>
-        </main>
+        </>
     );
 };
