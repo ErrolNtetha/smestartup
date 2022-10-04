@@ -21,21 +21,19 @@ export const Results = () => {
                 )
                 : (
                     <section className='supplier__supplierResults'>
-                        { data?.suppliers?.map(({
-                            name,
-                            about,
-                            _id,
-                            avatar
-                        }) => (
-                        <Supplier
-                          name={name}
-                          description='Manufacturers'
-                          about={about}
-                          id={_id}
-                          avatar={avatar}
-                          key={_id}
-                        />
-                    ))}
+                        { data?.suppliers?.map((item: any) => {
+                            if (item.length <= 0) return <section> No listed suppliers found. </section>;
+                                return (
+                                    <Supplier
+                                      name={item.name}
+                                      description='Manufacturers'
+                                      about={item.about}
+                                      id={item._id}
+                                      avatar={item.avatar}
+                                      key={item._id}
+                                    />
+                                );
+                            })}
                     </section>
                     )}
         {/* <Supplier
