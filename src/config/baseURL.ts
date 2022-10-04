@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://localhost:5000';
-export const SERVER_URL = 'https://blendotsme.onrender.com';
+// export const SERVER_URL = 'https://blendotsme.onrender.com';
+export const SERVER_URL = 'https://backend-sme.herokuapp.com/';
 
 export const NODE_ENV = () => {
     let env;

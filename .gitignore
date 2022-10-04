@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 /backend/.env
+/backend/node_modules
 /package.json
 /yarn.lock
 .pnp.js
