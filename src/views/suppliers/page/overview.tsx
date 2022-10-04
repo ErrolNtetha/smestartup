@@ -7,13 +7,19 @@ interface IProps {
     established: number;
     companyType: string;
     description: string;
+    beeLevel: string;
+    moqNumber: number;
+    quotation: string;
 }
 
 export const Overview = ({
     isRegistered,
     established,
     companyType,
-    description
+    description,
+    beeLevel,
+    moqNumber,
+    quotation,
 }: IProps) => {
     const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
     return (
@@ -37,15 +43,15 @@ export const Overview = ({
                     </li>
                     <li>
                         <span> MOQ <Tooltip message={message} className='$1' /> </span>
-                        <span> 10 000 </span>
+                        <span> {moqNumber} </span>
                     </li>
                     <li>
                         <span> BEE Compliance </span>
-                        <span> Level 2 </span>
+                        <span> {beeLevel} </span>
                     </li>
                     <li>
                         <span> Quotation </span>
-                        <span> No </span>
+                        <span> {quotation} </span>
                     </li>
                     <li>
                         <span> Registered </span>
