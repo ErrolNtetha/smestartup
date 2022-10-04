@@ -22,7 +22,7 @@ import { Feedback } from './feedback';
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
     const history = useHistory();
-    const [modal, setModal] = React.useState(true);
+    const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
     return (
         <main className='supplier__registerSupplierContainer'>
