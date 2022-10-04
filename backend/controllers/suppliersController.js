@@ -94,7 +94,7 @@ exports.createSupplier = async (req, res) => {
         author: _id,
         isRegistered,
         avatar,
-        custormerID: 'SU'.concat(uniqueID),
+        customerID: 'SU'.concat(uniqueID),
         beeLevel,
         sector,
         moq,
