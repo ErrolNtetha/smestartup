@@ -353,6 +353,19 @@
             wdith: 100%;
         }
 
+        &__feedbackContainer {
+            @include modal();
+        }
+
+        &__feedback {
+            width: 100%;
+        }
+
+        &__feedbackConfirm {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .5em .6em, $margin: 0);
+            width: 100%;
+        }
+
         &__cover {
             max-width: 100%;            
             height: auto;
@@ -483,6 +496,7 @@
 
         &__selectContainer {
             @include select();
+            z-index: 1;
         }
     }
 
