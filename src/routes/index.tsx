@@ -4,9 +4,11 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
-import { AddSupplier } from 'views/suppliers/addSupplier';
+// import { SupplierView } from 'views/suppliers/page';
+import { RegisterWrapper } from 'views/suppliers/page/register';
+import { Edit } from 'views/profile/edit';
+import { Founder } from 'views/founders';
 import { SupplierView } from 'views/suppliers/page';
-import { Founder } from 'views/suppliers/founder';
 import { Home } from '../containers/home';
 import { NotFound } from '../containers/notFound';
 import { About } from '../containers/about';
@@ -31,14 +33,16 @@ export const Main: React.FC = () => {
                 <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
                 <Route exact path='/feed/p/:id' component={Post} />
-                <Route exact path='/suppliers' component={Suppliers} />
                 <Route path='/faq' exact component={FAQ} />
-                <Route path='/suppliers/:id' exact component={SupplierView} />
+                {/* <Route path='/suppliers/:id' exact component={SupplierView} /> */}
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
-                <Private exact isAuth={isAuth} path='/suppliers/register' component={AddSupplier} />
+                <Private exact isAuth={isAuth} path='/suppliers/register' component={RegisterWrapper} />
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
+                <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
+                <Private exact isAuth={isAuth} path='/suppliers' component={Suppliers} />
+                <Private isAuth={isAuth} path='/suppliers/:id' component={SupplierView} />
 
                 <Route path='/' component={NotFound} />
             </Switch>

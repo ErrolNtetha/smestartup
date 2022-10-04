@@ -2,8 +2,6 @@ import axios from 'axios';
 import { fetchUsers } from 'store/actions/fetchUsers';
 
 export const fetchAllUsers = () => {
-    console.log('running');
-
     return (dispatch) => {
         axios.get('http://localhost:5000/contact')
         .then((res) => {

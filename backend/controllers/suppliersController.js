@@ -1,10 +1,15 @@
+const otp = require('otp-generator');
+
 const Suppliers = require('../models/suppliers.model');
+const User = require('../models/user.model');
+// const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
+        .populate('author', 'avatar name occupation isVerified')
         .then((suppliers) => {
             if (!suppliers) {
-                res.status(404).json({ message: 'No suppliers in the database yet.' });
+                res.status(404).json({ message: 'No suppliers yet. Check back later.' });
                 return;
             }
             res.status(200).json({ success: true, suppliers });
@@ -17,8 +22,8 @@ exports.getSuppliers = async (req, res) => {
 
 exports.getSupplier = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     await Suppliers.find({ _id: id })
+        .populate('author')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers in the database yet.' });
@@ -32,7 +37,22 @@ exports.getSupplier = async (req, res) => {
         });
 };
 
+exports.getSupplierProfiles = async (req, res) => {
+    const { id } = req.user;
+    console.log(req.user);
+
+    await Suppliers.find({ author: id })
+        .then((profiles) => {
+            if (!profiles) return res.status(404).json({ message: 'You have no supplier profiles.' });
+            return res.status(200).json({ profiles });
+        })
+        .catch((error) => res.status(500).json({ success: false, error }));
+};
+
 exports.createSupplier = async (req, res) => {
+    const { _id } = await User.findOne({ email: req.user.email });
+    const uniqueID = otp.generate(8, { upperCaseAlphabets: true, specialChars: false });
+
     const {
         name,
         about,
@@ -40,14 +60,22 @@ exports.createSupplier = async (req, res) => {
         contacts,
         addresses,
         tags,
-        isRegistered
+        isRegistered,
+        avatar,
+        beeLevel,
+        sector,
+        moq,
+        moqNumber,
+        quotation,
+        established
     } = req.body;
-    const { id } = req.user;
+
     const {
         email,
         website,
         cellphone,
-        telephone
+        telephone,
+        fax
     } = contacts;
 
     const newSupplier = new Suppliers({
@@ -58,16 +86,25 @@ exports.createSupplier = async (req, res) => {
             email,
             cellphone,
             telephone,
-            website
+            website,
+            fax
         },
         addresses,
         tags,
-        author: id,
-        isRegistered
+        author: _id,
+        isRegistered,
+        avatar,
+        custormerID: 'SU'.concat(uniqueID),
+        beeLevel,
+        sector,
+        moq,
+        moqNumber,
+        quotation,
+        established
     });
 
     await newSupplier.save()
-        .then(() => res.json({ success: true, message: 'Supplier successfully added.' }))
+        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully added.' }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 

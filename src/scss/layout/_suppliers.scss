@@ -61,8 +61,29 @@
         &__filterIconGroup span {
            @include flexbox($justify-content: space-evenly);
             background: $primaryColor;
-            padding: .5em .6em;
+            padding: .2em .6em;
+            height: 100%;
             border-radius: 50px;
+        }
+
+        &__filterIconGroup span span {
+            @include flexbox();
+            flex-direction: column;
+        } 
+
+        &__filterIconGroup span span > * {
+            font-size: .8rem;
+        }
+
+        &__icon {
+            font-size: 5rem;
+        }
+
+        &__iconTextGroup > * {
+           @include flexbox();
+           gap: 1em;
+           flex-direction: column;
+           background: red;
         }
 
         &__filterContainer > * {
@@ -70,11 +91,16 @@
         }
 
         &__filterSearchContainer {
+            display: unset;
             z-index: 31;
             position: fixed;
             bottom: 0;
             width: 100%;
             height: 6vh;
+        }
+
+        &__searchFilter > * {
+            display: unset;
         }
 
         &__searchFilter {
@@ -83,6 +109,8 @@
             width: 100%;
             height: 100%;
             z-index: 54543539;
+            background: $foregroundColor;
+            transition: all 1s ease-in-out;
         }
 
         &__filterIconGroup span > * {
@@ -161,6 +189,7 @@
             @include flexbox($justify-content: unset);
             align-items: unset;
             padding: .6em;
+            margin: .4em 0;
         }
 
         &__names {
@@ -186,12 +215,16 @@
             position: absolute;
         }
 
-        &__detailsGroup > * {
-            margin: 0;
-            padding: 0;
+        &__detailsGroup {
+            @include flexbox($justify-content: unset);
+        } 
+
+        &__detailsGroup span {
+            margin-left: .5em;
+            align-self: start;
         }
 
-        &__names > p {
+        &__detailsGroup span > p {
             margin: 0;
             padding: 0;
         }
@@ -216,11 +249,11 @@
             font-size: .8rem;
             margin: .2em;
         }
-
+        
         &__profilePicture {
             @include avatar($width: 45px);
             border: none;
-            border-radius: 3px;
+            border-radius: 0px;
         }
 
         &__search--button {
@@ -264,6 +297,19 @@
             gap: .6em;
         }
 
+        &__skeletonCard {
+            @include flexbox();
+            align-items: unset;
+            flex-direction: column;
+            gap: .6em;
+            flex: 1;
+            margin: .4em .6em;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 5px;
+            padding: .4em;
+        }
+ 
+
         &__reactButtons > span {
             @include flexbox();
             gap: .4em;
@@ -289,6 +335,168 @@
         &__buttonContainer {
             @include flexbox();
             gap: .6em;
+        }
+
+        &__registerSupplierContainer {
+            @include flexbox();
+            padding: 1em 0;
+            height: 100%;
+            background: none;
+        }
+
+        &__registerSupplierContainer .profile__formContainer > section {
+            margin-bottom: .8em;
+        }
+
+        &__coverContainer {
+            position: relative;
+            wdith: 100%;
+        }
+
+        &__feedbackContainer {
+            @include modal();
+        }
+
+        &__feedback {
+            width: 100%;
+        }
+
+        &__feedbackConfirm {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .5em .6em, $margin: 0);
+            width: 100%;
+        }
+
+        &__cover {
+            max-width: 100%;            
+            height: auto;
+        }
+
+        &__supplierIntroText {
+            background: rgb(0,0,0);
+            background: -moz-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+        }
+
+        &__text {
+            align-self: start;
+        }
+
+        &__text h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        &__authorLink {
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+        }
+
+        &__companyLogo {
+            @include avatar($width: 100px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__textContainer {
+            @include flexbox($justify-content: unset);
+            position: absolute;
+            // border: 2px solid red;
+            bottom: 5px;
+            width: 100%;
+        }
+
+        &__infoAvatar {
+            @include avatar($width: 70px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 .4em;
+        }
+
+        &__text > p {
+            @include flexbox($justify-content: unset);
+            gap: .5em;
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        &__infoContainer {
+            padding: .5em .6em;
+        }
+
+        &__listContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            padding: .6em;
+            text-align: center;
+        }
+
+        &__infoContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        &__infoContainer &__description {
+            font-size: .9rem;
+            white-space: pre-line;
+        }
+
+        &__arrowLeft {
+            font-size: 1.4rem;
+        }
+
+
+        &__navigationContainer span {
+            @include flexbox($justify-content: space-evenly);
+        }
+
+        &__navigationContainer {
+            background: $foregroundColor;
+            width: 100%;
+            padding: .6em 0;
+            overflow-y: scroll;
+        }
+
+        &__navigationContainer span a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__lists {
+            @include flexbox();
+            padding: 0 .6em;
+            display: block;
+        }
+
+        &__lists li {
+            @include flexbox($justify-content: space-between);
+            list-style-type: none;
+            width: 100%;
+            padding: .1em .3em;
+
+            &:nth-child(even) {
+                background: rgba(255, 255, 255, .08);
+            }
+        }
+
+        &__selectContainer {
+            @include select();
+            z-index: 1;
         }
     }
 

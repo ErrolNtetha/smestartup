@@ -1,19 +1,37 @@
 import React from 'react';
-import { Preview } from 'views/suppliers/preview';
+// import { Preview } from 'views/suppliers/preview';
+import { useFetchData } from 'hoc/useFetchData';
+import { useParams } from 'react-router-dom';
+// import { Loading } from 'components/loading';
+import { SupplierInfo } from './supplierInfo';
+import { SkeletonLoading } from '../skeletonLoading';
 
-interface Props {
-    name: string;
-    about: string;
-}
+export const Details = () => {
+    const { id } = useParams();
+    const { data, loading } = useFetchData(`/suppliers/${id}`);
 
-export const Details = ({ name, about }: Props) => {
     return (
-        <section>
-            <p> Supplier Name: {name} </p>
-            <p> Supplier About: {about} </p>
-            <section style={{ width: '30%' }}>
-                <Preview about={about} established={2021} email='info@blendot.com' website='https://blendot.com' />
+        <main>
+            <section>
+                { loading
+                    ? <SkeletonLoading cards={1} numCount={12} />
+                    : (
+                        <SupplierInfo
+                          sector={data?.suppliers?.sector}
+                          companyType={data?.suppliers?.companyType}
+                          established={data?.suppliers?.established}
+                          isRegistered={data?.suppliers?.isRegistered}
+                          photos={data?.suppliers?.photos}
+                          name={data?.suppliers?.name}
+                          createdAt={data?.suppliers?.createdAt}
+                          description={data?.suppliers?.description}
+                          avatar={data?.suppliers?.avatar}
+                          beeLevel={data?.suppliers?.beeLevel}
+                          moqNumber={data?.suppliers?.moqNumber}
+                          quotation={data?.suppliers?.quotation}
+                        />
+                    )}
             </section>
-        </section>
+        </main>
     );
 };

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const geocoder = require('../utils/geocode');
 
 const SuppliersSchema = new mongoose.Schema({
     author: {
@@ -6,6 +7,7 @@ const SuppliersSchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'The author is required.']
     },
+    customerID: String,
     name: {
         type: String,
         required: [true, 'The name is required.']
@@ -14,7 +16,7 @@ const SuppliersSchema = new mongoose.Schema({
         type: String,
         required: [true, 'About is required.'],
         min: 30,
-        max: 140
+        max: 200
     },
     description: {
         type: String,
@@ -23,24 +25,42 @@ const SuppliersSchema = new mongoose.Schema({
         max: 1200
     },
     type: { type: String, default: 'supplier' },
-    sector: String,
     tags: [String],
     registrationNumber: String,
     established: Number,
     photos: [String],
+    avatar: String,
     contacts: {
         cellphone: [Number],
         telephone: [Number],
         website: { type: String, lowercase: true },
         email: { type: Array, lowercase: true },
+        fax: Number,
         other: String
     },
-    verified: Boolean,
+    verified: { type: Boolean, default: false },
+    beeLevel: String,
+    sector: String,
+    moq: String,
+    moqNumber: Number,
+    quotation: String,
     addresses: {
         physical: {
-            name: String,
-            latitude: Number,
-            longitude: Number
+            type: {
+                type: String,
+                enum: ['Point']
+            },
+            coordinates: {
+                type: [Number],
+                index: '2dsphere'
+            },
+            country: String,
+            zip: String,
+            city: String,
+            streetName: String,
+            countryCode: String,
+            province: String,
+            formattedAddress: String
         },
         postal: String
     },

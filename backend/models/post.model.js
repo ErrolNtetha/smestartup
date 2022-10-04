@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
-const userPost = new mongoose.Schema({
-    author: String,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    post: String,
-    encodedImage: String,
-    reports: {
-        count: Number,
-        users: { type: [mongoose.Schema.Types.ObjectId], ref: 'User' },
+const userPost = new mongoose.Schema(
+    {
+        author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        post: String,
+        encodedImage: String,
+        reports: {
+            count: Number,
+            users: { type: [mongoose.Schema.Types.ObjectId], ref: 'User' },
+        },
+        stars: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'User'
+        },
     },
-    stars: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'User'
-    },
-},
 { timestamps: true }
 );
 

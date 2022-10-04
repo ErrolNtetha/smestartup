@@ -4,49 +4,33 @@ import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
 import { useSelector } from 'react-redux';
-import { ScaleLoader } from 'react-spinners';
+// import { ScaleLoader } from 'react-spinners';
 import { useFetchData } from 'hoc/useFetchData';
+import { SkeletonPosts } from 'components/skeleton';
 
 export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
     const response = useFetchData('/feed');
     const { posts } = response.data;
 
-    interface Props {
-        post: string;
-        encodedImage: string;
-        user: {
-            name: {
-                firstName: string;
-                lastName: string;
-            }
-            occupation: string;
-            isVerified: boolean;
-            _id: string;
-            avatar: string;
-        };
-        _id: string;
-        createdAt: Date;
-    }
-
  return (
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
-        { response.loading ? <section className='feed__loader'> <ScaleLoader color='white' /> </section>
-                : posts?.sort((a: string, b: string) => b.createdAt > a.createdAt).map(({
-                    post, encodedImage, user, _id, createdAt
-                }: Props) => (
+        { response.loading ? <SkeletonPosts cards={10} />
+                : posts?.sort((a: Date, b: Date) => b.createdAt > a.createdAt).map(({
+                    post, encodedImage, author, _id, createdAt, stars
+                }) => (
               <List
                 post={post}
                 image={encodedImage}
-                isVerified={user?.isVerified}
-                name={user?.name}
+                isVerified={author?.isVerified}
+                name={author?.name}
                 key={_id}
                 date={createdAt}
                 id={_id}
-                occupation={user?.occupation}
-                avatar={user?.avatar}
-                author={user?._id}
+                occupation={author?.occupation}
+                avatar={author?.avatar}
+                stars={stars}
               />
               ))}
         {!toggleState

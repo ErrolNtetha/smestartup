@@ -2,6 +2,8 @@
 @use '../base/color' as *;
 @use '../base/' as *;
 
+$container-width: 70%;
+
 .profile {
     &__profileGrid {
         @include flexbox();
@@ -62,10 +64,14 @@
             @include flexbox();
             @include buttonHover($bgColor: $primaryColor, $padding: 0);
             text-decoration: none;
-            font-size: .8rem;
+            font-size: 1rem;
             padding: .6em .8em;
             gap: .4em;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        &__editProfile span {
+            display: none;
         }
 
         &__joined {
@@ -132,7 +138,9 @@
         }
 
         &__postsContainer {
-            margin-top: .6em;
+            margin-top: .1em;
+            background: $foregroundColor;
+            border-radius: $radius;
         }
 
         &__titleGroup {
@@ -148,7 +156,6 @@
         &__post {
             @include fontSize();
             width: 100%;
-            background-color: $primaryColor;
             padding: 0.6em;
             border-radius: 0.4em;
             margin-bottom: 0.5em;
@@ -180,6 +187,161 @@
             margin: 0;
             padding: 0;
         }
+
+        &__formContainer {
+            width: 95%;
+            background: $foregroundColor;
+            border-radius: 10px;
+        }
+
+
+        &__formContainer h4 {
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0;
+            padding: .4em .6em;
+            font-size: .9rem;
+            opacity: .5;
+        }
+
+        &__updateContainer {
+            @include flexbox();
+            margin-top: .8em;
+            width: 100%;
+        }
+
+        &__avatarContainer {
+            @include flexbox($justify-content: space-between);
+            flex-direction: row;
+            background: $primaryColor;
+            border-radius: 10px;
+            padding: .6em;
+            margin-bottom: .8em;
+        }
+
+        &__avatarBtns {
+            @include flexbox();
+            flex-direction: column;
+        }
+
+        &__removeAvatar {
+            background: red;
+        }
+
+        &__personalContainer {
+            padding: .8em .6em;
+        }
+
+        &__personalContainer > section {
+            margin-bottom: 1em;
+        }
+
+        &__personalContainer > section > &__tooltipContainer {
+            &:before {
+                border: 1px solid red;
+            }
+        }
+
+        &__personalContainer section section > * {
+            postion: relative;
+            background: white;
+            color: black;
+        }
+
+        &__personalContainer section section span.__options {
+        }
+
+        &__personalContainer section section > &__input {
+            margin-top: .4em;
+        }
+
+        &__personalContainer section section > &__input > * {
+            postion: absolute;
+        }
+
+        &__avatarContainer > span {
+            @include flexbox($justify-content: space-between);
+            width: 100%;
+        }
+
+        &__changeAvatar {
+            @include buttonHover($bgColor: $primaryColor, $padding: .4em 1.2em);
+            border: 1px solid white;
+        }
+
+        &__editAvatar {
+            @include avatar($width: 80px);
+        }
+
+        &__inputBio {
+            @include inputField($padding: .6em .8em, $border: 1px solid black, $inputRadius: 10px, $margin: 0);
+            font-family: $font-family;
+        }
+
+        &__input {
+            @include inputField($padding: .6em .8em, $border: 1px solid black, $inputRadius: 20px, $margin: 0);
+        } 
+
+        &__button--save {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .6em .8em);
+            width: 100%;
+            margin: 0;
+        }
+
+        &__button--cancel {
+            @include buttonHover($bgColor: transparent, $padding: .6em .8em);
+            color: white;
+            width: 100%;
+            border: 2px solid white;
+            margin: 0;
+            
+        }
+
+        &__actionBtns {
+            @include flexbox();
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+
+        &__tooltip {
+            @include tooltip(); 
+        }
+    }
+
+    @include respond-to('tablet') {
+        &__editProfile {
+            display: unset;
+        }
+
+        &__editProfile span {
+            display: unset;
+        }
+
+        &__avatarContainer > span {
+            @include flexbox();
+            flex-direction: column;
+        }
+
+        &__avatarContainer > span div {
+            width: max-content;
+        }
+
+        &__updateContainer {
+            height: max-content;
+        }
+
+        &__editAvatar {
+            @include avatar($width: 110px);
+        }
+
+        &__formContainer {
+            max-width: 40%;
+            padding: .2em .8em;
+        }
+
+        .tooltipContainer {
+            @include tooltip($ttBg: red);
+        }
     }
 
     @include respond-to('laptop') {
@@ -194,15 +356,21 @@
         }
 
         &__header {
+            @include flexbox();
+            flex-direction: column;
             margin-top: 1em;
-            width: 1200px;
+            width: $container-width;
+        }
+
+        &__bodyContainer {
+            padding: 0;
         }
 
          &__details {
             border-radius: $radius;
-            padding: 0 3em;
+            padding: 0 1.5em;
             padding-bottom: 1em;
-        }
+        } 
 
         &__loadingContainer, &__errorContainer {
             @include flexbox();
@@ -244,7 +412,15 @@
         
         &__bio {
             font-size: 1rem;
-            max-width: 80%;
+            max-width: 65%;
+        }
+
+        &__postContainer {
+            width: $container-width;
+        }
+
+        &__userPost {
+            font-size: 1rem;
         }
 
         &__rightSection {
@@ -260,5 +436,5 @@
             gap: .4em;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-    }
+    } 
 }

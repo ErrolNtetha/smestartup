@@ -9,6 +9,7 @@ export const profileReducer = (state = initialState, action) => {
         case 'FETCH_PROFILE':
             return {
                 ...state,
+                loading: false,
                 userData: action.payload,
             };
         case 'FETCH_SUCCESS':
