@@ -14,12 +14,15 @@ import { SyncLoader } from 'react-spinners';
 // import { Select } from 'components/select';
 import { Button } from 'components/button';
 import { Select } from 'components/select';
+import { Modal } from 'components/modal';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
+import { Feedback } from './feedback';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
     const history = useHistory();
+    const [modal, setModal] = React.useState(true);
     const traceChars = (chars: number) => chars;
     return (
         <main className='supplier__registerSupplierContainer'>
@@ -57,14 +60,15 @@ export const RegisterSupplier = () => {
                   sector: '',
                   moq: '',
                   moqNumber: '',
-                  quotation: ''
+                  quotation: '',
+                  location: ''
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
-                          history.push('/suppliers');
-                          console.log('posted');
+                          setModal(true);
+                          console.log('successfully posted');
                       }
                     })
                   .catch(({ response }) => {
@@ -75,6 +79,11 @@ export const RegisterSupplier = () => {
           {(props) => (
               <Form onSubmit={props.handleSubmit} className='profile__formContainer'>
                 <h4>register supplier</h4>
+              {modal && (
+                <Modal className='supplier__feedbackContainer'>
+                    <Feedback />
+                </Modal>
+              )}
                 <hr className='global' />
                 <section className='profile__avatarContainer'>
                         <span className='register__avatarWrapper'>
@@ -156,6 +165,26 @@ export const RegisterSupplier = () => {
                           placeholder='Telephone'
                           className='profile__input'
                         />
+                    </section>
+
+                    <section>
+                        <label htmlFor='location'> Location </label>
+                        <Field
+                          as='select'
+                          name='location'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.location ? '- Choose a sector -' : props.values.location}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                {sectors.map((item) => (
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('location', item.name)}>{item.name}</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                    </section>
+                                ))}
+                            </section>
+                        </Field>
                     </section>
 
                     <section>
