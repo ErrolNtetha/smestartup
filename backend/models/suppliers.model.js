@@ -25,7 +25,6 @@ const SuppliersSchema = new mongoose.Schema({
         max: 1200
     },
     type: { type: String, default: 'supplier' },
-    sector: { type: String, enum: ['Wholesaler & Distributor', 'Importer', 'Manufacturer', 'Independant Craftspeople', 'Other'] },
     tags: [String],
     registrationNumber: String,
     established: Number,
@@ -40,6 +39,11 @@ const SuppliersSchema = new mongoose.Schema({
         other: String
     },
     verified: { type: Boolean, default: false },
+    beeLevel: String,
+    sector: String,
+    moq: String,
+    moqNumber: Number,
+    quotation: String,
     addresses: {
         physical: {
             type: {
