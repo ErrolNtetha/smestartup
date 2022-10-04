@@ -65,7 +65,16 @@ export const Group = () => {
                         )}
                             </Search>
                         </span>
-                        <Link to='/profile'> <Avatar avatar={userProfile.loading ? 'Loading...' : userData?.avatar} className='header__userAvatar' /> </Link>
+                        {userProfile.loading
+                            ? 'Loading'
+                            : (
+                                <Link to='/profile'>
+                                    <Avatar
+                                      avatar={userData?.avatar}
+                                      className='header__userAvatar'
+                                    />
+                                </Link>
+                            )}
                     </>
                 )
             : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
