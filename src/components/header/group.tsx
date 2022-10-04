@@ -9,6 +9,7 @@ import { Users } from 'components/users';
 import { Avatar } from 'components/avatar';
 import { fetchAllUsers } from 'store/middlewares/fetchUsers';
 import { fetchUsers } from 'store/actions/fetchUsers';
+import { useStore } from 'hoc/useStore';
 import { axiosPrivate } from 'config/axiosInstance';
 import { Button } from '../../components/button';
 
@@ -19,6 +20,7 @@ export const Group = () => {
     const dispatch = useDispatch();
     const { userData } = useSelector((state: RootState) => state.userProfile);
     const loggedIn = useSelector((state: RootState) => state.isLogged);
+    const { userProfile } = useStore();
 
     useEffect(() => {
         axiosPrivate.get('http://localhost:5000/contact')
@@ -63,7 +65,7 @@ export const Group = () => {
                         )}
                             </Search>
                         </span>
-                        <Link to='/profile'> <Avatar avatar={!userData.avatar ? '' : userData.avatar} className='header__userAvatar' /> </Link>
+                        <Link to='/profile'> <Avatar avatar={userProfile.loading ? 'Loading...' : userData?.avatar} className='header__userAvatar' /> </Link>
                     </>
                 )
             : <Button onClick={() => history.push('/login')} className='header__button--signin'> login </Button>}
