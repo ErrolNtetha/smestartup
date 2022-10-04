@@ -23,22 +23,28 @@ export interface DProps {
     isRegistered: boolean;
     established: number;
     companyType: string;
-    category: string;
+    sector: string;
     createdAt: Date | string;
     description: string;
     avatar: string;
+    beeLevel: string;
+    moqNumber: number;
+    quotation: string;
 }
 
 export const SupplierInfo = ({
     name,
     photos,
-    category,
+    sector,
     createdAt,
     avatar,
     description,
     companyType,
     established,
-    isRegistered
+    isRegistered,
+    beeLevel,
+    moqNumber,
+    quotation
 }: DProps) => {
     const { path, url } = useRouteMatch();
     return (
@@ -50,7 +56,7 @@ export const SupplierInfo = ({
                         <BusinessAvatar avatar={avatar} className='supplier__infoAvatar' />
                         <span className='supplier__text'>
                             <h1> {name} </h1>
-                            <p> <FiHardDrive /> Sector: {category} </p>
+                            <p> <FiHardDrive /> Sector: {sector} </p>
                             <p> <FiCalendar /> Published: {`${format(new Date(createdAt), 'd MMMM yyy')}`} </p>
                             {/* <p> <FiUser /> Created by: <a href={`users/${author?._id}`} className='supplier__authorLink'> Mphumeleli Errol Ntetha </a> </p> */}
                         </span>
@@ -72,6 +78,9 @@ export const SupplierInfo = ({
                       established={established}
                       companyType={companyType}
                       description={description}
+                      beeLevel={beeLevel}
+                      moqNumber={moqNumber}
+                      quotation={quotation}
                     />
                 </Route>
                 <Route exact path={`${path}/photos`} component={Photos} />

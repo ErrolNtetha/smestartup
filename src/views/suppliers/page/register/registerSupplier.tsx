@@ -56,12 +56,11 @@ export const RegisterSupplier = () => {
                 },
                   description: '',
                   addresses: '',
-                  bbeLevel: '',
+                  beeLevel: '',
                   sector: '',
                   moq: '',
                   moqNumber: '',
                   quotation: '',
-                  location: ''
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
@@ -168,38 +167,18 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='location'> Location </label>
+                        <label htmlFor='beeLevel'> BBBEE Level: </label>
                         <Field
                           as='select'
-                          name='location'
+                          name='beeLevel'
                           className='supplier__selectContainer'
                           component={Select}
-                          title={!props.values.location ? '- Choose a sector -' : props.values.location}
-                        >
-                            <section className='supplier__selectContainer__options'>
-                                {sectors.map((item) => (
-                                    <section>
-                                        <p onClick={() => props.setFieldValue('location', item.name)}>{item.name}</p>
-                                        <hr className='supplier__selectContainer__options__optionsDivider' />
-                                    </section>
-                                ))}
-                            </section>
-                        </Field>
-                    </section>
-
-                    <section>
-                        <label htmlFor='bbeLevel'> BBBEE Level: </label>
-                        <Field
-                          as='select'
-                          name='bbeLevel'
-                          className='supplier__selectContainer'
-                          component={Select}
-                          title={!props.values.bbeLevel ? '- Choose BBBEE Level -' : props.values.bbeLevel}
+                          title={!props.values.beeLevel ? '- Choose BBBEE Level -' : props.values.beeLevel}
                         >
                             <section className='supplier__selectContainer__options'>
                                 {levels.map((item) => (
                                     <section>
-                                        <p onClick={() => props.setFieldValue('bbeLevel', item)}>{item}</p>
+                                        <p onClick={() => props.setFieldValue('beeLevel', item)}>{item}</p>
                                         <hr className='supplier__selectContainer__options__optionsDivider' />
                                     </section>
                                 ))}

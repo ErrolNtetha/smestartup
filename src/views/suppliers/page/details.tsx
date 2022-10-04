@@ -17,16 +17,18 @@ export const Details = () => {
                     ? <SkeletonLoading cards={1} numCount={12} />
                     : (
                         <SupplierInfo
-                          category={data?.suppliers?.type}
+                          sector={data?.suppliers?.sector}
                           companyType={data?.suppliers?.companyType}
                           established={data?.suppliers?.established}
-                          about={data?.suppliers?.about}
                           isRegistered={data?.suppliers?.isRegistered}
                           photos={data?.suppliers?.photos}
                           name={data?.suppliers?.name}
                           createdAt={data?.suppliers?.createdAt}
                           description={data?.suppliers?.description}
                           avatar={data?.suppliers?.avatar}
+                          beeLevel={data?.suppliers?.beeLevel}
+                          moqNumber={data?.suppliers?.moqNumber}
+                          quotation={data?.suppliers?.quotation}
                         />
                     )}
             </section>

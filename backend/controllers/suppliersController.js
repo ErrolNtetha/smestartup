@@ -1,6 +1,8 @@
+const otp = require('otp-generator');
+
 const Suppliers = require('../models/suppliers.model');
 const User = require('../models/user.model');
-const { cloudinary } = require('../utils/cloudinary');
+// const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
     await Suppliers.find()
@@ -49,6 +51,8 @@ exports.getSupplierProfiles = async (req, res) => {
 
 exports.createSupplier = async (req, res) => {
     const { _id } = await User.findOne({ email: req.user.email });
+    const uniqueID = otp.generate(8, { upperCaseAlphabets: true, specialChars: false });
+
     const {
         name,
         about,
@@ -57,7 +61,13 @@ exports.createSupplier = async (req, res) => {
         addresses,
         tags,
         isRegistered,
-        avatar
+        avatar,
+        beeLevel,
+        sector,
+        moq,
+        moqNumber,
+        quotation,
+        established
     } = req.body;
 
     const {
@@ -83,7 +93,14 @@ exports.createSupplier = async (req, res) => {
         tags,
         author: _id,
         isRegistered,
-        avatar
+        avatar,
+        custormerID: 'SU'.concat(uniqueID),
+        beeLevel,
+        sector,
+        moq,
+        moqNumber,
+        quotation,
+        established
     });
 
     await newSupplier.save()
