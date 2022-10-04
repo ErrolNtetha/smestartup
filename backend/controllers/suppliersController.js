@@ -5,7 +5,9 @@ const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
-    await Suppliers.find()
+    // const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
+    // console.log(result);
+    await Suppliers.find({ approved: true })
         .populate('author', 'avatar name occupation isVerified')
         .then((suppliers) => {
             if (!suppliers) {
@@ -47,6 +49,11 @@ exports.getSupplierProfiles = async (req, res) => {
             return res.status(200).json({ profiles });
         })
         .catch((error) => res.status(500).json({ success: false, error }));
+};
+
+exports.updateSupplierProfile = async (req, res) => {
+    const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
+    console.log(result);
 };
 
 exports.createSupplier = async (req, res) => {
