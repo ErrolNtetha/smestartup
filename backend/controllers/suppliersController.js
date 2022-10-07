@@ -1,5 +1,4 @@
 const otp = require('otp-generator');
-
 const Suppliers = require('../models/suppliers.model');
 const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
