@@ -18,6 +18,7 @@ import { Modal } from 'components/modal';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
 import { Feedback } from './feedback';
+import { types } from './types';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
@@ -61,13 +62,13 @@ export const RegisterSupplier = () => {
                   moq: '',
                   moqNumber: '',
                   quotation: '',
+                  companyType: ''
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
                           setModal(true);
-                          console.log('successfully posted');
                       }
                     })
                   .catch(({ response }) => {
@@ -179,6 +180,26 @@ export const RegisterSupplier = () => {
                                 {levels.map((item) => (
                                     <section>
                                         <p onClick={() => props.setFieldValue('beeLevel', item)}>{item}</p>
+                                        <hr className='supplier__selectContainer__options__optionsDivider' />
+                                    </section>
+                                ))}
+                            </section>
+                        </Field>
+                    </section>
+
+                    <section>
+                        <label htmlFor='beeLevel'> Supplier Type: </label>
+                        <Field
+                          as='select'
+                          name='companyType'
+                          className='supplier__selectContainer'
+                          component={Select}
+                          title={!props.values.companyType ? '- Select Company Type -' : props.values.companyType}
+                        >
+                            <section className='supplier__selectContainer__options'>
+                                {types.map((item) => (
+                                    <section>
+                                        <p onClick={() => props.setFieldValue('companyType', item)}>{item}</p>
                                         <hr className='supplier__selectContainer__options__optionsDivider' />
                                     </section>
                                 ))}

@@ -498,7 +498,7 @@
             background: $foregroundColor;
             width: 100%;
             padding: .3em 0;
-            overflow-y: scroll;
+            outline: none;
         }
 
         &__navigationContainer span a {
@@ -507,6 +507,7 @@
             font-weight: 500;
             padding: .5em 1em;
             border-radius: 20px;
+            outline: none;
 
             &:hover {
                 cursor: pointer;

@@ -74,7 +74,8 @@ exports.createSupplier = async (req, res) => {
         moq,
         moqNumber,
         quotation,
-        established
+        established,
+        companyType
     } = req.body;
 
     const {
@@ -107,7 +108,8 @@ exports.createSupplier = async (req, res) => {
         moq,
         moqNumber,
         quotation,
-        established
+        established,
+        type: companyType
     });
 
     await newSupplier.save()
