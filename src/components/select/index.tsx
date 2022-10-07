@@ -14,7 +14,7 @@ export const Select = ({ title, children, className }: Props) => {
     const [open, setOpen] = useState(false);
     return (
         <section className={className} onClick={() => setOpen(!open)}>
-            <section className={`${className}__selected`} custom-data='true'>
+            <section className={`${className}__selected`}>
                 <p> {title} </p>
                 {open
                     ? <FiChevronUp className={`${className}__selected__icon`} />

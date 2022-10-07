@@ -8,7 +8,6 @@
 }
 
 .supplier {
-
     @include respond-to('mobile') {
         &__previewContainer {
             display: none;
@@ -349,8 +348,10 @@
         }
 
         &__coverContainer {
+            background: rgba(255, 255, 255, .4);
             position: relative;
             wdith: 100%;
+            height: 8em;
         }
 
         &__feedbackContainer {
@@ -368,7 +369,7 @@
 
         &__cover {
             max-width: 100%;            
-            height: auto;
+            height: 20%;
         }
 
         &__supplierIntroText {
@@ -451,6 +452,35 @@
             white-space: pre-line;
         }
 
+        &__imagesContainer {
+            @include flexbox($justify-content: unset);
+            gap: .2em;
+            margin: .4em;
+            flex-wrap: wrap;
+        }
+
+        &__supplierImage {
+            width: 4em;
+            height: 4em;
+            background: $primaryColor;
+            border: 1px solid white;
+            border-radius: 2px;
+        }
+
+        &__imagesContainer > * {
+            flex: 0 1 20%;
+        } 
+
+        &__imagesLoader, &__reviewsLoader {
+            @include flexbox();
+            height: 15vh;
+        }
+
+        &__imagesLoader.h5 {
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         &__arrowLeft {
             font-size: 1.4rem;
         }
@@ -460,10 +490,14 @@
             @include flexbox($justify-content: space-evenly);
         }
 
+        &__navigationContainer span a.active {
+            background: black;
+        }
+
         &__navigationContainer {
             background: $foregroundColor;
             width: 100%;
-            padding: .6em 0;
+            padding: .3em 0;
             overflow-y: scroll;
         }
 
@@ -471,6 +505,8 @@
             text-decoration: none;
             color: #fff;
             font-weight: 500;
+            padding: .5em 1em;
+            border-radius: 20px;
 
             &:hover {
                 cursor: pointer;
@@ -500,13 +536,23 @@
         }
     }
 
+    @include respond-to('tablet') {
+        &__fieldContainer {
+            @include flexbox();
+            gap: 1em;
+        }
+
+        &__fieldContainer > * {
+            flex: 1;
+        }
+    }
+
     @include respond-to('laptop') {
         &__container {
             @include flexbox();
             margin: .6em;
             align-items: unset;
             gap: 1em;
-            height: 30%;
         }
 
         &__leftColumn, &__rightColumn {

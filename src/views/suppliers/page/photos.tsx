@@ -8,10 +8,22 @@ import {
 
 export const Photos = () => {
     const { path } = useRouteMatch();
-    console.log('these are your photos');
     return (
         <section>
-            this are supplier photos
+            <section className='supplier__imagesLoader'>
+                <h5> No images uploaded yet. </h5>
+            </section>
+            {/*
+             <section className='supplier__imagesContainer'>
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+                <section className='supplier__supplierImage' />
+            </section>
+                */}
             <span>
                 <Switch>
                     <Route exact path={`/${path}/photos`} component={Photos} />

@@ -7,7 +7,7 @@ const SuppliersSchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'The author is required.']
     },
-    customerID: String,
+    customerID: { type: String, unique: true },
     name: {
         type: String,
         required: [true, 'The name is required.']
@@ -25,6 +25,7 @@ const SuppliersSchema = new mongoose.Schema({
         max: 1200
     },
     type: { type: String, default: 'supplier' },
+    approved: { type: Boolean, default: false },
     tags: [String],
     registrationNumber: String,
     established: Number,
