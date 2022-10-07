@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     FiChevronRight,
+    FiHardDrive,
     FiHeart,
+    FiMapPin,
     FiShare
 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -12,7 +14,7 @@ import { BusinessAvatar } from 'components/avatar/business';
 
 interface SProps {
     name: string;
-    description: string;
+    companyType: string;
     about: string;
     id: string;
     avatar: string;
@@ -20,7 +22,7 @@ interface SProps {
 
 export const Supplier = ({
     name,
-    description,
+    companyType,
     about,
     id,
     avatar
@@ -34,7 +36,8 @@ export const Supplier = ({
                         <BusinessAvatar avatar={avatar} className='supplier__profilePicture' />
                         <span>
                             <h4 className='supplier__supplierName'> {name} </h4>
-                            <p> {description} </p>
+                            <p className='supplier__type'> <FiHardDrive /> {companyType} </p>
+                            <p className='supplier__something'> <FiMapPin /> Durban, South Africa </p>
                         </span>
                     </section>
                     <p className='supplier__about'>
@@ -42,7 +45,6 @@ export const Supplier = ({
                             {about}
                         </Collapsable>
                     </p>
-                    {/* <span className='supplier__tags'> coffee </span> */}
                 </section>
             </section>
             <hr className='global' />
