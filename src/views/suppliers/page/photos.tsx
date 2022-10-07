@@ -6,24 +6,25 @@ import {
     useRouteMatch,
 } from 'react-router-dom';
 
-export const Photos = () => {
+interface IProps {
+    photos: string[];
+}
+
+export const Photos = ({ photos }: IProps) => {
     const { path } = useRouteMatch();
     return (
         <section>
-            <section className='supplier__imagesLoader'>
-                <h5> No images uploaded yet. </h5>
-            </section>
-            {/*
-             <section className='supplier__imagesContainer'>
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-                <section className='supplier__supplierImage' />
-            </section>
-                */}
+            {photos.length === 0
+                ? (
+                    <section className='supplier__imagesLoader'>
+                        <h5> No images uploaded yet. </h5>
+                    </section>
+                )
+                : photos.map((item) => (
+                    <section className='supplier__imagesContainer'>
+                        <img src={item} alt='' className='supplier__supplierImage' />
+                    </section>
+                ))}
             <span>
                 <Switch>
                     <Route exact path={`/${path}/photos`} component={Photos} />
