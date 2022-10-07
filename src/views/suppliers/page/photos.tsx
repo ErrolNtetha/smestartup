@@ -8,7 +8,6 @@ import {
 
 export const Photos = () => {
     const { path } = useRouteMatch();
-    console.log('these are your photos');
     return (
         <section>
             <section className='supplier__imagesLoader'>
