@@ -18,7 +18,7 @@ export const Details = () => {
                     : (
                         <SupplierInfo
                           sector={data?.suppliers?.sector}
-                          companyType={data?.suppliers?.companyType}
+                          companyType={data?.suppliers?.type}
                           established={data?.suppliers?.established}
                           isRegistered={data?.suppliers?.isRegistered}
                           photos={data?.suppliers?.photos}
