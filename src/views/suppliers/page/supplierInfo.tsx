@@ -1,7 +1,7 @@
 /* eslint-disable new-cap */
 /* eslint-disable prefer-destructuring */
 import React from 'react';
-// import dots from 'assets/veges.jpg';
+import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
 import { FiCalendar, FiHardDrive } from 'react-icons/fi';
 import { format } from 'date-fns';
@@ -52,7 +52,7 @@ export const SupplierInfo = ({
     return (
         <>
             <section className='supplier__coverContainer'>
-                {/* <img src={dots} alt={`${name} avatar`} className='supplier__cover' /> */}
+                <img src={dots} alt={`${name} avatar`} className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
                     <span className='supplier__textContainer'>
                         <BusinessAvatar avatar={avatar} className='supplier__infoAvatar' />
@@ -85,7 +85,9 @@ export const SupplierInfo = ({
                       quotation={quotation}
                     />
                 </Route>
-                <Route exact path={`${path}/photos`} component={Photos} />
+                <Route exact path={`${path}/photos`}>
+                    <Photos photos={photos} />
+                </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
         </>
