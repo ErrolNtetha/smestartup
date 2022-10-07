@@ -6,17 +6,17 @@ const User = require('../models/user.model');
 exports.getSuppliers = async (req, res) => {
     // const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
     // console.log(result);
+    const { email } = req.user;
     await Suppliers.find({ approved: true })
-        .populate('author', 'avatar name occupation isVerified')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers yet. Check back later.' });
                 return;
             }
-            res.status(200).json({ success: true, suppliers });
+            const isOwner = email === suppliers[0].author.email;
+            res.status(200).json({ isOwner, suppliers });
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({ success: false, error });
         });
 };
@@ -24,7 +24,7 @@ exports.getSuppliers = async (req, res) => {
 exports.getSupplier = async (req, res) => {
     const { id } = req.params;
     await Suppliers.find({ _id: id })
-        .populate('author')
+        .populate('author', 'avatar email name occupation isVerified _id')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers in the database yet.' });

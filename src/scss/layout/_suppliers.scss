@@ -522,6 +522,39 @@
             }
         }
 
+        &__supplierWrapper {
+            position: relative;
+        }
+
+        &__editButtonContainer {
+            position: fixed;
+            padding: .3em .4em;
+            width: 100%;
+            bottom: 0;
+            background: $foregroundColor;
+        }
+
+        &__edit a {
+            @include flexbox();
+            gap: .5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+        }
+
+        &__edit {
+            @include flexbox();
+            background: $primaryColor;
+            padding: .4em 0;
+            border-radius: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         &__lists {
             @include flexbox();
             padding: 0 .6em;

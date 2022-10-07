@@ -25,11 +25,10 @@ const validateLogin = async (req, res) => {
                             email: user.email,
                         };
 
-                        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '2d' });
-                        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' });
-
                         // if password matches, sign the user with the token
                         if (isMatching) {
+                            const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '2d' });
+                            const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' });
                             res.json({
                                 isLoggedIn: true,
                                 accessToken: `Bearer ${accessToken}`,

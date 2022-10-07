@@ -3,7 +3,7 @@
 import React from 'react';
 import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
-import { FiCalendar, FiHardDrive } from 'react-icons/fi';
+import { FiCalendar, FiHardDrive, FiSettings } from 'react-icons/fi';
 import { format } from 'date-fns';
 // import { format } from 'date-fns';
 import {
@@ -31,6 +31,7 @@ export interface DProps {
     beeLevel: string;
     moqNumber: number;
     quotation: string;
+    isOwner: boolean;
 }
 
 export const SupplierInfo = ({
@@ -45,12 +46,14 @@ export const SupplierInfo = ({
     isRegistered,
     beeLevel,
     moqNumber,
-    quotation
+    quotation,
+    isOwner
 }: DProps) => {
     const { path, url } = useRouteMatch();
     const pathname = window.location.pathname;
+    console.log(isOwner);
     return (
-        <>
+        <section className='supplier__supplierWrapper'>
             <section className='supplier__coverContainer'>
                 <img src={dots} alt={`${name} avatar`} className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
@@ -90,6 +93,11 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-        </>
+            <section className='supplier__editButtonContainer'>
+                <span className='supplier__edit'>
+                    <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>
+                </span>
+            </section>
+        </section>
     );
 };
