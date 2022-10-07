@@ -24,7 +24,7 @@ const SuppliersSchema = new mongoose.Schema({
         min: 30,
         max: 1200
     },
-    type: { type: String, default: 'supplier' },
+    type: { type: String, required: [true, 'The type is required.'] },
     approved: { type: Boolean, default: false },
     tags: [String],
     registrationNumber: String,
