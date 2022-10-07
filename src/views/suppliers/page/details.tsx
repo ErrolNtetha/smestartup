@@ -29,6 +29,7 @@ export const Details = () => {
                           beeLevel={data?.suppliers?.beeLevel}
                           moqNumber={data?.suppliers?.moqNumber}
                           quotation={data?.suppliers?.quotation}
+                          isOwner={data?.isOwner}
                         />
                     )}
             </section>

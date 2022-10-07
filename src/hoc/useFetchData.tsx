@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { axiosPrivate } from 'config/axiosInstance';
-import { useRefresh } from 'hoc/useRefreshToken';
+// import { useRefresh } from 'hoc/useRefreshToken';
 
 export const useFetchData = (url: string) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>('');
-    const newAccessToken = useRefresh();
+    // const newAccessToken = useRefresh();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,11 +20,9 @@ export const useFetchData = (url: string) => {
                 })
                 .catch(({ response }) => {
                     if (response?.status === 403) {
-                        response.config.headers['x-access-token'] = `Bearer ${newAccessToken}`;
-
-                        // then retry the request with new token
-                        axios.request(response.config);
+                        console.log('Status code: ', response?.status);
                     }
+                    console.log(response);
                     setLoading(false);
                     setError('there was an error...');
             });
