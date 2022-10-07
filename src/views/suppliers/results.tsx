@@ -26,7 +26,7 @@ export const Results = () => {
                                 return (
                                     <Supplier
                                       name={item.name}
-                                      description='Manufacturers'
+                                      companyType={item.type}
                                       about={item.about}
                                       id={item._id}
                                       avatar={item.avatar}

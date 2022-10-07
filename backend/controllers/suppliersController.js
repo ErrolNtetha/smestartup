@@ -1,5 +1,4 @@
 const otp = require('otp-generator');
-
 const Suppliers = require('../models/suppliers.model');
 const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
@@ -75,7 +74,8 @@ exports.createSupplier = async (req, res) => {
         moqNumber,
         quotation,
         established,
-        companyType
+        companyType,
+        photos
     } = req.body;
 
     const {
@@ -109,11 +109,12 @@ exports.createSupplier = async (req, res) => {
         moqNumber,
         quotation,
         established,
-        type: companyType
+        type: companyType,
+        photos
     });
 
     await newSupplier.save()
-        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully added.' }))
+        .then(() => res.status(200).json({ success: true }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 
@@ -128,7 +129,7 @@ exports.deleteSupplier = async (req, res) => {
 exports.updateSupplier = async (req, res) => {
     const { id } = req.params;
 
-    await Suppliers.findByIdAndUpdate({ _id: id }, req.body)
+    await Suppliers.findByIdAndUpdate({ _id: id }, { $push: { photos: req.body.photos } }, req.body)
         .then(() => {
             Suppliers.findOne({ _id: id })
                 .then((supplier) => res.status(200).json({ success: true, supplier }));
