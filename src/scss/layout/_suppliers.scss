@@ -359,8 +359,25 @@
             height: 20%;
         }
 
+        &__updateContainer {
+        }
+
         &__feedbackContainer {
             @include modal();
+        }
+
+        &__updateMessage {
+            margin: .8em 0;
+        }
+
+        &__btnOkay {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .5em .6em, $margin: 0);
+            width: 100%;
+        }
+
+        &__updateLoadingContainer {
+            @include flexbox();
+            height: 100vh;
         }
 
         &__feedback {
