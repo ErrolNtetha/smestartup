@@ -29,6 +29,7 @@ export const Lists = () => {
                 date={createdAt}
                 id={_id}
                 occupation={author?.occupation}
+                authorID={author?._id}
                 avatar={author?.avatar}
                 stars={stars}
               />
