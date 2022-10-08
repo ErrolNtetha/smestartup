@@ -4,7 +4,6 @@ import { Avatar } from 'components/avatar';
 import {
     FiStar,
     FiMoreHorizontal,
-    FiEdit3,
     FiAlertTriangle
 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
@@ -12,7 +11,7 @@ import { MdVerified } from 'react-icons/md';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
-import { useFetchUserId } from 'hoc/useFetchUserId';
+// import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { useStore } from 'hoc/useStore';
@@ -34,17 +33,16 @@ import { useStore } from 'hoc/useStore';
       occupation: string;
       avatar: string;
       stars: number;
+      authorID: string;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, date, image, isVerified, occupation, avatar, stars
+     name, post, id, authorID, date, image, isVerified, occupation, avatar, stars
     }) => {
       const [modal, setModal] = React.useState(false);
         const [loading, setLoading] = React.useState<boolean | null>(null);
-        const { authorId } = useFetchUserId();
         const { userProfile } = useStore();
         const { userData } = userProfile;
-        console.log(stars);
 
            const handleLikes = (postId: string) => {
             const formData = {
@@ -93,23 +91,20 @@ import { useStore } from 'hoc/useStore';
                                 <section style={{ textAlign: 'center', fontSize: '1.2rem', width: '100%' }}> Options </section>
                                 <hr className='feed__line' />
                             </span>
-                            {authorId === userData._id
-                                ? (
-                                    <span>
-                                        <section className='feed__optionItem'> <FiEdit3 style={{ marginRight: '.6em' }} /> Edit Post </section>
-                                        <hr className='feed__line' />
-                                    </span>
-                            )
-                                : (
+                            { userData._id === authorID
+                                && (
                                     <span>
                                         <section className='feed__optionItem'> <FiAlertTriangle style={{ marginRight: '.6em' }} /> Report </section>
                                         <hr className='feed__line' />
                                     </span>
+                                )}
+                        </section>
+                        { userData._id === authorID
+                            && (
+                                <section className='feed__btnContainer'>
+                                    <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>
+                                </section>
                             )}
-                        </section>
-                        <section className='feed__btnContainer'>
-                            {authorId === userData._id && <Button className='feed__modal--delete' onClick={() => handleDelete(id)}> { loading ? <SyncLoader color='white' size={8} /> : 'Delete' } </Button>}
-                        </section>
                     </Modal>
             )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
