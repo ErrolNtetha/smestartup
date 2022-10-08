@@ -51,7 +51,6 @@ export const SupplierInfo = ({
 }: DProps) => {
     const { path, url } = useRouteMatch();
     const pathname = window.location.pathname;
-    console.log(isOwner);
     return (
         <section className='supplier__supplierWrapper'>
             <section className='supplier__coverContainer'>
@@ -93,11 +92,14 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-            <section className='supplier__editButtonContainer'>
-                <span className='supplier__edit'>
-                    <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>
-                </span>
-            </section>
+        {isOwner
+            && (
+                <section className='supplier__editButtonContainer'>
+                    <span className='supplier__edit'>
+                        <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>
+                    </span>
+                </section>
+            )}
         </section>
     );
 };

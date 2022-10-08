@@ -22,6 +22,7 @@ exports.getSuppliers = async (req, res) => {
 };
 
 exports.getSupplier = async (req, res) => {
+    const { email } = req.user;
     const { id } = req.params;
     await Suppliers.find({ _id: id })
         .populate('author', 'avatar email name occupation isVerified _id')
@@ -30,7 +31,8 @@ exports.getSupplier = async (req, res) => {
                 res.status(404).json({ message: 'No suppliers in the database yet.' });
                 return;
             }
-            res.status(200).json({ suppliers: suppliers[0] });
+            const isOwner = email === suppliers[0].author.email;
+            res.status(200).json({ isOwner, suppliers: suppliers[0] });
         })
         .catch((error) => {
             console.log(error);
@@ -129,7 +131,12 @@ exports.deleteSupplier = async (req, res) => {
 exports.updateSupplier = async (req, res) => {
     const { id } = req.params;
 
-    await Suppliers.findByIdAndUpdate({ _id: id }, { $push: { photos: req.body.photos } }, req.body)
+    await Suppliers
+        .findByIdAndUpdate(
+            { _id: id },
+            req.body,
+            { $push: { photos: req.body.photos } },
+        )
         .then(() => {
             Suppliers.findOne({ _id: id })
                 .then((supplier) => res.status(200).json({ success: true, supplier }));
