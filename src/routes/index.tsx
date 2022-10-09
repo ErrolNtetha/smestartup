@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { RootState } from 'store';
 import { useSelector } from 'react-redux';
@@ -18,8 +18,11 @@ import { Profile } from '../containers/profile';
 import { Login } from '../containers/login';
 import { Register } from '../containers/register';
 import { Suppliers } from '../containers/suppliers';
-import { Feed } from '../containers/feed';
+// import { Feed } from '../containers/feed';
 import { Private } from './privateRoute';
+
+const feedLoad = React.lazy(() => import('../containers/feed' /* webpackChunkName: 'posts' */)
+    .then(({ Feed }) => ({ default: Feed })));
 
 export const Main: React.FC = () => {
     const isAuth = useSelector((state: RootState) => state.isLogged);
@@ -33,11 +36,12 @@ export const Main: React.FC = () => {
                 <Route path='/profile' exact component={Profile} />
                 <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
-                <Route exact path='/feed/p/:id' component={Post} />
                 <Route path='/faq' exact component={FAQ} />
                 {/* <Route path='/suppliers/:id' exact component={SupplierView} /> */}
 
-                <Private exact isAuth={isAuth} path='/feed' component={Feed} />
+                <Suspense fallback={<div> Loading... </div>}>
+                    <Private exact isAuth={isAuth} path='/feed' component={feedLoad} />
+                </Suspense>
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
                 <Private exact isAuth={isAuth} path='/suppliers/register' component={RegisterWrapper} />
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
