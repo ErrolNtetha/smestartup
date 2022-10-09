@@ -17,9 +17,9 @@ export const Lists = () => {
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
         { response.loading ? <SkeletonPosts cards={10} />
-                : posts?.sort((a: Date, b: Date) => b.createdAt > a.createdAt).map(({
+        : posts?.map(({
                     post, encodedImage, author, _id, createdAt, stars
-                }) => (
+                }: any) => (
               <List
                 post={post}
                 image={encodedImage}
