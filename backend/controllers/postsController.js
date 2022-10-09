@@ -22,7 +22,7 @@ exports.userPosts = async (req, res) => {
         .catch((err) => res.status(500).json({ message: err.message }));
 };
 
-exports.incrimementLikes = async (req, res) => {
+exports.updateStars = async (req, res) => {
     const { _id } = await User.findOne({ email: req.user.email });
 
     // check if the user id already exist in array if it does, return...
