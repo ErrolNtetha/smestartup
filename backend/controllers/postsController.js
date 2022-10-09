@@ -28,14 +28,10 @@ exports.incrimementLikes = async (req, res) => {
     // check if the user id already exist in array if it does, return...
     // otherwise, proceed.
     const hasStarred = await Post.findById(req.params.id);
-    if (hasStarred.stars.includes(_id)) {
-        console.log('You have already starred the post.');
-        return;
-    }
+    if (hasStarred.stars.includes(_id)) res.status(200).json({ success: false });
+
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
-        .then(() => {
-            res.status(200).json({ message: 'You have starred this post.' });
-        })
+        .then(() => res.status(200).json({ success: true }))
         .catch((error) => console.log('Ops. There was a problem.', error.message));
 };
 
@@ -54,12 +50,13 @@ exports.getSpecificUserPost = async (req, res) => {
 exports.getUserPost = async (req, res) => {
     // const { email, id } = req.user;
     await Post.find()
+        .sort({ createdAt: -1 })
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(404).json({ message: 'No posts found yet. Be the first to post!' });
             res.status(200).json({ posts });
         })
-        .catch((error) => res.json({ message: 'Error getting the posts for now.', error }));
+        .catch((error) => res.status(500).json({ message: 'Error getting the posts for now.', error }));
 };
 
 exports.getAllUserPosts = async (req, res) => {
