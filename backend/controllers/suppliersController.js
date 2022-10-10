@@ -140,3 +140,12 @@ exports.updateSupplier = async (req, res) => {
         })
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
+
+exports.mapProfiles = async (req, res) => {
+    const { email } = req.user;
+    const { _id } = await User.findOne({ email });
+
+    await Suppliers.find({ author: _id })
+        .then((s) => res.status(200).json({ suppliers: s }))
+        .catch((error) => console.log(error));
+};
