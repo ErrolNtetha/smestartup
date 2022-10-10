@@ -9,7 +9,7 @@ export const SupplierContainer = () => {
         <section className='supplier__container container'>
             <section className='supplier__leftColumn'>
                 <Filter />
-                <Create id='b4fhn453bjb6k6J6w' />
+                <Create />
             </section>
             <Results />
             <section className='supplier__rightColumn' />
