@@ -23,7 +23,7 @@ export const Profiles = ({
                 <span>
                     <p>{supplierName}</p>
                     <p>{isActive}</p>
-                    <p>Active</p>
+                    <p style={{ color: 'green' }}>Active</p>
                 </span>
             </section>
             <FiChevronRight />
