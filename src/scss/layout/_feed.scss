@@ -8,6 +8,7 @@
     @include flexbox($justify-content: center);
     align-items: unset;
     flex: 1;
+    position: relative;
 
     p,
     h1,
@@ -368,6 +369,12 @@
     }
 
     @include respond-to('laptop') {
+        &__mainContent {
+            @include flexbox();
+            align-items: unset;
+            width: 100%;
+        }
+
         &__sidebar,
         &__rightColumn {
             display: unset;
@@ -392,6 +399,8 @@
             height: max-content;
             width: 20%;
             z-index: 2;
+            position: sticky;
+            top: 0;
         }
 
         &__rightColumn {
@@ -406,6 +415,7 @@
         &__sidebar {
             padding: .1em;
             background: none;
+            
         }
         
         &__sidebarLinks {

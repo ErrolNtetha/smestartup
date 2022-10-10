@@ -4,7 +4,8 @@ import coffee from 'assets/stirCoffee.jpg';
 
 export const AboutDetails = () => {
     return (
-    <section className='about__wrapper'>
+        <section className='about__wrapper'>
+            <section className='container'>
         <section className='about__missionContainer'>
             <section className='about__mission'>
                 <h4 style={{ opacity: '.5', marginBottom: '0' }}> Our Mission </h4>
@@ -43,6 +44,7 @@ export const AboutDetails = () => {
                 </article>
             </section> <img src={sc} className='about__veges' alt='Vegetables' />
         </section>
-    </section>
+            </section>
+        </section>
     );
 };

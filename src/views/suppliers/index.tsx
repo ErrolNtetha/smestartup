@@ -6,7 +6,7 @@ import { Results } from './results';
 
 export const SupplierContainer = () => {
     return (
-        <section className='supplier__container'>
+        <section className='supplier__container container'>
             <section className='supplier__leftColumn'>
                 <Filter />
                 <Create id='b4fhn453bjb6k6J6w' />

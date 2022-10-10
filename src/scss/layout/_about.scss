@@ -6,6 +6,7 @@
     @include respond-to('mobile') {
         &__container {
             height: max-content;
+            width: 100%;
         }
 
         &__intro {
@@ -53,6 +54,7 @@
         }
 
         &__wrapper {
+            @include flexbox();
             padding: .2em .6em;
             background: $foregroundColor;
         }
@@ -100,6 +102,7 @@
             gap: 2em;
             margin-bottom: 4em;
             padding: .8em 0;
+            width: 100%;
         }
 
         &__mission::after {

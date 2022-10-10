@@ -11,7 +11,7 @@ interface Props {
 export const Header = ({ children }: Props) => {
     return (
         <div className='header'>
-            <header className='header__content'>
+            <header className='header__content container'>
                 {children}
                 <Group />
             </header>

@@ -1,0 +1,13 @@
+@use '../mixins' as *;
+
+.home {
+     @include flexbox();  
+     flex-direction: column;
+
+     &__asideLeft {
+         width: 100%;
+     }
+
+     &__asideLeft > * {
+     }
+}

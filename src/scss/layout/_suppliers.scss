@@ -8,6 +8,7 @@
 }
 
 .supplier {
+    @include flexbox();
     @include respond-to('mobile') {
         &__previewContainer {
             display: none;
@@ -610,6 +611,7 @@
         &__container {
             @include flexbox();
             margin: .6em;
+            width: 100%;
             align-items: unset;
             gap: 1em;
         }
