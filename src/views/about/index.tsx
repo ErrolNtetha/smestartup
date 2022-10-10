@@ -7,11 +7,11 @@ import { AboutDetails } from './aboutDetails';
 export const AboutWrapper = () => {
     return (
         <section className='about'>
-            <section className='about__container'>
-                <AboutUs />
-                <AboutDetails />
-            </section>
-            <Footer />
+                <section className='about__container'>
+                    <AboutUs />
+                    <AboutDetails />
+                </section>
+                <Footer />
         </section>
     );
 };

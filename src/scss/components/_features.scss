@@ -4,16 +4,23 @@
 
 .features {
     background-color: $foregroundColor;
+    @include flexbox($direction: column);
+    width: 100%;
 
     &__header {
         text-align: center;
         padding: 1em;
     }
 
+    &__innerSection {
+        @include flexbox($direction: column);
+    }
+
     @include respond-to('mobile') {
         &__inner {
             @include flexbox($direction: column);
             padding: .9em 0;
+            max-width: 81rem;
             // padding: 2em 1em;
 
         }

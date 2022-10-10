@@ -4,10 +4,12 @@
 
 .header {
     position: sticky;
+    width: 100%;
     top: 0;
     box-sizing: border-box;
     background-color: $foregroundColor;
     z-index: 100;
+    @include flexbox();
 
 
     @include respond-to('mobile') {
@@ -259,7 +261,7 @@
         }
 
         &__content {
-            padding: 0.4em 4em;
+            padding: 0.4em 0;
             position: relative;
         }
 

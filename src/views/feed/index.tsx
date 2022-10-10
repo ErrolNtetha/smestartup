@@ -6,9 +6,11 @@ import { Lists } from './lists';
 export const FeedContainer = () => {
   return (
     <section className='feed'>
-        <Sidebar />
-        <Lists />
-        <section className='feed__rightColumn' />
+        <section className='feed__mainContent container'>
+            <Sidebar />
+            <Lists />
+            <section className='feed__rightColumn' />
+        </section>
     </section>
   );
 };
