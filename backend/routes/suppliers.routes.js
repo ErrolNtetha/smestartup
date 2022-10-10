@@ -7,6 +7,8 @@ const verifyToken = require('../middlewares/verifyJWT');
 
 router.route('/suppliers')
     .get(verifyToken, suppliers.getSuppliers); // get all suppliers
+router.route('/suppliers/my')
+    .get(verifyToken, suppliers.mapProfiles);
 router.route('/suppliers/:id')
     .get(verifyToken, suppliers.getSupplier); // view specific supplier infomation
 router.route('/suppliers/register')
