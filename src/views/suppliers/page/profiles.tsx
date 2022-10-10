@@ -22,8 +22,9 @@ export const Profiles = ({
                 <Avatar avatar={supplierPicture} className='supplier__supplierPicture' />
                 <span>
                     <p>{supplierName}</p>
-                    <p>{isActive}</p>
-                    <p style={{ color: 'green' }}>Active</p>
+                    <p style={{ color: isActive ? 'green' : 'red' }}>
+                        {isActive ? 'Active' : 'Inactive'}
+                    </p>
                 </span>
             </section>
             <FiChevronRight />

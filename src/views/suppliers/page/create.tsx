@@ -21,7 +21,7 @@ export const Create = () => {
                             if (item.length === 0) {
                                 return (
                                     <section style={{ textAlign: 'center' }}>
-                                        You have no profiles. Click 'REGISTER' below to create it.
+                                        You have no profiles. Click &apos;REGISTER&apos; below to create it.
                                     </section>
                                 );
                             }
@@ -31,7 +31,7 @@ export const Create = () => {
                                   id={item._id}
                                   supplierName={item.name}
                                   supplierPicture={item.avatar}
-                                  isActive={item.isRegistered}
+                                  isActive={item.approved}
                                 />
                             );
                         })}
