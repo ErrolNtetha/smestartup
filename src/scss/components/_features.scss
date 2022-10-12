@@ -3,30 +3,56 @@
 @use '../breakpoints/' as *;
 
 .features {
-    background-color: $foregroundColor;
+    background-image: url('../../assets/bg/womanHoldingPhone.jpg');
+    background-repeat: no-repeat;
+    background-position: 0px 10px 100px;
+    background-size: cover;
+    position: relative;
+
+    object-fit: cover;
     @include flexbox($direction: column);
     width: 100%;
 
-    &__header {
-        text-align: center;
-        padding: 1em;
-    }
-
-    &__innerSection {
-        @include flexbox($direction: column);
-    }
-
-    @include respond-to('mobile') {
+        @include respond-to('mobile') {
+        height: 100vh;
+        
         &__inner {
             @include flexbox($direction: column);
             padding: .9em 0;
             max-width: 81rem;
             // padding: 2em 1em;
+        }
 
+        &__header {
+            padding: 1em;
+            justify-content: unset;
+        }
+
+        &__innerSection {
+            @include flexbox($direction: column);
+            position: relative;
+            left: 0;
+            bottom: 0;
+            left: 0;
+            background: rgb(0,0,0);
+            background: -moz-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+            height: 100%;
+            width: 100%;
+        }
+
+        &__innerText {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
         }
 
         &__item {
             @include flexbox($direction: column);
+            align-items: unset;
             padding: .4em 0;
         }
 

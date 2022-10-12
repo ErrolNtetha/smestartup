@@ -17,7 +17,7 @@ export const Create = () => {
                 <section className='supplier__supplierListContainer'>
                     {loading
                         ? <div> Loading... </div>
-                        : data.suppliers.map((item: any) => {
+                        : data?.suppliers?.map((item: any) => {
                             if (item.length === 0) {
                                 return (
                                     <section style={{ textAlign: 'center' }}>
