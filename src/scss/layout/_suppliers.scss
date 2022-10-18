@@ -8,8 +8,10 @@
 }
 
 .supplier {
-    @include flexbox();
     @include respond-to('mobile') {
+        @include flexbox();
+        // flex-direction: column;
+
         &__previewContainer {
             display: none;
             width: 100%;
@@ -303,8 +305,15 @@
             gap: .6em;
         }
 
+        &__skeletonContainer {
+            @include flexbox();
+            flex-direction: column;
+            width: 60%;
+        }
+
         &__skeletonCard {
             @include flexbox();
+            width: 60%;
             align-items: unset;
             flex-direction: column;
             gap: .6em;
@@ -313,6 +322,7 @@
             border: 1px solid rgba(255, 255, 255, 0.02);
             border-radius: 5px;
             padding: .4em;
+            overflow-y: none;
         }
  
 

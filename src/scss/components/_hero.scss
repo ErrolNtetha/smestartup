@@ -7,7 +7,9 @@
     @include respond-to('mobile') {
         @include flexbox($justify-content: center);
         height: 93vh;
-        background: $primaryColor;
+        background: #0F2027;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         &__innerHero {
             width: 100%;
@@ -73,9 +75,15 @@
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+
         &__right {
-            display: none;
+            display: unset;
             width: 20%;
+        }
+
+        &__innerHero {
+            @include flexbox($justify-content: space-between);
         }
 
         &__left {
@@ -94,9 +102,12 @@
             }
         }
 
+        &__top {
+            display: none;
+        }
+
         &__bottom {
             width: 40%;
-            align-self: end;
         }
     }
 
