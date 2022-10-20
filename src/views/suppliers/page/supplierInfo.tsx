@@ -13,10 +13,12 @@ import {
     useRouteMatch,
 } from 'react-router-dom';
 // import { Collapsable } from 'components/collapsable';
+import 'leaflet/dist/leaflet.css';
 import { BusinessAvatar } from 'components/avatar/business';
 import { Photos } from './photos';
 import { Reviews } from './reviews';
 import { Overview } from './overview';
+import { Map } from '../map';
 
 export interface DProps {
     name: string;
@@ -92,6 +94,9 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
+            <section style={{ height: '80vh' }} className='supplier__map'>
+                <Map />
+            </section>
         {isOwner
             && (
                 <section className='supplier__editButtonContainer'>
