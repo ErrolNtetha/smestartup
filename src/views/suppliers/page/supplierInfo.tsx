@@ -12,8 +12,6 @@ import {
     Switch,
     useRouteMatch,
 } from 'react-router-dom';
-// import { Collapsable } from 'components/collapsable';
-import 'leaflet/dist/leaflet.css';
 import { BusinessAvatar } from 'components/avatar/business';
 import { Photos } from './photos';
 import { Reviews } from './reviews';
@@ -94,11 +92,11 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-            <section style={{ height: '80vh' }} className='supplier__map'>
+            <div id='map'>
                 <Map />
-            </section>
-        {isOwner
-            && (
+            </div>
+            {isOwner
+                && (
                 <section className='supplier__editButtonContainer'>
                     <span className='supplier__edit'>
                         <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>

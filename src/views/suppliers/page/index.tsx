@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Header } from 'views/header';
 import { useFetchData } from 'hoc/useFetchData';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -11,6 +11,7 @@ export const SupplierView = () => {
     const { id } = useParams();
     const { data, loading } = useFetchData(`/suppliers/${id}`);
     const { suppliers } = data;
+    const history = useHistory();
 
     return (
         <>
@@ -27,7 +28,7 @@ export const SupplierView = () => {
                 <meta property='og:site_name' content='Blendot' />
             </Helmet>
             <Header>
-                <FiArrowLeft className='supplier__arrowLeft' />
+                <FiArrowLeft className='supplier__arrowLeft' onClick={() => history.push('/suppliers')} />
             </Header>
             <Details name={suppliers?.name} about={suppliers?.about} />
         </>
