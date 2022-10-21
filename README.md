@@ -1,4 +1,4 @@
-![Blendot Logo](https://github.com/ErrolNtetha/smestartup/blob/old-project-state/src/assets/images/logo.png?raw=true)
+![g3785](https://user-images.githubusercontent.com/42877124/197236025-9c9601c6-3903-4688-83cf-ef8e225eb9b8.jpg)
 
 <h2 align="center"> A friendly platform to connect with other entrepreneurs. </h2>
 
@@ -44,3 +44,4 @@ Past mistakes and also taking a look at other people's projects really made me g
 * File structure - There i still have struggled a lot with this, but at least i have worked my way through a little about naming my folders and files somewhere and there. I am still trying to improve. Before, i used to put all my files in one folder like 'src'. Now i have broken my files into section or folders.
 * Transitioning to TypeScript - When beginning my projects, i began using JavaScript and then later finding myself switching my codebase to using TypeScript. Although there is lot of learning i need to do with TypeScript.
 * Creating new branches - Something i have learned recently was using a good naming convention when creating a new branch. When sending a pull request for fixing an issue, i now use the issue number and the purpose of the issue. For example, when fixing the bug that is in issues i name the branch as 'fix/233-button-not-submitting'.
+
