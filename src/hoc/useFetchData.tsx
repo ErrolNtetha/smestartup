@@ -6,29 +6,29 @@ import { axiosPrivate } from 'config/axiosInstance';
 export const useFetchData = (url: string) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>('');
+    const [errorMessage, setError] = useState<string | null>(null);
     // const newAccessToken = useRefresh();
 
     useEffect(() => {
         const fetchData = async () => {
            await axiosPrivate.get(url)
                 .then((res) => {
-                    // receive the data and save on the state
                     setData(res?.data);
                     setLoading(false);
-                    setError(null);
                 })
-                .catch(({ response }) => {
-                    if (response?.status === 403) {
-                        console.log('Status code: ', response?.status);
-                    }
-                    console.log(response);
+                .catch((error) => {
                     setLoading(false);
-                    setError('there was an error...');
+                    if (error.message === 'Network Error') {
+                        setError('There was a network error.');
+                        return;
+                    }
+                    if (error?.response.status === 403) {
+                        setError(error?.response.status);
+                    }
             });
         };
         fetchData();
     }, []);
 
-    return { data, error, loading };
+    return { data, errorMessage, loading };
 };
