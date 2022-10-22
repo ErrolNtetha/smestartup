@@ -17,7 +17,6 @@ import { Results } from './results';
 
 export const BottomNav = () => {
     const { path, url } = useRouteMatch();
-    console.log(url, path);
     const history = useHistory();
     return (
         <>
