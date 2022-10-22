@@ -71,12 +71,19 @@
             flex-direction: column;
         } 
 
+        &__filterIconGroup &__bottomNav a {
+            @include flexbox();
+            flex-direction: column;
+            color: white;
+            text-decoration: none;
+        }
+
         &__filterIconGroup span span > * {
             font-size: .8rem;
         }
 
         &__icon {
-            font-size: 5rem;
+            font-size: 1rem;
         }
 
         &__iconTextGroup > * {

@@ -16,7 +16,7 @@ export const Results = () => {
                 ? (
                     <section className='supplier__responseContainer'>
                         <p>There was a problem with our severs. Please try again later.</p>
-                        <Button className='supplier__retryButton'> Retry </Button>
+                        <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
                     </section>
                 )
                 : (

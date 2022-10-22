@@ -42,7 +42,7 @@ export const Main: React.FC = () => {
                 <Private exact isAuth={isAuth} path='/suppliers/register' component={RegisterWrapper} />
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
                 <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
-                <Private exact isAuth={isAuth} path='/suppliers' component={Suppliers} />
+                <Private isAuth={isAuth} path='/suppliers' component={Suppliers} />
                 <Private exact isAuth={isAuth} path='/suppliers/:id/update' component={UpdateSupplier} />
                 <Private isAuth={isAuth} path='/suppliers/:id' component={SupplierView} />
 
