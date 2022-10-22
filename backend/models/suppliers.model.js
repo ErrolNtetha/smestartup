@@ -1,5 +1,6 @@
+/* eslint-disable prefer-arrow-callback */
 const mongoose = require('mongoose');
-// const geocoder = require('../utils/geocode');
+const geocoder = require('../utils/geocode');
 
 const SuppliersSchema = new mongoose.Schema({
     author: {
@@ -8,6 +9,7 @@ const SuppliersSchema = new mongoose.Schema({
         required: [true, 'The author is required.']
     },
     customerID: { type: String, unique: true },
+    storeId: { type: String, unique: true },
     name: {
         type: String,
         required: [true, 'The name is required.']
@@ -24,7 +26,7 @@ const SuppliersSchema = new mongoose.Schema({
         min: 30,
         max: 1200
     },
-    type: { type: String, required: [true, 'The type is required.'] },
+    type: { type: String },
     approved: { type: Boolean, default: false },
     tags: [String],
     registrationNumber: String,
@@ -45,6 +47,7 @@ const SuppliersSchema = new mongoose.Schema({
     moq: String,
     moqNumber: Number,
     quotation: String,
+    address: String,
     addresses: {
         physical: {
             type: {
@@ -67,5 +70,23 @@ const SuppliersSchema = new mongoose.Schema({
     },
     isRegistered: { type: Boolean, default: false },
 }, { timestamps: true });
+
+SuppliersSchema.pre('save', async function (next) {
+    await geocoder.geocode(this.address, function (error, res) {
+        if (error) console.log('There is an error: ', error);
+        const loc = res[0];
+        this.address = undefined; // Do not save the address entered by the user
+        this.addresses = {
+            type: 'Point',
+            coordinates: [loc.longitude, loc.latitude],
+            formattedAddress: loc.formattedAddress,
+            city: loc.city,
+            province: loc.stateCode,
+            zip: loc.zipcode,
+            countryCode: loc.countryCode
+        };
+    });
+    next();
+});
 
 module.exports = mongoose.model('Suppliers', SuppliersSchema);

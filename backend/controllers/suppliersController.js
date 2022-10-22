@@ -74,6 +74,7 @@ exports.createSupplier = async (req, res) => {
         quotation,
         established,
         companyType,
+        address,
         photos
     } = req.body;
 
@@ -97,6 +98,7 @@ exports.createSupplier = async (req, res) => {
             fax
         },
         addresses,
+        address,
         tags,
         author: _id,
         isRegistered,

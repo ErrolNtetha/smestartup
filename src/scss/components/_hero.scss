@@ -1,60 +1,66 @@
 @use '../mixins' as *;
+@use '../base/_color' as *;
 @use '../base' as *;
 @use '../mixins/buttons' as *;
 
 .hero {
-    @include flexbox($justify-content: center);
-    background-image: url('../../assets/hero.png');
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 93vh;
-    // padding: 1em 3em;
-    // gap: 4em;
+    @include respond-to('mobile') {
+        @include flexbox($justify-content: center);
+        height: 93vh;
+        background: #0F2027;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    &__innerHero {
-        width: 80%;
-        padding: 0 2em;
-    }
+        &__innerHero {
+            width: 100%;
+        }
 
-    &__left {
-        width: 80%;
+        &__left {
+            @include flexbox($justify-content: space-between);
+            flex-direction: column;
+            width: 100%;
+            height: 93vh;
 
-        &__title {
-            width: 10em;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0;
-            position: relative;
+            &__title {
+                width: 10em;
+                font-size: 2rem;
+                font-weight: 900;
+                margin: 0;
+                position: relative;
+                text-align: center;
+            }
 
-            &::before {
-                content: '';
-                position: absolute;
-                border: 4px solid $secondaryColor;
-                background-color: $secondaryColor;
-                border-radius: 5px;
-                width: 20%;
-                top: -10%;
+            &__paragraph {
+                font-size: 1em;
+                margin: 0.4em 0;
             }
         }
 
-        &__paragraph {
-            font-size: 1em;
-            margin: 0.4em 0;
+        &__left--action {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .8em);
+            margin: .9em 0;
+            width: 100%;
         }
-    }
 
-    &__right {
-        display: none;
+        &__left--login {
+            @include buttonHover($bgColor: transparent, $padding: .8em);
+            width: 100%;
+            border: 1px solid white;
+            margin: 0;
+        }
+
+        &__right {
+            display: none;
+        }
+
     }
 
     @include respond-to('tablet') {
         @include flexbox($justify-content: space-around);
-        padding: 1em 1em;
+        padding: 1em;
 
         &__left {
-            width: 80%;
+            width: 100%;
 
             &__title {
                 width: calc(100% - 10%);
@@ -69,13 +75,20 @@
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+
         &__right {
             display: unset;
             width: 20%;
         }
 
+        &__innerHero {
+            @include flexbox($justify-content: space-between);
+        }
+
         &__left {
-            width: 40%;
+            @include flexbox();
+            width: 50%;
 
             &__title {
                 width: 100%;
@@ -88,16 +101,24 @@
                 width: 100%;
             }
         }
+
+        &__top {
+            display: none;
+        }
+
+        &__bottom {
+            width: 40%;
+        }
     }
 
     @include respond-to('desktop') {
         &__right {
-            display: unset;
+            display: none;
             width: 20%;
         }
 
         &__left {
-            width: 40%;
+            width: 100%;
 
             &__title {
                 width: 100%;

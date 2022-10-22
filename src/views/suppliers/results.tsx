@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+/* eslint-disable react/jsx-no-useless-fragment */
 
 import React from 'react';
 import { useFetchData } from 'hoc/useFetchData';
@@ -11,7 +12,11 @@ export const Results = () => {
     return (
         <>
             { loading
-                ? <SkeletonLoading cards={6} numCount={5} />
+                ? (
+                    <section className='supplier__skeletonContainer'>
+                        <SkeletonLoading cards={6} numCount={5} />
+                    </section>
+                )
                 : error
                 ? (
                     <section className='supplier__responseContainer'>
@@ -36,12 +41,6 @@ export const Results = () => {
                             })}
                     </section>
                     )}
-        {/* <Supplier
-          name='Grill Centric Co.'
-          description='Durban, South Africa'
-          about='We deliver the best and new equipments to the most business. Our products are tested and trusted by millions of business around the country.'
-          id='fdljk3243jk'
-        /> */}
         </>
     );
 };
