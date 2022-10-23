@@ -72,5 +72,5 @@ server.listen(port, (err) => {
     if (err) {
         console.log('An error has occured, ', err);
     }
-    return console.log(`Sever is running on http://localhost:${port}`);
+    return console.log(`Sever is running on PORT:${port}`);
 });
