@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-// import axios from 'axios';
 import { axiosPrivate } from 'config/axiosInstance';
-// import { useRefresh } from 'hoc/useRefreshToken';
 
 export const useFetchData = (url: string) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setError] = useState<string | null>(null);
-    // const newAccessToken = useRefresh();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,10 +17,10 @@ export const useFetchData = (url: string) => {
                     setLoading(false);
                     if (error.message === 'Network Error') {
                         setError('There was a network error.');
-                        return;
-                    }
-                    if (error?.response.status === 403) {
+                    } else if (error?.response.status === 403) {
                         setError(error?.response.status);
+                    } else if (error?.response?.status > 500 && 599) {
+                        setError('Problem with our servers.');
                     }
             });
         };
