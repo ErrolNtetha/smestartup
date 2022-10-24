@@ -12,11 +12,11 @@ import {
     Switch,
     useRouteMatch,
 } from 'react-router-dom';
-// import { Collapsable } from 'components/collapsable';
 import { BusinessAvatar } from 'components/avatar/business';
 import { Photos } from './photos';
 import { Reviews } from './reviews';
 import { Overview } from './overview';
+import { Map } from '../map';
 
 export interface DProps {
     name: string;
@@ -92,8 +92,11 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-        {isOwner
-            && (
+            <div id='map'>
+                <Map />
+            </div>
+            {isOwner
+                && (
                 <section className='supplier__editButtonContainer'>
                     <span className='supplier__edit'>
                         <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>

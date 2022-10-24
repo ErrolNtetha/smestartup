@@ -13,9 +13,7 @@ export const Create = () => {
                 <hr className='global' />
                 <section className='supplier__supplierListContainer'>
                     {loading
-                        ? <div style={{ textAlign: 'center' }}> Loading... </div>
-                        : errorMessage
-                        ? <p> Could not load profiles </p>
+                        ? <div> Loading... </div>
                         : data?.suppliers?.map((item: any) => {
                             if (item.length === 0) {
                                 return (
