@@ -35,7 +35,6 @@ export const Main: React.FC = () => {
                 <Route path='/register' exact component={Register} />
                 <Route exact path='/feed/p/:id' component={Post} />
                 <Route path='/faq' exact component={FAQ} />
-                {/* <Route path='/suppliers/:id' exact component={SupplierView} /> */}
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
@@ -43,8 +42,8 @@ export const Main: React.FC = () => {
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
                 <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
                 <Private isAuth={isAuth} path='/suppliers' component={Suppliers} />
-                <Private exact isAuth={isAuth} path='/suppliers/:id/update' component={UpdateSupplier} />
                 <Private isAuth={isAuth} path='/suppliers/:id' component={SupplierView} />
+                <Private exact isAuth={isAuth} path='/suppliers/:id/update' component={UpdateSupplier} />
 
                 <Route path='/' component={NotFound} />
             </Switch>
