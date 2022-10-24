@@ -6,7 +6,8 @@ import { Header } from 'views/header';
 import { useFetchData } from 'hoc/useFetchData';
 import { FiArrowLeft } from 'react-icons/fi';
 import og from 'assets/og.png';
-import { Details } from './details';
+import { SupplierInfo } from './supplierInfo';
+import { SkeletonLoading } from '../skeletonLoading';
 
 export const SupplierView = () => {
     const { id } = useParams();
@@ -31,11 +32,27 @@ export const SupplierView = () => {
             <Header>
                 <FiArrowLeft className='supplier__arrowLeft' onClick={() => history.push('/suppliers')} />
             </Header>
-            {loading
-                ? 'loading'
-                : errorMessage
-                ? 'There was an error'
-                : <Details name={suppliers?.name} about={suppliers?.about} />}
+            { loading
+                    ? <SkeletonLoading cards={1} numCount={12} />
+                    : errorMessage
+                    ? 'There was an error'
+                    : (
+                        <SupplierInfo
+                          sector={data?.suppliers?.sector}
+                          companyType={data?.suppliers?.type}
+                          established={data?.suppliers?.established}
+                          isRegistered={data?.suppliers?.isRegistered}
+                          photos={data?.suppliers?.photos}
+                          name={data?.suppliers?.name}
+                          createdAt={data?.suppliers?.createdAt}
+                          description={data?.suppliers?.description}
+                          avatar={data?.suppliers?.avatar}
+                          beeLevel={data?.suppliers?.beeLevel}
+                          moqNumber={data?.suppliers?.moqNumber}
+                          quotation={data?.suppliers?.quotation}
+                          isOwner={data?.isOwner}
+                        />
+                    )}
         </>
     );
 };
