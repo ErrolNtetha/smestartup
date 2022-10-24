@@ -26,19 +26,18 @@ export const BottomNav = () => {
                         <FiHome className='supplier__icon' />
                         <p> Home </p>
                     </Link>
-                    <Link to={`${url}/profiles`}>
+                    <Link to={`${url}/m/profiles`}>
                         <FiList className='supplier__icon' />
                         <p> Profiles </p>
                     </Link>
                     <span>
-                        <FiPlusCircle className='supplier__icon' onClick={() => history.push('/suppliers/register')} />
-                        <p> Add </p>
+                        <FiPlusCircle className='supplier__icon supplier__plus' onClick={() => history.push('/suppliers/register')} />
                     </span>
                     <span>
                         <FiSliders className='supplier__icon' />
                         <p> Filter </p>
                     </span>
-                    <Link to={`${url}/saved`}>
+                    <Link to={`${url}/m/saved`}>
                         <FiHeart className='supplier__icon' />
                         <p> Saved </p>
                     </Link>
@@ -46,10 +45,10 @@ export const BottomNav = () => {
             </section>
             <Switch>
                 <Route exact path={`${path}`} component={Results} />
-                <Route exact path={`${path}/profiles`}>
-                    Profiles
+                <Route path={`${path}/m/profiles`}>
+                    Supplier profiles
                 </Route>
-                <Route exact path={`${path}/saved`}>
+                <Route path={`${path}/m/saved`}>
                     Saved profiles
                 </Route>
             </Switch>
