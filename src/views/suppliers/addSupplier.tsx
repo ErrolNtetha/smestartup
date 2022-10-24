@@ -8,10 +8,10 @@ export const AddSupplier = () => {
             <Header>
                 <Button>Back</Button>
             </Header>
-            form
+            Choose Account
             <form action='https://www.payfast.co.za/eng/process' method='post'>
-                <input type='hidden' name='merchant_id' value='12303245' />
-                <input type='hidden' name='merchant_key' value='lpee8sa5xlrp0' />
+                <input type='hidden' name='merchant_id' value={process.env.REACT_APP_MERCHANT_ID} />
+                <input type='hidden' name='merchant_key' value={process.env.REACT_APP_MERCHANT_KEY} />
                 <input type='hidden' name='cancel_url' value='http://localhost:3000/suppliers/register' />
                 <input type='hidden' name='amount' value='49.99' />
                 <input type='hidden' name='item_description' value='A product for testing purposes.' />

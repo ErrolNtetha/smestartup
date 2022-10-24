@@ -9,7 +9,6 @@
 
 .supplier {
     @include respond-to('mobile') {
-        @include flexbox();
         // flex-direction: column;
 
         &__previewContainer {
@@ -63,7 +62,7 @@
         &__filterIconGroup span {
            @include flexbox($justify-content: space-evenly);
             background: $primaryColor;
-            padding: .2em .6em;
+            padding: .4em .6em;
             height: 100%;
             border-radius: 50px;
         }
@@ -71,14 +70,31 @@
         &__filterIconGroup span span {
             @include flexbox();
             flex-direction: column;
-        } 
+        }  
 
-        &__filterIconGroup span span > * {
-            font-size: .8rem;
+        &__filterIconGroup &__bottomNav a {
+            @include flexbox();
+            flex-direction: column;
+            color: white;
+            text-decoration: none;
+        }
+
+
+        &__filterIconGroup &__bottomNav span {
+            padding: 0;
+            margin: 0;
+        }
+
+        &__bottomNav span, a p {
+            font-size: .6rem;
         }
 
         &__icon {
-            font-size: 5rem;
+            font-size: 1rem;
+        }
+
+        &__plus {
+            font-size: 1.8rem;
         }
 
         &__iconTextGroup > * {

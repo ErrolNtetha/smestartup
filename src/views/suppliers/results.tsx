@@ -8,20 +8,16 @@ import { Supplier } from './supplier';
 import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
-    const { data, error, loading } = useFetchData('/suppliers');
+    const { data, errorMessage, loading } = useFetchData('/suppliers');
     return (
         <>
             { loading
-                ? (
-                    <section className='supplier__skeletonContainer'>
-                        <SkeletonLoading cards={6} numCount={5} />
-                    </section>
-                )
-                : error
+                ? <SkeletonLoading cards={6} numCount={5} />
+                : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
                         <p>There was a problem with our severs. Please try again later.</p>
-                        <Button className='supplier__retryButton'> Retry </Button>
+                        <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
                     </section>
                 )
                 : (

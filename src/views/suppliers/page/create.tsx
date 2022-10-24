@@ -1,14 +1,11 @@
-// import { Avatar } from 'components/avatar';
-// import { Tooltip } from 'components/tooltip';
+/* eslint-disable no-nested-ternary */
 import React from 'react';
-// import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-// import { MapProfiles } from './mapProfiles';
 import { useFetchData } from 'hoc/useFetchData';
 import { Profiles } from './profiles';
 
 export const Create = () => {
-    const { data, loading } = useFetchData('/suppliers/my');
+    const { data, errorMessage, loading } = useFetchData('/suppliers/my');
     return (
         <section className='supplier__createContainer'>
             <span style={{ width: '100%' }}>
@@ -37,7 +34,6 @@ export const Create = () => {
                         })}
                 </section>
                 <span className='supplier__supplierProfiles'>
-                    <p>  </p>
                     <Link to='/suppliers/register' className='supplier__create'> register </Link>
                 </span>
             </span>

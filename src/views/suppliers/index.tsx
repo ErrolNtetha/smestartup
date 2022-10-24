@@ -1,7 +1,8 @@
 import React from 'react';
 import { Create } from 'views/suppliers/page/create';
 import { Filter } from './filter';
-import { Results } from './results';
+import { BottomNav } from './bottomNav';
+// import { Results } from './results';
 // import { Preview } from './preview';
 
 export const SupplierContainer = () => {
@@ -11,7 +12,7 @@ export const SupplierContainer = () => {
                 <Filter />
                 <Create />
             </section>
-            <Results />
+            <BottomNav />
             <section className='supplier__rightColumn' />
         </section>
     );
