@@ -12,12 +12,8 @@ export const Results = () => {
     return (
         <>
             { loading
-                ? (
-                    <section className='supplier__skeletonContainer'>
-                        <SkeletonLoading cards={6} numCount={5} />
-                    </section>
-                )
-                : error
+                ? <SkeletonLoading cards={6} numCount={5} />
+                : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
                         <p>There was a problem with our severs. Please try again later.</p>
