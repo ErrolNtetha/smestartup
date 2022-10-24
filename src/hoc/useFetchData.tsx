@@ -17,8 +17,8 @@ export const useFetchData = (url: string) => {
                     setLoading(false);
                     if (error.message === 'Network Error') {
                         setError('There was a network error.');
-                    } else if (error?.response.status === 403) {
-                        setError(error?.response.status);
+                    } else if (error?.response?.status === 403) {
+                        setError(error?.response?.status);
                     } else if (error?.response?.status > 500 && 599) {
                         setError('Problem with our servers.');
                     }
