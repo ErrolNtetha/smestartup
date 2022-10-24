@@ -9,7 +9,6 @@
 
 .supplier {
     @include respond-to('mobile') {
-        @include flexbox();
         // flex-direction: column;
 
         &__previewContainer {
