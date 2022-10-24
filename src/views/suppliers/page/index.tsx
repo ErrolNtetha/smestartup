@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { Details } from './details';
 
 export const SupplierView = () => {
     const { id } = useParams();
-    const { data, loading } = useFetchData(`/suppliers/${id}`);
+    const { data, errorMessage, loading } = useFetchData(`/suppliers/${id}`);
     const { suppliers } = data;
 
     return (
@@ -29,7 +30,11 @@ export const SupplierView = () => {
             <Header>
                 <FiArrowLeft className='supplier__arrowLeft' />
             </Header>
-            <Details name={suppliers?.name} about={suppliers?.about} />
+            {loading
+                ? 'loading'
+                : errorMessage
+                ? 'There was an error'
+                : <Details name={suppliers?.name} about={suppliers?.about} />}
         </>
     );
 };

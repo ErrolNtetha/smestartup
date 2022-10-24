@@ -7,12 +7,12 @@ import { Supplier } from './supplier';
 import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
-    const { data, error, loading } = useFetchData('/suppliers');
+    const { data, errorMessage, loading } = useFetchData('/suppliers');
     return (
         <>
             { loading
                 ? <SkeletonLoading cards={6} numCount={5} />
-                : error
+                : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
                         <p>There was a problem with our severs. Please try again later.</p>
