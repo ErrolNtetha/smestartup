@@ -68,7 +68,7 @@
         &__filterIconGroup span span {
             @include flexbox();
             flex-direction: column;
-        } 
+        }  
 
         &__filterIconGroup &__bottomNav a {
             @include flexbox();
@@ -83,12 +83,16 @@
             margin: 0;
         }
 
-        &__bottomNav span p {
-            font-size: 1rem;
+        &__bottomNav span, a p {
+            font-size: .6rem;
         }
 
         &__icon {
             font-size: 1rem;
+        }
+
+        &__plus {
+            font-size: 1.8rem;
         }
 
         &__iconTextGroup > * {
