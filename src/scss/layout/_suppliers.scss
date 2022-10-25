@@ -117,6 +117,15 @@
             height: 6vh;
         }
 
+        &__selected {
+            @include select($backgroundColor: $primaryColor, $selectedColor: white);
+        }
+
+        &__options {
+            top: 3em;
+            background: white;
+        }
+
         &__searchFilter > * {
             display: unset;
         }
@@ -324,12 +333,12 @@
         &__skeletonContainer {
             @include flexbox();
             flex-direction: column;
-            width: 60%;
+            width: 50%;
         }
 
         &__skeletonCard {
             @include flexbox();
-            width: 60%;
+            width: 100%;
             align-items: unset;
             flex-direction: column;
             gap: .6em;
@@ -622,7 +631,6 @@
 
         &__selectContainer {
             @include select();
-            z-index: 1;
         }
     }
 

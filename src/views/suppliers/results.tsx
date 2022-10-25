@@ -12,7 +12,11 @@ export const Results = () => {
     return (
         <>
             { loading
-                ? <SkeletonLoading cards={6} numCount={5} />
+                ? (
+                    <section className='supplier__skeletonContainer'>
+                        <SkeletonLoading cards={6} numCount={5} />
+                    </section>
+                )
                 : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
