@@ -27,11 +27,11 @@ export const Filter = () => {
               title={!selected ? '- Choose sector -' : selected}
               className='supplier__selected'
             >
-                <section className='select__options'>
+                <section className='supplier__selected__options'>
                     {categories.map((sector) => {
                         return (
                             <section key={sector.id}>
-                                <hr className='select__options__optionsDivider' />
+                                <hr className='supplier__selected__options__optionsDivider' />
                                 <p onClick={() => setSelected(sector.name)}> {sector.name} </p>
                             </section>
                         );
