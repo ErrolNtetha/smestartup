@@ -117,6 +117,15 @@
             height: 6vh;
         }
 
+        &__selected {
+            @include select($backgroundColor: $primaryColor, $selectedColor: white);
+        }
+
+        &__options {
+            top: 3em;
+            background: white;
+        }
+
         &__searchFilter > * {
             display: unset;
         }
@@ -622,7 +631,6 @@
 
         &__selectContainer {
             @include select();
-            z-index: 1;
         }
     }
 
