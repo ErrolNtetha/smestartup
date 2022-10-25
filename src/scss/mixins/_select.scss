@@ -7,7 +7,6 @@
         @include flexbox($justify-content: space-between);
         flex-direction: column;
         border-radius: 20px;
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
         background: none;
         width: 100%;
         position: relative;
@@ -66,6 +65,7 @@
             border-radius: 20px;
             border: 1px solid rgba(0, 0, 0, .5);
             z-index: 25;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 
             p {
                 padding: .6em .8em;
