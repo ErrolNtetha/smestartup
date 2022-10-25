@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
     fullNames: String,
-    email: { type: String, unique: true, lowercase: true },
+    email: { type: String, lowercase: true },
     question: { type: String, require: [true, 'The question is required.'], max: 1000 }
 });
 
