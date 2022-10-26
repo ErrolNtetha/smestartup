@@ -27,13 +27,17 @@
                 width: 20%;
                 top: -10%;
             }
-        }
+        } 
 
         &__paragraph {
             font-size: 1em;
             margin: 0.4em 0;
         }
     }
+
+    &__innerHero {
+            padding: 0 1.2em;
+        }
 
     &__right {
         display: none;
