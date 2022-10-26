@@ -333,7 +333,7 @@
         &__skeletonContainer {
             @include flexbox();
             flex-direction: column;
-            width: 50%;
+            width: 100%;
         }
 
         &__skeletonCard {
