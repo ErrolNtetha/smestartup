@@ -132,9 +132,13 @@
             }
         }
 
+        &__logoutContainer {
+            padding: .6em .4em;
+        }
+
         &__logout {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em);
-            width: 90%;
+            width: 100%;
         }
 
         &__BtnGroup {
