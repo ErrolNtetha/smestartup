@@ -366,6 +366,10 @@
         &__goBack {
             @include buttonHover($bgColor: $secondaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
         }
+
+        &__mainContent {
+            width: 100%;
+        }
     }
 
     @include respond-to('laptop') {
