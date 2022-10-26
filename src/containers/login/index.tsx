@@ -9,10 +9,9 @@ import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosPublic } from 'config/axiosInstance';
-// import { SERVER_URL } from 'config/baseURL';
 import { Helmet } from 'react-helmet-async';
 import { SyncLoader } from 'react-spinners';
-// import { axiosInstance } from 'config/axiosInstance';
+import { Logo } from 'components/header/logo';
 import logged from '../../store/actions/logged';
 import { fetchProfile } from '../../store/actions/fetchProfile';
 
@@ -33,7 +32,6 @@ export const Login = () => {
             setLoading(true);
             const { email, password } = values;
             if (!email || !password) {
-                console.log('Fields are empty...');
                 return;
             }
             axiosPublic.post('/login', values)
@@ -73,7 +71,9 @@ export const Login = () => {
                 <meta name='description' content='Login and collaborate with like-minded people within the platform.' />
                 <link rel='canonical' href='/login' />
             </Helmet>
-            <Header />
+            <Header>
+                <Logo />
+            </Header>
             <section className='login'>
                 <section className='login__container'>
                         <h2 className='login__header'> Account Login </h2>
