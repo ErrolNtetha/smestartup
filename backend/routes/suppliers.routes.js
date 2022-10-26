@@ -6,7 +6,8 @@ const suppliers = require('../controllers/suppliersController');
 const verifyToken = require('../middlewares/verifyJWT');
 
 router.route('/suppliers')
-    .get(verifyToken, suppliers.getSuppliers); // get all suppliers
+    .get(verifyToken, suppliers.getSuppliers) // get all suppliers
+    .post(verifyToken, suppliers.saveSupplier);
 router.route('/suppliers/my')
     .get(verifyToken, suppliers.mapProfiles);
 router.route('/suppliers/:id')
