@@ -24,10 +24,14 @@ jobs:
             node-version: '14'
 
         # Run yarn
-        - name: Run Yarn
+        - name: Install Yarn
           uses: borales/actions-yarn@v3.0.0
           with:
             cmd: install # will run `yarn install` command
+
+        - name: Run Build
+          uses: borales/actions-yarn@v3.0.0
+          with:
             cmd: build # will run `yarn build` command
 
               # - uses: borales/actions-yarn@v3.0.0
