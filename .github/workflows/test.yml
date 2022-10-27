@@ -37,7 +37,9 @@ jobs:
             cmd: build # will run `yarn build` command
 
         # Build the app with Cypress
-        - name: Run Cypress
+        - name: Run E2E on Chrome
           uses: cypress-io/github-action@v4
           with: 
-            start: yarn start
+            build: sudo yarn install
+            start: sudo yarn start
+            browser: chrome
