@@ -32,7 +32,7 @@ jobs:
         - name: Run Build
           uses: borales/actions-yarn@v3.0.0
           with:
-            cmd: build # will run `yarn build` command
+            cmd: CI= build # will run `yarn build` command
 
               # - uses: borales/actions-yarn@v3.0.0
               # with:
