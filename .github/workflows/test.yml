@@ -17,7 +17,7 @@ jobs:
       steps:
         # Get the code from the repo
         - name: Checkout Code
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
 
         # Install NodeJS
         - name: Use Node v16
@@ -38,7 +38,7 @@ jobs:
 
         # Build the app with Cypress
         - name: Run Cypress
-          uses: cypress-io/github-action@v4
+          uses: cypress-io/github-action@v4.2.0
           with: 
-          build: yarn run build
+            build: yarn run build
             start: yarn start
