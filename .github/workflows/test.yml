@@ -36,11 +36,6 @@ jobs:
           with:
             cmd: build # will run `yarn build` command
 
-        - name: Cypress open
-          uses: borales/actions-yarn@v3.0.0
-          with:
-            cmd: test
-
         # Build the app with Cypress
         - name: Run E2E on Cypress
           uses: cypress-io/github-action@v4
