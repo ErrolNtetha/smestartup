@@ -36,12 +36,14 @@ jobs:
           with:
             cmd: build # will run `yarn build` command
 
+        - name: Cypress open
+          uses: borales/actions-yarn@v3.0.0
+          width:
+            cmd: test
+
         # Build the app with Cypress
-        - name: Run E2E on Chrome
+        - name: Run E2E on Cypress
           uses: cypress-io/github-action@v4
           with: 
-            build: sudo yarn install
-            start: sudo yarn start
-            browser: chrome
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          build: 
+            start: yarn start
