@@ -38,7 +38,7 @@ jobs:
 
         - name: Cypress open
           uses: borales/actions-yarn@v3.0.0
-          width:
+          with:
             cmd: test
 
         # Build the app with Cypress
