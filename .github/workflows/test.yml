@@ -8,6 +8,8 @@ on:
     branches:
       - development
 
+  permissions: read-all|write-all
+
 jobs:
   cypress-run:
       runs-on: ubuntu-latest
@@ -34,13 +36,8 @@ jobs:
           with:
             cmd: build # will run `yarn build` command
 
-              # - uses: borales/actions-yarn@v3.0.0
-              # with:
-              # cmd: test # will run `yarn test` command
-    
         # Build the app with Cypress
         - name: Run Cypress
           uses: cypress-io/github-action@v4
           with: 
-            build: yarn run build
             start: yarn start
