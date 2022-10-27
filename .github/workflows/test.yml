@@ -1,10 +1,9 @@
 name: Cypress Workflow
 
 on:
-  pull_request:
+  push:
     branches:
       - development
-      - main
 
 jobs:
   cypress-run:
@@ -23,19 +22,19 @@ jobs:
 
         # Run yarn
         - name: Run Yarn
-        - uses: actions/checkout@v2
         - uses: borales/actions-yarn@v3.0.0
           with:
             cmd: install # will run `yarn install` command
         - uses: borales/actions-yarn@v3.0.0
           with:
             cmd: CI="" run build # will run `yarn build` command
-        - uses: borales/actions-yarn@v3.0.0
-          with:
-            cmd: run test # will run `yarn test` command
+
+              # - uses: borales/actions-yarn@v3.0.0
+              # with:
+              # cmd: test # will run `yarn test` command
     
         # Build the app with Cypress
-        - name: Cypress run
+        - name: Run Cypress
           uses: cypress-io/github-action@v4
           with: 
             build: yarn run build
