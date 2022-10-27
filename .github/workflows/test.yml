@@ -37,7 +37,8 @@ jobs:
             cmd: build # will run `yarn build` command
 
         # Build the app with Cypress
-        - name: Run E2E on Cypress
+        - name: Run Cypress
           uses: cypress-io/github-action@v4
           with: 
+          build: yarn run build
             start: yarn start
