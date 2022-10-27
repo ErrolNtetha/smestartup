@@ -12,7 +12,7 @@ jobs:
   cypress-run:
       runs-on: ubuntu-latest
 
-      permissions: read-all|write-all
+      permissions: write-all
       
       steps:
         # Get the code from the repo
