@@ -16,7 +16,8 @@ export const Lists = () => {
  return (
     <div className='feed__feedWrapper'>
         {toggleState ? <PostField /> : null}
-        { response.loading ? <SkeletonPosts cards={10} />
+        { response.loading
+                ? <SkeletonPosts cards={10} />
                 : posts?.map(({
                     post, encodedImage, author, _id, createdAt, stars
                 }) => (
