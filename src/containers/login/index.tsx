@@ -39,6 +39,7 @@ export const Login = () => {
                     const {
                         accessToken,
                         refreshToken,
+                        isLoggedIn,
                         message,
                         user
                     } = res.data;
@@ -48,7 +49,7 @@ export const Login = () => {
                     setLoading(false);
                     setResponse(message);
 
-                    if (res.status === 200) {
+                    if (isLoggedIn) {
                         dispatch(logged());
                         dispatch(fetchProfile(user));
                         history.push('/feed');

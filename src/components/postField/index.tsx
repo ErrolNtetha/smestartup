@@ -30,10 +30,10 @@ const handleSubmit = async () => {
     setLoading(true);
     await axiosPrivate.post('/feed', formData)
     .then((response) => {
-        if (response.status === 200) {
+        if (response.data.success) {
             setLoading(false);
             dispatch(toggleFieldOff());
-        }
+        } else setLoading(false);
     })
     .catch((error) => {
         setLoading(false);

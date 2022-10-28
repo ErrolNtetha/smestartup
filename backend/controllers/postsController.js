@@ -24,10 +24,10 @@ exports.userPosts = async (req, res) => {
 
         // save post on the database
         await userPost.save()
-            .then(() => res.status(200).json({ message: 'Successfully posted' }))
-            .catch((err) => res.status(500).json({ message: err.message }));
+            .then(() => res.status(200).json({ success: true, message: 'Successfully posted' }))
+            .catch((err) => res.status(500).json({ success: false, message: err.message }));
         })
-    .catch((error) => res.status(500).json(error.messsage));
+    .catch((error) => res.status(500).json({ error: error.message }));
 };
 
 exports.incrimementLikes = async (req, res) => {
