@@ -18,8 +18,6 @@ exports.userPosts = async (req, res) => {
     .then((response) => postPicture = response.secure_url)
     .catch((error) => res.status(500).json(error.messsage));
 
-    console.log(postPicture);
-
     const userPost = new Post({
         author: _id,
         post,
