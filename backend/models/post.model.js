@@ -4,7 +4,7 @@ const userPost = new mongoose.Schema(
     {
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         post: String,
-        postImage: String,
+        encodedImage: String,
         reports: {
             count: Number,
             users: { type: [mongoose.Schema.Types.ObjectId], ref: 'User' },

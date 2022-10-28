@@ -12,7 +12,7 @@ export const Collapsable = ({ children, end, className }: IProps) => {
     const text = children;
     const [seeMore, setSeeMore] = useState(true);
     return (
-        <span className={className}>
+        <section className={className}>
             { seeMore && (text?.length > end) ? text.slice(0, end).concat('...') : text }
             { text?.length > end
                 && (
@@ -20,6 +20,6 @@ export const Collapsable = ({ children, end, className }: IProps) => {
                         {seeMore ? 'see more' : 'show less'}
                     </span>
                 )}
-        </span>
+        </section>
     );
 };

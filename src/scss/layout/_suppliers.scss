@@ -646,8 +646,6 @@
     }
 
     @include respond-to('laptop') {
-        @include flexbox();
-        
         &__container {
             @include flexbox();
             margin: .6em;
@@ -662,7 +660,6 @@
             flex-direction: column;
             width: 25%;
             margin-bottom: .8em;
-            height: max-content;
         }
 
         &__filterContainer {
@@ -679,7 +676,6 @@
             border-radius: $radius;
             height: max-content;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: .4em;
         }
 
         &__filterModal > &__filterContainer {
@@ -814,10 +810,6 @@
             margin: 0;
             padding: 0;
             display: inline;
-        }
-
-        &__skeletonContainer {
-            width: 50%;
         }
     } 
 }
