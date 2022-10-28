@@ -41,9 +41,7 @@ exports.incrimementLikes = async (req, res) => {
         return;
     }
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
-        .then(() => {
-            res.status(200).json({ message: 'You have starred this post.' });
-        })
+        .then(() => res.status(200).json({ message: 'You have starred this post.' }))
         .catch((error) => console.log('Ops. There was a problem.', error.message));
 };
 
@@ -60,8 +58,8 @@ exports.getSpecificUserPost = async (req, res) => {
 };
 
 exports.getUserPost = async (req, res) => {
-    // const { email, id } = req.user;
     await Post.find()
+        .sort({ createdAt: -1 })
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(404).json({ message: 'No posts found yet. Be the first to post!' });
