@@ -1,53 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { fetchAllUsers } from 'store/middlewares/fetchUsers';
+import React from 'react';
 import { Logo } from 'components/header/logo';
-import { fetchUsers } from 'store/actions/fetchUsers';
-import { useDispatch, connect } from 'react-redux';
+import { ContactPage } from 'views/contact';
+import { Helmet } from 'react-helmet-async';
+import og from 'assets/og.png';
 import { Header } from '../../views/header';
 
 export const Contact = () => {
-    const [users, setUsers] = useState(null);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        axios.get('http://localhost:5000/contact')
-            .then((res) => {
-                setUsers(res.data.users);
-                fetchAllUsers();
-                dispatch(fetchUsers(res.data.users));
-            })
-            .catch((err) => {
-                console.log('There was an error. ', err.message);
-            });
-    }, []);
-
-  return (
-    <section>
-      <Header>
-          <Logo />
-      </Header>
-      <div>
-        <h4> Users </h4>
-        <section>
-            {!users ? 'No users to display' : users.map((user) => <h3 key={user._id}> {user.name.firstName} {user.name.lastName} </h3>)}
+    return (
+    <section className='contact'>
+        <Header>
+            <Logo />
+        </Header>
+        <Helmet>
+            <title> Get in touch with us | Blendot </title>
+            <meta property='og:title' content='Send us an enquiry | Bledot' />
+            <meta property='og:image' content={og} />
+            <meta property='og:image:width' content='1200' />
+            <meta property='og:image:height' content='630' />
+            <meta property='og:type' content='article' />
+            <meta property='og:url' content='https://blendot.com/contact' />
+            <meta name='twitter:card' content='summary_large_image' />
+            <meta property='og:description' content='You are welcomed to ask us an question you might have about us.' />
+            <meta property='og:site_name' content='Blendot' />
+        </Helmet>
+        <section className='contact__contactContainer container'>
+          <ContactPage />
         </section>
-      </div>
     </section>
   );
 };
-
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        fetchAllUsers: state.user
-    };
-};
-
-const mapDispatch = (dispatch) => {
- return {
-     fetchAllUsers: () => dispatch(fetchAllUsers())
- };
-};
-
-connect(mapStateToProps, mapDispatch)(Contact);

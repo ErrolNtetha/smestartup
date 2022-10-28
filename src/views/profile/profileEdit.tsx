@@ -19,6 +19,7 @@ import { Select } from 'components/select';
 // import { Checkbox } from 'components/checkbox';
 import { useStore } from 'hoc/useStore';
 import { fetchProfile } from 'store/actions/fetchProfile';
+import { Tooltip } from 'components/tooltip';
 import { Button } from '../../components/button';
 
 export const ProfileEdit = () => {
@@ -80,27 +81,19 @@ return (
                 <h4>personal</h4>
                 <hr className='global' />
                 <section className='profile__personalContainer'>
-                    {/* <section className='profile__avatarContainer'>
-                        <Avatar avatar='' className='profile__editAvatar' />
-                        <section className='profile__avatarBtns'>
-                            <Button className='profile__changeAvatar'> change avatar </Button>
-                            <Button className='profile__changeAvatar' style={{ background: 'red' }}> remove avatar </Button>
-                        </section>
-                    </section> */}
-
                     <section className='profile__avatarContainer'>
                         <span className='register__avatarWrapper'>
                             <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
                                 {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='register__avatar' />
-                                : <img src={defaultAvatar} alt='new user avatar' className='register__avatar' />}
+                                : <img src={defaultAvatar} alt={`${props.values.firstName}'s avatar'`} className='register__avatar' />}
                             </div>
-                            <Button className='profile__changeAvatar'> change avatar </Button>
+                            <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> change avatar </Button>
                         </span>
                     <input
                       type='file'
                       hidden
                       ref={imageInput}
-                      accept='image/*'
+                      accept='image/png]'
                       name='avatar'
                       onChange={(e) => {
                           const reader = new FileReader();
@@ -136,16 +129,16 @@ return (
                     </section>
 
                     <section>
-                        <label htmlFor='occupation'> Occupation </label>
+                        <label htmlFor='location'> Location </label>
                         <Field
-                          name='occupation'
-                          placeholder='What best decribe what you do currently?'
+                          name='location'
+                          placeholder='City, Country. Example: Durban, South Africa'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                    <label> Occupation </label>
+                        <label> Occupation <Tooltip className='tooltipContainer' message='I you cannot find a title that best describe you, you can choose Other.' /> </label>
                         <Field as='select' title={!props.values.occupation ? '- Choose title -' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
                             <section className='profile__input'>
                                 {title.map((item: string) => {
@@ -214,9 +207,14 @@ return (
                         />
                     </section>
 
-                    <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
-                        {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'save' }
-                    </Button>
+                    <section className='profile__actionBtns'>
+                        <Button onClick={() => history.goBack()} className='profile__button--cancel'>
+                            Cancel
+                        </Button>
+                        <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
+                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'save' }
+                        </Button>
+                    </section>
                 </section>
               </Form>
           )}

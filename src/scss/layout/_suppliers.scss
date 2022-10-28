@@ -8,8 +8,9 @@
 }
 
 .supplier {
-
     @include respond-to('mobile') {
+        // flex-direction: column;
+
         &__previewContainer {
             display: none;
             width: 100%;
@@ -61,8 +62,46 @@
         &__filterIconGroup span {
            @include flexbox($justify-content: space-evenly);
             background: $primaryColor;
-            padding: .5em .6em;
+            padding: .4em .6em;
+            height: 100%;
             border-radius: 50px;
+        }
+
+        &__filterIconGroup span span {
+            @include flexbox();
+            flex-direction: column;
+        }  
+
+        &__filterIconGroup &__bottomNav a {
+            @include flexbox();
+            flex-direction: column;
+            color: white;
+            text-decoration: none;
+        }
+
+
+        &__filterIconGroup &__bottomNav span {
+            padding: 0;
+            margin: 0;
+        }
+
+        &__bottomNav span, a p {
+            font-size: .6rem;
+        }
+
+        &__icon {
+            font-size: 1rem;
+        }
+
+        &__plus {
+            font-size: 1.8rem;
+        }
+
+        &__iconTextGroup > * {
+           @include flexbox();
+           gap: 1em;
+           flex-direction: column;
+           background: red;
         }
 
         &__filterContainer > * {
@@ -70,11 +109,25 @@
         }
 
         &__filterSearchContainer {
+            display: unset;
             z-index: 31;
             position: fixed;
             bottom: 0;
             width: 100%;
             height: 6vh;
+        }
+
+        &__selected {
+            @include select($backgroundColor: $primaryColor, $selectedColor: white);
+        }
+
+        &__options {
+            top: 3em;
+            background: white;
+        }
+
+        &__searchFilter > * {
+            display: unset;
         }
 
         &__searchFilter {
@@ -83,6 +136,8 @@
             width: 100%;
             height: 100%;
             z-index: 54543539;
+            background: $foregroundColor;
+            transition: all 1s ease-in-out;
         }
 
         &__filterIconGroup span > * {
@@ -161,6 +216,7 @@
             @include flexbox($justify-content: unset);
             align-items: unset;
             padding: .6em;
+            margin: .4em 0;
         }
 
         &__names {
@@ -186,21 +242,31 @@
             position: absolute;
         }
 
-        &__detailsGroup > * {
-            margin: 0;
-            padding: 0;
+        &__detailsGroup {
+            @include flexbox($justify-content: unset);
+        } 
+
+        &__detailsGroup span {
+            margin-left: .3em;
+            align-self: start;
         }
 
-        &__names > p {
+        &__detailsGroup span > p {
             margin: 0;
             padding: 0;
         }
 
         &__supplierName {
-            font-size: .9rem;
+            font-size: 1rem;
             font-weight: 600;
             padding: 0;
             margin: 0;
+        }
+
+        &__type, &__something {
+            @include flexbox($justify-content: unset);
+            gap: .1rem;
+            font-size: .7rem;
         }
 
         &__tags {
@@ -216,11 +282,12 @@
             font-size: .8rem;
             margin: .2em;
         }
-
+        
         &__profilePicture {
             @include avatar($width: 45px);
+            align-self: start;
             border: none;
-            border-radius: 3px;
+            border-radius: 0px;
         }
 
         &__search--button {
@@ -232,7 +299,6 @@
         &__more {
             @include flexbox($justify-content: space-between);
             padding: 0 .8em;
-            margin: .2em 0;
             height: 2em;
         }
 
@@ -264,6 +330,27 @@
             gap: .6em;
         }
 
+        &__skeletonContainer {
+            @include flexbox();
+            flex-direction: column;
+            width: 100%;
+        }
+
+        &__skeletonCard {
+            @include flexbox();
+            width: 100%;
+            align-items: unset;
+            flex-direction: column;
+            gap: .6em;
+            flex: 1;
+            margin: .4em .6em;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 5px;
+            padding: .4em;
+            overflow-y: none;
+        }
+ 
+
         &__reactButtons > span {
             @include flexbox();
             gap: .4em;
@@ -282,23 +369,291 @@
 
         &__payNow {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em 1em);
-            font-size: .8rem;
-            margin: 0;
+            font-size: .8rem; margin: 0;
         }
 
         &__buttonContainer {
             @include flexbox();
             gap: .6em;
         }
+
+        &__registerSupplierContainer {
+            @include flexbox();
+            padding: 1em 0;
+            height: 100%;
+            background: none;
+        }
+
+        &__registerSupplierContainer .profile__formContainer > section {
+            margin-bottom: .8em;
+        }
+
+        &__coverContainer {
+            background: rgba(255, 255, 255, .4);
+            position: relative;
+            height: 20%;
+        }
+
+        &__updateContainer {
+        }
+
+        &__feedbackContainer {
+            @include modal();
+        }
+
+        &__updateMessage {
+            margin: .8em 0;
+        }
+
+        &__btnOkay {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .5em .6em, $margin: 0);
+            width: 100%;
+        }
+
+        &__updateLoadingContainer {
+            @include flexbox();
+            height: 100vh;
+        }
+
+        &__feedback {
+            width: 100%;
+        }
+
+        &__map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        &__feedbackConfirm {
+            @include buttonHover($bgColor: $foregroundColor, $padding: .5em .6em, $margin: 0);
+            width: 100%;
+        }
+
+        &__cover {
+            width: 100%;
+            height: 8em;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        &__supplierIntroText {
+            background: rgb(0,0,0);
+            background: -moz-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            background: linear-gradient(0deg, rgba(0,0,0,0.969625350140056) 37%, rgba(0,0,0,0.6054796918767507) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+        }
+
+        &__text {
+            align-self: start;
+        }
+
+        &__text h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        &__authorLink {
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+        }
+
+        &__companyLogo {
+            @include avatar($width: 100px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        } 
+
+        &__textContainer {
+            @include flexbox($justify-content: unset);
+            position: absolute;
+            // border: 2px solid red;
+            bottom: 5px;
+            width: 100%;
+        }
+
+        &__infoAvatar {
+            @include avatar($width: 70px);
+            border-radius: 0px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 .4em;
+        }
+
+        &__text > p {
+            @include flexbox($justify-content: unset);
+            gap: .5em;
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        &__infoContainer {
+            padding: .5em .6em;
+        }
+
+        &__listContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            padding: .6em;
+            text-align: center;
+        }
+
+        &__infoContainer h4 {
+            text-transform: uppercase;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        &__infoContainer &__description {
+            font-size: .9rem;
+            white-space: pre-line;
+        }
+
+        &__imagesContainer {
+            @include flexbox($justify-content: unset);
+            gap: .2em;
+            margin: .4em;
+            flex-wrap: wrap;
+        }
+
+        &__supplierImage {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #fff;
+            border-radius: 2px;
+            margin: 5px 5px; 
+        }
+
+        &__supplierImage {
+            flex: 0 1 20%;
+        } 
+
+        &__imagesLoader, &__reviewsLoader {
+            @include flexbox();
+            height: 15vh;
+        }
+
+        &__imagesLoader.h5 {
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        &__arrowLeft {
+            font-size: 1.4rem;
+        }
+
+
+        &__navigationContainer span {
+            @include flexbox($justify-content: space-evenly);
+        }
+
+        &__navigationContainer span a.active {
+            background: black;
+        }
+
+        &__navigationContainer {
+            background: $foregroundColor;
+            width: 100%;
+            padding: .3em 0;
+            outline: none;
+        }
+
+        &__navigationContainer span a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: .5em 1em;
+            border-radius: 20px;
+            outline: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__supplierWrapper {
+            position: relative;
+        }
+
+        &__editButtonContainer {
+            position: fixed;
+            padding: .3em .4em;
+            width: 100%;
+            bottom: 0;
+            background: $foregroundColor;
+        }
+
+        &__edit a {
+            @include flexbox();
+            gap: .5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+        }
+
+        &__edit {
+            @include flexbox();
+            background: $primaryColor;
+            padding: .4em 0;
+            border-radius: 20px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__lists {
+            @include flexbox();
+            padding: 0 .6em;
+            display: block;
+        }
+
+        &__lists li {
+            @include flexbox($justify-content: space-between);
+            list-style-type: none;
+            width: 100%;
+            padding: .1em .3em;
+
+            &:nth-child(even) {
+                background: rgba(255, 255, 255, .08);
+            }
+        }
+
+        &__selectContainer {
+            @include select();
+        }
+    }
+
+    @include respond-to('tablet') {
+        &__fieldContainer {
+            @include flexbox();
+            gap: 1em;
+        }
+
+        &__fieldContainer > * {
+            flex: 1;
+        }
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+        
         &__container {
             @include flexbox();
             margin: .6em;
+            width: 100%;
             align-items: unset;
             gap: 1em;
-            height: 30%;
         }
 
         &__leftColumn, &__rightColumn {
@@ -307,6 +662,7 @@
             flex-direction: column;
             width: 25%;
             margin-bottom: .8em;
+            height: max-content;
         }
 
         &__filterContainer {
@@ -323,6 +679,7 @@
             border-radius: $radius;
             height: max-content;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .4em;
         }
 
         &__filterModal > &__filterContainer {
@@ -395,6 +752,7 @@
 
         &__supplierPicture {
             @include avatar($width: 30px);
+            border-radius: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         &__createContainer span p {
@@ -405,6 +763,7 @@
         &__supplierProfiles {
             @include flexbox();
             flex-direction: column;
+            background: rgba(255, 255, 255, 0.05);
             padding: 0 .5em;
         }
 
@@ -423,10 +782,10 @@
 
         &__map {
             width: 100%;
-            height: 150px;
+            height: 100vh;
         }
 
-        &__map, &__details {
+        &__details {
             padding: .8em;
         }
 
@@ -455,6 +814,10 @@
             margin: 0;
             padding: 0;
             display: inline;
+        }
+
+        &__skeletonContainer {
+            width: 50%;
         }
     } 
 }

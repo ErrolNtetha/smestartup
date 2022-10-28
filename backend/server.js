@@ -5,7 +5,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app, {
-    origin: ['http://localhost:3000', 'https://blendot.com'],
+    origin: ['https://blendot.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 const io = require('./socket.js').init(server);
@@ -16,6 +16,8 @@ const subsriberRoutes = require('./routes/subscriber.routes');
 const verify = require('./routes/verify.route');
 const suppliers = require('./routes/suppliers.routes');
 const refresh = require('./routes/refresh.router');
+const founders = require('./routes/founder.routes');
+const contact = require('./routes/contact.routes');
 
 // Middlewares
 require('dotenv').config();
@@ -31,6 +33,8 @@ app.use(subsriberRoutes);
 app.use(verify);
 app.use(suppliers);
 app.use(refresh);
+app.use(founders);
+app.use(contact);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
@@ -50,9 +54,12 @@ app.get('/', (req, res, next) => {
 });
 
 // Connecting to the database;
-const url = process.env.URL;
+let database;
 
-mongoose.connect(url, {
+if (app.get('env') === 'development') database = process.env.URL_DEVELOPMENT;
+else database = process.env.URL_PRODUCTION;
+
+mongoose.connect(database, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -70,5 +77,5 @@ server.listen(port, (err) => {
     if (err) {
         console.log('An error has occured, ', err);
     }
-    return console.log(`Sever is running on http://localhost:${port}`);
+    return console.log(`Server is running on PORT:${port}`);
 });

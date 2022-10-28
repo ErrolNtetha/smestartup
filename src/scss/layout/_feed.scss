@@ -8,6 +8,7 @@
     @include flexbox($justify-content: center);
     align-items: unset;
     flex: 1;
+    position: relative;
 
     p,
     h1,
@@ -25,10 +26,9 @@
             width: 100%;
         }
 
-        &__loader {
-            @include flexbox();
-            height: 90vh;
-        }
+        &__feedWrapper {
+            width: 100%;
+        } 
 
         &__list {
             width: 100%;
@@ -98,6 +98,7 @@
             line-height: 16px;
             text-decoration: none;
             color: #fff;
+            white-space: pre-line;
         }
 
         &__lastRow {
@@ -188,7 +189,7 @@
             background-color: black;
             width: 100%;
             height: max-content;
-            z-index: 2;
+            z-index: 5;
             border-radius: 5px;
         }
 
@@ -265,6 +266,7 @@
             align-items: center;
             width: 100%;
             left: 0;
+            z-index: 10;
         }
 
         &__postField {
@@ -364,9 +366,19 @@
         &__goBack {
             @include buttonHover($bgColor: $secondaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
         }
+
+        &__mainContent {
+            width: 100%;
+        }
     }
 
     @include respond-to('laptop') {
+        &__mainContent {
+            @include flexbox();
+            align-items: unset;
+            width: 100%;
+        }
+
         &__sidebar,
         &__rightColumn {
             display: unset;
@@ -391,6 +403,8 @@
             height: max-content;
             width: 20%;
             z-index: 2;
+            position: sticky;
+            top: 0;
         }
 
         &__rightColumn {
@@ -405,6 +419,7 @@
         &__sidebar {
             padding: .1em;
             background: none;
+            
         }
         
         &__sidebarLinks {

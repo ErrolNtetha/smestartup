@@ -2,6 +2,8 @@
 @use '../base/color' as *;
 @use '../base/' as *;
 
+$container-width: 70%;
+
 .profile {
     &__profileGrid {
         @include flexbox();
@@ -230,9 +232,31 @@
             padding: .8em .6em;
         }
 
-
         &__personalContainer > section {
-            margin-bottom: .5em;
+            margin-bottom: 1em;
+        }
+
+        &__personalContainer > section > &__tooltipContainer {
+            &:before {
+                border: 1px solid red;
+            }
+        }
+
+        &__personalContainer section section > * {
+            postion: relative;
+            background: white;
+            color: black;
+        }
+
+        &__personalContainer section section span.__options {
+        }
+
+        &__personalContainer section section > &__input {
+            margin-top: .4em;
+        }
+
+        &__personalContainer section section > &__input > * {
+            postion: absolute;
         }
 
         &__avatarContainer > span {
@@ -260,9 +284,27 @@
 
         &__button--save {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em .8em);
-            display: block;
             width: 100%;
             margin: 0;
+        }
+
+        &__button--cancel {
+            @include buttonHover($bgColor: transparent, $padding: .6em .8em);
+            color: white;
+            width: 100%;
+            border: 2px solid white;
+            margin: 0;
+            
+        }
+
+        &__actionBtns {
+            @include flexbox();
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+
+        &__tooltip {
+            @include tooltip(); 
         }
     }
 
@@ -296,6 +338,10 @@
             max-width: 40%;
             padding: .2em .8em;
         }
+
+        .tooltipContainer {
+            @include tooltip($ttBg: red);
+        }
     }
 
     @include respond-to('laptop') {
@@ -310,15 +356,21 @@
         }
 
         &__header {
+            @include flexbox();
+            flex-direction: column;
             margin-top: 1em;
-            width: 1200px;
+            width: $container-width;
+        }
+
+        &__bodyContainer {
+            padding: 0;
         }
 
          &__details {
             border-radius: $radius;
-            padding: 0 3em;
+            padding: 0 1.5em;
             padding-bottom: 1em;
-        }
+        } 
 
         &__loadingContainer, &__errorContainer {
             @include flexbox();
@@ -360,7 +412,15 @@
         
         &__bio {
             font-size: 1rem;
-            max-width: 80%;
+            max-width: 65%;
+        }
+
+        &__postContainer {
+            width: $container-width;
+        }
+
+        &__userPost {
+            font-size: 1rem;
         }
 
         &__rightSection {

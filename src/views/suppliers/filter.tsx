@@ -5,17 +5,8 @@
 /* eslint-disable  react/jsx-no-useless-fragment */
 /* eslint-disable   jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Select } from 'components/select';
 import { Button } from 'components/button';
-import {
-    FiHeart,
-    FiList,
-    FiSearch,
-    FiPlusCircle,
-    FiSliders
-} from 'react-icons/fi';
-import { Modal } from 'components/modal';
 import { Search } from 'components/search';
 // import { Checkbox } from 'components/checkbox';
 // import { Tooltip } from 'components/tooltip';
@@ -23,11 +14,8 @@ import { categories } from './categories';
 
 export const Filter = () => {
     const [selected, setSelected] = useState('');
-    const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState(false);
-    const history = useHistory();
     // const element = useRef(null);
-    //
     const clearSearch = () => {
         console.log('button clicked');
     };
@@ -39,11 +27,11 @@ export const Filter = () => {
               title={!selected ? '- Choose sector -' : selected}
               className='supplier__selected'
             >
-                <section className='select__options'>
+                <section className='supplier__selected__options'>
                     {categories.map((sector) => {
                         return (
                             <section key={sector.id}>
-                                <hr className='select__options__optionsDivider' />
+                                <hr className='supplier__selected__options__optionsDivider' />
                                 <p onClick={() => setSelected(sector.name)}> {sector.name} </p>
                             </section>
                         );
@@ -69,45 +57,6 @@ export const Filter = () => {
                     </Search>
                 </section>
             )}
-            <section className='supplier__filterIconGroup'>
-                <span> <FiSearch onClick={() => setSearch(!search)} /> <FiList onClick={() => setIsOpen(!isOpen)} /> <FiPlusCircle onClick={() => history.push('/suppliers/register')} /> <FiSliders /> <FiHeart /> </span>
-            </section>
-            {isOpen
-                && (
-                <Modal className='supplier__modal'>
-                    <p style={{ margin: '0', padding: '0' }}> Search Filter </p>
-                    <section className='supplier__filterContainr'>
-            <Select
-              title={!selected ? 'Choose sector:' : selected}
-              className='supplier__selected'
-            >
-                <section className='select__options'>
-                    {categories.map((sector) => {
-                        return (
-                            <section key={sector.id}>
-                                <hr className='select__options__optionsDivider' />
-                                <p onClick={() => setSelected(sector.name)}> {sector.name} </p>
-                            </section>
-                        );
-                    })}
-                </section>
-            </Select>
-            <section className='supplier__locationInputs'>
-                <span className='supplier__locationInputs__location'>
-                    <input className='supplier__locationInputs__location__city' placeholder='City' type='text' />
-                    <input className='supplier__locationInputs__location__zip' placeholder='ZIP Code' type='text' />
-                </span>
-                <section>
-                    <input type='checkbox' value='Within 500km' />
-                </section>
-            </section>
-            <section className='supplier__buttonContainer'>
-                <Button className='supplier__search--button' onClick={clearSearch}> Clear </Button>
-                <Button className='supplier__search--button'> Search </Button>
-            </section>
-                    </section>
-                </Modal>
-                )}
         </section>
     );
 };

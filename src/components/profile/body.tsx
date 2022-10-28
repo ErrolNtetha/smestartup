@@ -6,8 +6,7 @@ import { UserPosts } from './post';
 import { useFetchData } from '../../hoc/useFetchData';
 
 export const Body = () => {
-    const { data, error, loading } = useFetchData('/p/posts');
-    console.log(data);
+    const { data, error, loading } = useFetchData('/profile/posts');
 
     return (
         <section className='profile__bodyContainer'>
@@ -20,14 +19,14 @@ export const Body = () => {
                     post,
                     createdAt,
                     _id,
-                    avatar
+                    author
                 }) => (
                     <UserPosts
                       post={post}
                       date={createdAt}
                       id={_id}
                       key={_id}
-                      avatar={avatar}
+                      author={author}
                     />
                     ))
             }
