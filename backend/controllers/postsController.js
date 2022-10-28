@@ -1,6 +1,7 @@
 // const mongoose = require('mongoose');
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
@@ -10,10 +11,17 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
+    let postPicture;
+    await cloudinary.uploader.upload(fileURL, {
+        upload_preset: 'user_avatar'
+    })
+    .then((response) => postPicture = response.secure_url)
+    .catch((error) => res.status(500).json(error.messsage));
+
     const userPost = new Post({
         author: _id,
         post,
-        encodedimage: fileURL,
+        postImage: postPicture,
     });
 
     // save post on the database
@@ -29,14 +37,12 @@ exports.incrimementLikes = async (req, res) => {
     // otherwise, proceed.
     const hasStarred = await Post.findById(req.params.id);
     if (hasStarred.stars.includes(_id)) {
-        console.log('You have already starred the post.');
+        res.status(200).json({ message: 'You have already starred the post.' });
         return;
     }
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
-        .then(() => {
-            res.status(200).json({ message: 'You have starred this post.' });
-        })
-        .catch((error) => console.log('Ops. There was a problem.', error.message));
+        .then(() => res.status(200).json({ message: 'You have starred this post.' }))
+        .catch((error) => res.status(500).json({ message: 'Ops. There was a problem.', error: error.message }));
 };
 
 exports.getSpecificUserPost = async (req, res) => {
@@ -52,8 +58,8 @@ exports.getSpecificUserPost = async (req, res) => {
 };
 
 exports.getUserPost = async (req, res) => {
-    // const { email, id } = req.user;
     await Post.find()
+        .sort({ createdAt: -1 })
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(404).json({ message: 'No posts found yet. Be the first to post!' });
