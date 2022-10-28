@@ -12,22 +12,22 @@ exports.userPosts = async (req, res) => {
     const { post, fileURL } = req.body;
 
     let postPicture;
-    await cloudinary.uploader.upload(fileURL, {
-        upload_preset: 'user_avatar'
-    })
-    .then((response) => postPicture = response.secure_url)
+    await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
+    .then(async (response) => {
+        postPicture = response.secure_url;
+
+        const userPost = new Post({
+            author: _id,
+            post,
+            postImage: postPicture,
+        });
+
+        // save post on the database
+        await userPost.save()
+            .then(() => res.status(200).json({ message: 'Successfully posted' }))
+            .catch((err) => res.status(500).json({ message: err.message }));
+        })
     .catch((error) => res.status(500).json(error.messsage));
-
-    const userPost = new Post({
-        author: _id,
-        post,
-        postImage: postPicture,
-    });
-
-    // save post on the database
-    await userPost.save()
-        .then(() => res.status(200).json({ message: 'Successfully posted' }))
-        .catch((err) => res.status(500).json({ message: err.message }));
 };
 
 exports.incrimementLikes = async (req, res) => {
@@ -62,10 +62,10 @@ exports.getUserPost = async (req, res) => {
         .sort({ createdAt: -1 })
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
-            if (!posts) res.status(404).json({ message: 'No posts found yet. Be the first to post!' });
+            if (!posts) res.status(200).json({ message: 'No posts found yet. Be the first to post!' });
             res.status(200).json({ posts });
         })
-        .catch((error) => res.json({ message: 'Error getting the posts for now.', error }));
+        .catch((error) => res.status(500).json({ message: 'Error getting the posts for now.', error }));
 };
 
 exports.getAllUserPosts = async (req, res) => {
