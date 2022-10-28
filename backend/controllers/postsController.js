@@ -1,6 +1,7 @@
 // const mongoose = require('mongoose');
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.userPosts = async (req, res) => {
     // populate the user::: Get their first name, store in a variable
@@ -10,10 +11,19 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
+    let postPicture;
+    await cloudinary.uploader.upload(fileURL, {
+        upload_preset: 'user_avatar'
+    })
+    .then((response) => postPicture = response.secure_url)
+    .catch((error) => res.status(500).json(error.messsage));
+
+    console.log(postPicture);
+
     const userPost = new Post({
         author: _id,
         post,
-        encodedimage: fileURL,
+        encodedimage: postPicture,
     });
 
     // save post on the database
