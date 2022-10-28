@@ -21,7 +21,7 @@ exports.userPosts = async (req, res) => {
     const userPost = new Post({
         author: _id,
         post,
-        encodedimage: postPicture,
+        postImage: postPicture,
     });
 
     // save post on the database
@@ -37,12 +37,12 @@ exports.incrimementLikes = async (req, res) => {
     // otherwise, proceed.
     const hasStarred = await Post.findById(req.params.id);
     if (hasStarred.stars.includes(_id)) {
-        console.log('You have already starred the post.');
+        res.status(200).json({ message: 'You have already starred the post.' });
         return;
     }
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
         .then(() => res.status(200).json({ message: 'You have starred this post.' }))
-        .catch((error) => console.log('Ops. There was a problem.', error.message));
+        .catch((error) => res.status(500).json({ message: 'Ops. There was a problem.', error: error.message }));
 };
 
 exports.getSpecificUserPost = async (req, res) => {
