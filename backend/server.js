@@ -5,7 +5,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app, {
-    origin: ['http://localhost:3000', 'https://blendot.com'],
+    origin: ['https://blendot.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 const io = require('./socket.js').init(server);
