@@ -333,7 +333,7 @@
         &__skeletonContainer {
             @include flexbox();
             flex-direction: column;
-            width: 50%;
+            width: 100%;
         }
 
         &__skeletonCard {
@@ -813,6 +813,10 @@
             margin: 0;
             padding: 0;
             display: inline;
+        }
+
+        &__skeletonContainer {
+            width: 50%;
         }
     } 
 }
