@@ -333,7 +333,7 @@
         &__skeletonContainer {
             @include flexbox();
             flex-direction: column;
-            width: 100%;
+            width: 50%;
         }
 
         &__skeletonCard {
@@ -646,6 +646,8 @@
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+        
         &__container {
             @include flexbox();
             margin: .6em;
@@ -660,6 +662,7 @@
             flex-direction: column;
             width: 25%;
             margin-bottom: .8em;
+            height: max-content;
         }
 
         &__filterContainer {
