@@ -1,8 +1,9 @@
 /* eslint-disable new-cap */
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import dots from 'assets/veges.jpg';
 // import format from 'date-fns/format';
-import { FiCalendar, FiHardDrive } from 'react-icons/fi';
+import { FiCalendar, FiHardDrive, FiSettings } from 'react-icons/fi';
 import { format } from 'date-fns';
 // import { format } from 'date-fns';
 import {
@@ -11,11 +12,11 @@ import {
     Switch,
     useRouteMatch,
 } from 'react-router-dom';
-// import { Collapsable } from 'components/collapsable';
 import { BusinessAvatar } from 'components/avatar/business';
 import { Photos } from './photos';
 import { Reviews } from './reviews';
 import { Overview } from './overview';
+import { Map } from '../map';
 
 export interface DProps {
     name: string;
@@ -30,6 +31,7 @@ export interface DProps {
     beeLevel: string;
     moqNumber: number;
     quotation: string;
+    isOwner: boolean;
 }
 
 export const SupplierInfo = ({
@@ -44,11 +46,13 @@ export const SupplierInfo = ({
     isRegistered,
     beeLevel,
     moqNumber,
-    quotation
+    quotation,
+    isOwner
 }: DProps) => {
     const { path, url } = useRouteMatch();
+    const pathname = window.location.pathname;
     return (
-        <>
+        <section className='supplier__supplierWrapper'>
             <section className='supplier__coverContainer'>
                 <img src={dots} alt={`${name} avatar`} className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
@@ -65,10 +69,10 @@ export const SupplierInfo = ({
                 </section>
             </section>
             <section className='supplier__navigationContainer'>
-                <span>
-                    <Link to={`${url}`}> Overview </Link>
-                    <Link to={`${url}/photos`}> Photos {`(${photos?.length})`} </Link>
-                    <Link to={`${url}/reviews`}> Reviews </Link>
+                <span style={{ margin: '0', padding: '0' }}>
+                    <Link to={`${url}`} className={pathname === `${url}` ? 'active' : ''}> Overview </Link>
+                    <Link to={`${url}/photos`} className={pathname === `${url}/photos` ? 'active' : ''}> Photos {`(${photos?.length})`} </Link>
+                    <Link to={`${url}/reviews`} className={pathname === `${url}/reviews` ? 'active' : ''}> Reviews </Link>
                 </span>
             </section>
             <Switch>
@@ -83,9 +87,22 @@ export const SupplierInfo = ({
                       quotation={quotation}
                     />
                 </Route>
-                <Route exact path={`${path}/photos`} component={Photos} />
+                <Route exact path={`${path}/photos`}>
+                    <Photos photos={photos} />
+                </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-        </>
+            <div id='map'>
+                <Map />
+            </div>
+            {isOwner
+                && (
+                <section className='supplier__editButtonContainer'>
+                    <span className='supplier__edit'>
+                        <Link to={`${url}/update`}> <FiSettings /> <span> Edit Profile </span> </Link>
+                    </span>
+                </section>
+            )}
+        </section>
     );
 };

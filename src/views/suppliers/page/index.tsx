@@ -1,16 +1,19 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Header } from 'views/header';
 import { useFetchData } from 'hoc/useFetchData';
 import { FiArrowLeft } from 'react-icons/fi';
 import og from 'assets/og.png';
-import { Details } from './details';
+import { SupplierInfo } from './supplierInfo';
+import { SkeletonLoading } from '../skeletonLoading';
 
 export const SupplierView = () => {
     const { id } = useParams();
-    const { data, loading } = useFetchData(`/suppliers/${id}`);
+    const { data, errorMessage, loading } = useFetchData(`/suppliers/${id}`);
     const { suppliers } = data;
+    const history = useHistory();
 
     return (
         <>
@@ -27,9 +30,29 @@ export const SupplierView = () => {
                 <meta property='og:site_name' content='Blendot' />
             </Helmet>
             <Header>
-                <FiArrowLeft className='supplier__arrowLeft' />
+                <FiArrowLeft className='supplier__arrowLeft' onClick={() => history.push('/suppliers')} />
             </Header>
-            <Details name={suppliers?.name} about={suppliers?.about} />
+            { loading
+                    ? <SkeletonLoading cards={1} numCount={12} />
+                    : errorMessage
+                    ? 'There was an error'
+                    : (
+                        <SupplierInfo
+                          sector={data?.suppliers?.sector}
+                          companyType={data?.suppliers?.type}
+                          established={data?.suppliers?.established}
+                          isRegistered={data?.suppliers?.isRegistered}
+                          photos={data?.suppliers?.photos}
+                          name={data?.suppliers?.name}
+                          createdAt={data?.suppliers?.createdAt}
+                          description={data?.suppliers?.description}
+                          avatar={data?.suppliers?.avatar}
+                          beeLevel={data?.suppliers?.beeLevel}
+                          moqNumber={data?.suppliers?.moqNumber}
+                          quotation={data?.suppliers?.quotation}
+                          isOwner={data?.isOwner}
+                        />
+                    )}
         </>
     );
 };

@@ -1,35 +1,36 @@
 const otp = require('otp-generator');
-
 const Suppliers = require('../models/suppliers.model');
+const SaveList = require('../models/saveList.model');
 const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
-    await Suppliers.find()
-        .populate('author', 'avatar name occupation isVerified')
+    // const { email } = req.user;
+    await Suppliers.find({ approved: true })
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers yet. Check back later.' });
                 return;
             }
-            res.status(200).json({ success: true, suppliers });
+            res.status(200).json({ suppliers });
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({ success: false, error });
         });
 };
 
 exports.getSupplier = async (req, res) => {
+    const { email } = req.user;
     const { id } = req.params;
-    await Suppliers.find({ _id: id })
-        .populate('author')
+    await Suppliers.findOne({ _id: id })
+        .populate('author', 'avatar email name occupation isVerified _id')
         .then((suppliers) => {
             if (!suppliers) {
                 res.status(404).json({ message: 'No suppliers in the database yet.' });
                 return;
             }
-            res.status(200).json({ suppliers: suppliers[0] });
+            const isOwner = email === suppliers.author.email;
+            res.status(200).json({ isOwner, suppliers });
         })
         .catch((error) => {
             console.log(error);
@@ -47,6 +48,11 @@ exports.getSupplierProfiles = async (req, res) => {
             return res.status(200).json({ profiles });
         })
         .catch((error) => res.status(500).json({ success: false, error }));
+};
+
+exports.updateSupplierProfile = async (req, res) => {
+    const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
+    console.log(result);
 };
 
 exports.createSupplier = async (req, res) => {
@@ -67,7 +73,10 @@ exports.createSupplier = async (req, res) => {
         moq,
         moqNumber,
         quotation,
-        established
+        established,
+        companyType,
+        address,
+        photos
     } = req.body;
 
     const {
@@ -90,6 +99,7 @@ exports.createSupplier = async (req, res) => {
             fax
         },
         addresses,
+        address,
         tags,
         author: _id,
         isRegistered,
@@ -100,11 +110,13 @@ exports.createSupplier = async (req, res) => {
         moq,
         moqNumber,
         quotation,
-        established
+        established,
+        type: companyType,
+        photos
     });
 
     await newSupplier.save()
-        .then(() => res.status(200).json({ success: true, message: 'Supplier successfully added.' }))
+        .then(() => res.status(200).json({ success: true }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 
@@ -116,13 +128,43 @@ exports.deleteSupplier = async (req, res) => {
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
+exports.saveSupplier = async (req, res) => {
+    const { email } = req.user;
+    const { id } = req.body;
+
+    const { _id } = await User.findOne({ email });
+
+    const supplierProfile = new SaveList({
+        author: _id,
+        supplier: id
+    });
+
+    await supplierProfile.save()
+        .then(() => res.status(200).json({ success: true, message: 'Supplier profile saved.' }))
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
+};
+
 exports.updateSupplier = async (req, res) => {
     const { id } = req.params;
 
-    await Suppliers.findByIdAndUpdate({ _id: id }, req.body)
+    await Suppliers
+        .findByIdAndUpdate(
+            { _id: id },
+            req.body,
+            { $push: { photos: req.body.photos } },
+        )
         .then(() => {
             Suppliers.findOne({ _id: id })
                 .then((supplier) => res.status(200).json({ success: true, supplier }));
         })
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
+};
+
+exports.mapProfiles = async (req, res) => {
+    const { email } = req.user;
+    const { _id } = await User.findOne({ email });
+
+    await Suppliers.find({ author: _id })
+        .then((s) => res.status(200).json({ suppliers: s }))
+        .catch((error) => console.log(error));
 };

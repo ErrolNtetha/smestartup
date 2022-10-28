@@ -17,8 +17,7 @@ const [post, setPost] = useState('');
 // const [lineBreak, setLineBreak] = useState('');
 const [images, setImages] = useState<Blob | null>(null);
 const [fileURL, setFileURL] = useState(null);
-// const [videos, setVideos] = useState(null);
-const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState<boolean | null>(null);
 const imageInput = useRef(null);
 
 const formData = {
@@ -32,15 +31,10 @@ const onPostSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 const handleSubmit = async () => {
     setLoading(true);
-    console.log(post);
     await axiosPrivate.post('/feed', formData)
     .then((res) => {
         if (!post) {
             return;
-        }
-
-        if (res.statusText !== 'OK') {
-            setLoading(true);
         }
 
         if (res.statusText === 'OK') {
@@ -98,11 +92,9 @@ useEffect(() => {
               ref={imageInput}
               hidden
               accept='image/*'
-              multiple
-              onChange={(e) => setImages(e.target.files)}
+              onChange={(e) => setImages(e.target.files[0])}
               type='file'
             />
-
             <FiVideo className='feed__video' />
           </section>
           <section className='feed__right'>

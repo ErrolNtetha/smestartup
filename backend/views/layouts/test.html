@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <style>
+        .container {
+            background: #181818;
+            padding: .8em;
+            border-radius: .5em;
+            color: #fff;
+        }
+
+        .header { 
+            width: 100%;
+        }
+
+        .header.a {
+            text-align: center;
+        }
+
+        .logo {
+            width: 20%;
+        }
+
+        h2 {
+            display: grid;
+            place-items: center;
+        } 
+
+        .bodyContent {
+            font-size: .8rem;
+            color: #fff;
+        }
+
+        .bodyContainer {
+            
+        }
+
+        .footer {
+            font-size: .6rem;
+            text-align: center;
+            padding: 1em 0;
+        }
+        
+        .linksContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .divider {
+            opacity: 0.2;
+        }
+        
+        li {
+            list-style: none;
+            text-decoration: underline;
+            margin: .4em;
+            font-size: .6rem;
+        }
+
+        h4 {
+            color: white;
+        }
+
+        .centerButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .footerContainer {
+        }
+    </style>
+</head>
+    <body class='container'>
+        <span class='header' style="width: 100%;">
+            <a href='blendot.com' style="margin: 0px auto;">
+                <img src={{logoPath}} alt='Blendot official logo' class='logo' />
+            </a>
+        </span>
+        <hr class='divider' />
+        <section class='bodyContainer'>
+            <p class='bodyContent'>Hello {{fullNames}} {{lastName}},</p>
+            <p class='bodyContent'> 
+            Thank you for subscribing to our newsletters. The website is still under-development and we will let you know when we are back in business.
+            All the news regarding the progress of our website, official announcements, new features and much more will be emailed to you.
+            <br />
+            <div style="width: 100%;">
+                <div style="margin: 0px auto">
+                    hello, am i centered?
+                </div>
+            <div>
+            <br />
+            </p> 
+        </section>
+        <hr class='divider' />
+        <footer class='footerContainer'> 
+            <p class='footer'>
+                This was emailed to {{email}} because you have subscribed to our mailing lists. 
+            </p>
+            <div style='width: 100%;'>
+                <ul style='margin: auto 0px; listStyle: none; padding: 0px;'>
+                    <li> <a href='blendot.com'> Privacy Policy </a> </li>
+                    <li> <a href='blendot.com'> Terms of Use </a> </li>
+                    <li> <a href='blendot.com'> Unsubscribe </a> </li>
+                </ul>
+            </div>
+            <p class='footer'> Copyright © 2022 Blendot. All Rights Reserved. Logos and "Blendot" are registered trademarks of Blendot (Pty) Ltd. </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+@use '../mixins' as *;
+@use '../base/_color' as *;
+@use '../base/_typography' as *;
+
+.contact {
+    @include flexbox();
+    flex-direction: column;
+
+    @include respond-to('mobile') {
+        &__contactContainer {
+            margin-top: 2em;
+            width: 100%;
+        }
+
+        &__inputField {
+            @include inputField($padding: .8em 1em, $border: unset, $inputRadius: 20px);
+            width: 100%;
+        }
+
+        &__textarea {
+            font-family: $font-family;
+            border-radius: 10px;
+            padding: .4em;
+        }
+
+        &__form > section {
+            margin-bottom: 1em;
+        }
+
+        &__submitButton {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .6em);
+            width: 100%;
+        }
+
+        &__innerContainer {
+            @include flexbox($justify-content: space-between);
+            flex: 0 1 50%;
+            align-items: unset;
+            gap: 1em;
+            padding: .5em;
+        }
+
+        &__leftColumn {
+            width: 100%;
+        }
+
+        &__rightColumn {
+            display: none;
+            height: max-content;
+            width: 100%;
+        }
+    }
+
+    @include respond-to('tablet') {
+
+    }
+
+    @include respond-to('laptop') {
+        &__rightColumn {
+            display: unset;
+        }
+    }
+}

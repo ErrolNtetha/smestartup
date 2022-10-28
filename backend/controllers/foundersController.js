@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 
 exports.getFounders = async (req, res) => {
     await Founder.find()
+        .populate('author')
         .then((response) => {
             if (!response.length) return res.status(200).json({ message: 'No founders available yet.' });
             return res.status(200).json({ founders: response, count: response.length });

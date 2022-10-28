@@ -6,6 +6,7 @@
     @include respond-to('mobile') {
         &__container {
             height: max-content;
+            width: 100%;
         }
 
         &__intro {
@@ -53,6 +54,7 @@
         }
 
         &__wrapper {
+            @include flexbox();
             padding: .2em .6em;
             background: $foregroundColor;
         }
@@ -70,6 +72,16 @@
             padding-top: 4em;
         }
 
+        &__aboutIntro {
+            width: 100%;
+        }
+
+        &__imagePreview {
+            height: 100%;
+            background: red;
+            background-image: url('../../assets/bg/samsung.jpg');
+        }
+
         &__left h2 {
             font-size: 3rem;
             margin: 0;
@@ -84,9 +96,10 @@
         }
 
         &__left {
+            @include flexbox($justify-content: space-between);
+            gap: 2em;
             align-items: unset;
-            width: 40%;
-            padding: unset;
+            width: 100%;
         }
 
         &__screenshot {
@@ -100,6 +113,7 @@
             gap: 2em;
             margin-bottom: 4em;
             padding: .8em 0;
+            width: 100%;
         }
 
         &__mission::after {
