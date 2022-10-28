@@ -15,7 +15,7 @@ export const Logo = () => {
 
     React.useEffect(() => {
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 500) {
+            if (window.innerWidth > 768) {
                 dispatch(toggleNavOn());
             } else dispatch(toggleNavOff());
         });
