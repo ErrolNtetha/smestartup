@@ -29,18 +29,18 @@ export const Login = () => {
         },
 
         onSubmit(values) {
-            setLoading(true);
             const { email, password } = values;
             if (!email || !password) {
                 return;
             }
+            setLoading(true);
             axiosPublic.post('/login', values)
                 .then((res) => {
                     const {
                         accessToken,
                         refreshToken,
-                        message,
                         isLoggedIn,
+                        message,
                         user
                     } = res.data;
 

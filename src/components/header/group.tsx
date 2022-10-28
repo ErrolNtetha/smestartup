@@ -23,7 +23,7 @@ export const Group = () => {
     const { userProfile } = useStore();
 
     useEffect(() => {
-        axiosPrivate.get('http://localhost:5000/contact')
+        axiosPrivate.get('/contact')
             .then((res) => {
                 setUsers(res.data.users);
                 fetchAllUsers();
