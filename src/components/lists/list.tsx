@@ -39,7 +39,7 @@ import { useStore } from 'hoc/useStore';
     export const List:FC<Props> = ({
      name, post, id, authorID, date, image, isVerified, occupation, avatar, stars
     }) => {
-      const [modal, setModal] = React.useState(false);
+        const [modal, setModal] = React.useState(false);
         const [loading, setLoading] = React.useState<boolean | null>(null);
         const { userProfile } = useStore();
         const { userData } = userProfile;
@@ -114,7 +114,7 @@ import { useStore } from 'hoc/useStore';
     :
     (
         <section>
-          <img src={image} alt='jfds' className='feed__postImage' />
+          <img src={image} alt='' className='feed__postImage' />
         </section>
     )}
       <hr style={{ opacity: '0.1' }} />
