@@ -13,21 +13,19 @@ exports.userPosts = async (req, res) => {
 
     let postPicture;
     await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
-    .then(async (response) => {
-        postPicture = response.secure_url;
+        .then((response) => postPicture = response.secure_url)
+        .catch((error) => res.status(500).json({ error: error.message }));
 
-        const userPost = new Post({
+    const userPost = new Post({
             author: _id,
             post,
             postImage: postPicture,
         });
 
-        // save post on the database
-        await userPost.save()
-            .then(() => res.status(200).json({ success: true, message: 'Successfully posted' }))
-            .catch((err) => res.status(500).json({ success: false, message: err.message }));
-        })
-    .catch((error) => res.status(500).json({ error: error.message }));
+    // save post on the database
+    await userPost.save()
+        .then(() => res.status(200).json({ success: true, message: 'Successfully posted' }))
+        .catch((err) => res.status(500).json({ success: false, message: err.message }));
 };
 
 exports.incrimementLikes = async (req, res) => {

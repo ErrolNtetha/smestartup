@@ -38,6 +38,7 @@ const handleSubmit = async () => {
     .catch((error) => {
         setLoading(false);
         if (error) {
+            console.log(error);
             // setErrorMessage('Something went wrong. Please try again later.');
         }
     });
