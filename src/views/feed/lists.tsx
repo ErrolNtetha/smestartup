@@ -12,6 +12,7 @@ export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
     const response = useFetchData('/feed');
     const { posts } = response.data;
+    console.log(posts);
 
  return (
     <div className='feed__feedWrapper'>
@@ -19,11 +20,11 @@ export const Lists = () => {
         { response.loading
                 ? <SkeletonPosts cards={10} />
                 : posts?.map(({
-                    post, encodedImage, author, _id, createdAt, stars
+                    post, postImage, author, _id, createdAt, stars
                 }) => (
               <List
                 post={post}
-                image={encodedImage}
+                image={postImage}
                 isVerified={author?.isVerified}
                 name={author?.name}
                 key={_id}
