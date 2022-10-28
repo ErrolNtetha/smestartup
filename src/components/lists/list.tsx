@@ -15,6 +15,7 @@ import { formatDistance } from 'date-fns';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { useStore } from 'hoc/useStore';
+import { Collapsable } from 'components/collapsable';
 // import { Link } from 'react-router-dom';
 // import { findLinks } from 'helpers/findLinks';
 // import { io } from 'socket.io-client';
@@ -109,7 +110,7 @@ import { useStore } from 'hoc/useStore';
             )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
-            <p className='feed__listContent'> {post} </p>
+        <p className='feed__listContent'> <Collapsable end={300}>{post}</Collapsable> </p>
     {!image ? null
     :
     (
