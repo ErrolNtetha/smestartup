@@ -21,7 +21,7 @@ export const Logo = () => {
         });
 
         return () => {
-            window.removeEventListener('resize', () => null);
+            window.removeEventListener('resize', () => () => window.innerWidth);
         };
     }, [window.innerWidth]);
 
