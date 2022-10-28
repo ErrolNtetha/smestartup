@@ -12,7 +12,6 @@ export const Lists = () => {
   const toggleState = useSelector((state: RootState) => state.isToggleOn);
     const response = useFetchData('/feed');
     const { posts } = response.data;
-    console.log(posts);
 
  return (
     <div className='feed__feedWrapper'>
