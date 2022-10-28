@@ -12,9 +12,11 @@ exports.userPosts = async (req, res) => {
     const { post, fileURL } = req.body;
 
     let postPicture;
-    await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
-        .then((response) => postPicture = response.secure_url)
-        .catch((error) => res.status(500).json({ error: error.message }));
+    if (fileURL) {
+        await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
+            .then((response) => postPicture = response.secure_url)
+            .catch((error) => res.status(500).json({ error: error.message }));
+    }
 
     const userPost = new Post({
             author: _id,
