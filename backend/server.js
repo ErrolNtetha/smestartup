@@ -57,7 +57,7 @@ app.get('/', (req, res, next) => {
 let database;
 
 if (app.get('env') === 'development') database = process.env.URL_DEVELOPMENT;
-    else database = process.env.URL_PRODUCTION;
+else database = process.env.URL_PRODUCTION;
 
 mongoose.connect(database, {
     useNewUrlParser: true,
