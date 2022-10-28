@@ -30,6 +30,7 @@ const onPostSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 
 const handleSubmit = async () => {
+    setLoading(true);
     await axiosPrivate.post('/feed', formData)
     .then((res) => {
         if (!post) {
