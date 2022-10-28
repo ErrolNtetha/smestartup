@@ -54,9 +54,12 @@ app.get('/', (req, res, next) => {
 });
 
 // Connecting to the database;
-const url = process.env.URL;
+let database;
 
-mongoose.connect(url, {
+if (app.get('env') === 'development') database = process.env.URL_DEVELOPMENT;
+    else database = process.env.URL_PRODUCTION;
+
+mongoose.connect(database, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
