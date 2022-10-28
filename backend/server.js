@@ -77,5 +77,5 @@ server.listen(port, (err) => {
     if (err) {
         console.log('An error has occured, ', err);
     }
-    return console.log(`Server is running on PORT:${port}`);
+    return console.log(`The ${app.get('env')} server is running on PORT:${port}`);
 });

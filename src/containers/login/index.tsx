@@ -29,18 +29,17 @@ export const Login = () => {
         },
 
         onSubmit(values) {
-            setLoading(true);
             const { email, password } = values;
             if (!email || !password) {
                 return;
             }
+            setLoading(true);
             axiosPublic.post('/login', values)
                 .then((res) => {
                     const {
                         accessToken,
                         refreshToken,
                         message,
-                        isLoggedIn,
                         user
                     } = res.data;
 
@@ -49,7 +48,7 @@ export const Login = () => {
                     setLoading(false);
                     setResponse(message);
 
-                    if (isLoggedIn) {
+                    if (res.status === 200) {
                         dispatch(logged());
                         dispatch(fetchProfile(user));
                         history.push('/feed');
