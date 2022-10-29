@@ -2,10 +2,12 @@ FROM node:17-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package.json .
 
 RUN yarn
 
+COPY . .
+
 EXPOSE 5000
 
-CMD ["node", "server.js"]
+CMD ["yarn", "run", "devStart"]
