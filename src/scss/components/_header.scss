@@ -77,8 +77,7 @@
         }
 
         &__profileImage {
-            width: 50px;
-            border-radius: 100%;
+            @include avatar($width: 50px);
             border: 1px solid rgb(82, 82, 82);
         }
 
@@ -133,9 +132,13 @@
             }
         }
 
+        &__logoutContainer {
+            padding: .6em .4em;
+        }
+
         &__logout {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em);
-            width: 90%;
+            width: 100%;
         }
 
         &__BtnGroup {

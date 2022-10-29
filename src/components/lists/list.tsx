@@ -15,6 +15,7 @@ import { formatDistance } from 'date-fns';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { useStore } from 'hoc/useStore';
+import { Collapsable } from 'components/collapsable';
 // import { Link } from 'react-router-dom';
 // import { findLinks } from 'helpers/findLinks';
 // import { io } from 'socket.io-client';
@@ -39,7 +40,7 @@ import { useStore } from 'hoc/useStore';
     export const List:FC<Props> = ({
      name, post, id, authorID, date, image, isVerified, occupation, avatar, stars
     }) => {
-      const [modal, setModal] = React.useState(false);
+        const [modal, setModal] = React.useState(false);
         const [loading, setLoading] = React.useState<boolean | null>(null);
         const { userProfile } = useStore();
         const { userData } = userProfile;
@@ -109,12 +110,12 @@ import { useStore } from 'hoc/useStore';
             )}
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
-            <p className='feed__listContent'> {post} </p>
+        <p className='feed__listContent'> <Collapsable end={300}>{post}</Collapsable> </p>
     {!image ? null
     :
     (
         <section>
-          <img src={image} alt='jfds' className='feed__postImage' />
+          <img src={image} alt='' className='feed__postImage' />
         </section>
     )}
       <hr style={{ opacity: '0.1' }} />

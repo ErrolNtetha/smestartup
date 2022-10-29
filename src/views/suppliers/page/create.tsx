@@ -14,6 +14,8 @@ export const Create = () => {
                 <section className='supplier__supplierListContainer'>
                     {loading
                         ? <div> Loading... </div>
+                        : errorMessage
+                        ? 'There was an error.'
                         : data?.suppliers?.map((item: any) => {
                             if (item.length === 0) {
                                 return (
