@@ -117,6 +117,15 @@
             height: 6vh;
         }
 
+        &__selected {
+            @include select($backgroundColor: $primaryColor, $selectedColor: white);
+        }
+
+        &__options {
+            top: 3em;
+            background: white;
+        }
+
         &__searchFilter > * {
             display: unset;
         }
@@ -324,12 +333,12 @@
         &__skeletonContainer {
             @include flexbox();
             flex-direction: column;
-            width: 60%;
+            width: 100%;
         }
 
         &__skeletonCard {
             @include flexbox();
-            width: 60%;
+            width: 100%;
             align-items: unset;
             flex-direction: column;
             gap: .6em;
@@ -622,7 +631,6 @@
 
         &__selectContainer {
             @include select();
-            z-index: 1;
         }
     }
 
@@ -638,6 +646,8 @@
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+        
         &__container {
             @include flexbox();
             margin: .6em;
@@ -652,6 +662,7 @@
             flex-direction: column;
             width: 25%;
             margin-bottom: .8em;
+            height: max-content;
         }
 
         &__filterContainer {
@@ -668,6 +679,7 @@
             border-radius: $radius;
             height: max-content;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .4em;
         }
 
         &__filterModal > &__filterContainer {
@@ -802,6 +814,10 @@
             margin: 0;
             padding: 0;
             display: inline;
+        }
+
+        &__skeletonContainer {
+            width: 50%;
         }
     } 
 }

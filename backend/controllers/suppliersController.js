@@ -1,5 +1,6 @@
 const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
+const SaveList = require('../models/saveList.model');
 const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
 
@@ -124,6 +125,22 @@ exports.deleteSupplier = async (req, res) => {
 
     await Suppliers.findByIdAndRemove({ _id: id })
         .then(() => res.status(200).json({ success: true, message: 'Supplier successfully deleted.' }))
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
+};
+
+exports.saveSupplier = async (req, res) => {
+    const { email } = req.user;
+    const { id } = req.body;
+
+    const { _id } = await User.findOne({ email });
+
+    const supplierProfile = new SaveList({
+        author: _id,
+        supplier: id
+    });
+
+    await supplierProfile.save()
+        .then(() => res.status(200).json({ success: true, message: 'Supplier profile saved.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 

@@ -136,13 +136,19 @@ return (
                 <label>
                     Occupation:
                     <br />
-                    <Field as='select' title={!props.values.occupation ? '- Choose title -' : props.values.occupation} name='occupation' className='register__selectOccupation' component={Select}>
-                        <section className='register__options'>
+                    <Field
+                      as='select'
+                      title={!props.values.occupation ? '- Choose title -' : props.values.occupation}
+                      name='occupation'
+                      className='register__selectOccupation'
+                      component={Select}
+                    >
+                        <section className='register__selectOccupation__options'>
                             {title.map((item: string) => {
                                 return (
                                     <section key={item}>
-                                        <hr className='select__options__optionsDivider' />
-                                        <p className='register__options__option' onClick={() => props.setFieldValue('occupation', item)}> {item} </p>
+                                        <hr className='register__selectOccupation__options__optionsDivider' />
+                                        <p className='register__selectOccupation__options__option' onClick={() => props.setFieldValue('occupation', item)}> {item} </p>
                                     </section>
                                 );
                             })}
@@ -185,15 +191,13 @@ return (
                 <label>
                     Gender:
                     <br />
-                    <span className='register__selectContainer'>
                     <Field as='select' name='gender' title={!props.values.gender ? 'Choose gender' : props.values.gender} className='register__selectOccupation' component={Select}>
-                        <section className='register__genderOptions'>
-                            <p className='register__options__option' onClick={() => props.setFieldValue('gender', 'Male')}> Male </p>
-                            <hr className='select__options__optionsDivider' />
-                            <p className='register__options__option' onClick={() => props.setFieldValue('gender', 'Female')}> Female </p>
+                        <section className='register__selectOccupation__options'>
+                            <p className='register__selectOccupation__options__option' onClick={() => props.setFieldValue('gender', 'Male')}> Male </p>
+                            <hr className='register__selectOccupation__options__optionsDivider' />
+                            <p className='register__selectOccupation__options__option' onClick={() => props.setFieldValue('gender', 'Female')}> Female </p>
                         </section>
                     </Field>
-                    </span>
                 </label>
                 <br />
 

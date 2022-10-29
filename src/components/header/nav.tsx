@@ -45,10 +45,18 @@ export const Nav = () => {
                             ))}
                     </ul>
                     <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} className='header__divider' />
-                    <Link to='/suppliers' className='header__item'> <FiSearch /> Suppliers </Link>
-                    <Link to='/founders' className='header__item'> <FiBriefcase /> Founders </Link>
+                    {loggedIn && (
+                        <span>
+                            <Link to='/suppliers' className='header__item'> <FiSearch /> Find Suppliers </Link>
+                            <Link to='/founders' className='header__item'> <FiBriefcase /> Find Founders </Link>
+                        </span>
+                    )}
                 </nav>
-                    { loggedIn && <Button className='header__logout' onClick={handleLogout}> Logout </Button>}
+                { loggedIn && (
+                    <span className='header__logoutContainer'>
+                        <Button className='header__logout' onClick={handleLogout}> Logout </Button>
+                    </span>
+                )}
             </nav>
     );
 };

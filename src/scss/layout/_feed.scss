@@ -163,7 +163,7 @@
             width: 100%;
             margin-top: 1.2em;
             border-radius: 6px;
-            height: 400px;
+            max-height: 300px;
         }
 
         &__addImage { 
@@ -365,6 +365,10 @@
 
         &__goBack {
             @include buttonHover($bgColor: $secondaryColor, $padding: .8rem 1.2rem, $margin: .5rem 0);
+        }
+
+        &__mainContent {
+            width: 100%;
         }
     }
 
