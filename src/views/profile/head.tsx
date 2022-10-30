@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Intro } from 'components/profile/intro';
 import { Body } from 'components/profile/body';
-// import { NODE_ENV } from 'config/baseURL';
-import axios from 'axios';
+import { axiosPrivate } from 'config/axiosInstance';
 
 export const Head = () => {
   const [userAvatar, setAvatar] = useState('');
@@ -12,12 +11,7 @@ export const Head = () => {
 
   useEffect(() => {
     async function fetchUser() {
-        await axios.get('http://localhost:5000/profile', {
-        headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': localStorage.getItem('accessToken')
-        }
-      })
+        await axiosPrivate.get('/profile')
         .then((res) => {
             const {
                 name,
