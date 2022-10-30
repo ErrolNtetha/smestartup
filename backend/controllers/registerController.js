@@ -3,27 +3,27 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 
-const register_user = async (req, res) => {
+const registerUser = async (req, res) => {
    try {
     // store the data coming from the fontend to constants
-    const { firstName, lastName, email, password, occupation, gender, avatar } = req.body;
-    console.log('Body object: ', req.body);
-	console.log('Password: ', password);
-    // Check if email has already been taken or not
-    // then hash the password and save it
+    const {
+        firstName,
+        lastName,
+        email,
+        password,
+        occupation,
+        gender,
+        avatar
+    } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await UserInfo.findOne({ email })
-        .then(e => {
-            if(e) {
-            	res.json({ success: false, message: 'Email already exist.' });
-            	console.log('The email already exist.', e.createdAt);
-            } 
-  
+        .then((e) => {
+            if (e) res.status(200).json({ success: false, message: 'Email already exist.' });
+
             // if no email exist, add user
             else {
-                // hash the password before saving
                 const userData = new UserInfo({
                     name: {
                         firstName,
@@ -48,8 +48,8 @@ const register_user = async (req, res) => {
 
                 transporter.use('compile', hbs({
                     viewEngine: {
-                        partialsDir: "../views/partials",
-                        layoutsDir: "../views/layouts",
+                        partialsDir: '../views/partials',
+                        layoutsDir: '../views/layouts',
                     },
                     viewPath: 'views'
                 }));
@@ -60,7 +60,7 @@ const register_user = async (req, res) => {
                     subject: 'Welcome to Blendot.',
                     text: `Welcome, ${firstName} ${lastName}!`,
                     template: 'index'
-                }
+                };
 
                 // send an email
                 transporter.sendMail(mailOptions, (err, info) => {
@@ -76,10 +76,9 @@ const register_user = async (req, res) => {
                 .catch((error) => console.error(error));
             }
         });
-
    } catch (e) {
        console.log('An error occurred when registration: ', e.message);
    }
-}
+};
 
-module.exports = register_user;
+module.exports = registerUser;
