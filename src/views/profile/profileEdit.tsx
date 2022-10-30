@@ -32,7 +32,9 @@ export const ProfileEdit = () => {
         avatar,
         occupation,
         _id,
-        bio
+        bio,
+        location,
+        company
     } = userData;
 
     const traceChars = (chars: number) => chars;
@@ -58,8 +60,8 @@ return (
                 occupation,
                 firstName: name?.firstName,
                 lastName: name?.lastName,
-                location: '',
-                company: '',
+                location,
+                company,
                 avatar,
                 bio
             }}
