@@ -71,14 +71,13 @@ const registerUser = async (req, res) => {
                 // save to the database
                 userData.save()
                 .then((user) => {
-                    res.json({ success: true, user });
+                    res.status(201).json({ success: true, user });
                 })
                 .catch((error) => console.error(error));
             }
         });
    } catch (e) {
-       console.log('An error occurred when registration: ', e.message);
+        res.status(500).json({ message: 'An error occurred when registration: ' });
    }
 };
-
 module.exports = registerUser;

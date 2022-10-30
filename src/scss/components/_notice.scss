@@ -1,0 +1,13 @@
+@use '../mixins' as *;
+
+.notice {
+    @include respond-to('mobile') {
+        margin-top: 1em;
+        border-radius: 10px;
+
+        &__message {
+            padding: 1em;
+            color: #fff;
+        }
+    }
+}
