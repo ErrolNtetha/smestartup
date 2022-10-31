@@ -2,6 +2,13 @@ body {
     margin: 0;
 }
 
+.leaflet-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 5px;
+    z-index: 5;
+}
+
 .container {
     max-width: 81rem;
 }
