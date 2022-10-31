@@ -46,7 +46,7 @@ export const Overview = ({
                         <span> {moqNumber} </span>
                     </li>
                     <li>
-                        <span> BEE Compliance </span>
+                        <span> B-BBEE Level </span>
                         <span> {beeLevel} </span>
                     </li>
                     <li>
