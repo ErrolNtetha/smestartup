@@ -32,7 +32,9 @@ export const ProfileEdit = () => {
         avatar,
         occupation,
         _id,
-        bio
+        bio,
+        location,
+        company
     } = userData;
 
     const traceChars = (chars: number) => chars;
@@ -58,8 +60,8 @@ return (
                 occupation,
                 firstName: name?.firstName,
                 lastName: name?.lastName,
-                location: '',
-                company: '',
+                location,
+                company,
                 avatar,
                 bio
             }}
@@ -171,7 +173,7 @@ return (
                           placeholder='Tell people about yourself and what makes you special...'
                           className='profile__inputBio'
                         />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.bio.length)}/200`} characters </section>
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${!props.values?.bio?.length ? '0' : traceChars(props.values?.bio?.length)}/200`} characters </section>
                         {props.errors.bio && <p style={{ color: 'red', margin: '0' }}>{props.errors.bio}</p>}
                     </section>
 
