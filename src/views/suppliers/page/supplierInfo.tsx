@@ -53,6 +53,7 @@ export const SupplierInfo = ({
     const pathname = window.location.pathname;
     return (
         <section className='supplier__supplierWrapper'>
+            <section className='container'>
             <section className='supplier__coverContainer'>
                 <img src={dots} alt={`${name} avatar`} className='supplier__cover' />
                 <section className='supplier__supplierIntroText'>
@@ -75,6 +76,7 @@ export const SupplierInfo = ({
                     <Link to={`${url}/reviews`} className={pathname === `${url}/reviews` ? 'active' : ''}> Reviews </Link>
                 </span>
             </section>
+            <section className='supplier__innerSupplierContainer'>
             <Switch>
                 <Route exact path={`${path}`}>
                     <Overview
@@ -92,9 +94,10 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-            <div id='map'>
+            <section className='supplier__mapContainer'>
                 <Map />
-            </div>
+            </section>
+            </section>
             {isOwner
                 && (
                 <section className='supplier__editButtonContainer'>
@@ -103,6 +106,7 @@ export const SupplierInfo = ({
                     </span>
                 </section>
             )}
+            </section>
         </section>
     );
 };
