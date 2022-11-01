@@ -13,7 +13,7 @@ const validateLogin = async (req, res) => {
     await User.findOne({ email: userEmail })
         .then((user) => {
             if (!user) {
-                res.status(404).json({
+                res.status(200).json({
                     message: 'Invalid email or password.',
                     isLoggedIn: false,
                 });
@@ -36,7 +36,7 @@ const validateLogin = async (req, res) => {
                                 user
                             });
                         } else {
-                            res.status(404).json({ message: 'Invalid email or password.', isLoggedIn: false });
+                            res.status(200).json({ message: 'Invalid email or password.', isLoggedIn: false });
                         }
                     })
                     .catch((err) => res.status(500).json({ error: err.message }));

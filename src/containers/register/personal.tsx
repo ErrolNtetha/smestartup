@@ -15,10 +15,13 @@ import { axiosPublic } from 'config/axiosInstance';
 import { SyncLoader } from 'react-spinners';
 import { Select } from 'components/select';
 // import { Checkbox } from 'components/checkbox';
+import { Notice } from 'components/notice';
 import { Button } from '../../components/button';
 
 export const Personal = () => {
 const imageInput = useRef(null);
+const [responseMessage, setResponseMessage] = React.useState<string | null>(null);
+const [responseError, setResponseError] = React.useState<boolean | null>(null);
 const history = useHistory();
 
 const title = [...occupations, 'Unemployed', 'Founder & CEO'].sort();
@@ -38,6 +41,10 @@ return (
             location: Yup.string()
                     .min(3, 'Location cannot be less than 3 characters long.')
                     .required('Location is required!'),
+            gender: Yup.string()
+                    .required('Gender is required!'),
+            occupation: Yup.string()
+                    .required('Occupation is required!'),
             email: Yup.string()
                         .email('The email is invalid.')
                         .required('Email is required!'),
@@ -57,16 +64,16 @@ return (
             avatar: '',
         }}
       onSubmit={async (values) => {
-          console.log(values);
           await axiosPublic.post('/register', values)
               .then((response) => {
-                    console.log(response);
+                    setResponseMessage(response.data.message);
+                    setResponseError(response.data.success);
                   if (response.status === 201) {
                         history.push('/login');
                   }
                 })
               .catch(({ response }) => {
-                console.error(response);
+                    setResponseError(response.data.success);
               });
       }}
     >
@@ -155,6 +162,7 @@ return (
                         </section>
                     </Field>
                 </label>
+                {props.touched.occupation && <p className='register__errorMessage'> {props.errors.occupation} </p>}
                 {props.values.occupation === ''
                     ? null
                     : props.values.occupation === 'Student'
@@ -198,6 +206,7 @@ return (
                             <p className='register__selectOccupation__options__option' onClick={() => props.setFieldValue('gender', 'Female')}> Female </p>
                         </section>
                     </Field>
+                {props.touched.gender && <p className='register__errorMessage'> {props.errors.gender} </p>}
                 </label>
                 <br />
 
@@ -228,6 +237,7 @@ return (
                 </label>
                 </section>
                 <Button type='submit' className='register__button--register'> { props.isSubmitting ? <SyncLoader color='white' size={8} /> : 'Create Account' } </Button>
+                {responseError === false && <Notice error={responseError} message={responseMessage} /> }
         </Form>
       )}
     </Formik>
