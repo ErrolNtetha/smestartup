@@ -63,7 +63,7 @@ exports.getUserPost = async (req, res) => {
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(200).json({ message: 'No posts found yet. Be the first to post!' });
-            res.status(200).json({ posts });
+            res.status(200).json({ success: true, posts });
         })
         .catch((error) => res.status(500).json({ message: 'Error getting the posts for now.', error }));
 };
