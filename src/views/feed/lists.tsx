@@ -27,7 +27,7 @@ export const Lists = () => {
                         <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
                     </section>
                 )
-                : data?.map(({
+                : data?.posts?.map(({
                     post, postImage, author, _id, createdAt, stars
                 }) => (
               <List
