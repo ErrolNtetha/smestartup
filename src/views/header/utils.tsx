@@ -3,9 +3,11 @@ import {
     FiHome,
     FiPhone,
     FiHelpCircle,
+    FiBriefcase,
     //  FiBell,
     //  FiBox,
-    FiInfo
+    FiInfo,
+    FiSearch
 } from 'react-icons/fi';
 
 export const nav = [
@@ -17,14 +19,23 @@ export const nav = [
 		className: 'header__item',
         icon: <FiHome className='header__icon' />
 	},
-    //	{
-    //	name: 'Blogs',
-    //	id: 'blogs-link',
-    //	url: '/blogs',
-    //	isPrivate: false,
-    //	className: 'header__item',
-    //   icon: <FiBox className='header__icon' />
-    //	},
+    {
+        name: 'Suppliers',
+        id: 'suppliers-link',
+        url: '/suppliers',
+        isPrivate: true,
+        className: 'header__item',
+        icon: <FiSearch className='header__icon' />
+    },
+    {
+        name: 'Founders',
+        id: 'founder-link',
+        url: '/founders',
+        isPrivate: true,
+        className: 'header__item',
+        icon: <FiBriefcase className='header__icon' />
+    },
+
 	{
 		name: 'About',
 		id: 'about-link',
