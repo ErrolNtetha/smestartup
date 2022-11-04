@@ -30,3 +30,18 @@ baseURL: NODE_ENV(),
         'x-refresh-token': localStorage.getItem('refreshToken')
     }
 });
+
+axiosPrivate.interceptors.response.use(() => {
+}, async (error) => {
+    if (error.response.status === 401) {
+        await axiosRefresh.get('/refresh')
+            .then((response) => {
+                const newAccessToken = response.data.accessToken;
+
+                localStorage.setItem('accessToken', newAccessToken);
+                error.response.config.headers['x-access-token'] = newAccessToken;
+                axiosPrivate.request(error.response.config);
+            })
+            .catch((err) => console.log(err));
+    }
+});
