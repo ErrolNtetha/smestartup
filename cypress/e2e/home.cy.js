@@ -3,14 +3,14 @@ describe('Login', () => {
         cy.visit('/');
     });
 
-    it('it renders the login button with "Login"', () => {
-        cy.visit('/login');
+    it('checks the localstorage if empty', () => {
+        cy.clearLocalStorage().should((ls) => {
+          expect(ls.getItem('accessToken')).to.be.null
+          expect(ls.getItem('refreshToken')).to.be.null
+        });
+    });
 
-        cy.get('[type=email]').type('mphumier@gmail.com');
-        cy.get('[type=password]').type('12345');
-        cy.get('[type=Submit]').click();
-
-        cy.contains('a', 'Suppliers');
-        cy.url().should('match', /feed$/);
+    it('checks if Get started button appers', () => {
+        cy.get('.hero__left--action').should('have.text', ' get started ');
     });
 });
