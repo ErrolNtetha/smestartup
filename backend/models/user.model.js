@@ -23,6 +23,7 @@ const userData = new mongoose.Schema({
     occupation: String,
     company: String,
     school: String,
+    location: String,
     employmentStatus: String,
     type: { type: String, default: 'personal' },
 }, { timestamps: true });

@@ -6,7 +6,7 @@ exports.getUserProfile = async (req, res) => {
 
     await User.findOne({ email })
         .then((result) => {
-            res.json(result);
+            res.status(200).json(result);
         })
         .catch((error) => res.status(500).json({ error: error.message }));
 };
@@ -18,7 +18,10 @@ exports.updateProfile = async (req, res) => {
         lastName,
         avatar,
         occupation,
-        bio
+        bio,
+        location,
+        company,
+        school
     } = req.body;
 
     let avatarId;
@@ -35,7 +38,10 @@ exports.updateProfile = async (req, res) => {
             },
         avatar: avatarId,
         occupation,
-        bio
+        bio,
+        location,
+        company,
+        school
     })
     .then(async () => {
         const updatedProfile = await User.findOne({ _id: id });

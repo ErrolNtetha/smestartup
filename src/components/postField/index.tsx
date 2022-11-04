@@ -8,70 +8,78 @@ import { axiosPrivate } from 'config/axiosInstance';
 import toggleFieldOff from 'store/actions/toggleField_OFF';
 import { Button } from 'components/button';
 import { SyncLoader } from 'react-spinners';
-// import { io } from 'socket.io-client';
-// import { NODE_ENV } from 'config/baseURL';
+import { Toast } from 'components/toast';
 
 export const PostField = () => {
-const dispatch = useDispatch();
 const [post, setPost] = useState('');
-// const [lineBreak, setLineBreak] = useState('');
 const [images, setImages] = useState<Blob | null>(null);
 const [fileURL, setFileURL] = useState(null);
-// const [videos, setVideos] = useState(null);
-const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState<boolean | null>(null);
+const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+const [isPosted, setIsPosted] = useState<boolean | null>(null);
+// const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 const imageInput = useRef(null);
+const dispatch = useDispatch();
 
-const formData = {
-    post,
-    fileURL,
-};
+const formData = { post, fileURL };
 
-const onPostSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPost(e.target.value);
-};
+const onPostSubmit = (e: React.ChangeEvent<HTMLInputElement>) => setPost(e.target.value);
 
 const handleSubmit = async () => {
+    if (!post) {
+        return;
+    }
     setLoading(true);
-    console.log(post);
     await axiosPrivate.post('/feed', formData)
-    .then((res) => {
-        if (!post) {
-            return;
-        }
-
-        if (res.statusText !== 'OK') {
-            setLoading(true);
-        }
-
-        if (res.statusText === 'OK') {
-            dispatch(toggleFieldOff());
+    .then((response) => {
+        setIsSuccess(response.data.success);
+        if (response.data.success) {
+            setIsPosted(true);
             setLoading(false);
+            // dispatch(toggleFieldOff());
+        } else setLoading(false);
+    })
+    .catch((error) => {
+        setLoading(false);
+        setIsPosted(true);
+        setIsSuccess(false);
+        if (error) {
+            console.log(error);
+            // setErrorMessage('Something went wrong. Please try again later.');
         }
-  });
+    });
 };
 
-useEffect(() => {
-    const reader = new FileReader();
+    useEffect(() => {
+        setTimeout(() => {
+            setIsPosted(false);
+        }, 5000);
+    }, [isPosted]);
 
-    if (images) {
-        reader.onload = (e) => {
-        const { result } = e.target;
-            if (result) {
-                setFileURL(result);
+    useEffect(() => {
+        const reader = new FileReader();
+
+        if (images) {
+            reader.onload = (e) => {
+            const { result } = e.target;
+                if (result) {
+                    setFileURL(result);
+                }
+            };
+            reader.readAsDataURL(images);
+        }
+
+        return () => {
+            if (reader && reader.readyState === 1) {
+                reader.abort();
             }
         };
-        reader.readAsDataURL(images);
-    }
-
-    return () => {
-        if (reader && reader.readyState === 1) {
-            reader.abort();
-        }
-    };
-}, [images]);
+    }, [images]);
 
   return (
     <section className='feed__postField'>
+        {isPosted && <Toast message={`${isSuccess ? 'Successfully posted.' : 'Failed to post.'}`} success={isSuccess} />}
         <section>
         <textarea
           name='post'
@@ -92,23 +100,21 @@ useEffect(() => {
                 )}
         </section>
         <section className='feed__btnGroup'>
-          <section className='feed__left'>
-              <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
-            <input
-              ref={imageInput}
-              hidden
-              accept='image/*'
-              multiple
-              onChange={(e) => setImages(e.target.files)}
-              type='file'
-            />
-
-            <FiVideo className='feed__video' />
-          </section>
-          <section className='feed__right'>
-            <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
-            <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? <SyncLoader color='#fff' size={6} /> : 'Post'} </Button>
-          </section>
+            <section className='feed__left'>
+                <FiImage className='feed__image' onClick={() => imageInput.current.click()} />
+                <input
+                  ref={imageInput}
+                  hidden
+                  accept='image/*'
+                  onChange={(e) => setImages(e.target.files[0])}
+                  type='file'
+                />
+                <FiVideo className='feed__video' />
+            </section>
+            <section className='feed__right'>
+                <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
+                <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? <SyncLoader color='#fff' size={6} /> : 'Post'} </Button>
+            </section>
         </section>
         </section>
     </section>

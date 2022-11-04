@@ -4,11 +4,13 @@
 import React from 'react';
 import { useFetchData } from 'hoc/useFetchData';
 import { Button } from 'components/button';
+import { useLocation } from 'react-router-dom';
 import { Supplier } from './supplier';
 import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
-    const { data, errorMessage, loading } = useFetchData('/suppliers');
+    const { search } = useLocation();
+    const { data, errorMessage, loading } = useFetchData(`/suppliers${search || ''}`);
     return (
         <>
             { loading

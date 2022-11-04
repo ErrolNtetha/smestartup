@@ -6,20 +6,22 @@ import {
     Marker,
     Popup,
 } from 'react-leaflet';
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 export const Map = () => {
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={12}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[51.505, -0.09]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
-        </MapContainer>
+        <div id='map'>
+            <MapContainer center={[51.505, -0.09]} zoom={10} scrollWheelZoom={false}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={[30.83664, -30.00438]}>
+                    <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                </Marker>
+            </MapContainer>
+        </div>
     );
 };

@@ -5,7 +5,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app, {
-    origin: ['http://localhost:3000', 'https://blendot.com'],
+    origin: ['https://blendot.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 const io = require('./socket.js').init(server);
@@ -54,9 +54,12 @@ app.get('/', (req, res, next) => {
 });
 
 // Connecting to the database;
-const url = process.env.URL;
+let database;
 
-mongoose.connect(url, {
+if (app.get('env') === 'development') database = process.env.URL_DEVELOPMENT;
+else database = process.env.URL_PRODUCTION;
+
+mongoose.connect(database, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -74,5 +77,5 @@ server.listen(port, (err) => {
     if (err) {
         console.log('An error has occured, ', err);
     }
-    return console.log(`Sever is running on PORT:${port}`);
+    return console.log(`The ${app.get('env')} server is running on PORT:${port}`);
 });

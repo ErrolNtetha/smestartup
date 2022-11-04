@@ -56,13 +56,13 @@ export const RegisterSupplier = () => {
                     fax: '',
                 },
                   description: '',
-                  addresses: '',
+                  address: '',
                   beeLevel: '',
                   sector: '',
                   moq: '',
                   moqNumber: '',
                   quotation: '',
-                  companyType: ''
+                  companyType: '',
             }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
@@ -139,10 +139,29 @@ export const RegisterSupplier = () => {
                         />
                     </section>
                     <section>
-                        <label htmlFor='location'> Address </label>
+                        <label htmlFor='location'> Street Address </label>
                         <Field
                           name='address'
-                          placeholder='Full Company Address'
+                          placeholder='32446 Mitchel St. Durban'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='location'> Province </label>
+                        <Field
+                          name='address'
+                          placeholder='Enter province'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='location'> Postal Code </label>
+                        <Field
+                          type='number'
+                          name='address'
+                          placeholder='Enter postal code. Ex: 4000'
                           className='profile__input'
                         />
                     </section>

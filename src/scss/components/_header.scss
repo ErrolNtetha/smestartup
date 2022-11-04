@@ -99,6 +99,16 @@
             margin: 0;
         }
 
+        &__signinLink {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        &__signin {
+            @include flexbox();
+            gap: .8rem;
+        }
+
         &__close {
             font-size: 1.6rem;
             z-index: 20;
@@ -254,7 +264,7 @@
         }
 
         &__item:hover {
-            border-bottom: 2px solid #fff;
+            border-bottom: 1px solid #fff;
         }
     }
 
@@ -264,7 +274,7 @@
         }
 
         &__content {
-            padding: 0.4em 0;
+            padding: 0;
             position: relative;
         }
 
@@ -287,6 +297,7 @@
             width: max-content;
             padding-botton: 1em;
             margin-botton: 3em;
+            font-size: .3rem;
         }
 
         &__seachIcon {
@@ -397,6 +408,7 @@
         &__nav {
             display: contents;
             color: #fff;
+            height: 100%;
 
             ul {
                 margin: 0;
@@ -406,24 +418,24 @@
             li {
                 padding: 0;
                 width: 6em;
+                height: 100%;
             }
         }
 
         &__item {
             margin: 0 1em;
-            font-size: 1rem;
+            font-size: .9rem;
         }
 
         &__list {
-            width: 90%;
+            margin: 0;
+            padding: 0;
         }
 
         &__userIcon,
         &__profileContainer,
         &__close,
         &__item[href='/contact'],
-        &__item[href='/founders'],
-        &__item[href='/suppliers'],
         &__item[href='/faq'] {
             display: none;
         }

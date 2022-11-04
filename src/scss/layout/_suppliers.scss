@@ -337,13 +337,11 @@
         }
 
         &__skeletonCard {
-            @include flexbox();
             width: 100%;
             align-items: unset;
             flex-direction: column;
             gap: .6em;
             flex: 1;
-            margin: .4em .6em;
             border: 1px solid rgba(255, 255, 255, 0.02);
             border-radius: 5px;
             padding: .4em;
@@ -492,7 +490,7 @@
         }
 
         &__infoContainer {
-            padding: .5em .6em;
+            padding: .5em 0;
         }
 
         &__listContainer h4 {
@@ -580,6 +578,7 @@
         }
 
         &__supplierWrapper {
+            @include flexbox();
             position: relative;
         }
 
@@ -589,6 +588,18 @@
             width: 100%;
             bottom: 0;
             background: $foregroundColor;
+            z-index: 10;
+        }
+
+        &__innerSupplierContainer {
+            padding: 0 .5em;
+            z-index: 2;
+            margin-bottom: 5vh;
+        }
+
+        &__mapContainer {
+            padding: .4em 0;
+            z-index: 5;
         }
 
         &__edit a {
@@ -606,6 +617,7 @@
             background: $primaryColor;
             padding: .4em 0;
             border-radius: 20px;
+            z-index: 10;
 
             &:hover {
                 cursor: pointer;
@@ -614,7 +626,7 @@
 
         &__lists {
             @include flexbox();
-            padding: 0 .6em;
+            padding: 0 0;
             display: block;
         }
 
@@ -646,6 +658,8 @@
     }
 
     @include respond-to('laptop') {
+        @include flexbox();
+        
         &__container {
             @include flexbox();
             margin: .6em;
@@ -660,6 +674,7 @@
             flex-direction: column;
             width: 25%;
             margin-bottom: .8em;
+            height: max-content;
         }
 
         &__filterContainer {
@@ -676,6 +691,7 @@
             border-radius: $radius;
             height: max-content;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .4em;
         }
 
         &__filterModal > &__filterContainer {
@@ -776,6 +792,11 @@
             width: 50%;
         }
 
+        &__innerSupplierContainer {
+            z-index: 2;
+            margin-bottom: unset;
+        }
+
         &__map {
             width: 100%;
             height: 100vh;
@@ -810,6 +831,10 @@
             margin: 0;
             padding: 0;
             display: inline;
+        }
+
+        &__skeletonContainer {
+            width: 50%;
         }
     } 
 }

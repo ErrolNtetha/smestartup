@@ -1,0 +1,40 @@
+@use '../mixins' as *;
+
+.toast {
+    @include flexbox();
+    position: fixed;
+    top: 8vh;
+    left: 0;
+    background: none;
+    color: black;
+    padding: .6em;
+    width: 100%;
+
+    &__inner {
+        @include flexbox();
+        gap: .5em;
+        border-radius: 20px;
+        padding: .6em .8em;
+        background: #fff;
+        max-width: 80%;
+        font-size: .8rem;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    &__inner > span {
+        @include flexbox();
+        gap: .5em;
+    }
+
+    &__success {
+        color: white;
+        fill: green;
+        font-size: 1.2rem;
+    }
+    
+    &__error {
+        color: white;
+        fill: red;
+        font-size: 1.2rem;
+    }
+}
