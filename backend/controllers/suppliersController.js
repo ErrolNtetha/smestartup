@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
 const SaveList = require('../models/saveList.model');
@@ -5,18 +7,46 @@ const User = require('../models/user.model');
 // const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
-    // const { email } = req.user;
-    await Suppliers.find({ approved: true })
-        .then((suppliers) => {
-            if (!suppliers) {
-                res.status(404).json({ message: 'No suppliers yet. Check back later.' });
-                return;
-            }
-            res.status(200).json({ suppliers });
+    const { supplierType } = req.query;
+
+    if (supplierType) {
+        // This is the first time using queries, i am not sure about the logic below
+        // but i will get it working soon
+        const filterType = supplierType === 'Manufacturers'
+            ? 'Manufacturer'
+            : supplierType === 'Distributors & Wholesalers'
+            ? 'Distributor/Wholesaler'
+            : supplierType === 'All'
+            ? ''
+            : '';
+
+        await Suppliers.find({
+            type: filterType || '',
+            approved: true
         })
-        .catch((error) => {
-            res.status(500).json({ success: false, error });
-        });
+            .then((suppliers) => {
+                if (!suppliers.length) {
+                    res.status(200).json({ message: `No suppliers under '${req.query.class.toLowerCase()}' found yet.` });
+                    return;
+                }
+                res.status(200).json({ count: suppliers.length, suppliers });
+            })
+            .catch((error) => {
+                res.status(500).json({ success: false, error });
+            });
+    } else {
+        await Suppliers.find({ approved: true })
+            .then((suppliers) => {
+                if (!suppliers) {
+                    res.status(404).json({ message: 'No suppliers yet. Check back later.' });
+                    return;
+                }
+                res.status(200).json({ suppliers });
+            })
+            .catch((error) => {
+                res.status(500).json({ success: false, error });
+            });
+    }
 };
 
 exports.getSupplier = async (req, res) => {
