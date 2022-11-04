@@ -6,7 +6,7 @@ function verifyRefreshToken(req, res, next) {
     if (token) {
         jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
             if (err) {
-                return res.status(403).json({
+                res.status(401).json({
                     isLoggedIn: false,
                     message: 'Aunthetication failed',
                 });
@@ -18,10 +18,8 @@ function verifyRefreshToken(req, res, next) {
             req.user.email = decoded.email;
             next();
         });
-    }
-    else {
-        res.status(401).json({ message: 'Invalid token.', isLoggedIn: false });
-        console.log('invalid token');
+    } else {
+        res.status(403).json({ message: 'Forbidden request.', isLoggedIn: false });
     }
 }
 
