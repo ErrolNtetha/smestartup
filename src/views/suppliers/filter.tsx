@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { Select } from 'components/select';
 import { Button } from 'components/button';
 // import { Checkbox } from 'components/checkbox';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // import { axiosPrivate } from 'config/axiosInstance';
 import { categories } from './categories';
 
@@ -16,10 +16,13 @@ export const Filter = () => {
     const [selected, setSelected] = useState('');
     const [city, setCity] = useState('');
     const [zip, setZip] = useState('');
-
-    const { search } = useLocation();
     const history = useHistory();
-    console.log(history, search);
+
+    const handleQueries = () => {
+        if (selected || city || zip) {
+            history.replace(`?${selected && `supplierType=${selected}`}${(selected && city) && `&city=${city}`}`);
+        } else history.replace('/suppliers');
+    };
 
     return (
         <section className='supplier__filterContainer supplier__filterModal'>
@@ -47,7 +50,7 @@ export const Filter = () => {
                 </span>
             </section>
             <section className='supplier__buttonContainer'>
-                <Button onClick={() => history.replace(`?supplierType=${selected}&city=${city}&postalCode=${zip}`)} className='supplier__search--button'> Search </Button>
+                <Button onClick={handleQueries} className='supplier__search--button'> Search </Button>
             </section>
             </section>
         </section>
