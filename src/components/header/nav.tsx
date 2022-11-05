@@ -17,9 +17,7 @@ interface Props {
     handleToggleMenu: React.MouseEventHandler<SVGElement>
 }
 
-interface MenuToggle extends Omit<Props, 'isLoggedIn'> {
-    handleToggleMenu: React.MouseEventHandler<SVGElement>
-}
+interface MenuToggle extends Omit<Props, 'isLoggedIn'> {}
 
 export const Nav = ({ handleToggleMenu }: MenuToggle) => {
     const loggedIn = useSelector((state: RootState) => state.isLogged);
