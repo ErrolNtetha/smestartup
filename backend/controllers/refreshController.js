@@ -2,14 +2,18 @@ const jwt = require('jsonwebtoken');
 
 // create a new access token and send it to the client
 exports.refreshToken = (req, res, next) => {
-    const { _id, email } = req.user;
+    const { id, email } = req.user;
 
     const payload = {
-        id: _id,
+        id,
         email
     };
 
-    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '10d' });
-    res.status(200).json({ accessToken });
+    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '5d' });
+    try {
+        res.status(200).json({ accessToken: `Bearer ${accessToken}` });
+    } catch (err) {
+        res.status(500).json({ success: false, err });
+    }
     next();
 };

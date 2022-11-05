@@ -177,38 +177,6 @@ return (
                         {props.errors.bio && <p style={{ color: 'red', margin: '0' }}>{props.errors.bio}</p>}
                     </section>
 
-                <hr className='global' style={{ marginTop: '3em' }} />
-                <h4> account & passwords </h4>
-                <hr className='global' />
-                    <section style={{ marginTop: '1.2em' }}>
-                        <label htmlFor='current_password'> Current Password </label>
-                        <Field
-                          name='password'
-                          type='password'
-                          placeholder='Enter your current password'
-                          className='profile__input'
-                        />
-                    </section>
-                    <section>
-                        <label htmlFor='new_password'> Create New Password </label>
-                        <Field
-                          name='password'
-                          type='password'
-                          placeholder='Enter your new password'
-                          className='profile__input'
-                        />
-                    </section>
-
-                    <section>
-                        <label htmlFor='new_password'> Confirm New Password </label>
-                        <Field
-                          name='password'
-                          type='password'
-                          placeholder='Confirm your new password'
-                          className='profile__input'
-                        />
-                    </section>
-
                     <section className='profile__actionBtns'>
                         <Button onClick={() => history.goBack()} className='profile__button--cancel'>
                             Cancel
