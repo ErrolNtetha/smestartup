@@ -24,12 +24,12 @@ export const useFetchData = (url: string) => {
                     }
                         else if (error.request) setError('Something went wrong. Please try again later.');
                     else {
-                        setError('Ops. Something just went wrong. Please try again later.');
+                        setError('Something just went wrong. Please try again later.');
                     }
             });
         };
         fetchData();
-    }, []);
+    }, [url]);
 
     return { data, errorMessage, loading };
 };

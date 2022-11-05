@@ -7,17 +7,21 @@
 import React, { useState } from 'react';
 import { Select } from 'components/select';
 import { Button } from 'components/button';
-import { Search } from 'components/search';
 // import { Checkbox } from 'components/checkbox';
-// import { Tooltip } from 'components/tooltip';
+import { useHistory } from 'react-router-dom';
+// import { axiosPrivate } from 'config/axiosInstance';
 import { categories } from './categories';
 
 export const Filter = () => {
     const [selected, setSelected] = useState('');
-    const [search, setSearch] = useState(false);
-    // const element = useRef(null);
-    const clearSearch = () => {
-        console.log('button clicked');
+    const [city, setCity] = useState('');
+    const [zip, setZip] = useState('');
+    const history = useHistory();
+
+    const handleQueries = () => {
+        if (selected || city || zip) {
+            history.replace(`?${selected && `supplierType=${selected}`}${(selected && city) && `&city=${city}`}`);
+        } else history.replace('/suppliers');
     };
 
     return (
@@ -31,8 +35,8 @@ export const Filter = () => {
                     {categories.map((sector) => {
                         return (
                             <section key={sector.id}>
-                                <hr className='supplier__selected__options__optionsDivider' />
                                 <p onClick={() => setSelected(sector.name)}> {sector.name} </p>
+                                <hr className='supplier__selected__options__optionsDivider' />
                             </section>
                         );
                     })}
@@ -40,23 +44,15 @@ export const Filter = () => {
             </Select>
             <section className='supplier__locationInputs'>
                 <span className='supplier__locationInputs__location'>
-                    <input className='supplier__locationInputs__location__city' placeholder='City' type='text' />
-                    <input className='supplier__locationInputs__location__zip' placeholder='ZIP Code' type='text' />
-                    <input className='supplier__locationInputs__location__zip' placeholder='Tags' type='text' />
+                    <input name='city' onChange={(e) => setCity(e.target.value)} className='supplier__locationInputs__location__city' placeholder='City' type='text' />
+                    <input name='zipCode' onChange={(e) => setZip(e.target.value)} className='supplier__locationInputs__location__zip' placeholder='ZIP Code' type='text' />
+                    <input name='tags' className='supplier__locationInputs__location__zip' placeholder='Tags' type='text' />
                 </span>
             </section>
             <section className='supplier__buttonContainer'>
-                <Button className='supplier__search--button'> Search </Button>
+                <Button onClick={handleQueries} className='supplier__search--button'> Search </Button>
             </section>
             </section>
-            {search
-                && (
-                <section className='supplier__filterSearchContainer' onClick={() => setSearch(!search)}>
-                    <Search placeholder='Search suppliers...' searchTerm='sf' searchKey={(e) => e.target.value} className='supplier__searchFilter' clearSearchKey={() => clearSearch}>
-                        hey
-                    </Search>
-                </section>
-            )}
         </section>
     );
 };
