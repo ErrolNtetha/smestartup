@@ -1,35 +1,25 @@
 /* eslint-disable no-unused-expressions */
 
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useStore } from 'hoc/useStore';
-import { toggleNavOn, toggleNavOff } from 'store/actions/toggleMenu';
 import { Nav } from 'components/header/nav';
-import blendot from '../../assets/blendot1.png';
+import blendot from '../../assets/blogo.png';
 
 export const Logo = () => {
-    const { isLogged, navbar } = useStore();
-    const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
+    const { isLogged } = useStore();
 
-    React.useEffect(() => {
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                dispatch(toggleNavOn());
-            } else dispatch(toggleNavOff());
-        });
-
-        return () => {
-            window.removeEventListener('resize', () => () => window.innerWidth);
-        };
-    }, [window.innerWidth]);
+    const handleToggleMenu = () => setOpen(!open);
 
     return (
         <span className='header__innerContent'>
-            <FiMenu className='header__menu-icon' onClick={() => dispatch(toggleNavOn())} />
-            <Link to={isLogged ? '/feed' : '/'}> <img src={blendot} className='header__logo' alt='Blendot Official Logo' /> </Link>
-            {navbar && <Nav />}
+            <FiMenu className='header__menu-icon' onClick={handleToggleMenu} />
+            <Link to={isLogged ? '/feed' : '/'}>
+                <img src={blendot} className='header__logo' alt='Blendot Official Logo' />
+            </Link>
+            {open && <Nav handleToggleMenu={handleToggleMenu} />}
         </span>
     );
 };
