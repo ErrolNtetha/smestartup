@@ -9,15 +9,17 @@ import loggout from 'store/actions/loggout';
 import { nav } from 'views/header/utils';
 import { RootState } from 'store';
 import { useStore } from 'hoc/useStore';
-import { toggleNavOff } from 'store/actions/toggleMenu';
 import { Avatar } from 'components/avatar';
 import { Button } from '../../components/button';
 
 interface Props {
     isLoggedIn: boolean;
+    handleToggleMenu: React.MouseEventHandler<SVGElement>
 }
 
-export const Nav = () => {
+interface MenuToggle extends Omit<Props, 'isLoggedIn'> {}
+
+export const Nav = ({ handleToggleMenu }: MenuToggle) => {
     const loggedIn = useSelector((state: RootState) => state.isLogged);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -33,7 +35,7 @@ export const Nav = () => {
     return (
             <nav className='header__nav'>
                 <nav>
-                    <Profile isLoggedIn={loggedIn} />
+                    <Profile isLoggedIn={loggedIn} handleToggleMenu={handleToggleMenu} />
                     <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} className='header__divider' />
                     <ul className='header__list'>
                         { nav.map((item) => (
@@ -54,7 +56,7 @@ export const Nav = () => {
     );
 };
 
-const Profile = ({ isLoggedIn }: Props) => {
+const Profile = ({ isLoggedIn, handleToggleMenu }: Props) => {
     const { userProfile: { userData } } = useStore();
     const {
         name,
@@ -62,7 +64,6 @@ const Profile = ({ isLoggedIn }: Props) => {
         occupation
     } = userData;
 
-    const dispatch = useDispatch();
     return (
         <section className='header__profileContainer'>
             <>
@@ -85,7 +86,7 @@ const Profile = ({ isLoggedIn }: Props) => {
                         </Link>
             ) }
             </>
-            <FiX className='header__close' onClick={() => dispatch(toggleNavOff())} />
+            <FiX className='header__close' onClick={handleToggleMenu} />
         </section>
     );
 };
