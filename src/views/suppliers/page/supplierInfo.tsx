@@ -16,7 +16,6 @@ import { BusinessAvatar } from 'components/avatar/business';
 import { Photos } from './photos';
 import { Reviews } from './reviews';
 import { Overview } from './overview';
-import { Map } from '../map';
 
 export interface DProps {
     name: string;
@@ -94,9 +93,6 @@ export const SupplierInfo = ({
                 </Route>
                 <Route exact path={`${path}/reviews`} component={Reviews} />
             </Switch>
-            <section className='supplier__mapContainer'>
-                <Map />
-            </section>
             </section>
             {isOwner
                 && (
