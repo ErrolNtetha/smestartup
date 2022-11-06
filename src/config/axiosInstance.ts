@@ -31,9 +31,8 @@ baseURL: NODE_ENV(),
     }
 });
 
-axiosPrivate.interceptors.response.use(() => {
-}, async (error) => {
-    if (error.response.status === 401) {
+axiosPrivate.interceptors.response.use(undefined, async (error) => {
+    if (error?.response?.status === 401) {
         await axiosRefresh.get('/refresh')
             .then((response) => {
                 const newAccessToken = response.data.accessToken;
