@@ -82,6 +82,7 @@ export const Login = () => {
                             <input
                               type='email'
                               name='email'
+                              data-cy='email'
                               placeholder='Enter your email'
                               value={formik.values.email}
                               onChange={formik.handleChange}
@@ -93,13 +94,14 @@ export const Login = () => {
                             <input
                               type='password'
                               name='password'
+                              data-cy='password'
                               placeholder='Enter password'
                               value={formik.values.password}
                               onChange={formik.handleChange}
                               className='login__emailField'
                               autoComplete='false'
                             />
-                            <Button type='submit' className='login__button'> {loading ? <SyncLoader size={8} color='#fff' /> : 'login'} </Button>
+                            <Button type='submit' data-cy='submit' className='login__button'> {loading ? <SyncLoader size={8} color='#fff' /> : 'login'} </Button>
                             <p style={{ color: 'red' }}> {response} </p>
                         </form>
                         <p className='login__Or'>OR</p>
