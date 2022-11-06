@@ -1,9 +1,13 @@
-ame: 'Production'
+name: 'Netlify Deploy'
 
 on:
   push:
     branches:
       - main
+
+  pull_request:
+    branches:
+      - development
 
 jobs:
   Deploy:
@@ -11,8 +15,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: jsmrcaga/action-netlify-deploy@master
+      - name: Checkout
+        uses: actions/checkout@v1
+
+    # Install NodeJS
+      - name: Use Node v16.10
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16.10.0
+
+      # Run yarn
+      - name: Install project dependencies
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: install # will run `yarn install` command
+
+    # Run yarn
+      - name: Build the project
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: build # will run `yarn build` command
+
+      - name: Deploy to Production
+        uses: jsmrcaga/action-netlify-deploy@master
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

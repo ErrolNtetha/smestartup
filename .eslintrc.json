@@ -30,7 +30,7 @@
         "no-underscore-dangle": "off",
         "comma-dangle": "off",
         "max-len": "off",
-        "no-console": "warn",
+        "no-console": "off",
         "default-param-last": "off",
         "indent": "off",
         "no-return-assign": "off",
