@@ -1,6 +1,7 @@
 import React from 'react';
 import { Collapsable } from '../../../components/collapsable';
 import { Tooltip } from '../../../components/tooltip';
+import { Map } from '../map';
 
 interface IProps {
     isRegistered: boolean;
@@ -60,6 +61,9 @@ export const Overview = ({
                 </ul>
             </section>
             <hr className='global' />
+            <section className='supplier__mapContainer'>
+                <Map />
+            </section>
         </>
     );
 };
