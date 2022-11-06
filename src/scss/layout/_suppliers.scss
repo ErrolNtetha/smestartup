@@ -578,7 +578,6 @@
         }
 
         &__supplierWrapper {
-            @include flexbox();
             position: relative;
         }
 
@@ -666,6 +665,10 @@
             width: 100%;
             align-items: unset;
             gap: 1em;
+        }
+
+        &__supplierWrapper {
+            @include flexbox();
         }
 
         &__leftColumn, &__rightColumn {
