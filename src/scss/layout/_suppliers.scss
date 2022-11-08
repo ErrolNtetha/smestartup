@@ -365,6 +365,128 @@
             }
         } 
 
+        &__plans {
+            @include flexbox();
+            flex-direction: column;
+            bottom: 0;
+            left: 0;
+            gap: 1.5rem;
+            height: 100vh;
+        }
+
+
+        &__plans button {
+            position: fixed;
+            background: $secondaryColor;
+            bottom: 0;
+            left: 0;
+            border: none;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+            margin: 0;
+
+            &:hover {
+                background: white;
+                transition: 500ms;
+                cursor: pointer;
+                color: #000;
+            }
+        }
+
+        &__plansContainer {
+            position: relative;
+            background: $foregroundColor;
+            width: 70%;
+            border-radius: 10px;
+            min-height: 200px;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: all 500ms;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        &__offerDetails {
+            border-radius: 10px;
+            margin: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        &__offerDetails > ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        &__offerDetails > ul > li {
+            @include flexbox($justify-content: unset);
+            gap: .5rem;
+            margin: .5em 0;
+        }
+
+
+        &__plansContainer label {
+            position: absolute;
+            border-radius: 0 0 10px 10px;
+            bottom: 0;
+            left: 0;
+            background: none;
+            border: none;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+
+            &:hover {
+                transition: 500ms;
+                cursor: pointer;
+                color: #fff;
+                outline: none;
+            }
+        }
+
+        &__planTitle {
+            @include flexbox();
+            width: 100%;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        &__planInfo {
+            @include flexbox();
+            flex-direction: column;
+            padding: 1em 0;
+        }
+
+        &__radio {
+            display: none;
+        }
+
+        &__radio:checked + &__radioLabel {
+            background: white;
+            color: black;
+        }
+
+        &__radioLabel {
+        }
+
+        &__subText {
+            font-size: .9rem;
+        }
+
+        &__plansContainer span {
+            text-align: center;
+        }
+
         &__payNow {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em 1em);
             font-size: .8rem; margin: 0;
@@ -838,6 +960,29 @@
 
         &__skeletonContainer {
             width: 50%;
+        }
+
+        &__plans {
+            @include flexbox();
+            bottom: 0;
+            left: 0;
+            gap: 1.5rem;
+            height: 93vh;
+        }
+
+        &__plansContainer {
+            position: relative;
+            background: $foregroundColor;
+            width: 20%;
+            border-radius: 10px;
+            height: max-content;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: all 500ms;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.1);
+            }
         }
     } 
 }
