@@ -1,4 +1,6 @@
 /* eslint-disable jsx-quotes */
+/* eslint-disable global-require */
+/* eslint-disable  import/no-absolute-path */
 import React from 'react';
 import {
     MapContainer,
@@ -6,17 +8,23 @@ import {
     Marker,
     Popup,
 } from 'react-leaflet';
+import { Icon } from 'leaflet';
+import loc from '../../assets/location.png';
 import 'leaflet/dist/leaflet.css';
 
 export const Map = () => {
+    const locationIcon = new Icon({
+        iconUrl: loc,
+        iconSize: [50, 50],
+    });
     return (
         <div id='map'>
-            <MapContainer center={[51.505, -0.09]} zoom={10} scrollWheelZoom={false}>
+            <MapContainer center={[52.51, 13.38]} zoom={13} scrollWheelZoom>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[30.83664, -30.00438]}>
+                <Marker position={[52.51, 13.38]} icon={locationIcon}>
                     <Popup>
                       A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
