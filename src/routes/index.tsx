@@ -4,7 +4,7 @@ import { RootState } from 'store';
 import { useSelector } from 'react-redux';
 import { FAQ } from 'containers/faq';
 import { Post } from 'views/feed/post';
-import { RegisterWrapper } from 'views/suppliers/page/register';
+import { ChoosePlan } from 'views/suppliers/page/register/choosePlan';
 import { Edit } from 'views/profile/edit';
 import { UpdateSupplier } from 'views/suppliers/page/updateSupplier';
 import { Founder } from 'views/founders';
@@ -38,7 +38,7 @@ export const Main: React.FC = () => {
 
                 <Private exact isAuth={isAuth} path='/feed' component={Feed} />
                 <Private exact isAuth={isAuth} path='/feed/post/:id' component={Post} />
-                <Private exact isAuth={isAuth} path='/suppliers/register' component={RegisterWrapper} />
+                <Private exact isAuth={isAuth} path='/suppliers/register' component={ChoosePlan} />
                 <Private exact isAuth={isAuth} path='/founders' component={Founder} />
                 <Private exact isAuth={isAuth} path='/profile/edit' component={Edit} />
                 <Private exact isAuth={isAuth} path='/suppliers' component={Suppliers} />
