@@ -1,7 +1,7 @@
 import { Logo } from 'components/header/logo';
 import React from 'react';
 import { Header } from 'views/header';
-import { Nav } from 'components/header/nav';
+// import { Nav } from 'components/header/nav';
 import { Plan } from './plans';
 import { Premium, Pro, Starter } from './offers';
 
@@ -10,7 +10,6 @@ export const ChoosePlan = () => {
         <>
             <Header>
                 <Logo />
-                <Nav />
             </Header>
             <section className='supplier__plans'>
                 <Plan id='plan' htmlFor='plan' planType='Starter'>
