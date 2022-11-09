@@ -1,6 +1,10 @@
 import React from 'react';
 import { FiCheck } from 'react-icons/fi';
 
+interface Price {
+    price: number;
+}
+
 export const Starter = () => {
     return (
         <section className='supplier__planInfo'>
@@ -25,12 +29,12 @@ export const Starter = () => {
     );
 };
 
-export const Pro = () => {
+export const Pro = ({ price }: Price) => {
     return (
         <section className='supplier__planInfo'>
             <section style={{ width: '100%' }}>
                 <span className='supplier__planTitle'>
-                    R79
+                    R{price}
                 </span>
                 <hr className='global' />
                 <section className='supplier__offerDetails'>
@@ -61,12 +65,12 @@ export const Pro = () => {
     );
 };
 
-export const Premium = () => {
+export const Premium = ({ price }: Price) => {
     return (
         <section className='supplier__planInfo'>
             <section style={{ width: '100%' }}>
                 <span className='supplier__planTitle'>
-                    R199
+                    R{price}
                 </span>
                 <hr className='global' />
                 <section className='supplier__offerDetails'>
