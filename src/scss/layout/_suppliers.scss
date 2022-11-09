@@ -371,8 +371,8 @@
             bottom: 0;
             left: 0;
             gap: 1.8rem;
-            margin: 4em 0;
             height: max-content;
+            margin: 2em 0 5em 0;
         }
 
 
@@ -399,7 +399,7 @@
         &__plansContainer {
             position: relative;
             background: $foregroundColor;
-            width: 70%;
+            width: 80%;
             border-radius: 10px;
             height: max-content;
 
