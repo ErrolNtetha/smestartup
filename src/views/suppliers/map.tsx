@@ -15,7 +15,7 @@ import 'leaflet/dist/leaflet.css';
 export const Map = () => {
     const locationIcon = new Icon({
         iconUrl: loc,
-        iconSize: [50, 50],
+        iconSize: [50, 60],
     });
     return (
         <div id='map'>
