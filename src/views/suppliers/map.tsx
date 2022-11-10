@@ -26,7 +26,7 @@ export const Map = () => {
                 />
                 <Marker position={[52.51, 13.38]} icon={locationIcon}>
                     <Popup>
-                      A pretty CSS3 popup. <br /> Easily customizable.
+                        A pop up for showing more info about this supplier.
                     </Popup>
                 </Marker>
             </MapContainer>
