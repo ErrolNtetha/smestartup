@@ -14,7 +14,7 @@ import { Button } from '../../components/button';
 
 interface Props {
     isLoggedIn: boolean;
-    handleToggleMenu: React.MouseEventHandler<SVGElement>
+    handleToggleMenu?: React.MouseEventHandler<SVGElement>
 }
 
 interface MenuToggle extends Omit<Props, 'isLoggedIn'> {}

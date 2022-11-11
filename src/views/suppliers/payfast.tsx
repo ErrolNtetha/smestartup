@@ -21,8 +21,8 @@ export const PayFast = ({
 }: Payfast) => {
     return (
         <form action='https://www.payfast.co.za/eng/process' method='post'>
-            <input type='hidden' name='merchant_id' value={process.env.REACT_APP_MERCHANT_ID} />
-            <input type='hidden' name='merchant_key' value={process.env.REACT_APP_MERCHANT_KEY} />
+            <input type='hidden' name='merchant_id' value={`${process.env.REACT_APP_MERCHANT_ID}`} />
+            <input type='hidden' name='merchant_key' value={`${process.env.REACT_APP_MERCHANT_KEY}`} />
             <input type='hidden' name='cancel_url' value={cancelUrl} />
             <input type='hidden' name='amount' value={amount} />
             <input type='hidden' name='name_first' value={firstName} />
