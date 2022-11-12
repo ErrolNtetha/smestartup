@@ -3,10 +3,17 @@
 /* eslint-disable  react/jsx-no-useless-fragment */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FiX } from 'react-icons/fi';
+import {
+    FiBriefcase,
+    FiHelpCircle,
+    FiHome,
+    FiInfo,
+    FiPhone,
+    FiSearch,
+    FiX
+} from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import loggout from 'store/actions/loggout';
-import { nav } from 'views/header/utils';
 import { RootState } from 'store';
 import { useStore } from 'hoc/useStore';
 import { Avatar } from 'components/avatar';
@@ -36,15 +43,15 @@ export const Nav = ({ handleToggleMenu }: MenuToggle) => {
             <nav className='header__nav'>
                 <nav>
                     <Profile isLoggedIn={loggedIn} handleToggleMenu={handleToggleMenu} />
-                    <hr style={{ opacity: '0.2', width: '100%', margin: '0' }} className='header__divider' />
+                    <hr className='global' />
                     <ul className='header__list'>
-                        { nav.map((item) => (
-                            !loggedIn && !item.isPrivate
-                            ? <Link to={item.url} key={item.id} className={item.className}> {item.icon} {item.name} </Link>
-                            : loggedIn && (!item.isPrivate || item.isPrivate)
-                            ? <Link to={item.url} key={item.id} className={item.className}> {item.icon} {item.name} </Link>
-                            : null
-                            ))}
+                        <Link to='/feed' className='header__item'> <FiHome className='header__icon' /> Home </Link>
+                        <Link to='/about' className='header__item'> <FiInfo className='header__icon' /> About </Link>
+                        <Link to='/contact' className='header__item'> <FiPhone className='header__icon' /> Contact </Link>
+                        <Link to='/faq' className='header__item'> <FiHelpCircle className='header__icon' /> FAQ </Link>
+                        <hr className='global' />
+                        <Link to='/suppliers' className='header__item'> <FiSearch className='header__icon' /> Suppliers </Link>
+                        <Link to='/founders' className='header__item'> <FiBriefcase className='header__icon' /> Founders </Link>
                     </ul>
                 </nav>
                 { loggedIn && (
