@@ -45,13 +45,18 @@ export const Nav = ({ handleToggleMenu }: MenuToggle) => {
                     <Profile isLoggedIn={loggedIn} handleToggleMenu={handleToggleMenu} />
                     <hr className='global' />
                     <ul className='header__list'>
-                        <Link to='/feed' className='header__item'> <FiHome className='header__icon' /> Home </Link>
+                        <Link to={loggedIn ? '/feed' : '/'} className='header__item'> <FiHome className='header__icon' /> Home </Link>
                         <Link to='/about' className='header__item'> <FiInfo className='header__icon' /> About </Link>
                         <Link to='/contact' className='header__item'> <FiPhone className='header__icon' /> Contact </Link>
                         <Link to='/faq' className='header__item'> <FiHelpCircle className='header__icon' /> FAQ </Link>
-                        <hr className='global' />
-                        <Link to='/suppliers' className='header__item'> <FiSearch className='header__icon' /> Suppliers </Link>
-                        <Link to='/founders' className='header__item'> <FiBriefcase className='header__icon' /> Founders </Link>
+                        { loggedIn
+                            && (
+                                <>
+                                    <hr className='global' />
+                                    <Link to='/suppliers' className='header__item'> <FiSearch className='header__icon' /> Suppliers </Link>
+                                    <Link to='/founders' className='header__item'> <FiBriefcase className='header__icon' /> Founders </Link>
+                                </>
+                        )}
                     </ul>
                 </nav>
                 { loggedIn && (
