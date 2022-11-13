@@ -111,13 +111,12 @@ import { Collapsable } from 'components/collapsable';
         <FiMoreHorizontal className='feed__options' onClick={() => setModal(!modal)} />
         </span>
         <p className='feed__listContent'> <Collapsable end={300}>{post}</Collapsable> </p>
-    {!image ? null
-    :
-    (
-        <section>
-          <img src={image} alt='' className='feed__postImage' />
-        </section>
-    )}
+        {image &&
+            (
+                <section>
+                  <img src={image} alt='' className='feed__postImage' />
+                </section>
+            )}
       <hr style={{ opacity: '0.1' }} />
 
     <section className='feed__LastRow'>

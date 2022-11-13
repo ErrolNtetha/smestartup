@@ -6,7 +6,6 @@ import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
 import { useSelector } from 'react-redux';
-// import { ScaleLoader } from 'react-spinners';
 import { useFetchData } from 'hoc/useFetchData';
 import { SkeletonPosts } from 'components/skeleton';
 import { Button } from 'components/button';
@@ -17,9 +16,9 @@ export const Lists = () => {
 
  return (
     <div className='feed__feedWrapper'>
-        {toggleState ? <PostField /> : null}
+        {toggleState && <PostField />}
         { loading
-                ? <SkeletonPosts cards={10} />
+                ? <SkeletonPosts cards={4} />
                 : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
@@ -28,11 +27,11 @@ export const Lists = () => {
                     </section>
                 )
                 : data?.posts?.map(({
-                    post, postImage, author, _id, createdAt, stars
+                    post, image, author, _id, createdAt, stars
                 }) => (
               <List
                 post={post}
-                image={postImage}
+                image={image?.url}
                 isVerified={author?.isVerified}
                 name={author?.name}
                 key={_id}
@@ -44,9 +43,7 @@ export const Lists = () => {
                 stars={stars}
               />
               ))}
-        {!toggleState
-        ? <Create />
-        : null}
+            {toggleState && <Create /> }
     </div>
   );
 };
