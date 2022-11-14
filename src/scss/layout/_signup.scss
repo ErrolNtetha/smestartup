@@ -128,12 +128,7 @@
         }
 
         &__emailField {
-            @include inputField(
-                $padding: 0.4em 0.8em,
-                $margin: 0.2em 0 0.6em,
-                $border: 1px solid #000,
-                $inputRadius: 2em
-            );
+            @include inputField($padding: .8em 1.4em, $margin: .4em 0 1.2em, $border: 1px solid #000, $inputRadius: 2em);
             font-size: 1rem;
             box-sizing: border-box;
 
