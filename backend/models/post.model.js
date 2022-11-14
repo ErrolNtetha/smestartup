@@ -4,7 +4,11 @@ const userPost = new mongoose.Schema(
     {
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         post: String,
-        postImage: String,
+        image: {
+            url: String,
+            public_id: String,
+            signature: String
+        },
         reports: {
             count: Number,
             users: { type: [mongoose.Schema.Types.ObjectId], ref: 'User' },

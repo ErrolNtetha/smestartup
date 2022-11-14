@@ -6,7 +6,6 @@ import { List } from 'components/lists/list';
 import { RootState } from 'store';
 import { Create } from 'components/create';
 import { useSelector } from 'react-redux';
-// import { ScaleLoader } from 'react-spinners';
 import { useFetchData } from 'hoc/useFetchData';
 import { SkeletonPosts } from 'components/skeleton';
 import { Button } from 'components/button';
@@ -17,9 +16,9 @@ export const Lists = () => {
 
  return (
     <div className='feed__feedWrapper'>
-        {toggleState ? <PostField /> : null}
+        {toggleState && <PostField />}
         { loading
-                ? <SkeletonPosts cards={10} />
+                ? <SkeletonPosts cards={4} />
                 : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
@@ -28,25 +27,28 @@ export const Lists = () => {
                     </section>
                 )
                 : data?.posts?.map(({
-                    post, postImage, author, _id, createdAt, stars
-                }) => (
-              <List
-                post={post}
-                image={postImage}
-                isVerified={author?.isVerified}
-                name={author?.name}
-                key={_id}
-                date={createdAt}
-                id={_id}
-                occupation={author?.occupation}
-                authorID={author?._id}
-                avatar={author?.avatar}
-                stars={stars}
-              />
-              ))}
-        {!toggleState
-        ? <Create />
-        : null}
+                    post, image, author, _id, createdAt, stars
+                }) => {
+                    if (!data?.posts?.length) {
+                         return 'empty';
+                    }
+                return (
+                    <List
+                      post={post}
+                      image={image?.url}
+                      isVerified={author?.isVerified}
+                      name={author?.name}
+                      key={_id}
+                      date={createdAt}
+                      id={_id}
+                      occupation={author?.occupation}
+                      authorID={author?._id}
+                      avatar={author?.avatar}
+                      stars={stars}
+                    />
+                );
+            })}
+            {!toggleState && <Create /> }
     </div>
   );
 };

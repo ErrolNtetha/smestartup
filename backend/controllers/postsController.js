@@ -11,17 +11,25 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
-    let postPicture;
+    let imageUrl, public_id, signature;
     if (fileURL) {
-        await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
-            .then((response) => postPicture = response.secure_url)
-            .catch((error) => res.status(500).json({ error: error.message }));
+        await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_posts' })
+            .then((response) => {
+                imageUrl = response.url;
+                public_id = response.public_id;
+                signature = response.signature;
+            })
+            .catch((error) => console.log(error));
     }
 
     const userPost = new Post({
             author: _id,
             post,
-            postImage: postPicture,
+            image: {
+                url: imageUrl,
+                public_id,
+                signature
+            },
         });
 
     // save post on the database
