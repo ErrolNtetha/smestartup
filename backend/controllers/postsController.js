@@ -13,20 +13,20 @@ exports.userPosts = async (req, res) => {
 
     let imageUrl, public_id, signature;
     if (fileURL) {
-        await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_avatar' })
-            .then(({ secure_url, public_id, signature }) => {
-                imageUrl = secure_url;
-                public_id = public_id;
-                signature = signature;
+        await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_posts' })
+            .then((response) => {
+                imageUrl = response.url;
+                public_id = response.public_id;
+                signature = response.signature;
             })
-            .catch((error) => res.status(500).json({ error: error.message }));
+            .catch((error) => console.log(error));
     }
 
     const userPost = new Post({
             author: _id,
             post,
             image: {
-                imageUrl,
+                url: imageUrl,
                 public_id,
                 signature
             },
