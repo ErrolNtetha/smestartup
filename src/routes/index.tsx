@@ -23,6 +23,8 @@ import { Private } from './privateRoute';
 
 export const Main: React.FC = () => {
     const isAuth = useSelector((state: RootState) => state.isLogged);
+    // const feedLoad = React.lazy(() => import('../containers/feed' /* webpackChunkName: 'posts' */)
+    //  .then(({ Feed }) => ({ default: Feed })));
 
     return (
         <Router>

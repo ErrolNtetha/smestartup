@@ -28,22 +28,27 @@ export const Lists = () => {
                 )
                 : data?.posts?.map(({
                     post, image, author, _id, createdAt, stars
-                }) => (
-              <List
-                post={post}
-                image={image?.url}
-                isVerified={author?.isVerified}
-                name={author?.name}
-                key={_id}
-                date={createdAt}
-                id={_id}
-                occupation={author?.occupation}
-                authorID={author?._id}
-                avatar={author?.avatar}
-                stars={stars}
-              />
-              ))}
-            {toggleState && <Create /> }
+                }) => {
+                    if (!data?.posts?.length) {
+                         return 'empty';
+                    }
+                return (
+                    <List
+                      post={post}
+                      image={image?.url}
+                      isVerified={author?.isVerified}
+                      name={author?.name}
+                      key={_id}
+                      date={createdAt}
+                      id={_id}
+                      occupation={author?.occupation}
+                      authorID={author?._id}
+                      avatar={author?.avatar}
+                      stars={stars}
+                    />
+                );
+            })}
+            {!toggleState && <Create /> }
     </div>
   );
 };
