@@ -5,7 +5,7 @@ const userPost = new mongoose.Schema(
         author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         post: String,
         image: {
-            secure_url: String,
+            url: String,
             public_id: String,
             signature: String
         },
