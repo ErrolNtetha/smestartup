@@ -24,9 +24,11 @@ interface Props {
     handleToggleMenu?: React.MouseEventHandler<SVGElement>
 }
 
-interface MenuToggle extends Omit<Props, 'isLoggedIn'> {}
+interface MenuToggle extends Omit<Props, 'isLoggedIn'> {
+    className: string;
+}
 
-export const Nav = ({ handleToggleMenu }: MenuToggle) => {
+export const Nav = ({ handleToggleMenu, className }: MenuToggle) => {
     const loggedIn = useSelector((state: RootState) => state.isLogged);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -40,7 +42,7 @@ export const Nav = ({ handleToggleMenu }: MenuToggle) => {
     };
 
     return (
-            <nav className='header__nav'>
+            <nav className={className}>
                 <nav>
                     <Profile isLoggedIn={loggedIn} handleToggleMenu={handleToggleMenu} />
                     <hr className='global' />

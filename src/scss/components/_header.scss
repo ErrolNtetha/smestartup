@@ -59,6 +59,10 @@
             transition: transform 5ms ease-in-out;
         } 
 
+        &__nav.active {
+            display: none;
+        }
+
         &__profileContainer {
             @include flexbox($justify-content: space-between);
             padding: .8em;
@@ -236,36 +240,6 @@
     }
 
     @include respond-to('tablet') {
-        @include flexbox();
-        
-        &__divider {
-            display: none;
-        }
-
-        &__content {
-            @include flexbox($justify-content: space-between);
-            padding: 0.2 0.8em;
-            margin: 0 0;
-            // max-width: 20em;
-        }
-
-        &__list, &__item {
-            @include flexbox();
-            list-style: none;
-            text-decoration: none;
-            padding: 0;
-        }
-
-        &__item {
-            text-decoration: none;
-            padding: 0.4em 0;
-            color: #fff;
-            font-weight: 500;
-        }
-
-        &__item:hover {
-            border-bottom: 1px solid #fff;
-        }
     }
 
     @include respond-to('laptop') {
@@ -407,12 +381,17 @@
 
         &__nav {
             display: contents;
+            position: unset;
             color: #fff;
             height: 100%;
 
             ul {
                 margin: 0;
                 display: flex;
+                flex-direction: row;
+                align-items: center;
+                align-content: center;
+                justify-content: center;
             }
 
             li {
@@ -422,9 +401,24 @@
             }
         }
 
+        &__nav hr { display: none };
+
+         &__nav.active {
+            display: flex;
+            background: none;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+        }
+
         &__item {
-            margin: 0 1em;
+            margin: 0 0.2em;
             font-size: .9rem;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50px;
+            }
         }
 
         &__list {
