@@ -3,7 +3,6 @@
 // @flow
 import { Button } from 'components/button';
 import React, { useState } from 'react';
-import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
@@ -11,6 +10,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { axiosPublic } from 'config/axiosInstance';
 import { Helmet } from 'react-helmet-async';
 import { SyncLoader } from 'react-spinners';
+import { Google, Facebook } from 'components/socialButton';
 import { Logo } from 'components/header/logo';
 import logged from '../../store/actions/logged';
 import { fetchProfile } from '../../store/actions/fetchProfile';
@@ -106,9 +106,8 @@ export const Login = () => {
                         </form>
                         <p className='login__Or'>OR</p>
                         <section className='login__socials'>
-                            <FaGoogle />
-                            <FaFacebookF />
-                            <FaLinkedinIn />
+                            <Google />
+                            <Facebook />
                         </section>
                         <section className='login__button--register'>
                             <p> Dont have an account? <b /> <Link to='/register'> Create new account! </Link> </p>
