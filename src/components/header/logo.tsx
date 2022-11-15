@@ -19,7 +19,7 @@ export const Logo = () => {
             <Link to={isLogged ? '/feed' : '/'}>
                 <img src={blendot} className='header__logo' alt='Blendot Official Logo' />
             </Link>
-            {open && <Nav handleToggleMenu={handleToggleMenu} />}
+            <Nav className={open ? 'header__nav' : 'header__nav active'} handleToggleMenu={handleToggleMenu} />
         </span>
     );
 };
