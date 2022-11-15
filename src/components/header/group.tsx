@@ -34,6 +34,15 @@ export const Group = () => {
             });
     }, [searchWord]);
 
+    const foundUsers = users && users.filter((user: any) => {
+                            return searchWord === ''
+                                ? null
+                                : user.name.firstName.toLowerCase().includes(searchWord.toLowerCase()) || user.name.lastName.toLowerCase().includes(searchWord.toLowerCase())
+                                ? user
+                                : null;
+                            });
+    console.log(foundUsers);
+
     return (
         <span className='header__BtnGroup'>
             { loggedIn

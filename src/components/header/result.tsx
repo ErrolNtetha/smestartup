@@ -1,11 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Users } from 'components/users';
-// import { axiosPrivate } from 'config/axiosInstance';
 
 export const Results = ({ searchWord, users }: any) => {
-    console.log(users);
-    console.log(searchWord);
     return (
             <section className='header__usersContainer'>
                 {!users ? null : users.filter((user: any) => {
