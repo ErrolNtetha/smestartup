@@ -78,7 +78,7 @@ return (
       }}
     >
       {(props) => (
-        <Form onSubmit={props.handleSubmit}>
+        <Form style={{ width: '100%' }} onSubmit={props.handleSubmit}>
                 <h3 className='register__header'> Personal Details </h3>
                 <hr style={{ margin: 0, opacity: 0.3, marginBottom: '1em' }} />
                 <span className='register__avatarOuterContainer'>
