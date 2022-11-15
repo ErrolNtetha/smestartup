@@ -78,7 +78,7 @@ export const Login = () => {
                 <section className='login__container'>
                         <h2 className='login__header'> Account Login </h2>
                         <form onSubmit={formik.handleSubmit} className='login__form'>
-                            <label className='login__label' htmlFor='email'> Email or Username: </label>
+                            <label className='login__label' htmlFor='email'> Email: </label>
                             <input
                               type='email'
                               name='email'
@@ -95,7 +95,7 @@ export const Login = () => {
                               type='password'
                               name='password'
                               data-cy='password'
-                              placeholder='Enter password'
+                              placeholder='Enter your password'
                               value={formik.values.password}
                               onChange={formik.handleChange}
                               className='login__emailField'
