@@ -67,8 +67,8 @@ export const Login = () => {
     return (
         <>
             <Helmet>
-                <title> Login To Your Account and Continue Where You Left Off | Blendot </title>
-                <meta name='description' content='Login and collaborate with like-minded people within the platform.' />
+                <title> Login To Your Account | Blendot </title>
+                <meta name='description' content='Login and meet like-minded people within the platform.' />
                 <link rel='canonical' href='/login' />
             </Helmet>
             <Header>
