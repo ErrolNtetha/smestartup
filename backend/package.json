@@ -32,6 +32,7 @@
     "dotenv": "^16.0.0",
     "email-templates": "^10.0.1",
     "express": "^4.17.1",
+    "google-auth-library": "^8.7.0",
     "handlebars": "^4.7.7",
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
