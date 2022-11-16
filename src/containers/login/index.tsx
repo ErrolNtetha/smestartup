@@ -18,6 +18,7 @@ import { fetchProfile } from '../../store/actions/fetchProfile';
 export const Login = () => {
     const history = useHistory();
     const inputRef = useRef();
+    const onPasswordError = useRef();
     const dispatch = useDispatch();
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState<Boolean | null>(null);
@@ -59,6 +60,7 @@ export const Login = () => {
                         history.push('/feed');
                     } else {
                         setResponse(message);
+                        onPasswordError.current.focus();
                     }
                 })
                 .catch(() => {
@@ -98,6 +100,7 @@ export const Login = () => {
                             <label className='login__label' htmlFor='email'> Password: </label>
                             <input
                               type='password'
+                              ref={onPasswordError}
                               name='password'
                               data-cy='password'
                               placeholder='Enter your password'
