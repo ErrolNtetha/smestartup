@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // @flow
 import { Button } from 'components/button';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
@@ -17,10 +17,14 @@ import { fetchProfile } from '../../store/actions/fetchProfile';
 
 export const Login = () => {
     const history = useHistory();
+    const inputRef = useRef();
     const dispatch = useDispatch();
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState<Boolean | null>(null);
     // const [token, setToken] = useState<string>('');
+    //
+
+    useEffect(() => inputRef.current.focus(), []);
 
     const formik = useFormik({
         initialValues: {
@@ -81,6 +85,7 @@ export const Login = () => {
                             <label className='login__label' htmlFor='email'> Email: </label>
                             <input
                               type='email'
+                              ref={inputRef}
                               name='email'
                               data-cy='email'
                               placeholder='Enter your email'
