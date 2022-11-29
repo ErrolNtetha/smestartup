@@ -1,24 +1,20 @@
 const { OAuth2Client } = require('google-auth-library');
-
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-const googleAuth = async (token) => {
-    // @params 'Options'
-    // @params 'Callback'
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: process.env.GOOGLE_CLIENT_ID
-    }, response);
-}
+const googleAuth = async (req, res, next) => {
+    const token = req.headers['x-access-token'].split(' ')[1];
 
-function response(error, result) {
-    if (error) {
-        console.log(error);
-        return;
-    }
+    if (token) {
+     const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID
+        }, function(error, result) {
+            if (error) console.log(error);
+            console.log(result);
+        });
 
-    console.log('Success: ', result);
-    return result;
+        next();
+   } else console.log('No token');
 }
 
 module.exports = googleAuth;

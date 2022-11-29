@@ -7,6 +7,8 @@
 /backend/node_modules
 /package.json
 /yarn.lock
+/backend/.gitignore
+/backend/yarn.lock
 .pnp.js
 
 # testing

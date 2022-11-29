@@ -2,10 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
+const passport = require('passport');
+const dotenv = require('dotenv');
+
+require('./passport.js');
 
 const app = express();
 const server = http.createServer(app, {
-    origin: ['https://blendot.com'],
+    origin: ['https://blendot.com', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 const io = require('./socket.js').init(server);
@@ -35,6 +39,8 @@ app.use(suppliers);
 app.use(refresh);
 app.use(founders);
 app.use(contact);
+
+app.use(passport.initialize());
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
