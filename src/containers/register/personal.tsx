@@ -9,12 +9,11 @@ import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { occupations } from 'helpers/occupations';
 import defaultAvatar from 'assets/blendot.png';
-// import { Preview } from 'components/preview';
 import * as Yup from 'yup';
+import { Google, Facebook } from 'components/socialButton';
 import { axiosPublic } from 'config/axiosInstance';
 import { SyncLoader } from 'react-spinners';
 import { Select } from 'components/select';
-// import { Checkbox } from 'components/checkbox';
 import { Notice } from 'components/notice';
 import { Button } from '../../components/button';
 
@@ -79,8 +78,14 @@ return (
     >
       {(props) => (
         <Form style={{ width: '100%' }} onSubmit={props.handleSubmit}>
-                <h3 className='register__header'> Personal Details </h3>
-                <hr style={{ margin: 0, opacity: 0.3, marginBottom: '1em' }} />
+                <h3 className='register__header'> Create New Account </h3>
+                <hr style={{ margin: 0, opacity: 0.3 }} />
+                <section style={{ padding: '2em 0' }} className='login__socials'>
+                    <Google buttonText='Signup with Google' url='/auth/google/' />
+                    <Facebook buttonText='Signup with Facebook' />
+                </section>
+                <hr style={{ margin: 0, opacity: 0.3 }} />
+                <p className='login__Or'>OR</p>
                 <span className='register__avatarOuterContainer'>
                 <label>
                     <span className='register__avatarWrapper'>
@@ -114,7 +119,7 @@ return (
                     First Names:
                 <Field
                   name='firstName'
-                  placeholder='E.g. Mphumeleli Errol'
+                  placeholder='Enter your first names'
                   className='register__emailField'
                 />
                 {props.touched.firstName && <p className='register__errorMessage'> {props.errors.firstName} </p>}
@@ -124,7 +129,7 @@ return (
                     Last Name:
                 <Field
                   name='lastName'
-                  placeholder='E.g. Ntetha'
+                  placeholder='Enter your last names'
                   className='register__emailField'
                 />
                 {props.touched.lastName && <p className='register__errorMessage'> {props.errors.lastName} </p>}

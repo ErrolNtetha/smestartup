@@ -114,8 +114,8 @@ export const Login = () => {
                         </form>
                         <p className='login__Or'>OR</p>
                         <section className='login__socials'>
-                            <Google />
-                            <Facebook />
+                            <Google url='/auth/google' buttonText='Login with Google' />
+                            <Facebook url='/auth/facebook' buttonText='Login with Facebook' />
                         </section>
                         <section className='login__button--register'>
                             <p> Dont have an account? <b /> <Link to='/register'> Create new account! </Link> </p>
