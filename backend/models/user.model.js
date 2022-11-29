@@ -5,6 +5,8 @@ const userData = new mongoose.Schema({
         firstName: { type: String, required: [true, 'First name cannot be empty.'] },
         lastName: { type: String, required: [true, 'Last name cannot be empty.'] },
     },
+    facebook_id: String,
+    googleId: String,
     email: {
         type: String,
         lowercase: true,

@@ -2,10 +2,99 @@ const UserInfo = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
+const { OAuth2Client } = require('google-auth-library');
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const registerUser = async (req, res) => {
+    const { accessToken, googleId } = req.query;
+
+    if (accessToken) {
+        const ticket = await client.verifyIdToken({
+            idToken: accessToken,
+            audience: process.env.GOOGLE_CLIENT_ID
+        }, async function(error, result) {
+            if (error) {
+                console.log(error);
+                return;
+            }
+
+            const {
+                family_name,
+                given_name,
+                picture,
+                email
+            } = result.payload;
+            const user = await UserInfo.findOne({ googleId, email });
+
+            if (user) {
+                console.log('User already exist');
+                res.status(200).json({ message: 'User already exist.' });
+            } else {
+                const newUser = new UserInfo({
+                    googleId,
+                    name: {
+                        firstName: given_name,
+                        lastName: family_name,
+                    },
+                    avatar: picture,
+                    email
+                });
+
+                console.log(newUser);
+
+                await newUser.save()
+                    .then((user) => res.status(201).json({ success: true, message: 'User created.', user }))
+                    .catch((error) => res.status(500).json({ success: false, error: error.message }));
+            }
+        });
+        return;
+   } else res.status(400).json({ success: false, message: 'Invalid token.' });
+
+    const {
+        provider,
+        facebook_id,
+        name,
+        gender,
+        avatar,
+        location,
+        email
+    } = req?.user;
+
+    if (provider) {
+        const user = await UserInfo.findOne({ facebook_id });
+        const { firstName, lastName } = name;
+
+        try {
+            if (user) {
+                res.status(200).json({ success: true, user });
+                console.log('User already registered: ', user);
+                return;
+            }
+
+            const facebookUser = new UserInfo({
+                name: {
+                    firstName,
+                    lastName,
+                },
+                email: email.toLowerCase(),
+                facebook_id,
+                gender,
+                avatar,
+                location
+            });
+
+
+            facebookUser.save((error, user) => {
+                if (error) return res.status(500).json({ success: false, error: error.message });
+                return res.status(201).json({ success: true, user });
+            })
+        } catch (error) {
+                res.status(200).json({ success: false, error: error.message });
+        }
+    }
+
    try {
-    // store the data coming from the fontend to constants
     const {
         firstName,
         lastName,
