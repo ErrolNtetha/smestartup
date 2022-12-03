@@ -11,6 +11,39 @@
             padding: 5em;
             background: $secondaryColor;
         }
+
+        &__paragraph {
+            display: none;
+        }
+
+        &__h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        &__questionsContainer {
+            @include flexbox();
+            padding: .5em;
+        }
+
+
+        &__question {
+            @include flexbox($justify-content: space-between);
+            padding: .8em .4em;
+            margin: 0;
+            transition: 0.4s;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        &__answer {
+            background: $foregroundColor;
+            margin: 0;
+            padding: .8em;
+        }
     }
 
     @include respond-to('tablet') {
