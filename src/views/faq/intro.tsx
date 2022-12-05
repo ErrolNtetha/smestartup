@@ -10,7 +10,7 @@ export const Intro = () => {
         <section className='faq__intro'>
             <section className='container'>
             <section className='faq__heading'>
-                <h3 className='faq__h3'> Hello, we are here to help you </h3>
+                <h3 className='faq__h3'> Hello, we are here to help you! </h3>
                 <p className='faq__paragraph'> Browse our Frequently Asked Questions below or search through a topic. </p>
             </section>
             <Search
