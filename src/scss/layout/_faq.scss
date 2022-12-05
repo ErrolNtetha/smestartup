@@ -23,20 +23,26 @@
 
         &__questionsContainer {
             @include flexbox();
-            padding: .5em;
+            flex-direction: column;
+            padding: 1.5em .5rem;
         }
-
 
         &__question {
             @include flexbox($justify-content: space-between);
+            gap: 1em;
             padding: .8em .4em;
             margin: 0;
-            transition: 0.4s;
+            transition: all 0.4s ease-in-out 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
 
             &:hover {
                 cursor: pointer;
                 background: rgba(255, 255, 255, 0.05);
             }
+        }
+
+        &__icon {
+            font-size: 1.2rem;
         }
 
         &__answer {
@@ -62,7 +68,7 @@
 
         &__h3 {
             font-size: 2rem;
-            margin: 0;
+            margin-bottom: 1.5em;
         }
 
         &__paragraph {
@@ -71,7 +77,7 @@
         }
 
         &__search {
-            width: 50%;
+            width: 100%;
             border-radius: 30px;
             font-size: 1.4rem;
         }
@@ -99,11 +105,20 @@
 
         &__questionsContainer {
             @include flexbox();
+            flex-direction: column;
             width: 100%;
-            margin-top: 2em;
+            padding: 3em 0;
+        }
+
+        &__questionsContainer .container {
+            width: 70%;
         }
 
         &__questionInner {
+            width: 100%;
+        }
+
+        &__questionInner > * {
             width: 100%;
         }
 
@@ -112,6 +127,7 @@
             padding: .8em .4em;
             margin: 0;
             transition: 0.4s;
+            width: 100%;
 
             &:hover {
                 cursor: pointer;
