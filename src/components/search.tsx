@@ -24,7 +24,7 @@ export const Search = ({
             <section className='header__searchContainer'>
                 <section className='header__searchWrapper'>
                     <FiSearch className='header__searchIcon' />
-                    <input type='text' name='search' value={searchTerm} placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
+                    <input type='text' autoComplete='off' name='search' value={searchTerm} placeholder={placeholder} onChange={searchKey} className='header__searchBar' />
                     {searchTerm && <FiX onClick={clearSearchKey} className='header__clearSearchKey' />}
                 </section>
                 {children}
