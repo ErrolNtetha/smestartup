@@ -41,7 +41,10 @@ export const Group = () => {
                                 ? user
                                 : null;
                             });
-    console.log(foundUsers);
+
+        if (foundUsers) {
+            console.log('These are users: ', foundUsers);
+        } else console.log('no users');
 
     return (
         <span className='header__BtnGroup'>
