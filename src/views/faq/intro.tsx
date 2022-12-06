@@ -4,8 +4,6 @@ import { Search } from 'components/search';
 export const Intro = () => {
     const [searchWord, setSearchWord] = React.useState('');
 
-    console.log(searchWord);
-
     return (
         <section className='faq__intro'>
             <section className='container'>
