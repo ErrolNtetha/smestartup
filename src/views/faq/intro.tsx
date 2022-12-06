@@ -21,7 +21,7 @@ export const Intro = () => {
               className='faq__search'
             >
                 {searchWord
-                    && <section className='faq__searchResultContainer'> These are search result </section>}
+                    && <section style={{ padding: '.9em', marginTop: '1em', fontSize: '.8rem' }} className='faq__searchResultContainer'>No results found for that keyword.</section>}
             </Search>
             </section>
         </section>
