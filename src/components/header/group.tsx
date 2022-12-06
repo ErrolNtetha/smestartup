@@ -50,7 +50,7 @@ export const Group = () => {
                     <>
                         <span>
                             <Search placeholder='Search people...' searchWord={searchWord} clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}>
-                        {users
+                        {foundUsers
                             && (
                                 <section className='header__usersContainer'>
                                     {!users ? null : users.filter((user: any) => {
