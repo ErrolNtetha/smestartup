@@ -22,7 +22,8 @@ export const Questions = () => {
             answer: {
                 title: 'Why should I use this website over your competitors?',
                 question: <p className='faq__answer'>
-                            We are committed and love what we are doing. Which means we are always striving to improve the user experience and how our users
+                            <strong>Blendot</strong> is unlike any of our competitors. We have a strong, dedicated engineering team that is able to
+                            meet user requirements on time. We are committed and love what we are doing. Which means we are always striving to improve the user experience and how our users
                             interact with platform. We like to go above and beyond to what our users want in the platform.
                           </p>,
             },
