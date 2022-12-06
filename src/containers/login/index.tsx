@@ -2,8 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // @flow
 import { Button } from 'components/button';
-import React, { useState } from 'react';
-import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
+import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Header } from 'views/header';
@@ -11,16 +10,22 @@ import { Link, useHistory } from 'react-router-dom';
 import { axiosPublic } from 'config/axiosInstance';
 import { Helmet } from 'react-helmet-async';
 import { SyncLoader } from 'react-spinners';
+import { Google, Facebook } from 'components/socialButton';
 import { Logo } from 'components/header/logo';
 import logged from '../../store/actions/logged';
 import { fetchProfile } from '../../store/actions/fetchProfile';
 
 export const Login = () => {
     const history = useHistory();
+    const inputRef = useRef();
+    const onPasswordError = useRef();
     const dispatch = useDispatch();
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState<Boolean | null>(null);
     // const [token, setToken] = useState<string>('');
+    //
+
+    useEffect(() => inputRef.current.focus(), []);
 
     const formik = useFormik({
         initialValues: {
@@ -55,6 +60,7 @@ export const Login = () => {
                         history.push('/feed');
                     } else {
                         setResponse(message);
+                        onPasswordError.current.focus();
                     }
                 })
                 .catch(() => {
@@ -67,8 +73,8 @@ export const Login = () => {
     return (
         <>
             <Helmet>
-                <title> Login To Your Account and Continue Where You Left Off | Blendot </title>
-                <meta name='description' content='Login and collaborate with like-minded people within the platform.' />
+                <title> Login To Your Account | Blendot </title>
+                <meta name='description' content='Login and meet like-minded people within the platform.' />
                 <link rel='canonical' href='/login' />
             </Helmet>
             <Header>
@@ -78,9 +84,10 @@ export const Login = () => {
                 <section className='login__container'>
                         <h2 className='login__header'> Account Login </h2>
                         <form onSubmit={formik.handleSubmit} className='login__form'>
-                            <label className='login__label' htmlFor='email'> Email or Username: </label>
+                            <label className='login__label' htmlFor='email'> Email: </label>
                             <input
                               type='email'
+                              ref={inputRef}
                               name='email'
                               data-cy='email'
                               placeholder='Enter your email'
@@ -93,9 +100,10 @@ export const Login = () => {
                             <label className='login__label' htmlFor='email'> Password: </label>
                             <input
                               type='password'
+                              ref={onPasswordError}
                               name='password'
                               data-cy='password'
-                              placeholder='Enter password'
+                              placeholder='Enter your password'
                               value={formik.values.password}
                               onChange={formik.handleChange}
                               className='login__emailField'
@@ -106,9 +114,8 @@ export const Login = () => {
                         </form>
                         <p className='login__Or'>OR</p>
                         <section className='login__socials'>
-                            <FaGoogle />
-                            <FaFacebookF />
-                            <FaLinkedinIn />
+                            <Google url='/auth/google' buttonText='Login with Google' />
+                            <Facebook url='/auth/facebook' buttonText='Login with Facebook' />
                         </section>
                         <section className='login__button--register'>
                             <p> Dont have an account? <b /> <Link to='/register'> Create new account! </Link> </p>
