@@ -9,8 +9,10 @@ interface Props {
 
 export const Tooltip = ({ message, className }: Props) => {
     return (
-        <span className={className} data-tooltip={message}>
-            <FiHelpCircle />
+        <span className={className}>
+            <span className={`${className}__tooltipContainer`} data-tooltip={message}>
+                <FiHelpCircle />
+            </span>
         </span>
     );
 };
