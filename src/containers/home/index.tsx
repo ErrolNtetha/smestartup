@@ -16,7 +16,7 @@ export const Home: React.FC = () => {
     return (
         <section className='home'>
             <Helmet>
-                <title> Find Investors and Enterpreneurs In One Platform | Blendot </title>
+                <title> Find Suppliers, and meet enterpreneurs | Blendot </title>
                 <meta name='description' content='A platform to meet entrepreneurs and investors, share ideas and create connections. ' />
                 <meta property='og:title' content='A friendly community space for entrepreneurs to collaborate and share amazing insights and ideas.' />
                 <meta property='og:type' content='article' />
