@@ -1,7 +1,6 @@
 @use '../base/_color.scss' as *;
 @use '../base' as *;
-@use '../mixins/_flexbox.scss' as *;
-@use '../mixins/_respond.scss' as *;
+@use '../mixins/' as *;
 
 .faq {
     @include respond-to('mobile') {
@@ -10,6 +9,10 @@
             flex-direction: column;
             padding: 5em;
             background: $secondaryColor;
+        }
+
+        &__tooltipContainer {
+            @include tooltip();
         }
 
         &__paragraph {
