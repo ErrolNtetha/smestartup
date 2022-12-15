@@ -1,12 +1,13 @@
 import React from 'react';
 
-interface Payfast {
+type Payfast = {
     cancelUrl: string;
     amount: number;
     firstName: string;
     lastName: string;
     email: string;
     itemName: string;
+    buttonText: string;
     confirmationEmail: string;
 }
 
@@ -17,7 +18,8 @@ export const PayFast = ({
     lastName,
     email,
     itemName,
-    confirmationEmail
+    confirmationEmail,
+    buttonText
 }: Payfast) => {
     return (
         <form action='https://www.payfast.co.za/eng/process' method='post'>
@@ -32,7 +34,7 @@ export const PayFast = ({
             <input type='hidden' name='email_confirmation' value='1' />
             <input type='hidden' name='confirmation_email' value={confirmationEmail} />
             <input type='hidden' name='payment_method' value='cc' />
-            <button type='submit'> pay now </button>
+            <button type='submit'> {buttonText} </button>
         </form>
     );
 };
