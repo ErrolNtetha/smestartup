@@ -324,7 +324,7 @@ export const RegisterSupplier = () => {
                           name='about'
                           as='textarea'
                           rows={4}
-                          placeholder='What is the business is about? Be short and precise.'
+                          placeholder='What the business is about? Be short and precise.'
                           className='profile__inputBio'
                         />
                         <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
