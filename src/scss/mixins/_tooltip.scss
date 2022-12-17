@@ -1,53 +1,46 @@
 @use '../base/_color.scss' as *;
 
-@mixin tooltip($ttBg: yellow) {
-    .tooltipContainer {
+@mixin tooltip($ttBg: white, $textColor: black) {
+    &__tooltipContainer {
         position: relative;
     }
 
-    .tooltipContainer {
-    }
-
-    .tooltipContainer:hover {
-        cursor: pointer;
-    }
-
-    .tooltipContainer:before,
-    .tooltipContainer:after {
+    &__tooltipContainer:before,
+    &__tooltipContainer:after {
         position: absolute;
         content: '';
         display: none;
         transition: all 0.4s ease;
     }
 
-    .tooltipContainer:before {
+    &__tooltipContainer:before {
         border-width: 10px 8px 0 8px;
         border-style: solid;
-        border-color: #fff transparent transparent transparent;
+        border-color: $ttBg transparent transparent transparent;
         z-index: 1000;
         top: -10px;
         transform: translateY(20px);
-        box-shadow: 5px 5px 8px rgba(0, 0, 0, .05);
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, .1);
     }
 
-    .tooltipContainer:after {
+    &__tooltipContainer:after {
         content: attr(data-tooltip);
         background: $ttBg;
-        color: #000;
+        color: $textColor;
         font-size: .7rem;
         padding: .5em .7em;
         border-radius: 5px;
         transform: translateY(20px);
-        width: 160px;
+        width: 130px;
         height: max-content;
         bottom: 30px;
         left: -10px;
-        z-index: 999;
-        box-shadow: 5px 5px 8px rgba(0, 0, 0, .05);
+        z-index: 1001;
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, .1);
     }
 
-    .tooltipContainer:hover::before,
-    .tooltipContainer:hover::after {
+    &__tooltipContainer:hover::before,
+    &__tooltipContainer:hover::after {
         display: unset;
         transform: translateY(-2px);
     }
