@@ -31,6 +31,7 @@ import { types } from './types';
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
     const imageInput1 = useRef(null);
+    const avatar = useRef(null);
     const history = useHistory();
     const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
@@ -99,16 +100,16 @@ export const RegisterSupplier = () => {
                 <hr className='global' />
                 <section className='profile__avatarContainer'>
                         <span className='register__avatarWrapper'>
-                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
+                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => avatar.current.click()} onClick={() => avatar.current.click()}>
                                 {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
                                 : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
                             </div>
-                            <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> Company Logo </Button>
+                            <Button className='profile__changeAvatar' onClick={() => avatar.current.click()}> Company Logo </Button>
                         </span>
                     <input
                       type='file'
                       hidden
-                      ref={imageInput}
+                      ref={avatar}
                       accept='image/*'
                       name='avatar'
                       onChange={(e) => {
