@@ -2,11 +2,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable  jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import {
+    Formik,
+    Form,
+    Field,
+    FieldArray
+} from 'formik';
 import defaultBusiness from 'assets/defaultBusiness.png';
 import { axiosPrivate } from 'config/axiosInstance';
 import * as Yup from 'yup';
@@ -46,6 +52,7 @@ export const RegisterSupplier = () => {
                   name: '',
                   pictures: '',
                   avatar: '',
+                  photos: [],
                   about: '',
                   established: '',
                   contacts: {
@@ -317,6 +324,77 @@ export const RegisterSupplier = () => {
                           className='profile__input'
                         />
                     </section>
+
+                    <FieldArray
+                      name='photos'
+                      render={(arrayHelpers) => (
+                        <section>
+                            <p> Upload Photos <Tooltip message='You can upload up to 3 pictures. To upload more, you have to upgrade to a paid plan.' className='profile__tooltip' /> </p>
+                                <section className='profile__photos'>
+                                    {props.values.photos.length
+                                        ? (
+                                            <section>
+                                                <section className='profile__photosContainer'>
+                                                    {props.values.photos && props.values.photos.map((item) => <img src={item} className='profile__photosGroup' alt='dummy text' />)}
+                                                    <section className='profile__addPhotos' onClick={() => imageInput1.current.click()}>
+                                                        <section>
+                                                            <FiPlus className='profile__plusIcon' />
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        )
+                                        : (
+                                            <section onClick={() => imageInput.current.click()} className='profile__addPhotoContainer'>
+                                                <section>
+                                                    <FiPlus className='profile__plusIcon' />
+                                                    <p className='profile__addPhotoBtn'>Add Photos</p>
+                                                </section>
+                                            </section>
+                                        )}
+                                </section>
+
+                            <input
+                              type='file'
+                              hidden
+                              ref={imageInput1}
+                              accept='image/*'
+                              name='photos'
+                              onChange={(e) => {
+                                  const reader = new FileReader();
+                                  reader.readAsDataURL(e.currentTarget.files[0]);
+
+                                  reader.onload = () => {
+                                      if (reader.result) {
+                                          arrayHelpers.push(reader.result);
+                                      }
+                                  };
+                              }}
+                            />
+
+                            <input
+                              type='file'
+                              hidden
+                              multiple
+                              ref={imageInput}
+                              accept='image/*'
+                              name='photos'
+                              onChange={(e) => {
+                                  const photos = e.currentTarget.files;
+                                  const reader = new FileReader();
+
+                                  reader.readAsDataURL(photos[0]);
+                                  reader.onload = () => {
+                                      if (reader.result) {
+                                            console.log(reader.readyState);
+                                            arrayHelpers.push(reader.result);
+                                       }
+                                  };
+                              }}
+                            />
+                        </section>
+                        )}
+                    />
 
                     <section>
                         <label htmlFor='about'> About </label>
