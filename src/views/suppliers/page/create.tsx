@@ -36,7 +36,7 @@ export const Create = () => {
                         })}
                 </section>
                 <span className='supplier__supplierProfiles'>
-                    <Link to='/suppliers/register' className='supplier__create'> register </Link>
+                    <Link to='/suppliers/payments' className='supplier__create'> register </Link>
                 </span>
             </span>
         </section>
