@@ -21,6 +21,8 @@ import { SyncLoader } from 'react-spinners';
 import { Button } from 'components/button';
 import { Select } from 'components/select';
 import { Modal } from 'components/modal';
+import { Tooltip } from 'components/tooltip';
+import { FiPlus } from 'react-icons/fi';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
 import { Feedback } from './feedback';
@@ -28,6 +30,7 @@ import { types } from './types';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
+    const imageInput1 = useRef(null);
     const history = useHistory();
     const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
@@ -61,7 +64,7 @@ export const RegisterSupplier = () => {
                     cellphone: '',
                     telephone: '',
                     fax: '',
-                },
+                  },
                   description: '',
                   address: '',
                   beeLevel: '',
@@ -70,8 +73,10 @@ export const RegisterSupplier = () => {
                   moqNumber: '',
                   quotation: '',
                   companyType: '',
-            }}
+              }}
               onSubmit={async (values) => {
+              console.log(values.photos);
+
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
@@ -96,7 +101,7 @@ export const RegisterSupplier = () => {
                         <span className='register__avatarWrapper'>
                             <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
                                 {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
-                                : <img src={defaultBusiness} alt={`${props.values.firstName}'s avatar'`} className='supplier__companyLogo' />}
+                                : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
                             </div>
                             <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> Company Logo </Button>
                         </span>
@@ -424,7 +429,7 @@ export const RegisterSupplier = () => {
 
                     <section className='profile__actionBtns'>
                         <Button onClick={() => history.goBack()} className='profile__button--cancel'>
-                            Cancel
+                            Back
                         </Button>
                         <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
                             {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Publish' }
