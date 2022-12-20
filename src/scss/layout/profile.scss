@@ -296,20 +296,22 @@ $container-width: 70%;
             @include flexbox($justify-content: unset);
             align-items: unset;
             flex-wrap: wrap;
-            width: 100%;
-            gap: .4em;
+        }
+
+        &__photosContainer > * {
+            flex: 0 1 1;
+            width: 20%;
+            height: 20%;
         }
 
         &__photosGroup {
-            width: 70px;
-            height: 70px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 5px;
             object-fit: cover;
         }
 
         &__photos {
-            height: 160px;
+            height: 180px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: .2em;
@@ -325,10 +327,11 @@ $container-width: 70%;
             @include flexbox();
             flex-direction: column;
             border: 1px dashed rgba(255, 255, 255, .8);
-            width: 70px;
-            height: 70px;
+            width: 20%;
+            height: 20%;
             padding: 1.4em 1em;
             border-radius: 5px;
+            width: 100%;
 
             &:hover {
                 cursor: pointer;
