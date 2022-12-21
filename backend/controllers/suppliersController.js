@@ -198,3 +198,9 @@ exports.mapProfiles = async (req, res) => {
         .then((s) => res.status(200).json({ suppliers: s }))
         .catch((error) => console.log(error));
 };
+
+exports.orders = async (req, res) => {
+    const { id } = req.user;
+    console.log(id);
+    console.log(req.body);
+};

@@ -19,5 +19,7 @@ router.route('/suppliers/:id/update')
     .put(verifyToken, suppliers.updateSupplier); // update supplier profile
 router.route('/suppliers/:id/delete')
     .delete(suppliers.deleteSupplier); // delete supplier record
+router.route('suppliers/payments') // routes for handing order payments
+    .post(suppliers.orders);
 
 module.exports = router;
