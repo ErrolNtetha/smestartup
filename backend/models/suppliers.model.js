@@ -31,7 +31,13 @@ const SuppliersSchema = new mongoose.Schema({
     tags: [String],
     registrationNumber: String,
     established: Number,
-    photos: [String],
+    photos: [
+        {
+            url: String,
+            signature: String,
+            publicId: String
+        }
+    ],
     avatar: String,
     contacts: {
         cellphone: [Number],
