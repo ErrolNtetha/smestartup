@@ -45,8 +45,8 @@ export const RegisterSupplier = () => {
                         .required('Business name cannot be empty.'),
                   about: Yup.string()
                         .min(30, 'About should be at least 30 characters.')
-                        .max(200, 'You about is too long!')
-                        .required('About  is required!'),
+                        .max(200, 'The about is too long!')
+                        .required('About is required!'),
                   description: Yup.string()
                         .min(30, 'Description should be at least 30 characters.')
                         .max(1200, 'You have exceeded maximum character limit of 200. Remove some characters.')
@@ -54,7 +54,6 @@ export const RegisterSupplier = () => {
                 })}
               initialValues={{
                   name: '',
-                  pictures: '',
                   avatar: '',
                   photos: [],
                   about: '',
@@ -76,7 +75,7 @@ export const RegisterSupplier = () => {
                   companyType: '',
               }}
               onSubmit={async (values) => {
-              console.log(values.photos);
+              console.log(values.contacts);
 
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
@@ -91,7 +90,7 @@ export const RegisterSupplier = () => {
             >
           {(props) => (
               <Form onSubmit={props.handleSubmit} className='profile__formContainer'>
-                <h4>register supplier</h4>
+                <h4>supplier registration</h4>
               {modal && (
                 <Modal className='supplier__feedbackContainer'>
                     <Feedback />
@@ -124,6 +123,8 @@ export const RegisterSupplier = () => {
                       }}
                     />
                 </section>
+                <section className='supplier__dividerContainer'>
+                    <h3> 1. Company Information </h3>
                     <section>
                         <label htmlFor='name'> Company Name </label>
                         <Field
@@ -137,7 +138,7 @@ export const RegisterSupplier = () => {
                     <section>
                         <label htmlFor='email'>Email</label>
                         <Field
-                          name='email'
+                          name='contacts.email'
                           placeholder='Business Email'
                           className='profile__input'
                         />
@@ -146,16 +147,56 @@ export const RegisterSupplier = () => {
                     <section>
                         <label htmlFor='website'>Website</label>
                         <Field
-                          name='url'
+                          name='contacts.website'
                           placeholder='Company Website'
                           className='profile__input'
                         />
                     </section>
+
+                    <section>
+                        <label htmlFor='established'> Established Year </label>
+                        <Field
+                          type='number'
+                          name='established'
+                          placeholder='The year the company was established'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='about'> About </label>
+                        <Field
+                          name='about'
+                          as='textarea'
+                          rows={4}
+                          placeholder='What the business is about? Be short and precise.'
+                          className='profile__inputBio'
+                        />
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
+                        {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
+                    </section>
+
+                    <section>
+                        <label htmlFor='description'> Description </label>
+                        <Field
+                          name='description'
+                          as='textarea'
+                          rows={6}
+                          placeholder='Write a description of what the business does.'
+                          className='profile__inputBio'
+                        />
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.description.length)}/1200`} characters </section>
+                        {(props.errors.description && props.touched.description) && <p style={{ color: 'red', margin: '0' }}>{props.errors.description}</p>}
+                    </section>
+                </section>
+
+                <section className='supplier__dividerContainer'>
+                    <h3> 2. Company Address </h3>
                     <section>
                         <label htmlFor='location'> Street Address </label>
                         <Field
                           name='address'
-                          placeholder='32446 Mitchel St. Durban'
+                          placeholder='Ex: 32446 Mitchel St. Durban'
                           className='profile__input'
                         />
                     </section>
@@ -178,27 +219,43 @@ export const RegisterSupplier = () => {
                           className='profile__input'
                         />
                     </section>
+                </section>
 
-                    <section>
-                        <label htmlFor='company'> Cellphone Number </label>
-                        <Field
-                          type='number'
-                          name='cellphone'
-                          placeholder='Cellphone'
-                          className='profile__input'
-                        />
+                    <section className='supplier__dividerContainer'>
+                        <h3> 3. Contacts Information </h3>
+                        <section>
+                            <label htmlFor='company'> Cellphone Number </label>
+                            <Field
+                              type='number'
+                              name='contacts.cellphone'
+                              placeholder='Cellphone'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='telephone'> Telephone Number: </label>
+                            <Field
+                              type='number'
+                              name='contacts.telephone'
+                              placeholder='Telephone'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='fax'>Fax</label>
+                            <Field
+                              type='number'
+                              name='contacts.fax'
+                              placeholder='Fax Number'
+                              className='profile__input'
+                            />
+                        </section>
                     </section>
 
-                    <section>
-                        <label htmlFor='telephone'> Telephone Number: </label>
-                        <Field
-                          type='number'
-                          name='telephone'
-                          placeholder='Telephone'
-                          className='profile__input'
-                        />
-                    </section>
-
+                    <section className='supplier__dividerContainer'>
+                        <h3> 4. Product/Service Information </h3>
                     <section>
                         <label htmlFor='beeLevel'> BBBEE Level: </label>
                         <Field
@@ -310,25 +367,6 @@ export const RegisterSupplier = () => {
                             </section>
                         </Field>
                     </section>
-
-                    <section>
-                        <label htmlFor='established'> Established Year </label>
-                        <Field
-                          type='number'
-                          name='established'
-                          placeholder='The year the company was established'
-                          className='profile__input'
-                        />
-                    </section>
-
-                    <section>
-                        <label htmlFor='fax'>Fax</label>
-                        <Field
-                          type='number'
-                          name='fax'
-                          placeholder='Fax Number'
-                          className='profile__input'
-                        />
                     </section>
 
                     <FieldArray
@@ -392,7 +430,6 @@ export const RegisterSupplier = () => {
                                   reader.readAsDataURL(photos[0]);
                                   reader.onload = () => {
                                       if (reader.result) {
-                                            console.log(reader.readyState);
                                             arrayHelpers.push(reader.result);
                                        }
                                   };
@@ -402,38 +439,12 @@ export const RegisterSupplier = () => {
                         )}
                     />
 
-                    <section>
-                        <label htmlFor='about'> About </label>
-                        <Field
-                          name='about'
-                          as='textarea'
-                          rows={4}
-                          placeholder='What the business is about? Be short and precise.'
-                          className='profile__inputBio'
-                        />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
-                        {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
-                    </section>
-
-                    <section>
-                        <label htmlFor='description'> Description </label>
-                        <Field
-                          name='description'
-                          as='textarea'
-                          rows={6}
-                          placeholder='Write a description of what the business does.'
-                          className='profile__inputBio'
-                        />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.description.length)}/1200`} characters </section>
-                        {(props.errors.description && props.touched.description) && <p style={{ color: 'red', margin: '0' }}>{props.errors.description}</p>}
-                    </section>
-
                     <section className='profile__actionBtns'>
                         <Button onClick={() => history.goBack()} className='profile__button--cancel'>
                             Back
                         </Button>
                         <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
-                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Publish' }
+                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Submit' }
                         </Button>
                     </section>
               </Form>
