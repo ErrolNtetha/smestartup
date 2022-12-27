@@ -4,7 +4,7 @@ const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
 const SaveList = require('../models/saveList.model');
 const User = require('../models/user.model');
-// const { cloudinary } = require('../utils/cloudinary');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
     const { supplierType } = req.query;
@@ -117,6 +117,27 @@ exports.createSupplier = async (req, res) => {
         fax
     } = contacts;
 
+    const supplierPhotos = [];
+    console.log(photos.length);
+
+    if (photos.length >= 1) {
+        photos.forEach(async (photo) => {
+            try {
+                const response = await cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' });
+
+                supplierPhotos.push({
+                    url: response.url,
+                    publicId: response.public_id,
+                    signature: response.signature
+                });
+
+                console.log('Supplier photos: ', supplierPhotos); // Empty: []
+             } catch (error) {
+                console.log(error);
+            }
+        });
+    }
+
     const newSupplier = new Suppliers({
         name,
         about,
@@ -142,8 +163,11 @@ exports.createSupplier = async (req, res) => {
         quotation,
         established,
         type: companyType,
-        photos
+        photos: [...supplierPhotos]
     });
+
+    console.log('Saved photos: ', newSupplier);
+    return;
 
     await newSupplier.save()
         .then(() => res.status(200).json({ success: true }))
