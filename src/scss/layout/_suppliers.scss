@@ -484,6 +484,10 @@
             font-size: .9rem;
         }
 
+        &__dividerContainer {
+            margin: 5em 0;
+        }
+
         &__plansContainer span {
             text-align: center;
         }
@@ -513,9 +517,6 @@
             background: rgba(255, 255, 255, .4);
             position: relative;
             height: 20%;
-        }
-
-        &__updateContainer {
         }
 
         &__feedbackContainer {
