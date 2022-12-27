@@ -149,8 +149,7 @@ exports.createSupplier = async (req, res) => {
             website,
             fax
         },
-        addresses,
-        address,
+        addresses, address,
         tags,
         author: _id,
         isRegistered,
@@ -214,6 +213,11 @@ exports.updateSupplier = async (req, res) => {
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
+exports.orders = (req, res) => {
+    console.log(req.body);
+    res.status(200).json({ success: true, message: 'You have successfully subscribed.' });
+};
+
 exports.mapProfiles = async (req, res) => {
     const { email } = req.user;
     const { _id } = await User.findOne({ email });
@@ -221,10 +225,4 @@ exports.mapProfiles = async (req, res) => {
     await Suppliers.find({ author: _id })
         .then((s) => res.status(200).json({ suppliers: s }))
         .catch((error) => console.log(error));
-};
-
-exports.orders = async (req, res) => {
-    const { id } = req.user;
-    console.log(id);
-    console.log(req.body);
 };
