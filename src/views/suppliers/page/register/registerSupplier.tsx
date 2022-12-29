@@ -17,7 +17,6 @@ import defaultBusiness from 'assets/defaultBusiness.png';
 import { axiosPrivate } from 'config/axiosInstance';
 import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
-// import { Select } from 'components/select';
 import { Button } from 'components/button';
 import { Select } from 'components/select';
 import { Modal } from 'components/modal';
@@ -35,14 +34,15 @@ export const RegisterSupplier = () => {
     const history = useHistory();
     const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
+
     return (
         <main className='supplier__registerSupplierContainer'>
             <Formik
               validationSchema={Yup.object({
                   name: Yup.string()
-                        .min(2, 'Your name is too short!')
+                        .min(2, 'Company name is too short!')
                         .max(100, 'Name is too long!')
-                        .required('Business name cannot be empty.'),
+                        .required('Company name cannot be empty.'),
                   about: Yup.string()
                         .min(30, 'About should be at least 30 characters.')
                         .max(200, 'The about is too long!')
