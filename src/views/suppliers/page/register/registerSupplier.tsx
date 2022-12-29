@@ -133,7 +133,7 @@ export const RegisterSupplier = () => {
                 <section className='supplier__dividerContainer'>
                     <h3> 1. Company Information </h3>
                     <section>
-                        <label htmlFor='name'> Company Name </label>
+                        <label htmlFor='name'> Company Name * </label>
                         <Field
                           name='name'
                           placeholder='Company Trading name'
@@ -143,7 +143,7 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='email'>Email *</label>
                         <Field
                           name='contacts.email'
                           placeholder='Business Email'
@@ -171,7 +171,7 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='about'> About </label>
+                        <label htmlFor='about'> About * </label>
                         <Field
                           name='about'
                           as='textarea'
@@ -184,7 +184,7 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='description'> Description </label>
+                        <label htmlFor='description'> Description *</label>
                         <Field
                           name='description'
                           as='textarea'
