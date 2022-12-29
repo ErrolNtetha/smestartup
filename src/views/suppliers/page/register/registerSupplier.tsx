@@ -87,8 +87,6 @@ export const RegisterSupplier = () => {
                   companyType: '',
               }}
               onSubmit={async (values) => {
-              console.log(values.socials);
-
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
