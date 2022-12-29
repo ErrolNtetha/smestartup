@@ -377,7 +377,7 @@ $container-width: 70%;
         }
 
         &__tooltip {
-            @include tooltip(); 
+            @include tooltip($ttBg: black, $textColor: white); 
         }
     }
 
