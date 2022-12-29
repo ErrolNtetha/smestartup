@@ -73,7 +73,12 @@ export const RegisterSupplier = () => {
                     instagram: '',
                   },
                   description: '',
-                  address: '',
+                  address: {
+                    streetAddress: '',
+                    city: '',
+                    province: '',
+                    postalCode: '',
+                  },
                   beeLevel: '',
                   sector: '',
                   moq: '',
@@ -200,28 +205,37 @@ export const RegisterSupplier = () => {
                 <section className='supplier__dividerContainer'>
                     <h3> 2. Company Address </h3>
                     <section>
-                        <label htmlFor='location'> Street Address </label>
+                        <label htmlFor='address'> Street Address </label>
                         <Field
-                          name='address'
-                          placeholder='Ex: 32446 Mitchel St. Durban'
+                          name='address.streetAddress'
+                          placeholder='Ex: 32446 Mitchel Road'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                        <label htmlFor='location'> Province </label>
+                        <label htmlFor='address'> City </label>
                         <Field
-                          name='address'
+                          name='address.city'
+                          placeholder='Enter city'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='address'> Province </label>
+                        <Field
+                          name='address.province'
                           placeholder='Enter province'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                        <label htmlFor='location'> Postal Code </label>
+                        <label htmlFor='address'> Postal Code </label>
                         <Field
                           type='number'
-                          name='address'
+                          name='address.postalCode'
                           placeholder='Enter postal code. Ex: 4000'
                           className='profile__input'
                         />
