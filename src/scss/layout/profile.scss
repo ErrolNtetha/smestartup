@@ -10,6 +10,7 @@ $container-width: 70%;
     }
     @include respond-to('mobile') {
         &__container {
+            padding: .4em;
         }
 
         &__coverImage {
@@ -281,6 +282,78 @@ $container-width: 70%;
         &__input {
             @include inputField($padding: .6em .8em, $border: 1px solid black, $inputRadius: 20px, $margin: 0);
         } 
+
+        &__plusIcon {
+            font-size: 1.5rem;
+        }
+
+        &__wrapper {
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &__photosContainer {
+            @include flexbox($justify-content: unset);
+            align-items: unset;
+            flex-wrap: wrap;
+        }
+
+        &__photosContainer > * {
+            flex: 0 1 1;
+            width: 20%;
+            height: 20%;
+        }
+
+        &__photosGroup {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        &__photos {
+            height: 180px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .2em;
+            overflow: auto;
+        }
+
+        &__addPhotoContainer {
+            @include flexbox();
+            height: 100%;
+        }
+
+        &__addPhotos > section {
+            @include flexbox();
+            flex-direction: column;
+            border: 1px dashed rgba(255, 255, 255, .8);
+            width: 20%;
+            height: 20%;
+            padding: 1.4em 1em;
+            border-radius: 5px;
+            width: 100%;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__addPhotoContainer > section {
+            @include flexbox();
+            flex-direction: column;
+            border: 1px dashed rgba(255, 255, 255, .8);
+            padding: 1.4em 1em;
+            border-radius: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__addPhotoBtn {
+            padding: 0;
+            margin: 0;
+        }
 
         &__button--save {
             @include buttonHover($bgColor: $secondaryColor, $padding: .6em .8em);

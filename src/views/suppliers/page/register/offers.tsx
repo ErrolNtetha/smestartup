@@ -17,7 +17,7 @@ export const Starter = () => {
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Location
+                            <FiCheck /> Map
                         </li>
                         <li>
                             <FiCheck /> Up to 2 images

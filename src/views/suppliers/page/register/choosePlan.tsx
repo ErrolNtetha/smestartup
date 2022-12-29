@@ -2,29 +2,50 @@
 
 import { Logo } from 'components/header/logo';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Header } from 'views/header';
-// import { Nav } from 'components/header/nav';
+import { axiosPrivate } from 'config/axiosInstance';
 import { Plan } from './plans';
 import { Premium, Pro, Starter } from './offers';
+import { PayFast } from '../../payfast';
 
 export const ChoosePlan = () => {
-    const [selectedPlan, setSelectedPlan] = React.useState('');
+    const [plan, setSelectedPlan] = React.useState('');
+    const history = useHistory();
 
-    const prices = {
-        pro: 109,
-        premium: 199
+    const PRICES = {
+        STARTER: 0,
+        PRO: 99,
+        PREMIUM: 199
     };
 
-    const selectPlan = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedPlan(e.target.value);
-    };
+    const selectPlan = (e: React.ChangeEvent<HTMLInputElement>) => setSelectedPlan(e.target.value);
 
-    const handlePayment = () => {
+    const handlePayment = async () => {
         const planDetails = {
-            planType: selectedPlan,
-            planPrice: prices.pro,
+            planType: plan,
+            planPrice: plan === 'starter'
+                ? PRICES.STARTER
+                : plan === 'pro'
+                ? PRICES.PRO
+                : plan === 'premium'
+                ? PRICES.PREMIUM
+                : null
         };
-        console.log(planDetails);
+
+        if (planDetails.planType === 'starter') {
+            console.log(planDetails);
+            const response = await axiosPrivate.post('/payments', planDetails);
+            try {
+                console.log(response);
+                if (response.status === 200) {
+                    console.log('It worked!');
+                    history.push('/suppliers/register');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
     };
     return (
         <>
@@ -48,7 +69,7 @@ export const ChoosePlan = () => {
                   planType='Pro'
                   selectPlan={selectPlan}
                 >
-                    <Pro price={prices.pro} />
+                    <Pro price={PRICES.PRO} />
                 </Plan>
                 <Plan
                   value='premium'
@@ -57,16 +78,38 @@ export const ChoosePlan = () => {
                   planType='Premium'
                   selectPlan={selectPlan}
                 >
-                    <Premium price={prices.premium} />
+                    <Premium price={PRICES.PREMIUM} />
                 </Plan>
 
-                {!selectedPlan
+                {!plan
                     ? <button type='button' disabled> Choose Package </button>
-                    : selectedPlan === 'starter'
+                    : plan === 'starter'
                     ? <button type='button' onClick={handlePayment}> Continue with Starter (Free) </button>
-                    : selectedPlan === 'pro'
-                    ? <button type='button' onClick={handlePayment}> Continue with Pro (R{prices.pro}/pm) </button>
-                    : <button type='submit' onClick={handlePayment}> Continue with Premium (R{prices.premium}/pm) </button>}
+                    : plan === 'pro'
+                    ? (
+                        <PayFast
+                          buttonText={`Continue with Pro (R${PRICES.PRO})`}
+                          confirmationEmail='mphumier@outlook.com'
+                          firstName='Mphumeleli Errol'
+                          lastName='Ntetha'
+                          email='mphumier@outlook.com'
+                          itemName='Pro Supplier Profile'
+                          amount={PRICES.PRO}
+                          cancelUrl='http://localhost:3000/supplier/register'
+                        />
+                        )
+                    : (
+                        <PayFast
+                          buttonText={`Continue with Premium (R${PRICES.PREMIUM})`}
+                          confirmationEmail='mphumier@outlook.com'
+                          firstName='Mphumeleli Errol'
+                          lastName='Ntetha'
+                          email='mphumier@outlook.com'
+                          itemName='Premium Supplier Profile'
+                          amount={PRICES.PREMIUM}
+                          cancelUrl='http://localhost:3000/supplier/register'
+                        />
+                    )}
             </section>
         </>
     );
