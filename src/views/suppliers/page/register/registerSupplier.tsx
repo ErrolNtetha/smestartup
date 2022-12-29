@@ -65,6 +65,13 @@ export const RegisterSupplier = () => {
                     telephone: '',
                     fax: '',
                   },
+                  socials: {
+                    facebook: '',
+                    twitter: '',
+                    linkedin: '',
+                    youtube: '',
+                    instagram: '',
+                  },
                   description: '',
                   address: '',
                   beeLevel: '',
@@ -75,7 +82,7 @@ export const RegisterSupplier = () => {
                   companyType: '',
               }}
               onSubmit={async (values) => {
-              console.log(values.contacts);
+              console.log(values.socials);
 
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
@@ -249,6 +256,51 @@ export const RegisterSupplier = () => {
                               type='number'
                               name='contacts.fax'
                               placeholder='Fax Number'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Facebook</label>
+                            <Field
+                              name='socials.facebook'
+                              placeholder='Your company&apos;s Facebook page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Twitter</label>
+                            <Field
+                              name='socials.twitter'
+                              placeholder='Your company&apos;s Twitter page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Instagram</label>
+                            <Field
+                              name='socials.instagram'
+                              placeholder='Your company&apos;s Instagram page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>YouTube</label>
+                            <Field
+                              name='socials.youtube'
+                              placeholder='Your company&apos;s YouTube page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>LinkedIn</label>
+                            <Field
+                              name='socials.linkedin'
+                              placeholder='Your company&apos;s LinkedIn page link'
                               className='profile__input'
                             />
                         </section>
