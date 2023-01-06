@@ -47,11 +47,11 @@ export const RegisterSupplier = () => {
                         .required('Company name cannot be empty.'),
                   about: Yup.string()
                         .min(30, 'About should be at least 30 characters.')
-                        .max(200, 'The about is too long!')
+                        .max(200, 'The about is too long. Maximum is 200 characters.')
                         .required('About is required!'),
                   description: Yup.string()
                         .min(30, 'Description should be at least 30 characters.')
-                        .max(1200, 'You have exceeded maximum character limit of 200. Remove some characters.')
+                        .max(1200, 'You have exceeded maximum character limit of 1200. Remove some characters.')
                         .required('Description is required!'),
                 })}
               initialValues={{
@@ -104,7 +104,7 @@ export const RegisterSupplier = () => {
               <Form onSubmit={props.handleSubmit} className='profile__formContainer'>
                 <h4>supplier registration</h4>
               {modal && (
-                <Modal className='supplier__feedbackContainer'>
+                <Modal isClosable={false} className='supplier__feedbackContainer'>
                     <Feedback message={message} />
                 </Modal>
               )}
