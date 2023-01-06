@@ -35,6 +35,8 @@ export const RegisterSupplier = () => {
     const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
 
+    const message = 'Thank you. Your profile has been successfully submitted and this process can take up to 3 days. Once we have approved your profile, you will receive an email.';
+
     return (
         <main className='supplier__registerSupplierContainer'>
             <Formik
@@ -103,7 +105,7 @@ export const RegisterSupplier = () => {
                 <h4>supplier registration</h4>
               {modal && (
                 <Modal className='supplier__feedbackContainer'>
-                    <Feedback />
+                    <Feedback message={message} />
                 </Modal>
               )}
                 <hr className='global' />
