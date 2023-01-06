@@ -16,8 +16,8 @@ exports.getSuppliers = async (req, res) => {
             ? 'Manufacturer'
             : supplierType === 'Distributors & Wholesalers'
             ? 'Distributor/Wholesaler'
-            : supplierType === 'All'
-            ? ''
+            : supplierType === 'Importers'
+            ? 'Importer'
             : '';
 
         await Suppliers.find({
