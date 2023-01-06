@@ -95,8 +95,8 @@ export const RegisterSupplier = () => {
                           setModal(true);
                       }
                     })
-                  .catch(({ response }) => {
-                    console.error(response);
+                  .catch((error) => {
+                    console.error(error.message);
                   });
                 }}
             >
