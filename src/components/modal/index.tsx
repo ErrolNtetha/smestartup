@@ -7,24 +7,25 @@ import { FiX } from 'react-icons/fi';
 
 interface Props {
     className: string;
-  children: React.ReactNode;
+    children: React.ReactNode;
+    isClosable?: boolean;
 }
 
-export const Modal:React.FC<Props> = ({ children, className }) => {
+export const Modal:React.FC<Props> = ({ children, className, isClosable = true }) => {
     const [modal, setModal] = React.useState(true);
 
     return (
         <>
             {modal
-            ?
+            &&
             (
                 <div className={className}>
                     <section className='feed__modal'>
                         {children}
-                        <section className='feed__modalClose' onClick={() => setModal(!modal)}> <FiX /> </section>
+                        { isClosable && <section className='feed__modalClose' onClick={() => setModal(!modal)}> <FiX /> </section>}
                     </section>
                 </div>
-            ) : null}
+            )}
         </>
     );
 };
