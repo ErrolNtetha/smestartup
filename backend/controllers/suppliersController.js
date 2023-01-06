@@ -4,6 +4,7 @@ const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
 const SaveList = require('../models/saveList.model');
 const User = require('../models/user.model');
+const Order = require('../models/order.model.js');
 const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
@@ -205,8 +206,21 @@ exports.updateSupplier = async (req, res) => {
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
-exports.orders = (req, res) => {
-    res.status(200).json({ success: true, message: 'You have successfully subscribed.' });
+exports.orders = async (req, res) => {
+    const { email } = req.user;
+    const { price, planType } = req.body;
+    const { _id } = await User.findOne({ email });
+
+    const newOrder = new Order({
+        author: _id,
+        price,
+        planType
+    });
+
+    await newOrder
+        .save()
+        .then(() => res.status(201).json({ success: true }))
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
 exports.mapProfiles = async (req, res) => {
