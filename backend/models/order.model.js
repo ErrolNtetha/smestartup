@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const orderSchema = mongoose.schema({
+const orderSchema = mongoose.Schema({
     author: { type: mongoose.Types.ObjectId, ref: 'User' },
     status: String,
-    startsAt: Date,
+    startsAt: { type: Date, default: new Date() },
     endsAt: Date,
     productName: String,
     planType: {
