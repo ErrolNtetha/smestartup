@@ -89,7 +89,7 @@ export const RegisterSupplier = () => {
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
-                      if (response.status === 200) {
+                      if (response.status === 201) {
                           setModal(true);
                       }
                     })

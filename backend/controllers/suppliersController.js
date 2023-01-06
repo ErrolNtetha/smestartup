@@ -32,7 +32,7 @@ exports.getSuppliers = async (req, res) => {
                 res.status(200).json({ count: suppliers.length, suppliers });
             })
             .catch((error) => {
-                res.status(500).json({ success: false, error });
+                res.status(500).json({ success: false, error: error.message });
             });
     } else {
         await Suppliers.find({ approved: true })
@@ -44,7 +44,7 @@ exports.getSuppliers = async (req, res) => {
                 res.status(200).json({ suppliers });
             })
             .catch((error) => {
-                res.status(500).json({ success: false, error });
+                res.status(500).json({ success: false, error: error.message });
             });
     }
 };
@@ -52,7 +52,8 @@ exports.getSuppliers = async (req, res) => {
 exports.getSupplier = async (req, res) => {
     const { email } = req.user;
     const { id } = req.params;
-    await Suppliers.findOne({ _id: id })
+    await Suppliers
+        .findOne({ _id: id })
         .populate('author', 'avatar email name occupation isVerified _id')
         .then((suppliers) => {
             if (!suppliers) {
@@ -63,26 +64,20 @@ exports.getSupplier = async (req, res) => {
             res.status(200).json({ isOwner, suppliers });
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({ success: false, error });
         });
 };
 
 exports.getSupplierProfiles = async (req, res) => {
     const { id } = req.user;
-    console.log(req.user);
 
-    await Suppliers.find({ author: id })
+    await Suppliers
+        .find({ author: id })
         .then((profiles) => {
             if (!profiles) return res.status(404).json({ message: 'You have no supplier profiles.' });
             return res.status(200).json({ profiles });
         })
-        .catch((error) => res.status(500).json({ success: false, error }));
-};
-
-exports.updateSupplierProfile = async (req, res) => {
-    const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
-    console.log(result);
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
 exports.createSupplier = async (req, res) => {
@@ -118,7 +113,6 @@ exports.createSupplier = async (req, res) => {
     } = contacts;
 
     const supplierPhotos = [];
-    console.log(photos.length);
 
     if (photos.length >= 1) {
         photos.forEach(async (photo) => {
@@ -130,10 +124,8 @@ exports.createSupplier = async (req, res) => {
                     publicId: response.public_id,
                     signature: response.signature
                 });
-
-                console.log('Supplier photos: ', supplierPhotos); // Empty: []
              } catch (error) {
-                console.log(error);
+                res.status(500).json({ success: false, error: error.message });
             }
         });
     }
@@ -149,7 +141,8 @@ exports.createSupplier = async (req, res) => {
             website,
             fax
         },
-        addresses, address,
+        addresses,
+address,
         tags,
         author: _id,
         isRegistered,
@@ -165,11 +158,8 @@ exports.createSupplier = async (req, res) => {
         photos: [...supplierPhotos]
     });
 
-    console.log('Saved photos: ', newSupplier);
-    return;
-
     await newSupplier.save()
-        .then(() => res.status(200).json({ success: true }))
+        .then(() => res.status(201).json({ success: true }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 
@@ -192,7 +182,8 @@ exports.saveSupplier = async (req, res) => {
         supplier: id
     });
 
-    await supplierProfile.save()
+    await supplierProfile
+        .save()
         .then(() => res.status(200).json({ success: true, message: 'Supplier profile saved.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
@@ -207,14 +198,14 @@ exports.updateSupplier = async (req, res) => {
             { $push: { photos: req.body.photos } },
         )
         .then(() => {
-            Suppliers.findOne({ _id: id })
+            Suppliers
+                .findOne({ _id: id })
                 .then((supplier) => res.status(200).json({ success: true, supplier }));
         })
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
 exports.orders = (req, res) => {
-    console.log(req.body);
     res.status(200).json({ success: true, message: 'You have successfully subscribed.' });
 };
 
@@ -222,7 +213,8 @@ exports.mapProfiles = async (req, res) => {
     const { email } = req.user;
     const { _id } = await User.findOne({ email });
 
-    await Suppliers.find({ author: _id })
+    await Suppliers
+        .find({ author: _id })
         .then((s) => res.status(200).json({ suppliers: s }))
-        .catch((error) => console.log(error));
+        .catch((error) => res.status().json({ success: false, error: error.message }));
 };
