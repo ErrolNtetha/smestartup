@@ -1,8 +1,12 @@
+import React from 'react';
 import { Button } from 'components/button';
 import { useHistory } from 'react-router-dom';
-import React from 'react';
 
-export const Feedback = () => {
+interface PropsMessage {
+    message: string;
+}
+
+export const Feedback = ({ message }: PropsMessage) => {
     const history = useHistory();
     return (
         <section className='supplier__feedback'>
@@ -10,8 +14,7 @@ export const Feedback = () => {
                 <h4> Feedback </h4>
                 <hr className='global' />
                 <p>
-                    Thank you. Your profile has been successfully submitted and this process can take up to 3 days.
-                    Once we have approved your profile, you will receive an email.
+                    {message}
                 </p>
             </section>
             <section>
