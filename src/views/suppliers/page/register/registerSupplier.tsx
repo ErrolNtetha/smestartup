@@ -110,7 +110,7 @@ export const RegisterSupplier = () => {
                 <section className='profile__avatarContainer'>
                         <span className='register__avatarWrapper'>
                             <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => avatar.current.click()} onClick={() => avatar.current.click()}>
-                                {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
+                                {props.values.avatar ? <img src={props.values.avatar} alt={`${props.values.name} avatar`} className='supplier__companyLogo' />
                                 : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
                             </div>
                             <Button className='profile__changeAvatar' onClick={() => avatar.current.click()}> Company Logo </Button>
