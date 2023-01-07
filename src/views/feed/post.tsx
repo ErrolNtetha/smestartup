@@ -7,9 +7,6 @@ import { decodeToken } from 'helpers/decodeJwt';
 export const Post = () => {
     const [post, setPost] = useState('');
     const { id }: string = useParams();
-    console.log(useParams());
-
-    console.log(decodeToken().email);
 
     useEffect(() => {
         axios.get(`${NODE_ENV()}/feed/p/${id}`, {
@@ -18,10 +15,7 @@ export const Post = () => {
                 'x-access-token': localStorage.getItem('token')
             }
         })
-            .then((res) => {
-                setPost(res.data.posts.post);
-                console.log(res.data.posts);
-            })
+            .then((res) => setPost(res.data.posts.post))
             .catch((err) => console.error(err));
     }, []);
 
