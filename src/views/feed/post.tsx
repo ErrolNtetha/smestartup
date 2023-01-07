@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { NODE_ENV } from 'config/baseURL';
 import axios from 'axios';
-import { decodeToken } from 'helpers/decodeJwt';
 
 export const Post = () => {
     const [post, setPost] = useState('');
