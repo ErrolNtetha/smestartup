@@ -20,16 +20,28 @@ jobs:
           with: 
             node-version: '16'
 
-        # Run yarn
+        # Install yarn and build the project
         - run: npm install --location=global yarn
         - run: yarn install
-        - run: CI='' npm run build
+        ## - run: yarn build
 
-        # Deploy to Netlify
+        # Run Cypress E2E tests
+        - name: Run Cypress E2E tests
+          uses: cypress-io/github-action@v4.2.0
+          with:
+            build: yarn build
+            start: yarn start
+            browser: chrome
+
+        # Deploy to production
         - name: Deploy to Netlify
-          uses: netlify/actions/cli@master
+        - uses: jsmrcaga/action-netlify-deploy@master
+          with: 
+            args: deploy --dir=build --alias="blendot" --open
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            deploy-message: "Deploy from GitHub Actions"
+            enable-pull-request-comment: false
+            production-branch: development
           env: 
             NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
             NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          with: 
-            args: deploy --dir=build --alias="mphumeleli" --open --prod
