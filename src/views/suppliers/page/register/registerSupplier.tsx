@@ -75,8 +75,6 @@ export const RegisterSupplier = () => {
                   companyType: '',
               }}
               onSubmit={async (values) => {
-              console.log(values.contacts);
-
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 200) {
@@ -397,7 +395,6 @@ export const RegisterSupplier = () => {
                                             </section>
                                         )}
                                 </section>
-
                             <input
                               type='file'
                               hidden
@@ -407,7 +404,6 @@ export const RegisterSupplier = () => {
                               onChange={(e) => {
                                   const reader = new FileReader();
                                   reader.readAsDataURL(e.currentTarget.files[0]);
-
                                   reader.onload = () => {
                                       if (reader.result) {
                                           arrayHelpers.push(reader.result);
