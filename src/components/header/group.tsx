@@ -23,7 +23,7 @@ export const Group = () => {
     const { userProfile } = useStore();
 
     useEffect(() => {
-        axiosPrivate.get('/contact')
+        axiosPrivate.get('/users')
             .then((res) => {
                 setUsers(res.data.users);
                 fetchAllUsers();
@@ -49,7 +49,7 @@ export const Group = () => {
                     <>
                         <span>
                             <Search placeholder='Search people...' searchWord={searchWord} clearSearchKey={() => setSearchWord('')} searchTerm={searchWord} searchKey={(e) => setSearchWord(e.target.value)}>
-                        {foundUsers
+                                {(foundUsers !== null && foundUsers.length > 0)
                             && (
                                 <section className='header__usersContainer'>
                                     {!users ? null : users.filter((user: any) => {
