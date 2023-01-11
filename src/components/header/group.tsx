@@ -23,7 +23,7 @@ export const Group = () => {
     const { userProfile } = useStore();
 
     useEffect(() => {
-        axiosPrivate.get('/contact')
+        axiosPrivate.get('/users')
             .then((res) => {
                 setUsers(res.data.users);
                 fetchAllUsers();
