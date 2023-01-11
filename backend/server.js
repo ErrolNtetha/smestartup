@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -17,7 +20,7 @@ const verify = require('./routes/verify.route');
 const suppliers = require('./routes/suppliers.routes');
 const refresh = require('./routes/refresh.router');
 const founders = require('./routes/founder.routes');
-const contact = require('./routes/contact.routes');
+const users = require('./routes/user.routes');
 
 // Middlewares
 require('dotenv').config();
@@ -34,7 +37,7 @@ app.use(verify);
 app.use(suppliers);
 app.use(refresh);
 app.use(founders);
-app.use(contact);
+app.use(users);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {
