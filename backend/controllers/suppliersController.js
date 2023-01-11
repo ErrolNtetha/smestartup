@@ -4,7 +4,8 @@ const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
 const SaveList = require('../models/saveList.model');
 const User = require('../models/user.model');
-// const { cloudinary } = require('../utils/cloudinary');
+const Order = require('../models/order.model.js');
+const { cloudinary } = require('../utils/cloudinary');
 
 exports.getSuppliers = async (req, res) => {
     const { supplierType } = req.query;
@@ -16,8 +17,8 @@ exports.getSuppliers = async (req, res) => {
             ? 'Manufacturer'
             : supplierType === 'Distributors & Wholesalers'
             ? 'Distributor/Wholesaler'
-            : supplierType === 'All'
-            ? ''
+            : supplierType === 'Importers'
+            ? 'Importer'
             : '';
 
         await Suppliers.find({
@@ -32,7 +33,7 @@ exports.getSuppliers = async (req, res) => {
                 res.status(200).json({ count: suppliers.length, suppliers });
             })
             .catch((error) => {
-                res.status(500).json({ success: false, error });
+                res.status(500).json({ success: false, error: error.message });
             });
     } else {
         await Suppliers.find({ approved: true })
@@ -44,7 +45,7 @@ exports.getSuppliers = async (req, res) => {
                 res.status(200).json({ suppliers });
             })
             .catch((error) => {
-                res.status(500).json({ success: false, error });
+                res.status(500).json({ success: false, error: error.message });
             });
     }
 };
@@ -52,7 +53,8 @@ exports.getSuppliers = async (req, res) => {
 exports.getSupplier = async (req, res) => {
     const { email } = req.user;
     const { id } = req.params;
-    await Suppliers.findOne({ _id: id })
+    await Suppliers
+        .findOne({ _id: id })
         .populate('author', 'avatar email name occupation isVerified _id')
         .then((suppliers) => {
             if (!suppliers) {
@@ -63,26 +65,20 @@ exports.getSupplier = async (req, res) => {
             res.status(200).json({ isOwner, suppliers });
         })
         .catch((error) => {
-            console.log(error);
             res.status(500).json({ success: false, error });
         });
 };
 
 exports.getSupplierProfiles = async (req, res) => {
     const { id } = req.user;
-    console.log(req.user);
 
-    await Suppliers.find({ author: id })
+    await Suppliers
+        .find({ author: id })
         .then((profiles) => {
             if (!profiles) return res.status(404).json({ message: 'You have no supplier profiles.' });
             return res.status(200).json({ profiles });
         })
-        .catch((error) => res.status(500).json({ success: false, error }));
-};
-
-exports.updateSupplierProfile = async (req, res) => {
-    const result = await Suppliers.updateMany({}, { $set: { approved: false } }, { upsert: false, multi: true });
-    console.log(result);
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
 exports.createSupplier = async (req, res) => {
@@ -117,6 +113,24 @@ exports.createSupplier = async (req, res) => {
         fax
     } = contacts;
 
+    const supplierPhotos = [];
+
+    if (photos.length >= 1) {
+        photos.forEach(async (photo) => {
+            try {
+                const response = await cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' });
+
+                supplierPhotos.push({
+                    url: response.url,
+                    publicId: response.public_id,
+                    signature: response.signature
+                });
+             } catch (error) {
+                res.status(500).json({ success: false, error: error.message });
+            }
+        });
+    }
+
     const newSupplier = new Suppliers({
         name,
         about,
@@ -129,7 +143,7 @@ exports.createSupplier = async (req, res) => {
             fax
         },
         addresses,
-        address,
+address,
         tags,
         author: _id,
         isRegistered,
@@ -142,11 +156,11 @@ exports.createSupplier = async (req, res) => {
         quotation,
         established,
         type: companyType,
-        photos
+        photos: [...supplierPhotos]
     });
 
     await newSupplier.save()
-        .then(() => res.status(200).json({ success: true }))
+        .then(() => res.status(201).json({ success: true }))
         .catch((error) => res.status(500).json({ success: false, message: error.message }));
 };
 
@@ -169,7 +183,8 @@ exports.saveSupplier = async (req, res) => {
         supplier: id
     });
 
-    await supplierProfile.save()
+    await supplierProfile
+        .save()
         .then(() => res.status(200).json({ success: true, message: 'Supplier profile saved.' }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
@@ -184,9 +199,27 @@ exports.updateSupplier = async (req, res) => {
             { $push: { photos: req.body.photos } },
         )
         .then(() => {
-            Suppliers.findOne({ _id: id })
+            Suppliers
+                .findOne({ _id: id })
                 .then((supplier) => res.status(200).json({ success: true, supplier }));
         })
+        .catch((error) => res.status(500).json({ success: false, error: error.message }));
+};
+
+exports.orders = async (req, res) => {
+    const { email } = req.user;
+    const { price, planType } = req.body;
+    const { _id } = await User.findOne({ email });
+
+    const newOrder = new Order({
+        author: _id,
+        price,
+        planType
+    });
+
+    await newOrder
+        .save()
+        .then(() => res.status(201).json({ success: true }))
         .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };
 
@@ -194,7 +227,8 @@ exports.mapProfiles = async (req, res) => {
     const { email } = req.user;
     const { _id } = await User.findOne({ email });
 
-    await Suppliers.find({ author: _id })
+    await Suppliers
+        .find({ author: _id })
         .then((s) => res.status(200).json({ suppliers: s }))
-        .catch((error) => console.log(error));
+        .catch((error) => res.status().json({ success: false, error: error.message }));
 };

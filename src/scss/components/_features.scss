@@ -3,7 +3,6 @@
 @use '../breakpoints/' as *;
 
 .features {
-    
     @include respond-to('mobile') {
         @include flexbox($direction: column);
         background-image: url('../../assets/bg/womanHoldingPhone.jpg');
@@ -80,7 +79,9 @@
     }
 
     @include respond-to('laptop') {
-        height: 40vh;
+        height: 60vh;
+        background-image: unset;
+
         &__inner {
             @include flexbox();
             gap: 2em;

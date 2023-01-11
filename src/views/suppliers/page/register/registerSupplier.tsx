@@ -2,19 +2,26 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable  jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import {
+    Formik,
+    Form,
+    Field,
+    FieldArray
+} from 'formik';
 import defaultBusiness from 'assets/defaultBusiness.png';
 import { axiosPrivate } from 'config/axiosInstance';
 import * as Yup from 'yup';
 import { SyncLoader } from 'react-spinners';
-// import { Select } from 'components/select';
 import { Button } from 'components/button';
 import { Select } from 'components/select';
 import { Modal } from 'components/modal';
+import { Tooltip } from 'components/tooltip';
+import { FiPlus } from 'react-icons/fi';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
 import { Feedback } from './feedback';
@@ -22,30 +29,35 @@ import { types } from './types';
 
 export const RegisterSupplier = () => {
     const imageInput = useRef(null);
+    const imageInput1 = useRef(null);
+    const avatar = useRef(null);
     const history = useHistory();
     const [modal, setModal] = React.useState(false);
     const traceChars = (chars: number) => chars;
+
+    const message = 'Thank you. Your profile has been successfully submitted and this process can take up to 3 days. Once we have approved your profile, you will receive an email.';
+
     return (
         <main className='supplier__registerSupplierContainer'>
             <Formik
               validationSchema={Yup.object({
                   name: Yup.string()
-                        .min(2, 'Your name is too short!')
+                        .min(2, 'Company name is too short!')
                         .max(100, 'Name is too long!')
-                        .required('Business name cannot be empty.'),
+                        .required('Company name cannot be empty.'),
                   about: Yup.string()
                         .min(30, 'About should be at least 30 characters.')
-                        .max(200, 'You about is too long!')
-                        .required('About  is required!'),
+                        .max(200, 'The about is too long. Maximum is 200 characters.')
+                        .required('About is required!'),
                   description: Yup.string()
                         .min(30, 'Description should be at least 30 characters.')
-                        .max(1200, 'You have exceeded maximum character limit of 200. Remove some characters.')
+                        .max(1200, 'You have exceeded maximum character limit of 1200. Remove some characters.')
                         .required('Description is required!'),
                 })}
               initialValues={{
                   name: '',
-                  pictures: '',
                   avatar: '',
+                  photos: [],
                   about: '',
                   established: '',
                   contacts: {
@@ -54,49 +66,61 @@ export const RegisterSupplier = () => {
                     cellphone: '',
                     telephone: '',
                     fax: '',
-                },
+                  },
+                  socials: {
+                    facebook: '',
+                    twitter: '',
+                    linkedin: '',
+                    youtube: '',
+                    instagram: '',
+                  },
                   description: '',
-                  address: '',
+                  address: {
+                    streetAddress: '',
+                    city: '',
+                    province: '',
+                    postalCode: '',
+                  },
                   beeLevel: '',
                   sector: '',
                   moq: '',
                   moqNumber: '',
                   quotation: '',
                   companyType: '',
-            }}
+              }}
               onSubmit={async (values) => {
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
-                      if (response.status === 200) {
+                      if (response.status === 201) {
                           setModal(true);
                       }
                     })
-                  .catch(({ response }) => {
-                    console.error(response);
+                  .catch((error) => {
+                    console.error(error.message);
                   });
                 }}
             >
           {(props) => (
               <Form onSubmit={props.handleSubmit} className='profile__formContainer'>
-                <h4>register supplier</h4>
+                <h4>supplier registration</h4>
               {modal && (
-                <Modal className='supplier__feedbackContainer'>
-                    <Feedback />
+                <Modal isClosable={false} className='supplier__feedbackContainer'>
+                    <Feedback message={message} />
                 </Modal>
               )}
                 <hr className='global' />
                 <section className='profile__avatarContainer'>
                         <span className='register__avatarWrapper'>
-                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => imageInput.current.click()} onClick={() => imageInput.current.click()}>
-                                {props.values.avatar ? <img src={props.values.avatar} alt='rndo' className='supplier__companyLogo' />
-                                : <img src={defaultBusiness} alt={`${props.values.firstName}'s avatar'`} className='supplier__companyLogo' />}
+                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => avatar.current.click()} onClick={() => avatar.current.click()}>
+                                {props.values.avatar ? <img src={props.values.avatar} alt={`${props.values.name} avatar`} className='supplier__companyLogo' />
+                                : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
                             </div>
-                            <Button className='profile__changeAvatar' onClick={() => imageInput.current.click()}> Company Logo </Button>
+                            <Button className='profile__changeAvatar' onClick={() => avatar.current.click()}> Company Logo </Button>
                         </span>
                     <input
                       type='file'
                       hidden
-                      ref={imageInput}
+                      ref={avatar}
                       accept='image/*'
                       name='avatar'
                       onChange={(e) => {
@@ -111,8 +135,10 @@ export const RegisterSupplier = () => {
                       }}
                     />
                 </section>
+                <section className='supplier__dividerContainer'>
+                    <h3> 1. Company Information </h3>
                     <section>
-                        <label htmlFor='name'> Company Name </label>
+                        <label htmlFor='name'> Company Name * </label>
                         <Field
                           name='name'
                           placeholder='Company Trading name'
@@ -122,9 +148,9 @@ export const RegisterSupplier = () => {
                     </section>
 
                     <section>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='email'>Email *</label>
                         <Field
-                          name='email'
+                          name='contacts.email'
                           placeholder='Business Email'
                           className='profile__input'
                         />
@@ -133,59 +159,169 @@ export const RegisterSupplier = () => {
                     <section>
                         <label htmlFor='website'>Website</label>
                         <Field
-                          name='url'
+                          name='contacts.website'
                           placeholder='Company Website'
-                          className='profile__input'
-                        />
-                    </section>
-                    <section>
-                        <label htmlFor='location'> Street Address </label>
-                        <Field
-                          name='address'
-                          placeholder='32446 Mitchel St. Durban'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                        <label htmlFor='location'> Province </label>
+                        <label htmlFor='established'> Established Year </label>
                         <Field
-                          name='address'
+                          type='number'
+                          name='established'
+                          placeholder='The year the company was established'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='about'> About * </label>
+                        <Field
+                          name='about'
+                          as='textarea'
+                          rows={4}
+                          placeholder='What the business is about? Be short and precise.'
+                          className='profile__inputBio'
+                        />
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
+                        {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
+                    </section>
+
+                    <section>
+                        <label htmlFor='description'> Description *</label>
+                        <Field
+                          name='description'
+                          as='textarea'
+                          rows={6}
+                          placeholder='Write a description of what the business does.'
+                          className='profile__inputBio'
+                        />
+                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.description.length)}/1200`} characters </section>
+                        {(props.errors.description && props.touched.description) && <p style={{ color: 'red', margin: '0' }}>{props.errors.description}</p>}
+                    </section>
+                </section>
+
+                <section className='supplier__dividerContainer'>
+                    <h3> 2. Company Address </h3>
+                    <section>
+                        <label htmlFor='address'> Street Address </label>
+                        <Field
+                          name='address.streetAddress'
+                          placeholder='Ex: 32446 Mitchel Road'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='address'> City </label>
+                        <Field
+                          name='address.city'
+                          placeholder='Enter city'
+                          className='profile__input'
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor='address'> Province </label>
+                        <Field
+                          name='address.province'
                           placeholder='Enter province'
                           className='profile__input'
                         />
                     </section>
 
                     <section>
-                        <label htmlFor='location'> Postal Code </label>
+                        <label htmlFor='address'> Postal Code </label>
                         <Field
                           type='number'
-                          name='address'
+                          name='address.postalCode'
                           placeholder='Enter postal code. Ex: 4000'
                           className='profile__input'
                         />
                     </section>
+                </section>
 
-                    <section>
-                        <label htmlFor='company'> Cellphone Number </label>
-                        <Field
-                          type='number'
-                          name='cellphone'
-                          placeholder='Cellphone'
-                          className='profile__input'
-                        />
+                    <section className='supplier__dividerContainer'>
+                        <h3> 3. Contacts Information </h3>
+                        <section>
+                            <label htmlFor='company'> Cellphone Number </label>
+                            <Field
+                              type='number'
+                              name='contacts.cellphone'
+                              placeholder='Cellphone'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='telephone'> Telephone Number: </label>
+                            <Field
+                              type='number'
+                              name='contacts.telephone'
+                              placeholder='Telephone'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='fax'>Fax</label>
+                            <Field
+                              type='number'
+                              name='contacts.fax'
+                              placeholder='Fax Number'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Facebook</label>
+                            <Field
+                              name='socials.facebook'
+                              placeholder='Your company&apos;s Facebook page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Twitter</label>
+                            <Field
+                              name='socials.twitter'
+                              placeholder='Your company&apos;s Twitter page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>Instagram</label>
+                            <Field
+                              name='socials.instagram'
+                              placeholder='Your company&apos;s Instagram page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>YouTube</label>
+                            <Field
+                              name='socials.youtube'
+                              placeholder='Your company&apos;s YouTube page link'
+                              className='profile__input'
+                            />
+                        </section>
+
+                        <section>
+                            <label htmlFor='socials'>LinkedIn</label>
+                            <Field
+                              name='socials.linkedin'
+                              placeholder='Your company&apos;s LinkedIn page link'
+                              className='profile__input'
+                            />
+                        </section>
                     </section>
 
-                    <section>
-                        <label htmlFor='telephone'> Telephone Number: </label>
-                        <Field
-                          type='number'
-                          name='telephone'
-                          placeholder='Telephone'
-                          className='profile__input'
-                        />
-                    </section>
-
+                    <section className='supplier__dividerContainer'>
+                        <h3> 4. Product/Service Information </h3>
                     <section>
                         <label htmlFor='beeLevel'> BBBEE Level: </label>
                         <Field
@@ -297,59 +433,84 @@ export const RegisterSupplier = () => {
                             </section>
                         </Field>
                     </section>
-
-                    <section>
-                        <label htmlFor='established'> Established Year </label>
-                        <Field
-                          type='number'
-                          name='established'
-                          placeholder='The year the company was established'
-                          className='profile__input'
-                        />
                     </section>
 
-                    <section>
-                        <label htmlFor='fax'>Fax</label>
-                        <Field
-                          type='number'
-                          name='fax'
-                          placeholder='Fax Number'
-                          className='profile__input'
-                        />
-                    </section>
+                    <FieldArray
+                      name='photos'
+                      render={(arrayHelpers) => (
+                        <section>
+                            <p> Upload Photos <Tooltip message='You can upload up to 3 pictures. To upload more, you have to upgrade to a paid plan.' className='profile__tooltip' /> </p>
+                                <section className='profile__photos'>
+                                    {props.values.photos.length
+                                        ? (
+                                            <section>
+                                                <section className='profile__photosContainer'>
+                                                    {props.values.photos && props.values.photos.map((item) => <img src={item} className='profile__photosGroup' alt='dummy text' />)}
+                                                    <section className='profile__addPhotos' onClick={() => imageInput1.current.click()}>
+                                                        <section>
+                                                            <FiPlus className='profile__plusIcon' />
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        )
+                                        : (
+                                            <section onClick={() => imageInput.current.click()} className='profile__addPhotoContainer'>
+                                                <section>
+                                                    <FiPlus className='profile__plusIcon' />
+                                                    <p className='profile__addPhotoBtn'>Add Photos</p>
+                                                </section>
+                                            </section>
+                                        )}
+                                </section>
 
-                    <section>
-                        <label htmlFor='about'> About </label>
-                        <Field
-                          name='about'
-                          as='textarea'
-                          rows={4}
-                          placeholder='What is the business is about? Be short and precise.'
-                          className='profile__inputBio'
-                        />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.about.length)}/200`} characters </section>
-                        {(props.errors.about && props.touched.about) && <p style={{ color: 'red', margin: '0' }}>{props.errors.about}</p>}
-                    </section>
+                            <input
+                              type='file'
+                              hidden
+                              ref={imageInput1}
+                              accept='image/*'
+                              name='photos'
+                              onChange={(e) => {
+                                  const reader = new FileReader();
+                                  reader.readAsDataURL(e.currentTarget.files[0]);
 
-                    <section>
-                        <label htmlFor='description'> Description </label>
-                        <Field
-                          name='description'
-                          as='textarea'
-                          rows={6}
-                          placeholder='Write a description of what the business does.'
-                          className='profile__inputBio'
-                        />
-                        <section style={{ fontSize: '.8rem', textAlign: 'right' }}> {`${traceChars(props.values.description.length)}/1200`} characters </section>
-                        {(props.errors.description && props.touched.description) && <p style={{ color: 'red', margin: '0' }}>{props.errors.description}</p>}
-                    </section>
+                                  reader.onload = () => {
+                                      if (reader.result) {
+                                          arrayHelpers.push(reader.result);
+                                      }
+                                  };
+                              }}
+                            />
+
+                            <input
+                              type='file'
+                              hidden
+                              multiple
+                              ref={imageInput}
+                              accept='image/*'
+                              name='photos'
+                              onChange={(e) => {
+                                  const photos = e.currentTarget.files;
+                                  const reader = new FileReader();
+
+                                  reader.readAsDataURL(photos[0]);
+                                  reader.onload = () => {
+                                      if (reader.result) {
+                                            arrayHelpers.push(reader.result);
+                                       }
+                                  };
+                              }}
+                            />
+                        </section>
+                        )}
+                    />
 
                     <section className='profile__actionBtns'>
                         <Button onClick={() => history.goBack()} className='profile__button--cancel'>
-                            Cancel
+                            Back
                         </Button>
                         <Button type='submit' disabled={props.isSubmitting} className='profile__button--save'>
-                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Publish' }
+                            {props.isSubmitting ? <SyncLoader color='white' size={6} /> : 'Submit' }
                         </Button>
                     </section>
               </Form>
