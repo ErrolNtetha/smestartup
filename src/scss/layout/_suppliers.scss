@@ -788,11 +788,39 @@
             margin: .6em;
             width: 100%;
             align-items: unset;
-            gap: 1em;
         }
 
         &__supplierWrapper {
             @include flexbox();
+            align-items: unset;
+            background-color: $foregroundColor;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        &__mainContent {
+            @include flexbox();
+            align-items: unset;
+            gap: 1em;
+            margin: 1em 0;
+        }
+
+        &__left, &__right {
+            width: 25%;
+            height: max-content;
+        }
+
+        &__supplierWrapper &__listContainer {
+            display: none;
+        }
+
+        &__left &__mapPreview section &__listContainer {
+            width: 100%;
+            padding: 0;
+        }
+
+        &__navigationContainer, &__editButtonContainer {
+            display: none;
         }
 
         &__leftColumn, &__rightColumn {
@@ -802,6 +830,15 @@
             width: 25%;
             margin-bottom: .8em;
             height: max-content;
+        }
+
+        &__reviews, &__mapPreview {
+            @include container();
+            margin-bottom: 1em;
+        }
+
+        &__mapContainer {
+            display: none;
         }
 
         &__filterContainer {
