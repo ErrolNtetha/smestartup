@@ -764,6 +764,14 @@
             }
         }
 
+        &__aboutSection {
+            display: none;
+        }
+
+        &__left, &__right {
+            display: none;
+        }
+        
         &__selectContainer {
             @include select();
         }
@@ -817,6 +825,10 @@
         &__left &__mapPreview section &__listContainer {
             width: 100%;
             padding: 0;
+        }
+
+        &__left, &__right, &__aboutSection {
+            display: unset;
         }
 
         &__navigationContainer, &__editButtonContainer {
