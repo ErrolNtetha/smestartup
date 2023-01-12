@@ -50,10 +50,10 @@ export const SupplierView = () => {
                                           isRegistered={data?.suppliers?.isregistered}
                                           established={data?.suppliers?.established}
                                           companyType={data?.suppliers?.type}
-                                          description={data?.suppliers?.description}
                                           beeLevel={data?.suppliers?.beeLevel}
                                           moqNumber={data?.suppliers?.moqNumber}
                                           quotation={data?.suppliers?.quotation}
+                                          about={data?.suppliers?.about}
                                         />
                                     </Container>
                                     <Container header={`Photos (${suppliers?.photos?.length})`} className='supplier__reviews'>
