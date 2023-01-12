@@ -17,7 +17,7 @@ export const Photos = ({ photos }: IProps) => {
             {photos.length === 0
                 ? (
                     <section className='supplier__imagesLoader'>
-                        <h5> No images uploaded yet. </h5>
+                        <h5> No photos uploaded yet. </h5>
                     </section>
                 )
                 : photos.map((item) => (

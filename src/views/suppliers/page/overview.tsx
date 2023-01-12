@@ -7,10 +7,11 @@ interface IProps {
     isRegistered: boolean;
     established: number;
     companyType: string;
-    description: string;
+    description?: string;
     beeLevel: string;
     moqNumber: number;
     quotation: string;
+    about?: string;
 }
 
 export const Overview = ({
@@ -21,6 +22,7 @@ export const Overview = ({
     beeLevel,
     moqNumber,
     quotation,
+    about
 }: IProps) => {
     const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
     return (
@@ -30,6 +32,9 @@ export const Overview = ({
                     <Collapsable end={300} className='supplier__description'>
                         {description}
                     </Collapsable>
+                    <span className='supplier__aboutSection'>
+                     {about}
+                    </span>
             </article>
             <hr className='global' />
             <section className='supplier__listContainer'>

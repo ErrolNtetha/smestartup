@@ -1,0 +1,16 @@
+@use '../base/_color.scss' as *;
+@use '../mixins/flexbox' as *;
+
+@mixin container {
+    background-color: $foregroundColor;
+    border-radius: 5px;
+
+    header, section {
+        padding: .6em .8em;
+        font-size: .9rem;
+    }
+
+    header {
+        font-weight: bold;
+    }
+}
