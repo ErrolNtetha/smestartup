@@ -1,11 +1,13 @@
 const Users = require('../models/user.model');
 
 exports.getUsers = async (req, res) => {
-    await Users.find({})
+    await Users
+        .find({})
         .then((users) => {
             if (!users) {
-                res.json({ message: 'No users currently exist.' });
+                res.status(200).json({ message: 'No users found.' });
+                return;
             }
-            res.json({ users });
+            res.status(200).json({ users });
         });
 };
