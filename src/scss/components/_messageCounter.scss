@@ -3,10 +3,14 @@
 
 .messageCounter {
     @include flexbox();
-    background: red;
-    width: 40px;
+    background: $foregroundColor;
+    width: 20px;
     height: 20px;
-    padding: 1px;
-    border-radius: 5px;
+    border-radius: 50%;
     font-weight: bold;
+
 }
+
+.messageCounter span {
+        padding: 2px;
+    }
