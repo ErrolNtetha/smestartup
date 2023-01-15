@@ -20,7 +20,6 @@ export const Post = () => {
         })
             .then((res) => {
                 setPost(res.data.posts.post);
-                console.log(res.data.posts);
             })
             .catch((err) => console.error(err));
     }, []);
