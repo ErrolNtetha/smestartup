@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { Select } from 'components/select';
 import { Button } from 'components/button';
 import { useHistory } from 'react-router-dom';
+import { Container } from 'components/container';
 import { sectors } from './sectors';
 import { categories } from './categories';
 
@@ -24,28 +25,27 @@ export const Filter = () => {
     };
 
     return (
-        <section className='supplier__filterContainer supplier__filterModal'>
-            <section className='supplier__filterContainer'>
-                <section>
-                    <label htmlFor='selected'> Type </label>
-                    <Select
-                      title={!selected ? '- Choose type -' : selected}
-                      className='supplier__selected'
-                    >
-                        <section className='supplier__selected__options'>
-                            {categories.map((item) => {
-                                return (
-                                    <section key={item.id}>
-                                        <p onClick={() => setSelected(item.name)}> {item.name} </p>
-                                        <hr className='supplier__selected__options__optionsDivider' />
-                                    </section>
-                                );
-                            })}
-                        </section>
-                    </Select>
-                </section>
-            <section>
-                <label htmlFor='sector'> Sector </label>
+        <Container header='Filter' className='supplier__filterWrapper'>
+            <section className='supplier__elementContainer'>
+                <label htmlFor='selected'> Type: </label>
+                <Select
+                  title={!selected ? '- Choose type -' : selected}
+                  className='supplier__selected'
+                >
+                    <section className='supplier__selected__options'>
+                        {categories.map((item) => {
+                            return (
+                                <section key={item.id}>
+                                    <p onClick={() => setSelected(item.name)}> {item.name} </p>
+                                    <hr className='supplier__selected__options__optionsDivider' />
+                                </section>
+                            );
+                        })}
+                    </section>
+                </Select>
+            </section>
+            <section className='supplier__elementContainer'>
+                <label htmlFor='sector'> Sector: </label>
                 <Select
                   title={!sector ? '- Choose sector -' : sector}
                   className='supplier__selected'
@@ -63,7 +63,7 @@ export const Filter = () => {
                 </Select>
             </section>
             <section className='supplier__locationInputs'>
-                <label htmlFor='city'> City </label>
+                <label htmlFor='city'> City: </label>
                 <span className='supplier__locationInputs__location'>
                     <input name='city' onChange={(e) => setCity(e.target.value)} className='supplier__locationInputs__location__city' placeholder='City' type='text' />
                 </span>
@@ -71,7 +71,6 @@ export const Filter = () => {
             <section className='supplier__buttonContainer'>
                 <Button onClick={handleQueries} className='supplier__search--button'> Search </Button>
             </section>
-            </section>
-        </section>
+        </Container>
     );
 };
