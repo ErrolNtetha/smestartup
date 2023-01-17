@@ -11,15 +11,16 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
-    let imageUrl, public_id, signature;
+    let imageUrl; let publicId; let
+signature;
     if (fileURL) {
         await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_posts' })
             .then((response) => {
                 imageUrl = response.url;
-                public_id = response.public_id;
+                publicId = response.public_id;
                 signature = response.signature;
             })
-            .catch((error) => console.log(error));
+            .catch((error) => res.status(500).json({ error }));
     }
 
     const userPost = new Post({
@@ -27,7 +28,7 @@ exports.userPosts = async (req, res) => {
             post,
             image: {
                 url: imageUrl,
-                public_id,
+                public_id: publicId,
                 signature
             },
         });
@@ -57,16 +58,21 @@ exports.getSpecificUserPost = async (req, res) => {
     const { email } = req.user;
 
     // get all the posts from the database
-    await Post.find({ email })
+    await Post
+        .find({ email })
+        .sort({ createdAt: -1 })
         .then((posts) => {
-            if (!posts) return res.status(404).json({ message: 'Posts not found.' });
-            return res.status(200).json({ posts });
+            if (!posts) {
+                res.status(200).json({ message: 'Posts not found.' });
+            }
+             res.status(200).json({ posts });
         })
         .catch((err) => res.status(500).json({ error: err, message: 'There was an error getting posts.' }));
 };
 
 exports.getUserPost = async (req, res) => {
-    await Post.find()
+    await Post
+        .find()
         .sort({ createdAt: -1 })
         .populate('author', 'name email _id isVerified occupation avatar')
         .then((posts) => {
@@ -80,7 +86,9 @@ exports.getAllUserPosts = async (req, res) => {
     const { email } = req.user;
     const { _id } = await User.findOne({ email });
 
-    await Post.find({ author: _id })
+    await Post
+        .find({ author: _id })
+        .sort({ createdAt: -1 })
         .populate('author', 'name occupation avatar')
         .then((posts) => {
             if (!posts) return res.status(404).json('No posts yet. You posts will apppear here.');

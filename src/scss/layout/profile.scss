@@ -95,8 +95,9 @@ $container-width: 70%;
 
         &__bodyContainer {
             border-radius: .2em;
-            padding: .1em .4em;
+            padding: .1em 0;
             padding-bottom: .4em;
+            width: 100%;
         }
 
         &__loadingContainer, &__errorContainer {
@@ -160,6 +161,12 @@ $container-width: 70%;
             padding: 0.6em;
             border-radius: 0.4em;
             margin-bottom: 0.5em;
+        }
+
+
+        &__userPost {
+            font-size: 1rem;
+            white-space: pre-line;
         }
 
         &__postAvatar {
@@ -244,12 +251,8 @@ $container-width: 70%;
         }
 
         &__personalContainer section section > * {
-            postion: relative;
             background: white;
             color: black;
-        }
-
-        &__personalContainer section section span.__options {
         }
 
         &__personalContainer section section > &__input {
@@ -490,10 +493,6 @@ $container-width: 70%;
 
         &__postContainer {
             width: $container-width;
-        }
-
-        &__userPost {
-            font-size: 1rem;
         }
 
         &__rightSection {
