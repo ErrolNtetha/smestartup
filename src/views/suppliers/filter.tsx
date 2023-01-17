@@ -7,46 +7,65 @@
 import React, { useState } from 'react';
 import { Select } from 'components/select';
 import { Button } from 'components/button';
-// import { Checkbox } from 'components/checkbox';
 import { useHistory } from 'react-router-dom';
-// import { axiosPrivate } from 'config/axiosInstance';
+import { sectors } from './sectors';
 import { categories } from './categories';
 
 export const Filter = () => {
     const [selected, setSelected] = useState('');
     const [city, setCity] = useState('');
-    const [zip, setZip] = useState('');
+    const [sector, setSector] = useState('');
     const history = useHistory();
 
     const handleQueries = () => {
-        if (selected || city || zip) {
-            history.replace(`?${selected && `supplierType=${selected}`}${(selected && city) && `&city=${city}`}`);
+        if (selected || city) {
+            history.replace(`?${selected !== 'All' && `supplierType=${selected}`}${(selected && city) && `&city=${city}`}`);
         } else history.replace('/suppliers');
     };
 
     return (
         <section className='supplier__filterContainer supplier__filterModal'>
             <section className='supplier__filterContainer'>
-            <Select
-              title={!selected ? '- Choose sector -' : selected}
-              className='supplier__selected'
-            >
-                <section className='supplier__selected__options'>
-                    {categories.map((sector) => {
-                        return (
-                            <section key={sector.id}>
-                                <p onClick={() => setSelected(sector.name)}> {sector.name} </p>
-                                <hr className='supplier__selected__options__optionsDivider' />
-                            </section>
-                        );
-                    })}
+                <section>
+                    <label htmlFor='selected'> Type </label>
+                    <Select
+                      title={!selected ? '- Choose type -' : selected}
+                      className='supplier__selected'
+                    >
+                        <section className='supplier__selected__options'>
+                            {categories.map((item) => {
+                                return (
+                                    <section key={item.id}>
+                                        <p onClick={() => setSelected(item.name)}> {item.name} </p>
+                                        <hr className='supplier__selected__options__optionsDivider' />
+                                    </section>
+                                );
+                            })}
+                        </section>
+                    </Select>
                 </section>
-            </Select>
+            <section>
+                <label htmlFor='sector'> Sector </label>
+                <Select
+                  title={!sector ? '- Choose sector -' : sector}
+                  className='supplier__selected'
+                >
+                    <section className='supplier__selected__options'>
+                        {sectors.map((item) => {
+                            return (
+                                <section key={item.id}>
+                                    <p onClick={() => setSector(item.name)}> {item.name} </p>
+                                    <hr className='supplier__selected__options__optionsDivider' />
+                                </section>
+                            );
+                        })}
+                    </section>
+                </Select>
+            </section>
             <section className='supplier__locationInputs'>
+                <label htmlFor='city'> City </label>
                 <span className='supplier__locationInputs__location'>
                     <input name='city' onChange={(e) => setCity(e.target.value)} className='supplier__locationInputs__location__city' placeholder='City' type='text' />
-                    <input name='zipCode' onChange={(e) => setZip(e.target.value)} className='supplier__locationInputs__location__zip' placeholder='ZIP Code' type='text' />
-                    <input name='tags' className='supplier__locationInputs__location__zip' placeholder='Tags' type='text' />
                 </span>
             </section>
             <section className='supplier__buttonContainer'>
