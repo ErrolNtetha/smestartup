@@ -11,7 +11,7 @@ export const Container = ({ header, children, className }: Props) => {
         <section className={`${className}`}>
             <header> {header} </header>
             <hr className='global' />
-            <section>
+            <section className='childContainer'>
                 {children}
             </section>
         </section>
