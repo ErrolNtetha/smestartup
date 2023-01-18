@@ -22,7 +22,7 @@ export const Results = () => {
                 : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
-                        <p>There was a problem with our severs. Please try again later.</p>
+                        <p>{errorMessage}</p>
                         <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
                     </section>
                 )
