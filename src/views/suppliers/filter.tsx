@@ -72,10 +72,11 @@ export const Filter = () => {
             <section className='supplier__locationInputs'>
                 <label htmlFor='city'> City: </label>
                 <span className='supplier__locationInputs__location'>
-                    <input name='city' onChange={(e) => setCity(e.target.value)} className='supplier__locationInputs__location__city' placeholder='City' type='text' />
+                    <input name='city' value={city} onChange={(e) => setCity(e.target.value)} autoComplete='off' className='supplier__locationInputs__location__city' placeholder='City' type='text' />
                 </span>
             </section>
             <section className='supplier__buttonContainer'>
+                <Button onClick={handleClear} className='supplier__clear--button'> Clear </Button>
                 <Button onClick={handleQueries} className='supplier__search--button'> Search </Button>
             </section>
         </Container>
