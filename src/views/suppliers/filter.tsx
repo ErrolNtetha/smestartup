@@ -13,15 +13,22 @@ import { sectors } from './sectors';
 import { categories } from './categories';
 
 export const Filter = () => {
-    const [selected, setSelected] = useState('');
+    const [type, setType] = useState('');
     const [city, setCity] = useState('');
     const [sector, setSector] = useState('');
     const history = useHistory();
 
     const handleQueries = () => {
-        if (selected || city) {
-            history.replace(`?${selected !== 'All' && `supplierType=${selected}`}${(selected && city) && `&city=${city}`}`);
+        if (type || city) {
+            history.replace(`?${type !== 'All' && `type=${type}`}&${`${sector && `sector=${sector}`}`}${(type && city) && `&city=${city}`}`);
         } else history.replace('/suppliers');
+    };
+
+    const handleClear = () => {
+        history.replace('/suppliers');
+        setType('');
+        setCity('');
+        setSector('');
     };
 
     return (
@@ -29,14 +36,14 @@ export const Filter = () => {
             <section className='supplier__elementContainer'>
                 <label htmlFor='selected'> Type: </label>
                 <Select
-                  title={!selected ? '- Choose type -' : selected}
+                  title={!type ? '- Choose type -' : type}
                   className='supplier__selected'
                 >
                     <section className='supplier__selected__options'>
                         {categories.map((item) => {
                             return (
                                 <section key={item.id}>
-                                    <p onClick={() => setSelected(item.name)}> {item.name} </p>
+                                    <p onClick={() => setType(item.name)}> {item.name} </p>
                                     <hr className='supplier__selected__options__optionsDivider' />
                                 </section>
                             );
