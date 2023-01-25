@@ -48,6 +48,8 @@ export const Lists = ({ isOpen, isToggled }: Props) => {
                       authorID={author?._id}
                       avatar={author?.avatar}
                       stars={stars}
+                      company={author?.company}
+                      school={author?.school}
                     />
                 );
             })}
