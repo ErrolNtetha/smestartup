@@ -51,7 +51,7 @@ exports.incrimementLikes = async (req, res) => {
     }
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
         .then(() => res.status(200).json({ message: 'You have starred this post.' }))
-        .catch((error) => res.status(500).json({ message: 'Ops. There was a problem.', error: error.message }));
+        .catch((error) => res.status(500).json({ message: 'There was a problem.', error: error.message }));
 };
 
 exports.getSpecificUserPost = async (req, res) => {
