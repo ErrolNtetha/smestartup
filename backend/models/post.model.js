@@ -6,7 +6,7 @@ const userPost = new mongoose.Schema(
         post: String,
         image: {
             url: String,
-            public_id: String,
+            publicId: String,
             signature: String
         },
         reports: {
