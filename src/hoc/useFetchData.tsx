@@ -11,14 +11,8 @@ export const useFetchData = (url: string) => {
     useEffect(() => {
         const fetchData = async () => {
            await axiosPrivate.get(url)
-                .then((res) => {
-                    setError(res.request);
-                    setData(res?.data);
-                })
-                .catch((error) => {
-                    if (error.response) setError('Something went wrong. Please try again later.');
-                    else setError('Something went wrong. Please try again later.');
-                })
+                .then((res) => setData(res?.data))
+                .catch((error) => error.response && setError('Something went wrong. Please try again later.'))
                 .finally(() => setLoading(false));
         };
         fetchData();
