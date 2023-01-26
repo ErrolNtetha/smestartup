@@ -10,7 +10,7 @@ import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
     const { search } = useLocation();
-    const url = `/supplier${search || ''}`;
+    const url = `/suppliers${search || ''}`;
     const { data, errorMessage, loading } = useFetchData(url);
     return (
         <>
