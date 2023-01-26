@@ -10,7 +10,8 @@ import { SkeletonLoading } from './skeletonLoading';
 
 export const Results = () => {
     const { search } = useLocation();
-    const { data, errorMessage, loading } = useFetchData(`/suppliers${search || ''}`);
+    const url = `/supplier${search || ''}`;
+    const { data, errorMessage, loading } = useFetchData(url);
     return (
         <>
             { loading
@@ -22,7 +23,7 @@ export const Results = () => {
                 : errorMessage
                 ? (
                     <section className='supplier__responseContainer'>
-                        <p>There was a problem with our severs. Please try again later.</p>
+                        <p>{errorMessage}</p>
                         <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
                     </section>
                 )

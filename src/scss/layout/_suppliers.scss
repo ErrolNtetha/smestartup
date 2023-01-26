@@ -21,7 +21,6 @@
         }
 
         &__innerContainer {
-            background: red;
             display: none;
             background: $foregroundColor;
         }
@@ -89,6 +88,61 @@
             margin: 0;
         }
 
+        &__filterWrapper {
+            @include container();
+            display: none;
+            width: 80%;
+        }
+
+        &__filterToggle {
+            @include modal();
+
+            > &__filterWrapper {
+                width: 70%;
+            }
+
+            > * {
+                display: unset;
+            }
+        }
+
+        &__filterClose {
+            @include flexbox();
+            position: absolute;
+            bottom: 0;
+            right: 45%;
+            margin: 1em 0;
+            background-color: $primaryColor;
+            border-radius: 50%;
+            padding: .8em;
+            height: 40px;
+            width: 40px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: white;
+                color: black;
+            }
+        }
+
+        &__filterBackground {
+            @include flexbox();
+            position: fixed; top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        &__filterBackground > * {
+            width: 80%;
+        }
+
+        &__elementContainer &__selected {
+            margin-bottom: .8em;
+        }
+
         &__bottomNav span, a p {
             font-size: .6rem;
         }
@@ -123,6 +177,9 @@
 
         &__selected {
             @include select($backgroundColor: $primaryColor, $selectedColor: white);
+            margin: .4em 0;
+            padding:0;
+            width: 100%;
         }
 
         &__options {
@@ -295,9 +352,16 @@
         }
 
         &__search--button {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .5em);
+            width: 100%;
+            margin: .6em 0;
+        }
+
+        &__clear--button {
             @include buttonHover($bgColor: $primaryColor, $padding: .5em);
             width: 100%;
             margin: .6em 0;
+            border: 1px solid rgba(255, 255, 255, 0.01);
         }
 
         &__more {
@@ -800,6 +864,7 @@
             margin: .6em;
             width: 100%;
             align-items: unset;
+            gap: 1em;
         }
 
         &__supplierWrapper {
@@ -857,7 +922,10 @@
             margin-bottom: 1em;
         }
 
-        &__mapContainer {
+        &__mapContainer,
+        &__filterToggle,
+        &__filterIconGroup
+        {
             display: none;
         }
 
@@ -878,12 +946,12 @@
             padding: .4em;
         }
 
-        &__filterModal > &__filterContainer {
-            display: unset;
+        &__filterWrapper {
+            width: unset;
         }
 
-        &__filterIconGroup {
-            display: none;
+        &__filterModal > &__filterContainer, &__filterWrapper {
+            display: unset;
         }
 
         &__previewContainer {
