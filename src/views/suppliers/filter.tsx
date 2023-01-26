@@ -19,8 +19,8 @@ export const Filter = () => {
     const history = useHistory();
 
     const handleQueries = () => {
-        if (type || city) {
-            history.replace(`?${type !== 'All' && `type=${type}`}&${`${sector && `sector=${sector}`}`}${(type && city) && `&city=${city}`}`);
+        if (type || city || sector) {
+            history.replace(`?${type && `type=${type}`}&${`${sector && `sector=${sector}`}`}${(type && city) && `&city=${city}`}`);
         } else history.replace('/suppliers');
     };
 
