@@ -59,6 +59,10 @@
             height: 6vh;
         }
 
+        &__aboutDesktop {
+            display: none;
+        }
+
         &__filterIconGroup span {
            @include flexbox($justify-content: space-evenly);
             background: $primaryColor;
@@ -811,6 +815,10 @@
             align-items: unset;
             gap: 1em;
             margin: 1em 0;
+        }
+
+        &__descriptionHeader, &__aboutDesktop {
+            display: none;
         }
 
         &__left, &__right {
