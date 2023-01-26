@@ -86,6 +86,7 @@ export const SupplierInfo = ({
                       beeLevel={beeLevel}
                       moqNumber={moqNumber}
                       quotation={quotation}
+                      aboutClass='supplier__aboutDesktop'
                     />
                 </Route>
                 <Route exact path={`${path}/photos`}>
