@@ -12,6 +12,8 @@ interface IProps {
     moqNumber: number;
     quotation: string;
     about?: string;
+    descriptionClass?: string;
+    aboutClass?: string;
 }
 
 export const Overview = ({
@@ -22,19 +24,22 @@ export const Overview = ({
     beeLevel,
     moqNumber,
     quotation,
-    about
+    about,
+    descriptionClass,
+    aboutClass
 }: IProps) => {
     const message = 'MOQ stands for Minimum Order Quantity. This suppliers requires that you order a specified minimum quantity.';
     return (
         <>
             <article className='supplier__infoContainer'>
-                    <h4> description & info </h4>
-                    <Collapsable end={300} className='supplier__description'>
-                        {description}
-                    </Collapsable>
-                    <span className='supplier__aboutSection'>
-                     {about}
-                    </span>
+                <h4 className={descriptionClass}> description & info </h4>
+                <h4 className={aboutClass}>about</h4>
+                <Collapsable end={300} className='supplier__description'>
+                    {description}
+                </Collapsable>
+                <span className='supplier__aboutSection'>
+                    {about}
+                </span>
             </article>
             <hr className='global' />
             <section className='supplier__listContainer'>
