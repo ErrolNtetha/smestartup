@@ -1,7 +1,4 @@
 import React from 'react';
-// import businessDeal from '../../assets/svg/businessDeal.svg';
-// import businessListing from '../../assets/svg/businessListing.svg';
-// import collaborate from '../../assets/svg/collaborate.svg';
 
 export const Features = () => {
   return (
