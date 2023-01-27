@@ -33,7 +33,6 @@ export const PayFast = ({
             <input type='hidden' name='item_name' value={itemName} />
             <input type='hidden' name='email_confirmation' value='1' />
             <input type='hidden' name='confirmation_email' value={confirmationEmail} />
-            <input type='hidden' name='payment_method' value='cc' />
             <button type='submit'> {buttonText} </button>
         </form>
     );
