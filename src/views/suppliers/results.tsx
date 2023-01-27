@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { useFetchData } from 'hoc/useFetchData';
-import { Button } from 'components/button';
 import { useLocation } from 'react-router-dom';
+import { OnError } from 'components/onError';
 import { Supplier } from './supplier';
 import { SkeletonLoading } from './skeletonLoading';
 
@@ -12,25 +12,23 @@ export const Results = () => {
     const { search } = useLocation();
     const url = `/suppliers${search || ''}`;
     const { data, errorMessage, loading } = useFetchData(url);
+
     return (
         <>
-            { loading
+            { errorMessage
+                ? <OnError errorMessage={errorMessage} className='supplier' />
+                : loading
                 ? (
                     <section className='supplier__skeletonContainer'>
                         <SkeletonLoading cards={6} numCount={5} />
                     </section>
                 )
-                : errorMessage
-                ? (
-                    <section className='supplier__responseContainer'>
-                        <p>{errorMessage}</p>
-                        <Button className='supplier__retryButton' onClick={() => window.location.reload()}> Retry </Button>
-                    </section>
-                )
                 : (
                     <section className='supplier__supplierResults'>
                         { data?.suppliers?.map((item: any) => {
-                            if (item.length <= 0) return <section> No listed suppliers found. </section>;
+                            if (item.length <= 0) {
+                                <section> No listed suppliers found. </section>;
+                            }
                                 return (
                                     <Supplier
                                       name={item.name}
@@ -43,7 +41,7 @@ export const Results = () => {
                                 );
                             })}
                     </section>
-                    )}
+            )}
         </>
     );
 };
