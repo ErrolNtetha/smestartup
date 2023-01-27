@@ -71,7 +71,7 @@ export const Nav = ({ handleToggleMenu, className }: MenuToggle) => {
 };
 
 const Profile = ({ isLoggedIn, handleToggleMenu }: Props) => {
-    const { userProfile: { userData } } = useStore();
+    const { userProfile: { userData, loading } } = useStore();
     const {
         name,
         avatar,
@@ -81,7 +81,7 @@ const Profile = ({ isLoggedIn, handleToggleMenu }: Props) => {
     return (
         <section className='header__profileContainer'>
             <>
-                { isLoggedIn
+                { !loading && isLoggedIn
                     ? (
                         <Link to='/profile' className='header__profile'>
                             <Avatar avatar={avatar} className='header__profileImage' />

@@ -3,20 +3,23 @@
 import React from 'react';
 import { PostField } from 'components/postField';
 import { List } from 'components/lists/list';
-import { RootState } from 'store';
+// import { RootState } from 'store';
 import { Create } from 'components/create';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useFetchData } from 'hoc/useFetchData';
 import { SkeletonPosts } from 'components/skeleton';
 import { Button } from 'components/button';
 
-export const Lists = () => {
-    const toggleState = useSelector((state: RootState) => state.isToggleOn);
+interface Props {
+    isOpen: boolean;
+    isToggled: Function;
+}
+
+export const Lists = ({ isOpen, isToggled }: Props) => {
     const { data, loading, errorMessage } = useFetchData('/feed');
 
  return (
     <div className='feed__feedWrapper'>
-        {toggleState && <PostField />}
         { loading
                 ? <SkeletonPosts cards={4} />
                 : errorMessage
@@ -45,10 +48,18 @@ export const Lists = () => {
                       authorID={author?._id}
                       avatar={author?.avatar}
                       stars={stars}
+                      company={author?.company}
+                      school={author?.school}
                     />
                 );
             })}
-            {!toggleState && <Create /> }
+            {isOpen
+                ? (
+                    <section className='feed__modalPost'>
+                        <PostField toggleField={isToggled} />
+                    </section>
+                )
+                : <Create toggleField={isToggled} />}
     </div>
   );
 };

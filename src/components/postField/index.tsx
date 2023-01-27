@@ -3,14 +3,16 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { FiImage, FiPlus, FiVideo } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
 import { axiosPrivate } from 'config/axiosInstance';
-import toggleFieldOff from 'store/actions/toggleField_OFF';
 import { Button } from 'components/button';
 import { SyncLoader } from 'react-spinners';
 import { Toast } from 'components/toast';
 
-export const PostField = () => {
+interface Props {
+    toggleField: Function;
+}
+
+export const PostField = ({ toggleField }: Props) => {
 const [post, setPost] = useState('');
 const [images, setImages] = useState<Blob | null>(null);
 const [fileURL, setFileURL] = useState(null);
@@ -20,7 +22,6 @@ const [isPosted, setIsPosted] = useState<boolean | null>(null);
 // const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
 const imageInput = useRef(null);
-const dispatch = useDispatch();
 
 const formData = { post, fileURL };
 
@@ -112,7 +113,7 @@ const handleSubmit = async () => {
                 <FiVideo className='feed__video' />
             </section>
             <section className='feed__right'>
-                <Button onClick={() => dispatch(toggleFieldOff())} className='feed__btn--cancel'> Cancel </Button>
+                <Button onClick={() => toggleField()} className='feed__btn--cancel'> Cancel </Button>
                 <Button onClick={handleSubmit} className='feed__btn--post'> {loading ? <SyncLoader color='#fff' size={6} /> : 'Post'} </Button>
             </section>
         </section>

@@ -1,4 +1,5 @@
 /* eslint-disable operator-linebreak */
+/* eslint-disable  no-nested-ternary */
 import React, { FC } from 'react';
 import { Avatar } from 'components/avatar';
 import {
@@ -7,19 +8,13 @@ import {
     FiAlertTriangle
 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
-// import avatar from 'assets/avatar.png';
 import { Button } from 'components/button';
 import { Modal } from 'components/modal';
 import { formatDistance } from 'date-fns';
-// import { useFetchUserId } from 'hoc/useFetchUserId';
 import { SyncLoader } from 'react-spinners';
 import { axiosPrivate } from 'config/axiosInstance';
 import { useStore } from 'hoc/useStore';
 import { Collapsable } from 'components/collapsable';
-// import { Link } from 'react-router-dom';
-// import { findLinks } from 'helpers/findLinks';
-// import { io } from 'socket.io-client';
-// import { NODE_ENV } from 'config/baseURL';
 
     export interface Props {
       name: {
@@ -32,18 +27,27 @@ import { Collapsable } from 'components/collapsable';
       image: string;
       isVerified: boolean;
       occupation: string;
+      company: string;
       avatar: string;
       stars: number;
       authorID: string;
+      school: string;
     }
 
     export const List:FC<Props> = ({
-     name, post, id, authorID, date, image, isVerified, occupation, avatar, stars
+     name, post, id, authorID, date, image, isVerified, occupation, avatar, stars, company, school
     }) => {
         const [modal, setModal] = React.useState(false);
         const [loading, setLoading] = React.useState<boolean | null>(null);
         const { userProfile } = useStore();
         const { userData } = userProfile;
+
+        const isStudent = occupation === 'Student'
+                            ? `Studying at ${school}`
+                            : occupation === 'Student Teacher'
+                            ? `${occupation} at ${school}`
+                            : occupation;
+        const userTitle = company ? `${occupation}, ${company}` : `${isStudent}`;
 
            const handleLikes = (postId: string) => {
             const formData = {
@@ -80,7 +84,7 @@ import { Collapsable } from 'components/collapsable';
                 <Avatar className='feed__profileImage' avatar={avatar} />
               <span>
                 <h4 className='feed__name'> {name?.firstName} {name?.lastName} {isVerified && <MdVerified /> } </h4>
-                <p className='feed__title'> {occupation} </p>
+                <p className='feed__title'> {userTitle} </p>
                 <p className='feed__recent'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
               </span>
             </div>

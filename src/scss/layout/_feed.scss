@@ -193,6 +193,17 @@
             border-radius: 5px;
         }
 
+        &__modalPost {
+            @include modal();
+            top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+        }
+
         &__optionsModal {
             @include flexbox();
             position: fixed;
@@ -283,6 +294,7 @@
                     $bgColor: $secondaryColor,
                     $padding: 0.8em 1.4em
                 );
+                margin-bottom: 1em;
             }
         }
 
@@ -384,9 +396,18 @@
             display: unset;
         }
 
+        &__newPost {
+            background-color: $secondaryColor;
+            border-radius: $radius;
+        }
+
         &__postField {
             position: unset;
             margin-bottom: 1em;
+        }
+
+        &__modalPost > * {
+            max-width: 40%;
         }
 
         &__create {
@@ -432,10 +453,6 @@
             border: .2px solid white;
         }
 
-        &__counter {
-                @include flexbox($justify-content: space-between);
-        }
-
         &__sidebarLinks li {
             @include flexbox($justify-content: unset);
             gap: .6em;
@@ -445,7 +462,15 @@
                 background: $foregroundColor;
                 cursor: pointer;
                 border-radius: $radius;
+            }
+        }
 
+        &__counter {
+            @include flexbox($justify-content: space-between);
+
+            span {
+                @include flexbox();
+                gap: .6em;
             }
         }
 
@@ -544,6 +569,10 @@
 
         &__modal {
             width: 40%;
+        }
+
+        &__modalPost {
+            @include modal();
         }
     }
 }

@@ -86,9 +86,24 @@
             background: $primaryColor;
         }
 
-        &__loader {
+        &__loader, &__comingSoon {
             @include flexbox();
             height: 90vh;
+        }
+
+        &__comingSoon {
+            flex-direction: column;
+
+            h1 { font-size: 1.8rem; }
+            p { 
+                text-align: center;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        &__alert {
+            font-size: 4rem;
         }
     }
 

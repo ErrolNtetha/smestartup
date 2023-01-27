@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+
 import React from 'react';
 import {
     Link,
@@ -11,13 +13,19 @@ import {
     FiList,
     FiPlusCircle,
     FiSliders,
-    FiHome
+    FiHome,
+    FiX
 } from 'react-icons/fi';
 import { Results } from './results';
+import { Filter } from './filter';
 
 export const BottomNav = () => {
+    const [show, setShow] = React.useState(false);
     const { path, url } = useRouteMatch();
     const history = useHistory();
+
+    const handleToggle = () => setShow(!show);
+
     return (
         <>
             <section className='supplier__filterIconGroup'>
@@ -33,7 +41,7 @@ export const BottomNav = () => {
                     <span>
                         <FiPlusCircle className='supplier__icon supplier__plus' onClick={() => history.push('/suppliers/register')} />
                     </span>
-                    <span>
+                    <span onClick={() => handleToggle()} onKeyDown={() => handleToggle()} role='button'>
                         <FiSliders className='supplier__icon' />
                         <p> Filter </p>
                     </span>
@@ -43,6 +51,15 @@ export const BottomNav = () => {
                     </Link>
                 </span>
             </section>
+            {show
+                && (
+                    <section className='supplier__filterToggle'>
+                        <span className='supplier__filterClose' onClick={() => setShow(false)} onKeyDown={() => setShow(false)} role='button'>
+                            <FiX />
+                        </span>
+                        <Filter />
+                    </section>
+                )}
             <Switch>
                 <Route exact path={`${path}`} component={Results} />
                 <Route path={`${path}/m/profiles`}>

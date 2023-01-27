@@ -21,7 +21,6 @@
         }
 
         &__innerContainer {
-            background: red;
             display: none;
             background: $foregroundColor;
         }
@@ -59,6 +58,10 @@
             height: 6vh;
         }
 
+        &__aboutDesktop {
+            display: none;
+        }
+
         &__filterIconGroup span {
            @include flexbox($justify-content: space-evenly);
             background: $primaryColor;
@@ -83,6 +86,61 @@
         &__filterIconGroup &__bottomNav span {
             padding: 0;
             margin: 0;
+        }
+
+        &__filterWrapper {
+            @include container();
+            display: none;
+            width: 80%;
+        }
+
+        &__filterToggle {
+            @include modal();
+
+            > &__filterWrapper {
+                width: 70%;
+            }
+
+            > * {
+                display: unset;
+            }
+        }
+
+        &__filterClose {
+            @include flexbox();
+            position: absolute;
+            bottom: 0;
+            right: 45%;
+            margin: 1em 0;
+            background-color: $primaryColor;
+            border-radius: 50%;
+            padding: .8em;
+            height: 40px;
+            width: 40px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: white;
+                color: black;
+            }
+        }
+
+        &__filterBackground {
+            @include flexbox();
+            position: fixed; top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        &__filterBackground > * {
+            width: 80%;
+        }
+
+        &__elementContainer &__selected {
+            margin-bottom: .8em;
         }
 
         &__bottomNav span, a p {
@@ -119,6 +177,9 @@
 
         &__selected {
             @include select($backgroundColor: $primaryColor, $selectedColor: white);
+            margin: .4em 0;
+            padding:0;
+            width: 100%;
         }
 
         &__options {
@@ -291,9 +352,16 @@
         }
 
         &__search--button {
+            @include buttonHover($bgColor: $secondaryColor, $padding: .5em);
+            width: 100%;
+            margin: .6em 0;
+        }
+
+        &__clear--button {
             @include buttonHover($bgColor: $primaryColor, $padding: .5em);
             width: 100%;
             margin: .6em 0;
+            border: 1px solid rgba(255, 255, 255, 0.01);
         }
 
         &__more {
@@ -764,6 +832,14 @@
             }
         }
 
+        &__aboutSection {
+            display: none;
+        }
+
+        &__left, &__right {
+            display: none;
+        }
+        
         &__selectContainer {
             @include select();
         }
@@ -793,6 +869,43 @@
 
         &__supplierWrapper {
             @include flexbox();
+            align-items: unset;
+            background-color: $foregroundColor;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        &__mainContent {
+            @include flexbox();
+            align-items: unset;
+            gap: 1em;
+            margin: 1em 0;
+        }
+
+        &__descriptionHeader, &__aboutDesktop {
+            display: none;
+        }
+
+        &__left, &__right {
+            width: 25%;
+            height: max-content;
+        }
+
+        &__supplierWrapper &__listContainer {
+            display: none;
+        }
+
+        &__left &__mapPreview section &__listContainer {
+            width: 100%;
+            padding: 0;
+        }
+
+        &__left, &__right, &__aboutSection {
+            display: unset;
+        }
+
+        &__navigationContainer, &__editButtonContainer {
+            display: none;
         }
 
         &__leftColumn, &__rightColumn {
@@ -802,6 +915,18 @@
             width: 25%;
             margin-bottom: .8em;
             height: max-content;
+        }
+
+        &__reviews, &__mapPreview {
+            @include container();
+            margin-bottom: 1em;
+        }
+
+        &__mapContainer,
+        &__filterToggle,
+        &__filterIconGroup
+        {
+            display: none;
         }
 
         &__filterContainer {
@@ -821,12 +946,12 @@
             padding: .4em;
         }
 
-        &__filterModal > &__filterContainer {
-            display: unset;
+        &__filterWrapper {
+            width: unset;
         }
 
-        &__filterIconGroup {
-            display: none;
+        &__filterModal > &__filterContainer, &__filterWrapper {
+            display: unset;
         }
 
         &__previewContainer {
