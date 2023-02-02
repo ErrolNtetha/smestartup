@@ -53,45 +53,57 @@ const SuppliersSchema = new mongoose.Schema({
     moq: String,
     moqNumber: Number,
     quotation: String,
-    address: String,
+    address: {
+        city: String,
+        postalCode: String,
+        streetAddress: String
+    },
     addresses: {
-        physical: {
-            type: {
-                type: String,
-                enum: ['Point']
-            },
-            coordinates: {
-                type: [Number],
-                index: '2dsphere'
-            },
-            country: String,
-            zip: String,
-            city: String,
-            streetName: String,
-            countryCode: String,
-            province: String,
-            formattedAddress: String
+        type: {
+            type: String,
+            enum: ['Point']
         },
-        postal: String
+        coordinates: {
+            type: [Number],
+            index: '2dsphere'
+        },
+        country: String,
+        zip: String,
+        city: String,
+        streetName: String,
+        countryCode: String,
+        province: String,
+        formattedAddress: String
     },
     isRegistered: { type: Boolean, default: false },
 }, { timestamps: true });
 
 SuppliersSchema.pre('save', async function (next) {
-    await geocoder.geocode(this.address, function (error, res) {
-        if (error) console.log('There is an error: ', error);
-        const loc = res[0];
-        this.address = undefined; // Do not save the address entered by the user
-        this.addresses = {
-            type: 'Point',
-            coordinates: [loc.longitude, loc.latitude],
-            formattedAddress: loc.formattedAddress,
-            city: loc.city,
-            province: loc.stateCode,
-            zip: loc.zipcode,
-            countryCode: loc.countryCode
-        };
-    });
+    const loc = await geocoder.geocode(`${this.address.streetAddress}, ${this.address.city} ${this.address.postalCode}`);
+    const {
+        longitude,
+        latitude,
+        formattedAddress,
+        city,
+        country,
+        countryCode,
+        stateCode,
+        zipcode,
+        streetName,
+    } = loc[0];
+
+    this.addresses = {
+        type: 'Point',
+        coordinates: [longitude, latitude],
+        formattedAddress,
+        city,
+        country,
+        province: stateCode,
+        zip: zipcode,
+        countryCode,
+        streetName
+    };
+    this.address = undefined; // Do not save the address
     next();
 });
 
