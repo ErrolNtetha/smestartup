@@ -90,7 +90,6 @@ exports.createSupplier = async (req, res) => {
         about,
         description,
         contacts,
-        addresses,
         tags,
         isRegistered,
         avatar,
@@ -142,8 +141,11 @@ exports.createSupplier = async (req, res) => {
             website,
             fax
         },
-        addresses,
-address,
+        address: {
+            postalCode: address.postalCode,
+            city: address.city,
+            streetAddress: address.streetAddress
+        },
         tags,
         author: _id,
         isRegistered,
