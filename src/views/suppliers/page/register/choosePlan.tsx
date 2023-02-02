@@ -88,26 +88,26 @@ export const ChoosePlan = () => {
                     : plan === 'pro'
                     ? (
                         <PayFast
-                          buttonText={`Continue with Pro (R${PRICES.PRO})`}
+                          buttonText={`Pay Now (R${PRICES.PRO})`}
                           confirmationEmail='mphumier@outlook.com'
                           firstName='Mphumeleli Errol'
                           lastName='Ntetha'
                           email='mphumier@outlook.com'
                           itemName='Pro Supplier Profile'
                           amount={PRICES.PRO}
-                          cancelUrl='http://localhost:3000/supplier/register'
+                          cancelUrl='http://localhost:3000/suppliers/payments'
                         />
                         )
                     : (
                         <PayFast
-                          buttonText={`Continue with Premium (R${PRICES.PREMIUM})`}
+                          buttonText={`Pay Now (R${PRICES.PREMIUM})`}
                           confirmationEmail='mphumier@outlook.com'
                           firstName='Mphumeleli Errol'
                           lastName='Ntetha'
                           email='mphumier@outlook.com'
                           itemName='Premium Supplier Profile'
                           amount={PRICES.PREMIUM}
-                          cancelUrl='http://localhost:3000/supplier/register'
+                          cancelUrl='http://localhost:3000/suppliers/payments'
                         />
                     )}
             </section>

@@ -1078,7 +1078,6 @@
             gap: .4em;
         }
 
-
         &__infoList.p {
             margin: 0;
             padding: 0;
@@ -1087,6 +1086,20 @@
 
         &__skeletonContainer {
             width: 50%;
+        }
+
+        &__skeletonCardContainer {
+            display: flex;
+            padding: 0 .5em;
+            gap: .6em;
+        }
+
+        &__textSkeletonRight {
+            flex: 1;
+        }
+
+        &__status {
+            flex: 0.7;
         }
 
         &__plans {
