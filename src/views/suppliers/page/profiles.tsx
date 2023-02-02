@@ -1,7 +1,7 @@
+import { BusinessAvatar } from 'components/avatar/business';
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { Avatar } from '../../../components/avatar';
 
 interface Props {
     id: string;
@@ -19,7 +19,7 @@ export const Profiles = ({
     return (
         <Link to={`/suppliers/${id}/update`} className='supplier__supplierPreContainer'>
             <section>
-                <Avatar avatar={supplierPicture} className='supplier__supplierPicture' />
+                <BusinessAvatar avatar={supplierPicture} className='supplier__supplierPicture' />
                 <span>
                     <p>{supplierName}</p>
                     <p style={{ color: isActive ? 'green' : 'red' }}>

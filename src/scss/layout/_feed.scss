@@ -388,6 +388,7 @@
         &__mainContent {
             @include flexbox();
             align-items: unset;
+            gap: 2em;
             width: 100%;
         }
 
