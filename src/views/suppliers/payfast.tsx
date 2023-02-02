@@ -22,7 +22,7 @@ export const PayFast = ({
     buttonText
 }: Payfast) => {
     return (
-        <form action='https://www.payfast.co.za/eng/process' method='post'>
+        <form action='https://sandbox.payfast.co.za/eng/process' method='post'>
             <input type='hidden' name='merchant_id' value={`${process.env.REACT_APP_MERCHANT_ID}`} />
             <input type='hidden' name='merchant_key' value={`${process.env.REACT_APP_MERCHANT_KEY}`} />
             <input type='hidden' name='cancel_url' value={cancelUrl} />
@@ -33,7 +33,7 @@ export const PayFast = ({
             <input type='hidden' name='item_name' value={itemName} />
             <input type='hidden' name='email_confirmation' value='1' />
             <input type='hidden' name='confirmation_email' value={confirmationEmail} />
-            <input type='hidden' name='payment_method' value='cc' />
+            <input type='hidden' name='notify_url' value='https://2fb9-102-249-2-183.ap.ngrok.io/api/v1/payments' />
             <button type='submit'> {buttonText} </button>
         </form>
     );

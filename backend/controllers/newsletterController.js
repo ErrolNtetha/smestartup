@@ -30,5 +30,5 @@ exports.getSubscriber = async (req, res) => {
             res.staus(500).json({ success: false, error });
         });
       })
-      .catch((error) => res.staus(500).json({ success: false, error: error.message }));
+      .catch((error) => res.status(500).json({ success: false, error: error.message }));
 };

@@ -17,10 +17,10 @@ export const Starter = () => {
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Map
+                            <FiCheck />
                         </li>
                         <li>
-                            <FiCheck /> Up to 2 images
+                            <FiCheck /> Upload up to 2 images
                         </li>
                     </ul>
                 </section>
@@ -41,10 +41,10 @@ export const Pro = ({ price }: Price) => {
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Map
+                            <FiCheck /> Business Location
                         </li>
                         <li>
-                            <FiCheck /> Contact info
+                            <FiCheck /> Additional contact info
                         </li>
                         <li>
                             <FiCheck /> Social media links
@@ -53,10 +53,13 @@ export const Pro = ({ price }: Price) => {
                             <FiCheck /> Up to 3 tags
                         </li>
                         <li>
-                            <FiCheck /> Email support
+                            <FiCheck /> Customer support (Email)
                         </li>
                         <li>
-                            <FiCheck /> Up to 10 images
+                            <FiCheck /> Upload up to 5 images
+                        </li>
+                        <li>
+                            <FiCheck /> Product visibility on home page
                         </li>
                     </ul>
                 </section>
@@ -77,10 +80,10 @@ export const Premium = ({ price }: Price) => {
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Location
+                            <FiCheck /> Business Location
                         </li>
                         <li>
-                            <FiCheck /> Unlimited tags
+                            <FiCheck /> Up to 10 tags
                         </li>
                         <li>
                             <FiCheck /> Edit profile
@@ -98,16 +101,22 @@ export const Premium = ({ price }: Price) => {
                             <FiCheck /> Brand identity support
                         </li>
                         <li>
-                            <FiCheck /> Featured listing
+                            <FiCheck /> Featured listing - Homepage
                         </li>
                         <li>
-                            <FiCheck /> Unlimited images
+                            <FiCheck /> Suggested in similar suppliers
+                        </li>
+                        <li>
+                            <FiCheck /> Upload up to 10 images
                         </li>
                         <li>
                             <FiCheck /> Claim verified badge
                         </li>
                         <li>
                             <FiCheck /> Phone & Email support
+                        </li>
+                        <li>
+                            <FiCheck /> Social media promotion
                         </li>
 
                     </ul>
