@@ -5,7 +5,7 @@ function verifyJWT(req, res, next) {
 
     if (token) {
         jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => {
-            if (err) res.status(401).json({ isLoggedIn: false });
+            if (err) res.status(403).json({ isLoggedIn: false });
 
             // create an empty abject
             req.user = {};
@@ -13,7 +13,7 @@ function verifyJWT(req, res, next) {
             req.user.email = decoded.email;
             next();
         });
-    } else res.status(403).json({ isLoggedIn: false });
+    } else res.status(401).json({ isLoggedIn: false });
 }
 
 module.exports = verifyJWT;
