@@ -114,19 +114,18 @@ exports.createSupplier = async (req, res) => {
 
     const supplierPhotos = [];
 
-    if (photos.length >= 1) {
-        photos.forEach(async (photo) => {
-            try {
-                const response = await cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' });
-
+    if (photos.length) {
+        photos.forEach((photo) => {
+            cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' }, (error, response) => {
+                if (error) {
+                    res.status(500).json({ success: false, error: error.message });
+                }
                 supplierPhotos.push({
-                    url: response.url,
+                    url: response.secure_url,
                     publicId: response.public_id,
                     signature: response.signature
                 });
-             } catch (error) {
-                res.status(500).json({ success: false, error: error.message });
-            }
+            });
         });
     }
 
