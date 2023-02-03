@@ -37,51 +37,55 @@ export const SupplierView = () => {
             <Header>
                 <FiArrowLeft className='supplier__arrowLeft' onClick={() => history.push('/suppliers')} />
             </Header>
-            { loading
+            { errorMessage
+                    ? 'There was an Error'
+                    : loading
                     ? <SkeletonLoading cards={1} numCount={12} />
-                    : errorMessage
-                    ? 'There was an error'
                     : (
                         <section className='container'>
                             <section className='supplier__mainContent'>
                                 <section className='supplier__left'>
                                     <Container header='Overview' className='supplier__mapPreview'>
                                         <Overview
-                                          isRegistered={data?.suppliers?.isregistered}
-                                          established={data?.suppliers?.established}
-                                          companyType={data?.suppliers?.type}
-                                          beeLevel={data?.suppliers?.beeLevel}
-                                          moqNumber={data?.suppliers?.moqNumber}
-                                          quotation={data?.suppliers?.quotation}
-                                          about={data?.suppliers?.about}
+                                          isRegistered={suppliers?.isregistered}
+                                          established={suppliers?.established}
+                                          companyType={suppliers?.type}
+                                          beeLevel={suppliers?.beeLevel}
+                                          moqNumber={suppliers?.moqNumber}
+                                          quotation={suppliers?.quotation}
+                                          about={suppliers?.about}
                                           descriptionClass='supplier__descriptionHeader'
                                         />
                                     </Container>
                                     <Container header={`Photos (${suppliers?.photos?.length})`} className='supplier__reviews'>
-                                        <Photos photos={data.suppliers.photos} />
+                                        <Photos photos={suppliers?.photos} />
                                     </Container>
                                     <Container header='Reviews' className='supplier__reviews'>
                                         <Reviews />
                                     </Container>
                                 </section>
                                 <SupplierInfo
-                                  sector={data?.suppliers?.sector}
-                                  companyType={data?.suppliers?.type}
-                                  established={data?.suppliers?.established}
-                                  isregistered={data?.suppliers?.isregistered}
-                                  photos={data?.suppliers?.photos}
-                                  name={data?.suppliers?.name}
-                                  createdAt={data?.suppliers?.createdAt}
-                                  description={data?.suppliers?.description}
-                                  avatar={data?.suppliers?.avatar}
-                                  beeLevel={data?.suppliers?.beeLevel}
-                                  moqNumber={data?.suppliers?.moqNumber}
-                                  quotation={data?.suppliers?.quotation}
+                                  sector={suppliers?.sector}
+                                  companyType={suppliers?.type}
+                                  established={suppliers?.established}
+                                  isregistered={suppliers?.isregistered}
+                                  photos={suppliers?.photos}
+                                  name={suppliers?.name}
+                                  createdAt={suppliers?.createdAt}
+                                  description={suppliers?.description}
+                                  avatar={suppliers?.avatar}
+                                  beeLevel={suppliers?.beeLevel}
+                                  moqNumber={suppliers?.moqNumber}
+                                  quotation={suppliers?.quotation}
                                   isOwner={data?.isOwner}
                                 />
                                 <section className='supplier__right'>
                                     <Container header='Map' className='supplier__mapPreview'>
-                                        <Map />
+                                        <Map
+                                          latitude={suppliers.addresses.coordinates[1]}
+                                          longitude={suppliers.addresses.coordinates[0]}
+                                          address={suppliers.addresses.formattedAddress}
+                                        />
                                     </Container>
                                 </section>
                             </section>
