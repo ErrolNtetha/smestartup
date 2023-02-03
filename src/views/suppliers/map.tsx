@@ -13,29 +13,32 @@ import loc from '../../assets/location.png';
 import 'leaflet/dist/leaflet.css';
 
 interface MapProps {
-    latitude?: number | null;
-    longitude?: number | null;
-    address?: string;
+    latitude: number;
+    longitude: number;
+    address: string;
 }
 
-export const Map = ({ latitude = 52.51, longitude = 13.38, address = 'Supplier location' }: MapProps) => {
+export const Map = ({ latitude, longitude, address }: MapProps) => {
     const locationIcon = new Icon({
         iconUrl: loc,
         iconSize: [50, 60],
     });
+
     return (
         <div id='map'>
-            <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom>
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[latitude, longitude]} icon={locationIcon}>
-                    <Popup>
-                        {address}
-                    </Popup>
-                </Marker>
-            </MapContainer>
+            {(latitude && longitude) && (
+                <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom>
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[latitude, longitude]} icon={locationIcon}>
+                        <Popup>
+                            {address}
+                        </Popup>
+                    </Marker>
+                </MapContainer>
+            )}
         </div>
     );
 };
