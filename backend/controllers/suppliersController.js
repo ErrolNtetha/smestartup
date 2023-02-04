@@ -1,4 +1,10 @@
 /* eslint-disable no-nested-ternary */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable prefer-const */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable func-names */
+/* eslint-disable no-console */
+/* eslint-disable no-unreachable */
 
 const otp = require('otp-generator');
 const Suppliers = require('../models/suppliers.model');
@@ -112,21 +118,32 @@ exports.createSupplier = async (req, res) => {
         fax
     } = contacts;
 
-    const supplierPhotos = [];
+    const uploadPhotos = async function (items) {
+        let supplierPhotos = [];
+        for (let photo of items) {
+            try {
+                const response = await cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' });
 
-    if (photos.length) {
-        photos.forEach((photo) => {
-            cloudinary.uploader.upload(photo, { upload_preset: 'user_posts' }, (error, response) => {
-                if (error) {
-                    res.status(500).json({ success: false, error: error.message });
-                }
                 supplierPhotos.push({
-                    url: response.secure_url,
+                    url: response.url,
                     publicId: response.public_id,
                     signature: response.signature
                 });
-            });
-        });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        return function uploaded() {
+            console.log('Photo Object: ', supplierPhotos);
+            return supplierPhotos;
+        };
+    };
+
+    let addPhotos = await uploadPhotos(photos);
+
+    if (photos.length) {
+        console.log(addPhotos);
     }
 
     const newSupplier = new Suppliers({
@@ -157,8 +174,11 @@ exports.createSupplier = async (req, res) => {
         quotation,
         established,
         type: companyType,
-        photos: [...supplierPhotos]
+        photos
     });
+
+    console.log('Array: ', addPhotos());
+    return;
 
     await newSupplier.save()
         .then(() => res.status(201).json({ success: true }))
