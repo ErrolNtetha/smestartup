@@ -152,7 +152,7 @@ import { CProps } from 'views/feed/comment/';
 
       { toggleCommentsModal && (
           <section className='feed__commentsModalContainer'>
-             <Container header='Comments' className='feed__commentsModal'>
+             <Container isClosable handleToggleComments={toggleComments} header='Comments' className='feed__commentsModal'>
                 <>
                     {comments?.length
                         ? <Comments id={id} />
