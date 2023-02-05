@@ -512,14 +512,14 @@
             border-radius: 10px;
             width: 100%;
             margin-bottom: .6em;
-            
-            > p {
-                font-size: .8rem;
-            }
+        }
 
-            > p:last-child {
-                margin-bottom: .6em;
-            }
+        &__comment section p {
+            font-size: .8rem;
+        }
+
+        &__comment section &__commentText {
+            margin-top: .6em;
         }
 
         &__commentText {
@@ -528,7 +528,7 @@
         }
 
         &__commentNames {
-            font-weight: 500;
+            font-weight: 600;
         }
     }
 
