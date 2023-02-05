@@ -403,21 +403,36 @@
 
         &__commentsModal {
             @include container();
+            overflow-y: auto;
             position: relative;
             background: black;
             width: 90%;
-            height: 95%;
+            height: 75%;
+        }
+
+        &__commentsModal .child {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+        }
+
+        &__commentsModal header {
+            background: black;
+            position: sticky;
+            top: 0;
+            left: 0;
         }
 
         &__typeCommentContainer {
-            position: absolute;
-            background: black;
+            position: sticky;
             bottom: 0;
             left: 0;
+            background: black;
             width: 100%;
         }
 
         &__commentFieldContainer {
+            background: black;
             display: flex;
             gap: .4em;
             padding: .4em .6em;
