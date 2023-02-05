@@ -1,0 +1,6 @@
+http://localhost:3000/suppliers/
+http://localhost:3000/suppliers/*
+https://deploy-preview-148--blendot.netlify.app/feed
+https://deploy-preview-148--blendot.netlify.app/suppliers
+https://deploy-preview-148--blendot.netlify.app/login
+https://deploy-preview-148--blendot.netlify.app/register

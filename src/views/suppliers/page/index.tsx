@@ -24,6 +24,8 @@ export const SupplierView = () => {
         <>
             <Helmet>
                 <title> { loading ? 'Loading' : `${suppliers?.name}`} | Blendot </title>
+                <meta name='description' content={suppliers?.about} />
+                <link rel='canonical' href={`/suppliers/${id}`} />
                 <meta property='og:title' content={`${suppliers?.name} | Bledot`} />
                 <meta property='og:image' content={og} />
                 <meta property='og:image:width' content='1200' />
