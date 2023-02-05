@@ -2,6 +2,7 @@
 @use '../mixins/flexbox' as *;
 
 @mixin container {
+    position: relative;
     background-color: $foregroundColor;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -13,5 +14,11 @@
 
     header {
         font-weight: bold;
+    }
+
+    .closeModal {
+        position: absolute;
+        top: .6em;
+        right: .8em;
     }
 }
