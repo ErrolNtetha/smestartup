@@ -154,7 +154,7 @@ import { CProps } from 'views/feed/comment/';
           <section className='feed__commentsModalContainer'>
              <Container header='Comments' className='feed__commentsModal'>
                 <>
-                    {comments.length
+                    {comments?.length
                         ? <Comments id={id} />
                         : 'No comments. Be the first to comment.' }
                     <span className='feed__typeCommentContainer'>
@@ -172,7 +172,7 @@ import { CProps } from 'views/feed/comment/';
 
     <section className='feed__LastRow'>
         <span className='feed__stats'>
-            <span className='feed__comments' onClick={toggleComments} tabIndex={0} role='button' onKeyPress={toggleComments}> <FiMessageSquare className='feed__commentsIcon' /> { comments.length ? `${comments.length} comments` : 'No comments yet' } </span>
+            <span className='feed__comments' onClick={toggleComments} tabIndex={0} role='button' onKeyPress={toggleComments}> <FiMessageSquare className='feed__commentsIcon' /> { comments?.length ? `${comments?.length} comments` : 'No comments yet' } </span>
           <Button onClick={() => handleLikes(id)} className='feed__stats__bookmarks'> <FiStar className='feed__starIcon' /> {stars.length} </Button>
         </span>
     </section>

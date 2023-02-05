@@ -411,6 +411,7 @@
 
         &__typeCommentContainer {
             position: absolute;
+            background: black;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -420,6 +421,10 @@
             display: flex;
             gap: .4em;
             padding: .4em .6em;
+
+            img {
+                flex: unset;
+            }
 
             section {
                 flex: .1;
@@ -434,6 +439,10 @@
             button, img {
                 flex: .1;
             }
+        }
+
+        &__commentFieldContainer img {
+            flex: unset;
         }
 
         &__authorCommentAvatar, &__commentAvatar {
@@ -477,6 +486,9 @@
         }
 
         &__sendCommentButton {
+            @include flexbox();
+            width: max-content;
+            height: max-content;
             background-color: black;
             border: none;
             align-self: flex-end;
@@ -488,6 +500,7 @@
 
         &__listComments {
             overflow-y: auto;
+            height: max-content;
         }
 
         &__comment {
@@ -499,16 +512,23 @@
             border-radius: 10px;
             width: 100%;
             margin-bottom: .6em;
+        }
 
+        &__comment section p {
+            font-size: .8rem;
+        }
+
+        &__comment section &__commentText {
+            margin-top: .6em;
         }
 
         &__commentText {
             margin-top: .5em;
-            font-size: .9rem;
+            font-size: .8rem;
         }
 
         &__commentNames {
-            font-weight: 500;
+            font-weight: 600;
         }
     }
 
