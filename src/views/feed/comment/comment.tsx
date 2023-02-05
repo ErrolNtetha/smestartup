@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDistance } from 'date-fns';
 import { Avatar } from '../../../components/avatar';
 
 interface CommentProps {
@@ -25,7 +26,7 @@ export const Comment = ({
                 <span>
                     <p className='feed__commentNames'> {firstName} {lastName} </p>
                     <p> {occupation} </p>
-                    <p> {date} </p>
+                    <p> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
                 </span>
                 <p className='feed__commentText'> {comment} </p>
             </section>
