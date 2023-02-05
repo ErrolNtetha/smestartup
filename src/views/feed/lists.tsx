@@ -30,7 +30,7 @@ export const Lists = ({ isOpen, isToggled }: Props) => {
                     </section>
                 )
                 : data?.posts?.map(({
-                    post, image, author, _id, createdAt, stars
+                    post, image, author, _id, createdAt, stars, comments
                 }) => {
                     if (!data?.posts?.length) {
                          return 'empty';
@@ -50,6 +50,7 @@ export const Lists = ({ isOpen, isToggled }: Props) => {
                       stars={stars}
                       company={author?.company}
                       school={author?.school}
+                      comments={comments}
                     />
                 );
             })}
