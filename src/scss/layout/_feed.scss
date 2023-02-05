@@ -512,7 +512,14 @@
             border-radius: 10px;
             width: 100%;
             margin-bottom: .6em;
+            
+            > p {
+                font-size: .8rem;
+            }
 
+            > p:last-child {
+                margin-bottom: .6em;
+            }
         }
 
         &__commentText {
