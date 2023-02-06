@@ -1,0 +1,6 @@
+https://deploy-preview-148--blendot.netlify.app/
+https://deploy-preview-148--blendot.netlify.app/faq
+https://deploy-preview-148--blendot.netlify.app/about
+https://deploy-preview-148--blendot.netlify.app/suppliers
+https://deploy-preview-148--blendot.netlify.app/login
+https://deploy-preview-148--blendot.netlify.app/register
