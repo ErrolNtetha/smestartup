@@ -12,21 +12,27 @@ import { Icon } from 'leaflet';
 import loc from '../../assets/location.png';
 import 'leaflet/dist/leaflet.css';
 
-export const Map = () => {
+interface MapProps {
+    latitude?: number | null;
+    longitude?: number | null;
+    address?: string;
+}
+
+export const Map = ({ latitude = 52.51, longitude = 13.38, address = 'Supplier location' }: MapProps) => {
     const locationIcon = new Icon({
         iconUrl: loc,
         iconSize: [50, 60],
     });
     return (
         <div id='map'>
-            <MapContainer center={[52.51, 13.38]} zoom={13} scrollWheelZoom>
+            <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[52.51, 13.38]} icon={locationIcon}>
+                <Marker position={[latitude, longitude]} icon={locationIcon}>
                     <Popup>
-                        A pop up for showing more info about this supplier.
+                        {address}
                     </Popup>
                 </Marker>
             </MapContainer>

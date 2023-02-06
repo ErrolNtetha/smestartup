@@ -11,15 +11,16 @@ exports.userPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
     const { post, fileURL } = req.body;
 
-    let imageUrl, public_id, signature;
+    let imageUrl; let publicId; let
+signature;
     if (fileURL) {
         await cloudinary.uploader.upload(fileURL, { upload_preset: 'user_posts' })
             .then((response) => {
                 imageUrl = response.url;
-                public_id = response.public_id;
+                publicId = response.public_id;
                 signature = response.signature;
             })
-            .catch((error) => console.log(error));
+            .catch((error) => res.status(500).json({ error }));
     }
 
     const userPost = new Post({
@@ -27,7 +28,7 @@ exports.userPosts = async (req, res) => {
             post,
             image: {
                 url: imageUrl,
-                public_id,
+                publicId,
                 signature
             },
         });
@@ -50,25 +51,30 @@ exports.incrimementLikes = async (req, res) => {
     }
     await Post.findByIdAndUpdate(req.params.id, { $push: { stars: [_id] } })
         .then(() => res.status(200).json({ message: 'You have starred this post.' }))
-        .catch((error) => res.status(500).json({ message: 'Ops. There was a problem.', error: error.message }));
+        .catch((error) => res.status(500).json({ message: 'There was a problem.', error: error.message }));
 };
 
 exports.getSpecificUserPost = async (req, res) => {
     const { email } = req.user;
 
     // get all the posts from the database
-    await Post.find({ email })
+    await Post
+        .find({ email })
+        .sort({ createdAt: -1 })
         .then((posts) => {
-            if (!posts) return res.status(404).json({ message: 'Posts not found.' });
-            return res.status(200).json({ posts });
+            if (!posts) {
+                res.status(200).json({ message: 'Posts not found.' });
+            }
+             res.status(200).json({ posts });
         })
         .catch((err) => res.status(500).json({ error: err, message: 'There was an error getting posts.' }));
 };
 
 exports.getUserPost = async (req, res) => {
-    await Post.find()
+    await Post
+        .find()
         .sort({ createdAt: -1 })
-        .populate('author', 'name email _id isVerified occupation avatar')
+        .populate('author', 'name company _id isVerified occupation avatar')
         .then((posts) => {
             if (!posts) res.status(200).json({ message: 'No posts found yet. Be the first to post!' });
             res.status(200).json({ success: true, posts });
@@ -81,7 +87,7 @@ exports.getAllUserPosts = async (req, res) => {
     const { _id } = await User.findOne({ email });
 
     await Post.find({ author: _id })
-        .populate('author', 'name occupation avatar')
+        .populate('author', 'name company school occupation avatar')
         .then((posts) => {
             if (!posts) return res.status(404).json('No posts yet. You posts will apppear here.');
             return res.json({ posts });

@@ -54,6 +54,7 @@ export const SupplierView = () => {
                                           moqNumber={data?.suppliers?.moqNumber}
                                           quotation={data?.suppliers?.quotation}
                                           about={data?.suppliers?.about}
+                                          descriptionClass='supplier__descriptionHeader'
                                         />
                                     </Container>
                                     <Container header={`Photos (${suppliers?.photos?.length})`} className='supplier__reviews'>

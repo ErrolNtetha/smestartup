@@ -25,8 +25,8 @@ export const UserPosts = ({
                             <span className='profile__titleGroup' style={{ paddingLeft: '.8em' }}>
                                 <span>
                                     <h4 className='profile__fullNames'> {author.name.firstName} {author.name.lastName} </h4>
-                                    <p className='profile__timeAgo'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
                                     <p className='profile__timeAgo'> {author.occupation} </p>
+                                    <p className='profile__timeAgo'> {formatDistance(new Date(date), new Date(), { addSuffix: true })} </p>
                                     <section />
                                 </span>
                                 <span style={{ alignSelf: 'start' }}>

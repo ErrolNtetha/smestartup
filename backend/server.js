@@ -21,6 +21,9 @@ const suppliers = require('./routes/suppliers.routes');
 const refresh = require('./routes/refresh.router');
 const founders = require('./routes/founder.routes');
 const users = require('./routes/user.routes');
+const location = require('./routes/location.route');
+const orders = require('./routes/order.router');
+const comments = require('./routes/comment.routes');
 
 // Middlewares
 require('dotenv').config();
@@ -38,6 +41,9 @@ app.use(suppliers);
 app.use(refresh);
 app.use(founders);
 app.use(users);
+app.use(location);
+app.use(orders);
+app.use(comments);
 
 // Connecting to socket.io
 io.on('connection', (socket) => {

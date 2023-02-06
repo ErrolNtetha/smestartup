@@ -78,8 +78,6 @@ const Profile = ({ isLoggedIn, handleToggleMenu }: Props) => {
         occupation
     } = userData;
 
-    console.log(loading);
-
     return (
         <section className='header__profileContainer'>
             <>

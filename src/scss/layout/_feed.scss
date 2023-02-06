@@ -193,6 +193,17 @@
             border-radius: 5px;
         }
 
+        &__modalPost {
+            @include modal();
+            top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+        }
+
         &__optionsModal {
             @include flexbox();
             position: fixed;
@@ -283,6 +294,7 @@
                     $bgColor: $secondaryColor,
                     $padding: 0.8em 1.4em
                 );
+                margin-bottom: 1em;
             }
         }
 
@@ -370,12 +382,161 @@
         &__mainContent {
             width: 100%;
         }
+
+        &__comments {
+            @include flexbox();
+            gap: .4em;
+            font-size: .8rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__commentsIcon {
+            font-size: .9rem;
+        }
+
+        &__commentsModalContainer {
+            @include modal();
+        }
+
+        &__commentsModal {
+            @include container();
+            position: relative;
+            background: black;
+            width: 90%;
+            height: 95%;
+        }
+
+        &__typeCommentContainer {
+            position: absolute;
+            background: black;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        &__commentFieldContainer {
+            display: flex;
+            gap: .4em;
+            padding: .4em .6em;
+
+            img {
+                flex: unset;
+            }
+
+            section {
+                flex: .1;
+                width: 30px;
+                height: 30px;
+            }
+
+            form {
+                flex: .8;
+            }
+
+            button, img {
+                flex: .1;
+            }
+        }
+
+        &__commentFieldContainer img {
+            flex: unset;
+        }
+
+        &__authorCommentAvatar, &__commentAvatar {
+            @include avatar($width: 30px);
+        }
+
+        &__commentAvatar {
+            align-self: start;
+            border: 1px solid rgba(255, 255, 255, .4);
+        }
+
+        &__authorCommentAvatar {
+            align-self: flex-end;
+        }
+
+        &__inputComment {
+            padding: .4em .6em;
+            border-radius: 15px;
+            width: 100%;
+            background: $foregroundColor;
+            color: white;
+            caret-color: white;
+            max-height: 100px;
+            overflow-y: auto;
+
+            &[contenteditable]:empty:before {
+                content: attr(placeholder);
+                pointer-events: none;
+                display: none;
+            }
+
+            &::placeholder {
+                color: rgba(255, 255, 255, .4);
+            }
+        }
+
+        &__sendIcon {
+            border: none;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        &__sendCommentButton {
+            @include flexbox();
+            width: max-content;
+            height: max-content;
+            background-color: black;
+            border: none;
+            align-self: flex-end;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &__listComments {
+            overflow-y: auto;
+            height: max-content;
+        }
+
+        &__comment {
+            @include flexbox($justify-content: unset);
+            gap: .4em;
+            align-items: unset;
+            padding: .6em .6em;
+            background: $foregroundColor;
+            border-radius: 10px;
+            width: 100%;
+            margin-bottom: .6em;
+        }
+
+        &__comment section p {
+            font-size: .8rem;
+        }
+
+        &__comment section &__commentText {
+            margin-top: .6em;
+        }
+
+        &__commentText {
+            margin-top: .5em;
+            font-size: .8rem;
+        }
+
+        &__commentNames {
+            font-weight: 600;
+        }
     }
 
     @include respond-to('laptop') {
         &__mainContent {
             @include flexbox();
             align-items: unset;
+            gap: 2em;
             width: 100%;
         }
 
@@ -384,9 +545,18 @@
             display: unset;
         }
 
+        &__newPost {
+            background-color: $secondaryColor;
+            border-radius: $radius;
+        }
+
         &__postField {
             position: unset;
             margin-bottom: 1em;
+        }
+
+        &__modalPost > * {
+            max-width: 40%;
         }
 
         &__create {
@@ -432,10 +602,6 @@
             border: .2px solid white;
         }
 
-        &__counter {
-                @include flexbox($justify-content: space-between);
-        }
-
         &__sidebarLinks li {
             @include flexbox($justify-content: unset);
             gap: .6em;
@@ -445,7 +611,15 @@
                 background: $foregroundColor;
                 cursor: pointer;
                 border-radius: $radius;
+            }
+        }
 
+        &__counter {
+            @include flexbox($justify-content: space-between);
+
+            span {
+                @include flexbox();
+                gap: .6em;
             }
         }
 
@@ -544,6 +718,10 @@
 
         &__modal {
             width: 40%;
+        }
+
+        &__modalPost {
+            @include modal();
         }
     }
 }
