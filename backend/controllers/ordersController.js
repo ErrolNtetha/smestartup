@@ -1,4 +1,4 @@
 exports.createOrder = (req, res) => {
-    console.log('Response: ', res);
-    console.log('Request: ', req);
+    console.log('Request: ', req.body);
+    res.status(200).json({ success: true, message: 'Payment successful.' });
 };
