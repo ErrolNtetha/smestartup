@@ -15,8 +15,8 @@ export const ChoosePlan = () => {
 
     const PRICES = {
         STARTER: 0,
-        PRO: 99,
-        PREMIUM: 199
+        PRO: 129,
+        PREMIUM: 249
     };
 
     const selectPlan = (e: React.ChangeEvent<HTMLInputElement>) => setSelectedPlan(e.target.value);
@@ -35,10 +35,10 @@ export const ChoosePlan = () => {
 
         if (planDetails.planType === 'starter') {
             console.log(planDetails);
-            const response = await axiosPrivate.post('/payments', planDetails);
             try {
+                const response = await axiosPrivate.post('api/v1/payments', planDetails);
                 console.log(response);
-                if (response.status === 200) {
+                if (response.status === 201) {
                     console.log('It worked!');
                     history.push('/suppliers/register');
                 }
@@ -88,6 +88,7 @@ export const ChoosePlan = () => {
                     : plan === 'pro'
                     ? (
                         <PayFast
+                          plan='pro'
                           buttonText={`Pay Now (R${PRICES.PRO})`}
                           confirmationEmail='mphumier@outlook.com'
                           firstName='Mphumeleli Errol'
@@ -100,6 +101,7 @@ export const ChoosePlan = () => {
                         )
                     : (
                         <PayFast
+                          plan='premium'
                           buttonText={`Pay Now (R${PRICES.PREMIUM})`}
                           confirmationEmail='mphumier@outlook.com'
                           firstName='Mphumeleli Errol'
