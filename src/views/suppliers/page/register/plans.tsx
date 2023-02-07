@@ -23,7 +23,6 @@ export const Plan = ({
             <span>
                 <p style={{ padding: '10px', margin: '0' }}>{planType}</p>
             </span>
-            <hr className='global' />
             {children}
             <input className='supplier__radio' onChange={selectPlan} name='plan' type='radio' id={id} value={value} />
             <label htmlFor={htmlFor} className='supplier__radioLabel'> Select </label>
