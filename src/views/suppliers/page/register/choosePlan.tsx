@@ -5,6 +5,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Header } from 'views/header';
 import { axiosPrivate } from 'config/axiosInstance';
+import { fetchSupplier } from 'store/actions/supplier';
+import { fetchError } from 'store/actions/fetchProfile';
+import { useDispatch } from 'react-redux';
 import { Plan } from './plans';
 import { Premium, Pro, Starter } from './offers';
 import { PayFast } from '../../payfast';
@@ -12,6 +15,7 @@ import { PayFast } from '../../payfast';
 export const ChoosePlan = () => {
     const [plan, setSelectedPlan] = React.useState('');
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const PRICES = {
         STARTER: 0,
@@ -34,7 +38,9 @@ export const ChoosePlan = () => {
         };
 
         if (planDetails.planType === 'starter') {
-            console.log(planDetails);
+            dispatch(fetchSupplier(planDetails));
+            history.push('/suppliers/register');
+
             try {
                 const response = await axiosPrivate.post('api/v1/payments', planDetails);
                 console.log(response);
@@ -43,6 +49,7 @@ export const ChoosePlan = () => {
                     history.push('/suppliers/register');
                 }
             } catch (error) {
+                fetchError('an error');
                 console.error(error);
             }
         }
