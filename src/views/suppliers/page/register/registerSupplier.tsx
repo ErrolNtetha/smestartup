@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -491,14 +492,19 @@ export const RegisterSupplier = () => {
                               name='photos'
                               onChange={(e) => {
                                   const photos = e.currentTarget.files;
-                                  const reader = new FileReader();
 
-                                  reader.readAsDataURL(photos[0]);
-                                  reader.onload = () => {
-                                      if (reader.result) {
-                                            arrayHelpers.push(reader.result);
-                                       }
-                                  };
+                                  if (photos) {
+                                      for (let i = 0; i <= photos.length; i++) {
+                                        const reader = new FileReader();
+
+                                        reader.readAsDataURL(photos[i]);
+                                        reader.onload = () => {
+                                            if (reader.result) {
+                                                arrayHelpers.push(reader.result);
+                                            }
+                                        };
+                                      }
+                                  }
                               }}
                             />
                         </section>
