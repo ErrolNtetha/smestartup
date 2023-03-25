@@ -548,7 +548,7 @@ export const RegisterSupplier = () => {
                               hidden
                               multiple
                               ref={imageInput}
-                              accept='image/*'
+                              accept='image/png'
                               name='photos'
                               onChange={(e) => {
                                   const photos = e.currentTarget.files;
