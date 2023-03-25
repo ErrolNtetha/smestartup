@@ -9,7 +9,12 @@ import { fetchSupplier } from 'store/actions/supplier';
 import { fetchError } from 'store/actions/fetchProfile';
 import { useDispatch } from 'react-redux';
 import { Plan } from './plans';
-import { Premium, Pro, Starter } from './offers';
+import {
+    Free,
+    Premium,
+    Pro,
+    Starter
+} from './offers';
 import { PayFast } from '../../payfast';
 
 export const ChoosePlan = () => {
@@ -18,7 +23,8 @@ export const ChoosePlan = () => {
     const dispatch = useDispatch();
 
     const PRICES = {
-        STARTER: 0,
+        FREE: 0,
+        STARTER: 59,
         PRO: 129,
         PREMIUM: 249
     };
@@ -37,7 +43,7 @@ export const ChoosePlan = () => {
                 : null
         };
 
-        if (planDetails.planType === 'starter') {
+        if (planDetails.planType === 'basic') {
             dispatch(fetchSupplier(planDetails));
             history.push('/suppliers/register');
 
@@ -61,13 +67,24 @@ export const ChoosePlan = () => {
             </Header>
             <section className='supplier__plans'>
                 <Plan
-                  value='starter'
+                  value='basic'
                   id='plan'
                   htmlFor='plan'
+                  planType='Basic'
+                  selectPlan={selectPlan}
+                  selected={plan}
+                >
+                    <Free />
+                </Plan>
+                <Plan
+                  value='starter'
+                  id='plan0'
+                  htmlFor='plan0'
                   planType='Starter'
                   selectPlan={selectPlan}
+                  selected={plan}
                 >
-                    <Starter />
+                    <Starter price={PRICES.STARTER} />
                 </Plan>
                 <Plan
                   value='pro'
@@ -75,6 +92,7 @@ export const ChoosePlan = () => {
                   htmlFor='plan1'
                   planType='Pro'
                   selectPlan={selectPlan}
+                  selected={plan}
                 >
                     <Pro price={PRICES.PRO} />
                 </Plan>
@@ -84,14 +102,29 @@ export const ChoosePlan = () => {
                   htmlFor='plan2'
                   planType='Premium'
                   selectPlan={selectPlan}
+                  selected={plan}
                 >
                     <Premium price={PRICES.PREMIUM} />
                 </Plan>
 
                 {!plan
                     ? <button type='button' disabled> Choose Package </button>
+                    : plan === 'basic'
+                    ? <button type='button' onClick={handlePayment}> Continue with Basic (Free) </button>
                     : plan === 'starter'
-                    ? <button type='button' onClick={handlePayment}> Continue with Starter (Free) </button>
+                    ? (
+                        <PayFast
+                          plan='starter'
+                          buttonText={`Pay Now (R${PRICES.STARTER})`}
+                          confirmationEmail='mphumier@outlook.com'
+                          firstName='Mphumeleli Errol'
+                          lastName='Ntetha'
+                          email='mphumier@outlook.com'
+                          itemName='Starter Supplier Profile'
+                          amount={PRICES.STARTER}
+                          cancelUrl='http://localhost:3000/suppliers/payments'
+                        />
+                        )
                     : plan === 'pro'
                     ? (
                         <PayFast
