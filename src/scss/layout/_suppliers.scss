@@ -555,15 +555,15 @@
             color: black;
         }
 
-        &__radioLabel {
-        }
-
         &__subText {
             font-size: .9rem;
         }
 
         &__dividerContainer {
-            margin: 5em 0;
+
+            > section {
+                margin-bottom:  .8em;
+            }
         }
 
         &__plansContainer span {
@@ -599,6 +599,10 @@
 
         &__feedbackContainer {
             @include modal();
+
+            > * {
+                width: 30%;
+            }
         }
 
         &__updateMessage {
@@ -665,7 +669,7 @@
 
         &__companyLogo {
             @include avatar($width: 100px);
-            border-radius: 0px;
+            border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.1);
         } 
 
@@ -852,6 +856,61 @@
         
         &__selectContainer {
             @include select();
+        }
+
+        &__tagInput {
+            @include inputField($padding: .6em, $border: none, $inputRadius: 20px);
+        }
+
+        &__tagContainer {
+            display: inline-flex;
+            width: max-content;
+            background: #fff;
+            color: #000;
+            margin: .3em .2em;
+            padding: .2em .2em .2em .7em;
+            border-radius: 30px;
+            width: unset;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        &__innerTagContainer {
+            @include flexbox($justify-content: unset);
+            gap: .3em;
+        }
+
+        &__removeTag {
+            @include flexbox();
+            padding: .3em;
+            border-radius: 50%;
+
+            &:hover {
+                background: $foregroundColor;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            &__removeIcon:hover {
+                color: #fff;
+            }
+        }
+
+        &__addTagButton {
+            @include buttonHover($bgColor: black, $padding: .5em);
+            border: 1px solid #fff;
+            width: 30%;
+        }
+
+        &__formTagContainer {
+            @include flexbox();
+            gap: .4em;
+        }
+
+        &__listTagContainer {
+            margin-top: .6em;
         }
     }
 

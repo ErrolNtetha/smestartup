@@ -4,6 +4,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-unneeded-ternary */
 
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +23,8 @@ import { Button } from 'components/button';
 import { Select } from 'components/select';
 import { Modal } from 'components/modal';
 import { Tooltip } from 'components/tooltip';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiX } from 'react-icons/fi';
+import { useStore } from 'hoc/useStore';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
 import { Feedback } from './feedback';
@@ -31,11 +34,16 @@ export const RegisterSupplier = () => {
     const imageInput = useRef(null);
     const imageInput1 = useRef(null);
     const avatar = useRef(null);
+    const { supplier } = useStore();
     const history = useHistory();
     const [modal, setModal] = React.useState(false);
+    const [tag, setTag] = React.useState('');
     const traceChars = (chars: number) => chars;
+    const { planType } = supplier.data;
 
     const message = 'Thank you. Your profile has been successfully submitted and this process can take up to 3 days. Once we have approved your profile, you will receive an email.';
+    const numOfPictures = `${planType === 'starter' ? 3 : 5}`;
+    const numOfTags = `${planType === 'pro' ? 3 : 6}`;
 
     return (
         <main className='supplier__registerSupplierContainer'>
@@ -43,21 +51,22 @@ export const RegisterSupplier = () => {
               validationSchema={Yup.object({
                   name: Yup.string()
                         .min(2, 'Company name is too short!')
-                        .max(100, 'Name is too long!')
+                        .max(100, 'Company name is too long!')
                         .required('Company name cannot be empty.'),
                   about: Yup.string()
-                        .min(30, 'About should be at least 30 characters.')
-                        .max(200, 'The about is too long. Maximum is 200 characters.')
+                        .min(30, 'The About should be at least 30 characters long.')
+                        .max(200, 'The About is too long. Maximum is 200 characters.')
                         .required('About is required!'),
                   description: Yup.string()
-                        .min(30, 'Description should be at least 30 characters.')
-                        .max(1200, 'You have exceeded maximum character limit of 1200. Remove some characters.')
+                        .min(30, 'Description should be at least 30 characters long.')
+                        .max(1200, 'You have exceeded maximum character limit of 1200.')
                         .required('Description is required!'),
                 })}
               initialValues={{
                   name: '',
                   avatar: '',
                   photos: [],
+                  tags: [],
                   about: '',
                   established: '',
                   contacts: {
@@ -109,34 +118,34 @@ export const RegisterSupplier = () => {
                 </Modal>
               )}
                 <hr className='global' />
-                <section className='profile__avatarContainer'>
-                        <span className='register__avatarWrapper'>
-                            <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => avatar.current.click()} onClick={() => avatar.current.click()}>
-                                {props.values.avatar ? <img src={props.values.avatar} alt={`${props.values.name} avatar`} className='supplier__companyLogo' />
-                                : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
-                            </div>
-                            <Button className='profile__changeAvatar' onClick={() => avatar.current.click()}> Company Logo </Button>
-                        </span>
-                    <input
-                      type='file'
-                      hidden
-                      ref={avatar}
-                      accept='image/*'
-                      name='avatar'
-                      onChange={(e) => {
-                          const reader = new FileReader();
-                          reader.readAsDataURL(e.currentTarget.files[0]);
-
-                          reader.onload = () => {
-                              if (reader.result) {
-                                  props.setFieldValue('avatar', reader.result);
-                              }
-                          };
-                      }}
-                    />
-                </section>
                 <section className='supplier__dividerContainer'>
                     <h3> 1. Company Information </h3>
+                    <section className='profile__avatarContainer'>
+                            <span className='register__avatarWrapper'>
+                                <div className='register__avatarContainer' role='button' tabIndex={0} onKeyDown={() => avatar.current.click()} onClick={() => avatar.current.click()}>
+                                    {props.values.avatar ? <img src={props.values.avatar} alt={`${props.values.name} avatar`} className='supplier__companyLogo' />
+                                    : <img src={defaultBusiness} alt={`${props.values.name}'s avatar'`} className='supplier__companyLogo' />}
+                                </div>
+                                <Button className='profile__changeAvatar' style={{ marginTop: '.8em' }} onClick={() => avatar.current.click()}> Company Logo </Button>
+                            </span>
+                        <input
+                          type='file'
+                          hidden
+                          ref={avatar}
+                          accept='image/*'
+                          name='avatar'
+                          onChange={(e) => {
+                              const reader = new FileReader();
+                              reader.readAsDataURL(e.currentTarget.files[0]);
+
+                              reader.onload = () => {
+                                  if (reader.result) {
+                                      props.setFieldValue('avatar', reader.result);
+                                  }
+                              };
+                          }}
+                        />
+                    </section>
                     <section>
                         <label htmlFor='name'> Company Name * </label>
                         <Field
@@ -435,11 +444,62 @@ export const RegisterSupplier = () => {
                     </section>
                     </section>
 
+                    {planType === 'basic'
+                        ? null
+                        : planType === ('starter' || 'pro' || 'premium')
+                        ? (
+                            <FieldArray
+                              name='tags'
+                              render={(arrayHelpers) => (
+                                <section className='supplier__tagOuterContainer'>
+                                    <p> Add relevant tags: </p>
+                                    <form className='supplier__formTagContainer' action='submit'>
+                                        <input
+                                          type='text'
+                                          value={tag}
+                                          className='supplier__tagInput'
+                                          placeholder='Add tag'
+                                          onChange={(e) => setTag(e.currentTarget.value)}
+                                          name='tags'
+                                        />
+                                        <button
+                                          type='button'
+                                          className='supplier__addTagButton'
+                                          disabled={props.values.tags.length > Number(numOfTags)}
+                                          onClick={() => {
+                                            if (!tag) return;
+                                            arrayHelpers.push(tag);
+                                            setTag('');
+                                          }}
+                                        >
+                                          Add Tag
+                                        </button>
+                                    </form>
+                                    {props.values.tags
+                                        && (
+                                            <section className='supplier__listTagContainer'>
+                                                {props.values.tags.map((item, index) => (
+                                                    <span className='supplier__tagContainer' key={index}>
+                                                       <span className='supplier__innerTagContainer'>
+                                                            <p> {item} </p>
+                                                            <span className='supplier__removeTag' onClick={() => arrayHelpers.pop()}> <FiX className='supplier__removeTag__removeIcon' /> </span>
+                                                       </span>
+                                                    </span>
+                                                ))}
+                                            </section>
+                                        )}
+                                  {props.values.tags.length > 0 && `(${props.values.tags.length}/${numOfTags})`}
+                                </section>
+                              )}
+                            />
+                        )
+                        : null }
+
                     <FieldArray
                       name='photos'
                       render={(arrayHelpers) => (
                         <section>
-                            <p> Upload Photos <Tooltip message='You can upload up to 3 pictures. To upload more, you have to upgrade to a paid plan.' className='profile__tooltip' /> </p>
+                            <p> Upload Photos <Tooltip message={`You can upload ${numOfPictures} picture${Number(numOfPictures) > 1 ? 's' : ''}. To upload more, you have to upgrade to a paid plan.`} className='profile__tooltip' /> </p>
                                 <section className='profile__photos'>
                                     {props.values.photos.length
                                         ? (
