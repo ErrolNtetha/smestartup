@@ -524,16 +524,26 @@
 
         &__planTitle {
             @include flexbox();
+            flex-direction: column;
             width: 100%;
             font-size: 2rem;
             font-weight: bold;
-            padding: 10px;
+            padding: 1em;
+        }
+
+        &__planTitle p {
+            margin: 0;
+            padding: 0;
+        }
+
+        &__billingInterval {
+            font-weight: normal;
+            font-size: .9rem;
         }
 
         &__planInfo {
             @include flexbox();
             flex-direction: column;
-            padding: 1em 0;
         }
 
         &__radio {
@@ -1104,10 +1114,11 @@
 
         &__plans {
             @include flexbox();
+            align-items: unset;
             bottom: 0;
             left: 0;
-            gap: 1.5rem;
-            height: 93vh;
+            gap: 2.5rem;
+            height: 94vh;
         }
 
         &__plansContainer {
