@@ -98,7 +98,6 @@ export const RegisterSupplier = () => {
                   companyType: '',
               }}
               onSubmit={async (values) => {
-              console.log(values.tags);
               await axiosPrivate.post('/suppliers/register', values)
                   .then((response) => {
                       if (response.status === 201) {
@@ -445,9 +444,9 @@ export const RegisterSupplier = () => {
                     </section>
                     </section>
 
-                    {planType === 'starter'
+                    {planType === 'basic'
                         ? null
-                        : planType === ('pro' || 'premium')
+                        : planType === ('starter' || 'pro' || 'premium')
                         ? (
                             <FieldArray
                               name='tags'
