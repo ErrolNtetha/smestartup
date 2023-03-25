@@ -6,6 +6,7 @@ interface PlansProps {
     planType: React.ReactNode
     id: string;
     htmlFor: string;
+    selected?: string;
     value: string;
     selectPlan: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -16,7 +17,8 @@ export const Plan = ({
     id,
     htmlFor,
     value,
-    selectPlan
+    selectPlan,
+    selected
 }: PlansProps) => {
     return (
         <section className='supplier__plansContainer'>
@@ -25,7 +27,7 @@ export const Plan = ({
             </span>
             {children}
             <input className='supplier__radio' onChange={selectPlan} name='plan' type='radio' id={id} value={value} />
-            <label htmlFor={htmlFor} className='supplier__radioLabel'> Select </label>
+            <label htmlFor={htmlFor} className='supplier__radioLabel'> {`${selected === value ? 'Selected' : 'Select'}`} </label>
         </section>
     );
 };
