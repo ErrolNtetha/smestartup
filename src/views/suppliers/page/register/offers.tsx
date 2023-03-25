@@ -5,22 +5,59 @@ interface Price {
     price: number;
 }
 
-export const Starter = () => {
+export const Free = () => {
     return (
         <section className='supplier__planInfo'>
             <section style={{ width: '100%' }}>
+                <hr className='global' />
                 <span className='supplier__planTitle'>
-                    Free
+                    <p>Free</p>
+                    <p className='supplier__billingInterval'> Forever </p>
                 </span>
                 <hr className='global' />
                 <section className='supplier__offerDetails'>
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck />
+                            <FiCheck /> Basic contacts
                         </li>
                         <li>
-                            <FiCheck /> Upload up to 2 images
+                            <FiCheck /> Upload 1 image
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </section>
+    );
+};
+
+export const Starter = ({ price }: Price) => {
+    return (
+        <section className='supplier__planInfo'>
+            <section style={{ width: '100%' }}>
+                <hr className='global' />
+                <span className='supplier__planTitle'>
+                    <p>R{price}</p>
+                    <p className='supplier__billingInterval'> Monthly </p>
+                </span>
+                <hr className='global' />
+                <section className='supplier__offerDetails'>
+                    <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
+                    <ul>
+                        <li>
+                            <FiCheck /> Map View
+                        </li>
+                        <li>
+                            <FiCheck /> Basic contacts
+                        </li>
+                        <li>
+                            <FiCheck /> 1 branch
+                        </li>
+                        <li>
+                            <FiCheck /> Up to 3 images
+                        </li>
+                        <li>
+                            <FiCheck /> Email Support
                         </li>
                     </ul>
                 </section>
@@ -33,33 +70,44 @@ export const Pro = ({ price }: Price) => {
     return (
         <section className='supplier__planInfo'>
             <section style={{ width: '100%' }}>
+                <hr className='global' />
                 <span className='supplier__planTitle'>
-                    R{price}
+                    <p>R{price}</p>
+                    <p className='supplier__billingInterval'> Monthly </p>
                 </span>
                 <hr className='global' />
                 <section className='supplier__offerDetails'>
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Business Location
+                            <FiCheck /> Map View
                         </li>
                         <li>
                             <FiCheck /> Additional contact info
                         </li>
                         <li>
+                            <FiCheck /> Up to 3 branches
+                        </li>
+                        <li>
                             <FiCheck /> Social media links
+                        </li>
+                        <li>
+                            <FiCheck /> Edit profile
                         </li>
                         <li>
                             <FiCheck /> Up to 3 tags
                         </li>
                         <li>
-                            <FiCheck /> Customer support (Email)
+                            <FiCheck /> Claim verified badge
                         </li>
                         <li>
-                            <FiCheck /> Upload up to 5 images
+                            <FiCheck /> Email support
                         </li>
                         <li>
-                            <FiCheck /> Product visibility on home page
+                            <FiCheck /> Up to 5 images
+                        </li>
+                        <li>
+                            <FiCheck /> Featured listing
                         </li>
                     </ul>
                 </section>
@@ -72,21 +120,26 @@ export const Premium = ({ price }: Price) => {
     return (
         <section className='supplier__planInfo'>
             <section style={{ width: '100%' }}>
+                <hr className='global' />
                 <span className='supplier__planTitle'>
-                    R{price}
+                    <p>R{price}</p>
+                    <p className='supplier__billingInterval'> Monthly </p>
                 </span>
                 <hr className='global' />
                 <section className='supplier__offerDetails'>
                     <p style={{ margin: '0', paddingBottom: '4px' }}> What you get: </p>
                     <ul>
                         <li>
-                            <FiCheck /> Business Location
+                            <FiCheck /> Map View
                         </li>
                         <li>
                             <FiCheck /> Up to 10 tags
                         </li>
                         <li>
                             <FiCheck /> Edit profile
+                        </li>
+                        <li>
+                            <FiCheck /> Up to 4 branches
                         </li>
                         <li>
                             <FiCheck /> Reply to reviews
@@ -101,13 +154,13 @@ export const Premium = ({ price }: Price) => {
                             <FiCheck /> Brand identity support
                         </li>
                         <li>
-                            <FiCheck /> Featured listing - Homepage
+                            <FiCheck /> Featured listing
                         </li>
                         <li>
-                            <FiCheck /> Suggested in similar suppliers
+                            <FiCheck /> Similar suggestion
                         </li>
                         <li>
-                            <FiCheck /> Upload up to 10 images
+                            <FiCheck /> Up to 10 images
                         </li>
                         <li>
                             <FiCheck /> Claim verified badge

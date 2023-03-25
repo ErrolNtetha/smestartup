@@ -39,7 +39,7 @@ export const BottomNav = () => {
                         <p> Profiles </p>
                     </Link>
                     <span>
-                        <FiPlusCircle className='supplier__icon supplier__plus' onClick={() => history.push('/suppliers/register')} />
+                        <FiPlusCircle className='supplier__icon supplier__plus' onClick={() => history.push('/suppliers/payments')} />
                     </span>
                     <span onClick={() => handleToggle()} onKeyDown={() => handleToggle()} role='button'>
                         <FiSliders className='supplier__icon' />
