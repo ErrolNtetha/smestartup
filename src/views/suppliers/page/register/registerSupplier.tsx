@@ -506,10 +506,10 @@ export const RegisterSupplier = () => {
                                         ? (
                                             <section>
                                                 <section className='profile__photosContainer'>
-                                                    {props.values.photos && props.values.photos.map((item) => (
+                                                    {props.values.photos && props.values.photos.map((item, index) => (
                                                         <section className='profile__photosGroup'>
                                                             <img src={item} alt='dummy text' />
-                                                            <RemoveIcon className='supplier' />
+                                                            <RemoveIcon removeIconHandler={() => arrayHelpers.remove(index)} className='supplier' />
                                                         </section>
                                                     ))}
                                                     <section className='profile__addPhotos' onClick={() => imageInput1.current.click()}>
