@@ -445,9 +445,9 @@ export const RegisterSupplier = () => {
                     </section>
                     </section>
 
-                    {planType === 'basic'
+                    {planType === ''
                         ? null
-                        : planType === ('starter' || 'pro' || 'premium')
+                        : planType === ('basic' || 'pro' || 'premium')
                         ? (
                             <FieldArray
                               name='tags'
@@ -483,7 +483,7 @@ export const RegisterSupplier = () => {
                                                     <span className='supplier__tagContainer' key={index}>
                                                        <span className='supplier__innerTagContainer'>
                                                             <p> {item} </p>
-                                                            <span className='supplier__removeTag' onClick={() => arrayHelpers.pop()}> <FiX className='supplier__removeTag__removeIcon' /> </span>
+                                                            <span className='supplier__removeTag' onClick={() => arrayHelpers.remove(index)}> <FiX className='supplier__removeTag__removeIcon' /> </span>
                                                        </span>
                                                     </span>
                                                 ))}
