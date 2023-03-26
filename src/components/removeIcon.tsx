@@ -3,11 +3,12 @@ import { FiX } from 'react-icons/fi';
 
 interface RProps {
     className: string;
+    removeIconHandler: React.MouseEventHandler<HTMLSpanElement>;
 }
 
-export const RemoveIcon = ({ className }: RProps) => {
+export const RemoveIcon = ({ className, removeIconHandler }: RProps) => {
     return (
-        <span className={`${className}__removeIconContainer`}>
+        <span onClick={removeIconHandler} role='button' tabIndex={0} onKeyPress={removeIconHandler} className={`${className}__removeIconContainer`}>
             <FiX />
         </span>
     );
