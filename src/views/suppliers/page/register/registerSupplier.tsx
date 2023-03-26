@@ -445,16 +445,16 @@ export const RegisterSupplier = () => {
                     </section>
                     </section>
 
-                    {planType === ''
+                    {planType === 'basic'
                         ? null
-                        : planType === ('basic' || 'pro' || 'premium')
+                        : planType === ('starter' || 'pro' || 'premium')
                         ? (
                             <FieldArray
                               name='tags'
                               render={(arrayHelpers) => (
                                 <section className='supplier__tagOuterContainer'>
                                     <p> Add relevant tags: </p>
-                                    <form className='supplier__formTagContainer' action='submit'>
+                                    <section className='supplier__formTagContainer'>
                                         <input
                                           type='text'
                                           value={tag}
@@ -475,7 +475,7 @@ export const RegisterSupplier = () => {
                                         >
                                           Add Tag
                                         </button>
-                                    </form>
+                                    </section>
                                     {props.values.tags
                                         && (
                                             <section className='supplier__listTagContainer'>
