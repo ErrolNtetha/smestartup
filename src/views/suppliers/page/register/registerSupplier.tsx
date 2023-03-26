@@ -25,6 +25,7 @@ import { Modal } from 'components/modal';
 import { Tooltip } from 'components/tooltip';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { useStore } from 'hoc/useStore';
+import { RemoveIcon } from 'components/removeIcon';
 import { sectors } from '../../sectors';
 import { levels } from './bee';
 import { Feedback } from './feedback';
@@ -505,7 +506,12 @@ export const RegisterSupplier = () => {
                                         ? (
                                             <section>
                                                 <section className='profile__photosContainer'>
-                                                    {props.values.photos && props.values.photos.map((item) => <img src={item} className='profile__photosGroup' alt='dummy text' />)}
+                                                    {props.values.photos && props.values.photos.map((item) => (
+                                                        <section className='profile__photosGroup'>
+                                                            <img src={item} alt='dummy text' />
+                                                            <RemoveIcon className='supplier' />
+                                                        </section>
+                                                    ))}
                                                     <section className='profile__addPhotos' onClick={() => imageInput1.current.click()}>
                                                         <section>
                                                             <FiPlus className='profile__plusIcon' />
