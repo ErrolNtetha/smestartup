@@ -912,6 +912,24 @@
         &__listTagContainer {
             margin-top: .6em;
         }
+
+        &__removeIconContainer {
+            @include flexbox();
+            position: absolute;
+            background: black;
+            z-index: 999;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, .08);
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(0, 0, 0, .08);
+            }
+        }
     }
 
     @include respond-to('tablet') {
