@@ -5,6 +5,9 @@
 .hero {
     @include flexbox($justify-content: center);
     height: 93vh;
+    background: url('../../assets/svg/top.svg');
+    background-size: cover;
+    background-color: $foregroundColor;
     // padding: 1em 3em;
     // gap: 4em;
 
