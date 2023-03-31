@@ -930,6 +930,11 @@
                 background: rgba(0, 0, 0, .08);
             }
         }
+
+        &__errorMessageContainer {
+            padding: 1.2em .8em;
+            text-align: center;
+        }
     }
 
     @include respond-to('tablet') {
