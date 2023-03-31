@@ -14,7 +14,7 @@ export const Create = () => {
                 <hr className='global' />
                 <section className='supplier__supplierListContainer'>
                     {errorMessage
-                        ? <section>{errorMessage}</section>
+                        ? <section className='supplier__errorMessageContainer'>{errorMessage}</section>
                         : loading
                         ? <CardSkeleton />
                         : data?.suppliers?.map((item: any) => {
