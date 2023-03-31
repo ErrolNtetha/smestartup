@@ -14,12 +14,14 @@ import {
     FiUsers,
 } from 'react-icons/fi';
 import { Avatar } from 'components/avatar';
+import { useStore } from 'hoc/useStore';
 
 interface Props {
     toggleField: Function;
 }
 
 export const Sidebar = ({ toggleField }: Props) => {
+    const { avatar } = useStore().userProfile.userData;
   return (
       <div className='feed__sidebar'>
         <section className='feed__navContainer'>
@@ -33,7 +35,7 @@ export const Sidebar = ({ toggleField }: Props) => {
                         {/* <MessageCounter counter={2} /> */}
                     </li>
                     <li> <FiStar /> Starred </li>
-                    <li> <Link to='/profile'> <Avatar className='feed__sidebarAvatar' avatar='' /> Profile </Link> </li>
+                    <li> <Link to='/profile'> <Avatar className='feed__sidebarAvatar' avatar={avatar} /> Profile </Link> </li>
                 </ul>
             </section>
             <section className='feed__dashboardContainer'>
