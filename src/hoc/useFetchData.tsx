@@ -12,7 +12,7 @@ export const useFetchData = (url: string) => {
         const fetchData = async () => {
             try {
                 if (!response) {
-                    setError('There was an error fetching data.');
+                    setError('There was a problem with your network.');
                     return;
                 }
 
