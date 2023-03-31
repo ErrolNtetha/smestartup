@@ -11,9 +11,15 @@ export const useFetchData = (url: string) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                if (!response) {
+                    setError('There was an error fetching data.');
+                    return;
+                }
+
                 const response = await axiosPrivate.get(url);
                 setData(response?.data);
             } catch (error) {
+                console.log(error);
                 // @ts-ignore
                 if (error.code === 'ECONNABORTED') {
                     setError('Request timed out.');
