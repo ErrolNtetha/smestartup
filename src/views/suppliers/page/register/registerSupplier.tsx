@@ -7,6 +7,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unneeded-ternary */
+/* eslint-disable no-restricted-syntax */
 
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -554,10 +555,10 @@ export const RegisterSupplier = () => {
                                   const photos = e.currentTarget.files;
 
                                   if (photos) {
-                                      for (let i = 0; i <= photos.length; i++) {
+                                      for (const photo of photos) {
                                         const reader = new FileReader();
 
-                                        reader.readAsDataURL(photos[i]);
+                                        reader.readAsDataURL(photo);
                                         reader.onload = () => {
                                             if (reader.result) {
                                                 arrayHelpers.push(reader.result);
