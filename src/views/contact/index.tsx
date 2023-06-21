@@ -9,7 +9,6 @@ import {
 } from 'formik';
 import { axiosPrivate, axiosPublic } from 'config/axiosInstance';
 import { useStore } from 'hoc/useStore';
-import { Rating } from 'components/ratings';
 
 export const ContactPage = () => {
     const { isLogged } = useStore();
@@ -76,9 +75,7 @@ export const ContactPage = () => {
                     )}
                 </Formik>
             </section>
-            <section className='contact__rightColumn'>
-                <Rating />
-            </section>
+            <section className='contact__rightColumn' />
         </section>
     );
 };
