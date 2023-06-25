@@ -1,6 +1,6 @@
-const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user.model');
 
 const validateLogin = async (req, res) => {
     const userEmail = req.body.email;
@@ -21,7 +21,7 @@ const validateLogin = async (req, res) => {
 
                         // if password matches, sign the user with the payload
                         if (isMatching) {
-                            const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '5d' });
+                            const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '10s' });
                             const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' });
                             res.status(200).json({
                                 isLoggedIn: true,

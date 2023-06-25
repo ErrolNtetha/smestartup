@@ -308,9 +308,17 @@ $container-width: 70%;
         }
 
         &__photosGroup {
+            position: relative;
+            width: 20%;
+            height: 20%;
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 5px;
             object-fit: cover;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
         }
 
         &__photos {

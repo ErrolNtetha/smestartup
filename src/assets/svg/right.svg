@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="91.456398mm"
+   height="182.91287mm"
+   viewBox="0 0 91.456398 182.91287"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <font
+       horiz-adv-x="1024"
+       id="font26042"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
+      <font-face
+         units-per-em="1024"
+         id="font-face26044"
+         font-family="SVGFont 1" />
+      <missing-glyph
+         d="M0,0h1000v1024h-1000z"
+         id="missing-glyph26046" />
+    </font>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-1355.6041,-243.08567)">
+    <path
+       id="path1079"
+       style="fill:#00ffff;stroke:none;stroke-width:1;paint-order:markers stroke fill"
+       d="m 1447.0605,243.08567 a 91.456268,91.456268 0 0 0 -91.4564,91.45644 91.456268,91.456268 0 0 0 91.4564,91.45643 z" />
+  </g>
+</svg>

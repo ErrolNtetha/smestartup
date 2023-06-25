@@ -23,8 +23,13 @@ export const ContactPage = () => {
                     question: ''
                 }}
                   onSubmit={async (values) => {
-                      console.log(values);
+                      if (!(values.question && values.fullNames && values.email)) {
+                          console.log('No values');
+                          return;
+                      }
+
                       if (isLogged) {
+                        console.log(values);
                         await axiosPrivate.post('/contact', values)
                           .then((response) => console.log(response.data))
                           .catch((error) => console.log(error.message));
@@ -35,8 +40,8 @@ export const ContactPage = () => {
                       }
                 }}
                 >
-                    {(props) => (
-                        <Form onSubmit={props.handleSubmit} className='contact__form'>
+                    {({ values, handleSubmit }) => (
+                        <Form onSubmit={handleSubmit} className='contact__form'>
                             <section>
                                 <label> Full Name </label>
                                 <Field
@@ -63,7 +68,7 @@ export const ContactPage = () => {
                                   placeholder='Type your question here'
                                   className='contact__inputField contact__textarea'
                                 />
-                                <p style={{ textAlign: 'right', margin: '0' }}> Characters: {props.values.question.length} </p>
+                                <p style={{ textAlign: 'right', margin: '0' }}> {values.question.length} characters </p>
                             </section>
                             <button type='submit' className='contact__submitButton'> Send </button>
                         </Form>
