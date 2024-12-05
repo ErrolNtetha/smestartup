@@ -56,7 +56,7 @@ export const Footer = () => {
                 </section>
             )}
             <button type='submit' className='footer__button--submit'> {loading ? <SyncLoader size={8} color='#fff' /> : <section> subscribe <FiSend>hbhj</FiSend> </section>} </button>
-          <section>
+          <section style={{ color: 'green', fontSize: '1.2rem' }}>
             {!loading && response}
           </section>
         </form>
